@@ -34,11 +34,7 @@ namespace IdlingComplaintTest.Tests.Register
         public static readonly int MAX_CITY_LENGTH = 35;
         public static readonly int MAX_PHONE_NUMBER_LENGTH = 13;
         public static readonly int MAX_ZIPCODE_LENGTH = 10;
-        public static readonly string LOGIN_HEADING = "NYC Idling Complaints";
         public static readonly string LOGIN = "Login";
-        public static readonly string FORGOT_PASS = "Forgot Password";
-        public static readonly string NOT_REGISTERED = "Not registered?";
-        public static readonly string CREATE_ACCOUNT = "Create an account";
         public static readonly string PASSWORD_POLICY_1 = "Password policy: password must be at least 8 characters, with at least one upper case letter, lower case letter, number, and special character.";
         //  public static readonly string PASSWORD_POLICY_2 = "Password is invalid. See password policy above.";
         public static readonly string PASSWORD_POLICY_2 = "Remember Security Answer for future password retrieval.";

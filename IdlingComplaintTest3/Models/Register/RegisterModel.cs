@@ -48,6 +48,13 @@ namespace IdlingComplaintTest.Pages.Register
         public string selectedSecurityQuestionControl = "--";
         public string selectedStateControl = "--";
 
+        public List<string> securityQuestionList;
+        public List<IWebElement> securityQuestionElementList;
+
+        public List<string> stateOptionList;
+        public List<IWebElement> stateOptionElementList;
+
+
         public string FirstNameInput
         {
             get
@@ -182,7 +189,6 @@ namespace IdlingComplaintTest.Pages.Register
 
 
 
-
         public void SelectSecurityQuestion(int questionIndex) 
         {
             SecurityQuestionControl.Click();
@@ -190,7 +196,7 @@ namespace IdlingComplaintTest.Pages.Register
             var optionElementList = security.FindElements(By.TagName("span"));
             Thread.Sleep(1000);
             List<string> questionList = optionElementList.ConvertOptionToText();
-            if (questionIndex >= questionList.Count || questionIndex < 0) return;
+            if (questionIndex >= securityQuestionList.Count || questionIndex < 0) return;
             optionElementList[questionIndex].Click();
             this.selectedSecurityQuestionControl = questionList[questionIndex];
         }
