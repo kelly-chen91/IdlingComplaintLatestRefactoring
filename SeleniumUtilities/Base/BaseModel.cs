@@ -4,9 +4,9 @@ using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
-namespace IdlingComplaintTest.Models.Base
+namespace SeleniumUtilities.Base
 {
-    internal class BaseModel
+    public class BaseModel
     {
         protected IWebDriver Driver;
 

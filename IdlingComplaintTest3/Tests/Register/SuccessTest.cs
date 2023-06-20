@@ -1,6 +1,6 @@
 ﻿using IdlingComplaintTest.Pages.Register;
 using IdlingComplaintTest.Pages.Login;
-using IdlingComplaintTest.Utils;
+using SeleniumUtilities.Utils;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;

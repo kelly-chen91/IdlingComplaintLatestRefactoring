@@ -1,5 +1,5 @@
 ﻿using IdlingComplaintTest.Pages.Login;
-using IdlingComplaintTest.Utils;
+using SeleniumUtilities.Utils;
 
 /*
  *This is the label test class for testing the labels in the login page

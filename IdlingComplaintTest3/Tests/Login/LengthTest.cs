@@ -1,5 +1,5 @@
 ﻿using IdlingComplaintTest.Pages.Login;
-using IdlingComplaintTest.Utils;
+using SeleniumUtilities.Utils;
 
 namespace IdlingComplaintTest.Tests.Login
 {

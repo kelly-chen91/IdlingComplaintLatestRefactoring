@@ -1,5 +1,5 @@
-﻿using IdlingComplaintTest.Models.Base;
-using IdlingComplaintTest.Utils;
+﻿using SeleniumUtilities.Base;
+using SeleniumUtilities.Utils;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
