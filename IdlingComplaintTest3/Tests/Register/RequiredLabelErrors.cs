@@ -14,7 +14,7 @@ namespace IdlingComplaintTest.Tests.Register
 {
     //[Parallelizable(ParallelScope.Children)]
     //[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
-    internal class RequiredTests : RegisterModel
+    internal class RequiredLabelErrors : RegisterModel
     {
 
         //[OneTimeSetUp]
@@ -84,8 +84,8 @@ namespace IdlingComplaintTest.Tests.Register
         [Category("Required Field Missing - Error Label Displayed")]
         public void MissingPassword()
         {
-            ConfirmPasswordControl.SendTextDeleteTabWithDelay("xxx", SLEEP_TIMER);
-            
+            PasswordControl.SendTextDeleteTabWithDelay("xxx", SLEEP_TIMER);
+
             string error = Driver.ExtractTextFromXPath("//mat-card-content/div[4]/div[1]/div[1]/mat-form-field/div/div[3]/div/mat-error/text()");
             Assert.That(error, Is.EqualTo(Constants.PASSWORD_REQUIRED));
         }
@@ -151,7 +151,7 @@ namespace IdlingComplaintTest.Tests.Register
         {
             SelectState(0);
             string error = Driver.ExtractTextFromXPath("//mat-card-content/div[8]/mat-form-field/div/div[3]/div/mat-error/text()");
-            Assert.That(error, Is.EqualTo(Constants.STATE_REQUIRED));
+            Assert.That(error, Is.EqualTo(Constants.REQUIRED)); //Supposed to fail for consistency
         }
 
         /*Tests for error when zip code field is empty*/
@@ -223,16 +223,18 @@ namespace IdlingComplaintTest.Tests.Register
             //ConfirmPasswordProvided();
         }
 
-        /*Tests for no error when confirm password field is filled
+        //Tests for no error when confirm password field is filled
         [Test]
         [Category("Required Field Provided - Error Label Hidden")]
         public void ConfirmPasswordProvided()
         {
-            ConfirmPasswordInput = "T3sting.222";
+            PasswordControl.SendKeysWithDelay("T3sting.222", SLEEP_TIMER);
+            ConfirmPasswordControl.SendKeysWithDelay("T3sting.222", SLEEP_TIMER);
+
             string error = Driver.ExtractTextFromXPath("//mat-card-content/div[4]/div[1]/div[2]/mat-form-field/div/div[3]/div/mat-error/text()");
             Assert.That(error, Is.EqualTo(string.Empty));
         }
-        */
+        
 
         /*Tests for no error when security question field is filled*/
         [Test]
@@ -313,9 +315,6 @@ namespace IdlingComplaintTest.Tests.Register
 
         public void ValidEmailTest()
         {
-            //Boolean validEmail = registerModel.IsValidEmail("kchen@dep");
-            //Console.WriteLine(validEmail);
-            //Console.WriteLine(validEmail);
             /* The program does not test for valid email addresses */
         }
 
@@ -326,7 +325,6 @@ namespace IdlingComplaintTest.Tests.Register
 
         public void ValidPhoneNumber()
         {
-            //Console.WriteLine(registerModel.IsValidPhoneNumber("917770-0000"));
             /* The program does not test for valid phone numbers */
         }
     }

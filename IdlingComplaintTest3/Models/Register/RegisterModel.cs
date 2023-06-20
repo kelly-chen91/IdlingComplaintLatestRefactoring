@@ -189,10 +189,10 @@ namespace IdlingComplaintTest.Pages.Register
             var security = Driver.FindElement(By.Id("mat-select-1-panel"));
             var optionElementList = security.FindElements(By.TagName("span"));
             Thread.Sleep(1000);
-            List<string> questionList = ConvertOptionToText(optionElementList);
+            List<string> questionList = optionElementList.ConvertOptionToText();
             if (questionIndex >= questionList.Count || questionIndex < 0) return;
             optionElementList[questionIndex].Click();
-            UpdateOption(questionList[questionIndex], true);
+            this.selectedSecurityQuestionControl = questionList[questionIndex];
         }
 
 
@@ -201,10 +201,10 @@ namespace IdlingComplaintTest.Pages.Register
             StateControl.Click();
             var optionElementList = StateOptionsControl.FindElements(By.TagName("span"));
             Thread.Sleep(1000);
-            List<string> stateList = ConvertOptionToText(optionElementList);
+            List<string> stateList = optionElementList.ConvertOptionToText();
             if (stateIndex >= stateList.Count || stateIndex < 0) return;
             optionElementList[stateIndex].Click();
-            UpdateOption(stateList[stateIndex], false);
+            this.selectedStateControl = stateList[stateIndex];
         }
 
      
@@ -224,21 +224,6 @@ namespace IdlingComplaintTest.Pages.Register
             Driver.ScrollTo(SubmitButtonControl);
         }
 
-   //    public IWebElement GetFirstName() { return FirstNameControl; }
-   //    public IWebElement GetLastName() {  return LastName; }
-   //    public IWebElement GetEmail() { return Email; }
-   //    public IWebElement GetPassword() { return Password;}
-   //    public IWebElement GetConfirmPassword() { return ConfirmPassword;}
-   //    public IWebElement GetSecurityQuestion() { return  SecurityQuestion;}
-   //    public IWebElement GetSecurityAnswer() {  return SecurityAnswer;}
-   //    public IWebElement GetAddress1() { return Address1; }
-   //    public IWebElement GetAddress2() { return Address2; }
-   //    public IWebElement GetCity() { return City;}
-   //    public IWebElement GetState() { return State;}
-   //    public IWebElement GetZipCode() { return ZipCode;}
-   //    public IWebElement GetTelephone() { return  Telephone;}
-   //    public IWebElement GetCancelButton() { return CancelButton;}
-   //
         /* The following methods checking for validation of the fields: Email, Phone #, ZipCode, password */
         public Boolean IsValidEmail(string email)
         {
@@ -266,24 +251,5 @@ namespace IdlingComplaintTest.Pages.Register
             string validPhoneRegex = @"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$";
             return Regex.IsMatch(phoneNumber, validPhoneRegex);
         }
-
-        public void UpdateOption(string elementText, Boolean isSecurityQuestion)
-        {
-            //   if (isSecurityQuestion) this.selectedSecurityQuestion = elementText;
-            //   else this.selectedState = elementText;
-            if (isSecurityQuestion) this.selectedSecurityQuestionControl = elementText;
-            else this.selectedStateControl = elementText;
-        }
-
-        public List<string> ConvertOptionToText(ReadOnlyCollection<IWebElement> elements)
-        {
-            List<string> list = new List<string>();
-            for (int i = 0; i < elements.Count; i++)
-            {
-                list.Add(elements[i].Text);
-            }
-            return list;
-        }
-
     }
 }

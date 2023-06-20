@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,6 +46,16 @@ namespace SeleniumUtilities.Utils
             element.DeleteText(text);
             element.SendKeys(Keys.Tab);
             Thread.Sleep(milliseconds);
+        }
+
+        public static List<string> ConvertOptionToText(this ReadOnlyCollection<IWebElement> elements)
+        {
+            List<string> list = new List<string>();
+            for (int i = 0; i < elements.Count; i++)
+            {
+                list.Add(elements[i].Text);
+            }
+            return list;
         }
 
     }

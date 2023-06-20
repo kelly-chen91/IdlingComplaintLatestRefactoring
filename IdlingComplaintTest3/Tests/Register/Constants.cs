@@ -21,9 +21,9 @@ namespace IdlingComplaintTest.Tests.Register
         public static readonly string ADDRESS_1 = "Address1";
         public static readonly string ADDRESS_2 = "Address2";
         public static readonly string CITY = "City";
-         public static readonly string STATE = "State";
+        public static readonly string STATE = "State";
        
-         public static readonly string DEFAULT_STATE = "--";
+        public static readonly string DEFAULT_STATE = "--";
         public static readonly string ZIPCODE = "Zip Code";
         public static readonly string TELEPHONE = "Telephone";
         public static readonly int MAX_NAME_LENGTH = 50;

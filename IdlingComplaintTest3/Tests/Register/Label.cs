@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace IdlingComplaintTest.Tests.Register
 {
 
-    internal partial class LabelTests : RegisterModel
+    internal partial class Label : RegisterModel
     {
         //  private RegisterModel createAnAccountModel;
 

@@ -10,7 +10,7 @@ namespace IdlingComplaintTest.Tests.Login;
 /*This is user login verification test
  */
 
-internal class LoginVerificationTest : LoginModel
+internal class Verification : LoginModel
 {
     [SetUp]
     public void SetUp()
