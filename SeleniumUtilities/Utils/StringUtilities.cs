@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace SeleniumUtilities.Utils
@@ -35,6 +36,34 @@ namespace SeleniumUtilities.Utils
                 length = 12; //GenerateRandomEmail(1) => a@dep.nyc.gov
 
             return GenerateRandomString(length - 12) + "@dep.nyc.gov";
+        }
+
+        /* The following methods checking for validation of the fields: Email, Phone #, ZipCode, password */
+        public static Boolean IsValidEmail(this string email)
+        {
+            var regexPattern = @"^[a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$";
+            var regex = new Regex(regexPattern);
+            return regex.IsMatch(email);
+        }
+
+        public static String FormatPhoneNumber(this string phone)
+        {
+            Regex regex = new Regex(@"[^\d]");
+            phone = regex.Replace(phone.Trim(), "");
+            phone = Regex.Replace(phone, @"(\d{3})(\d{3})(\d{4})", "$1-$2-$3");
+            return phone;
+        }
+        public static Boolean IsValidPhoneNumber(this string phoneNumber)
+        {
+            Console.WriteLine("original: " + phoneNumber);
+            phoneNumber = FormatPhoneNumber(phoneNumber);
+            Console.WriteLine("new: " + phoneNumber);
+            if (string.IsNullOrEmpty(phoneNumber))
+            {
+                return false;
+            }
+            string validPhoneRegex = @"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$";
+            return Regex.IsMatch(phoneNumber, validPhoneRegex);
         }
     }
 }
