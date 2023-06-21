@@ -29,7 +29,7 @@ namespace IdlingComplaintTest.Tests.Register
         //    base.OneTimeTearDown();
         //}
 
-        private readonly int SLEEP_TIMER = 0;
+        private readonly int SLEEP_TIMER = 5000;
 
         [SetUp]
         public void SetUp()

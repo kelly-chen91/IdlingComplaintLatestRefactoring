@@ -12,16 +12,17 @@ using OpenQA.Selenium.Support.UI;
 
 namespace IdlingComplaintTest.Tests.Register
 {
-    [Parallelizable(ParallelScope.Children)]
-    [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
+    //[Parallelizable(ParallelScope.Children)]
+    //[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
     internal class RegistrationVerification : RegisterModel
     {
         [SetUp]
         public void SetUp()
         {
+            Driver.Quit();
+            Driver = CreateDriver("chrome");
             Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/profile");
             Driver.Manage().Window.Size = new Size(1920, 1200);
-            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
         }
 
         [TearDown]
@@ -30,54 +31,53 @@ namespace IdlingComplaintTest.Tests.Register
             Driver.Quit();
         }
 
+        private readonly int SLEEP_TIMER = 3000;
+
         [Test]
         [Category("Successful Registration")]
         public void SuccessfulRegistration()
         {
-
-            FirstNameInput ="Jane";
-            LastNameInput = "Doe";
-            EmailInput = StringUtilities.GenerateRandomEmail();
-            PasswordInput = "T3sting@1234";
-            ConfirmPasswordInput = "T3sting@1234";
+            FirstNameControl.SendKeysWithDelay("Jane", SLEEP_TIMER);
+            LastNameControl.SendKeysWithDelay("Doe", SLEEP_TIMER);
+            EmailControl.SendKeysWithDelay(StringUtilities.GenerateRandomEmail(), SLEEP_TIMER);
+            PasswordControl.SendKeysWithDelay("T3sting@1234", SLEEP_TIMER);
+            ConfirmPasswordControl.SendKeysWithDelay("T3sting@1234", SLEEP_TIMER);
             SelectSecurityQuestion(1);
-            SecurityAnswerInput = "Testing";
-            Address1Input = "59-17 Junction Blvd";
-            Address2Input = "10th Fl";
-            CityInput = "Queens";
+            SecurityAnswerControl.SendKeysWithDelay("Testing", SLEEP_TIMER);
+            Address1Control.SendKeysWithDelay("59-17 Junction Blvd", SLEEP_TIMER);
+            Address2Control.SendKeysWithDelay("10th Fl", SLEEP_TIMER);
+            CityControl.SendKeysWithDelay("Queens", SLEEP_TIMER);
             SelectState(1);
-            ZipCodeInput = "11373";
-            PhoneInput = "631-632-9800";
+            ZipCodeControl.SendKeysWithDelay("11373", SLEEP_TIMER);
+            TelephoneControl.SendKeysWithDelay("631-632-9800", SLEEP_TIMER);
             ScrollToButton();
             ClickSubmitButton();
-            Thread.Sleep(10000);
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10)); 
             wait.Until(d => {
                 var snackBarError = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
                 Assert.IsNotNull(snackBarError);
-                Assert.That(snackBarError.Text.Trim(), Is.EqualTo("Registration has been completed successfully.")); //Added period for consistency
+                Assert.That(snackBarError.Text.Trim(), Is.EqualTo("Registration has been completed successfully")); //Added period for consistency
                 return snackBarError;
             });
-
         }
 
         [Test]
         [Category("Failed Registration")]
         public void FailedRegistration()
         {
-            FirstNameInput = "Jane";
-            LastNameInput = "Doe";
-            EmailInput = "kelly.chen@dep.nyc.gov";
-            PasswordInput = "T3sting@1234";
-            ConfirmPasswordInput = "T3sting@1234";
+            FirstNameControl.SendKeysWithDelay("Jane", SLEEP_TIMER);
+            LastNameControl.SendKeysWithDelay("Doe", SLEEP_TIMER);
+            EmailControl.SendKeysWithDelay("kchen@dep.nyc.gov", SLEEP_TIMER);
+            PasswordControl.SendKeysWithDelay("T3sting@1234", SLEEP_TIMER);
+            ConfirmPasswordControl.SendKeysWithDelay("T3sting@1234", SLEEP_TIMER);
             SelectSecurityQuestion(1);
-            SecurityAnswerInput = "Testing";
-            Address1Input = "59-17 Junction Blvd";
-            Address2Input = "10th Fl";
-            CityInput = "Queens";
+            SecurityAnswerControl.SendKeysWithDelay("Testing", SLEEP_TIMER);
+            Address1Control.SendKeysWithDelay("59-17 Junction Blvd", SLEEP_TIMER);
+            Address2Control.SendKeysWithDelay("10th Fl", SLEEP_TIMER);
+            CityControl.SendKeysWithDelay("Queens", SLEEP_TIMER);
             SelectState(1);
-            ZipCodeInput = "11373";
-            PhoneInput = "631-632-9800";
+            ZipCodeControl.SendKeysWithDelay("11373", SLEEP_TIMER);
+            TelephoneControl.SendKeysWithDelay("631-632-9800", SLEEP_TIMER);
             ScrollToButton();
             ClickSubmitButton();
             
@@ -100,29 +100,30 @@ namespace IdlingComplaintTest.Tests.Register
         [Category("Cancelled Registration")]
         public void CancelRegistration()
         {
-            FirstNameInput = "Jane";
-            LastNameInput = "Doe";
-            EmailInput = StringUtilities.GenerateRandomEmail();
-            PasswordInput = "T3sting@1234";
-            ConfirmPasswordInput = "T3sting@1234";
+            FirstNameControl.SendKeysWithDelay("Jane", SLEEP_TIMER);
+            LastNameControl.SendKeysWithDelay("Doe", SLEEP_TIMER);
+            EmailControl.SendKeysWithDelay("kchen@dep.nyc.gov", SLEEP_TIMER);
+            PasswordControl.SendKeysWithDelay("T3sting@1234", SLEEP_TIMER);
+            ConfirmPasswordControl.SendKeysWithDelay("T3sting@1234", SLEEP_TIMER);
             SelectSecurityQuestion(1);
-            SecurityAnswerInput = "Testing";
-            Address1Input = "59-17 Junction Blvd";
-            Address2Input = "10th Fl";
-            CityInput = "Queens";
+            SecurityAnswerControl.SendKeysWithDelay("Testing", SLEEP_TIMER);
+            Address1Control.SendKeysWithDelay("59-17 Junction Blvd", SLEEP_TIMER);
+            Address2Control.SendKeysWithDelay("10th Fl", SLEEP_TIMER);
+            CityControl.SendKeysWithDelay("Queens", SLEEP_TIMER);
             SelectState(1);
-            ZipCodeInput = "11373";
-            PhoneInput = "631-632-9800";
+            ZipCodeControl.SendKeysWithDelay("11373", SLEEP_TIMER);
+            TelephoneControl.SendKeysWithDelay("631-632-9800", SLEEP_TIMER);
             ScrollToButton();
             ClickCancelButton();
 
+            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             var loginButton = Driver.FindElement(By.XPath("/html/body/app-root/div/app-login/mat-card/mat-card-content/form/div[3]/button"));
             Assert.IsNotNull(loginButton);
         
         }
 
         [Test]
-        [Category("Cancel Registration Test")]
+        [Category("Cancelled Registration")]
         public void CancelRedirectsToLogin()
         {
              ScrollToButton();

@@ -196,7 +196,7 @@ namespace IdlingComplaintTest.Pages.Register
             var optionElementList = security.FindElements(By.TagName("span"));
             Thread.Sleep(1000);
             List<string> questionList = optionElementList.ConvertOptionToText();
-            if (questionIndex >= securityQuestionList.Count || questionIndex < 0) return;
+            if (questionIndex >= questionList.Count || questionIndex < 0) return;
             optionElementList[questionIndex].Click();
             this.selectedSecurityQuestionControl = questionList[questionIndex];
         }

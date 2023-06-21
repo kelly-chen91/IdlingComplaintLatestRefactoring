@@ -2,11 +2,12 @@
 using OpenQA.Selenium;
 using IdlingComplaintTest.Pages.Login;
 using System.Drawing;
+using SeleniumUtilities.Utils;
 
 namespace IdlingComplaintTest.Tests.Login;
 
-[Parallelizable(ParallelScope.Children)]
-[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
+//[Parallelizable(ParallelScope.Children)]
+//[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
 /*This is user login verification test
  */
 
@@ -15,6 +16,8 @@ internal class Verification : LoginModel
     [SetUp]
     public void SetUp()
     {
+        Driver.Quit();
+        Driver = CreateDriver("chrome");
         Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/login");
         Driver.Manage().Window.Size = new Size(1920, 1200);
     }
@@ -25,14 +28,16 @@ internal class Verification : LoginModel
         Driver.Quit();
     }
 
+    private readonly int SLEEP_TIMER = 1000;
+
     //Explicit wait to test user login 
     [Test]
     [Category("Passing Test: Valid Login")]
     public void ExplicitWaitValidLogin()
     {
         //locate login field
-        EmailInput = "ttseng@dep.nyc.gov";
-        PasswordInput = "Testing1#";
+        EmailControl.SendKeysWithDelay("ttseng@dep.nyc.gov", SLEEP_TIMER);
+        PasswordControl.SendKeysWithDelay("Testing1#", SLEEP_TIMER);
         ClickLoginButton();
 
         var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10)); //1 - too short
@@ -44,8 +49,8 @@ internal class Verification : LoginModel
     public void ImplicitWaitValidLogin()
     {
         //locate login field
-        EmailInput = "ttseng@dep.nyc.gov";
-        PasswordInput = "Testing1#";
+        EmailControl.SendKeysWithDelay("ttseng@dep.nyc.gov", SLEEP_TIMER);
+        PasswordControl.SendKeysWithDelay("Testing1#", SLEEP_TIMER);
         ClickLoginButton();
 
         Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
@@ -69,8 +74,8 @@ internal class Verification : LoginModel
         //var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10)); //1 - too short
         //wait.Until(d => d.FindElement(By.CssSelector("button[routerlink = 'idlingcomplaint/new']")));
         //locate login field
-        EmailInput = "ttseng@dep.nyc.gov";
-        PasswordInput = "Testing1";
+        EmailControl.SendKeysWithDelay("ttseng@dep.nyc.gov", SLEEP_TIMER);
+        PasswordControl.SendKeysWithDelay("Testing1", SLEEP_TIMER);
         ClickLoginButton();
         var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10)); //1 - too short
         wait.Until(d =>
@@ -102,8 +107,8 @@ internal class Verification : LoginModel
         //Assert.IsNull(newComplaintButton);
 
         //locate login field
-        EmailInput = "ttseng@dep.nyc.gov";
-        PasswordInput = "Testing1";
+        EmailControl.SendKeysWithDelay("ttseng@dep.nyc.gov", SLEEP_TIMER);
+        PasswordControl.SendKeysWithDelay("Testing1", SLEEP_TIMER);
         ClickLoginButton();
         Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
         var invalidLoginButton = Driver.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span")); //text is in span

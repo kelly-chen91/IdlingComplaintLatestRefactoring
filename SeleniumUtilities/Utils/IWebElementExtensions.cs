@@ -26,9 +26,9 @@ namespace SeleniumUtilities.Utils
 
         public static void SendKeysWithDelay(this IWebElement element, string text, int milliseconds)
         {
-            Thread.Sleep(milliseconds);
+            if (milliseconds > 0) Thread.Sleep(milliseconds);
             element.SendKeys(text);
-            Thread.Sleep(milliseconds);
+            if (milliseconds > 0) Thread.Sleep(milliseconds);
         }
 
         public static void DeleteText(this IWebElement element, string text)
@@ -41,11 +41,11 @@ namespace SeleniumUtilities.Utils
 
         public static void SendTextDeleteTabWithDelay(this IWebElement element, string text, int milliseconds)
         {
-            Thread.Sleep(milliseconds);
+            if(milliseconds > 0) Thread.Sleep(milliseconds);
             element.SendKeys(text);
             element.DeleteText(text);
             element.SendKeys(Keys.Tab);
-            Thread.Sleep(milliseconds);
+            if (milliseconds > 0) Thread.Sleep(milliseconds);
         }
 
         public static List<string> ConvertOptionToText(this ReadOnlyCollection<IWebElement> elements)
