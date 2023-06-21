@@ -1,5 +1,4 @@
-﻿using IdlingComplaintTest.Pages.Register;
-using IdlingComplaintTest.Pages.Login;
+﻿using IdlingComplaintTest.Pages.Login;
 using SeleniumUtilities.Utils;
 using OpenQA.Selenium;
 using System;
@@ -9,8 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using OpenQA.Selenium.Support.UI;
+using IdlingComplaints.Models.Register;
 
-namespace IdlingComplaintTest.Tests.Register
+namespace IdlingComplaints.Tests.Register
 {
     //[Parallelizable(ParallelScope.Children)]
     //[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
@@ -52,8 +52,9 @@ namespace IdlingComplaintTest.Tests.Register
             TelephoneControl.SendKeysWithDelay("631-632-9800", SLEEP_TIMER);
             ScrollToButton();
             ClickSubmitButton();
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10)); 
-            wait.Until(d => {
+            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
+            wait.Until(d =>
+            {
                 var snackBarError = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
                 Assert.IsNotNull(snackBarError);
                 Assert.That(snackBarError.Text.Trim(), Is.EqualTo("Registration has been completed successfully.")); //Added period for consistency with other error messaging
@@ -80,9 +81,9 @@ namespace IdlingComplaintTest.Tests.Register
             TelephoneControl.SendKeysWithDelay("631-632-9800", SLEEP_TIMER);
             ScrollToButton();
             ClickSubmitButton();
-            
+
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
-            wait.Until(d => 
+            wait.Until(d =>
             {
                 var snackBarError = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
                 Assert.IsNotNull(snackBarError);
@@ -119,20 +120,20 @@ namespace IdlingComplaintTest.Tests.Register
             Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             var loginButton = Driver.FindElement(By.XPath("/html/body/app-root/div/app-login/mat-card/mat-card-content/form/div[3]/button"));
             Assert.IsNotNull(loginButton);
-        
+
         }
 
         [Test]
         [Category("Cancelled Registration")]
         public void CancelRedirectsToLogin()
         {
-             ScrollToButton();
-             ClickCancelButton();
-             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10)); //1 - too short
-             wait.Until(d => d.FindElement(By.TagName("h3")));
+            ScrollToButton();
+            ClickCancelButton();
+            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10)); //1 - too short
+            wait.Until(d => d.FindElement(By.TagName("h3")));
         }
 
-        
-   
+
+
     }
 }

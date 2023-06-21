@@ -3,11 +3,11 @@ using SeleniumUtilities.Utils;
 using OpenQA.Selenium;
 using System.Drawing;
 
-namespace IdlingComplaintTest.Pages.Login
+namespace IdlingComplaints.Models.Login
 {
     internal class LoginModel : BaseModel
     {
-        public LoginModel() 
+        public LoginModel()
         {
         }
 
@@ -30,14 +30,14 @@ namespace IdlingComplaintTest.Pages.Login
         public IWebElement CreateAccountControl => Driver.FindElement(By.PartialLinkText("Create"));
 
         public string EmailInput
-        { 
-            get 
+        {
+            get
             {
                 return EmailControl.GetAttribute("value");
             }
-            set 
-            { 
-                EmailControl.SendKeys(value); 
+            set
+            {
+                EmailControl.SendKeys(value);
             }
         }
 

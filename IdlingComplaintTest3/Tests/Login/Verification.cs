@@ -1,10 +1,10 @@
 ﻿using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium;
-using IdlingComplaintTest.Pages.Login;
 using System.Drawing;
 using SeleniumUtilities.Utils;
+using IdlingComplaints.Models.Login;
 
-namespace IdlingComplaintTest.Tests.Login;
+namespace IdlingComplaints.Tests.Login;
 
 //[Parallelizable(ParallelScope.Children)]
 //[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]

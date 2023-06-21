@@ -1,4 +1,4 @@
-﻿using IdlingComplaintTest.Pages.Login;
+﻿using IdlingComplaints.Models.Login;
 using SeleniumUtilities.Utils;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IdlingComplaintTest2.Tests.Login
+namespace IdlingComplaints.Tests.Login
 {
     internal class RequiredLabelErrors : LoginModel
     {

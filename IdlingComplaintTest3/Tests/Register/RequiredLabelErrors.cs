@@ -1,5 +1,4 @@
 ﻿using IdlingComplaintTest.Pages.Login;
-using IdlingComplaintTest.Pages.Register;
 using SeleniumUtilities.Utils;
 using OpenQA.Selenium;
 using System;
@@ -9,8 +8,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IdlingComplaints.Models.Register;
 
-namespace IdlingComplaintTest.Tests.Register
+namespace IdlingComplaints.Tests.Register
 {
     //[Parallelizable(ParallelScope.Children)]
     //[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
@@ -63,7 +63,7 @@ namespace IdlingComplaintTest.Tests.Register
         public void MissingLastName()
         {
             LastNameControl.SendTextDeleteTabWithDelay("xxx", SLEEP_TIMER);
-            
+
             string error = Driver.ExtractTextFromXPath("//mat-card-content/div[2]/mat-form-field/div/div[3]/div/mat-error/text()");
             Assert.That(error, Is.EqualTo(Constants.REQUIRED));
         }
@@ -74,7 +74,7 @@ namespace IdlingComplaintTest.Tests.Register
         public void MissingEmail()
         {
             EmailControl.SendTextDeleteTabWithDelay("xxx", SLEEP_TIMER);
-            
+
             string error = Driver.ExtractTextFromXPath("//mat-card-content/div[3]/mat-form-field/div/div[3]/div/mat-error/text()");
             Assert.That(error, Is.EqualTo(Constants.REQUIRED));
         }
@@ -96,7 +96,7 @@ namespace IdlingComplaintTest.Tests.Register
         public void MissingConfirmPassword()
         {
             ConfirmPasswordControl.SendTextDeleteTabWithDelay("xxx", SLEEP_TIMER);
-            
+
             string error = Driver.ExtractTextFromXPath("//mat-card-content/div[4]/div[1]/div[2]/mat-form-field/div/div[3]/div/mat-error/text()");
             Assert.That(error, Is.EqualTo(Constants.CONFIRM_PASSWORD_REQUIRED));
         }
@@ -139,7 +139,7 @@ namespace IdlingComplaintTest.Tests.Register
         public void MissingCity()
         {
             CityControl.SendTextDeleteTabWithDelay("xxx", SLEEP_TIMER);
-            
+
             string error = Driver.ExtractTextFromXPath("//mat-card-content/div[7]/mat-form-field/div/div[3]/div/mat-error/text()");
             Assert.That(error, Is.EqualTo(Constants.REQUIRED));
         }
@@ -160,7 +160,7 @@ namespace IdlingComplaintTest.Tests.Register
         public void MissingZipCode()
         {
             ZipCodeControl.SendTextDeleteTabWithDelay("xxx", SLEEP_TIMER);
-            
+
             string error = Driver.ExtractTextFromXPath("//mat-card-content/div[9]/mat-form-field/div/div[3]/div/mat-error/text()");
             Assert.That(error, Is.EqualTo(Constants.REQUIRED));
         }
@@ -205,7 +205,7 @@ namespace IdlingComplaintTest.Tests.Register
         public void ProvidedEmail()
         {
             EmailControl.SendKeysWithDelay("xxx", SLEEP_TIMER);
-            
+
             string error = Driver.ExtractTextFromXPath("//mat-card-content/div[3]/mat-form-field/div/div[3]/div/mat-error/text()");
             Assert.That(error, Is.EqualTo(string.Empty));
         }
@@ -217,7 +217,7 @@ namespace IdlingComplaintTest.Tests.Register
         {
             PasswordControl.SendKeysWithDelay("T3sting.222", SLEEP_TIMER);
             ConfirmPasswordControl.SendKeysWithDelay("T3sting.222", SLEEP_TIMER);
-            
+
             string error = Driver.ExtractTextFromXPath("//mat-card-content/div[4]/div[1]/div[1]/mat-form-field/div/div[3]/div/mat-error/text()");
             Assert.That(error, Is.EqualTo(string.Empty));
             //ConfirmPasswordProvided();
@@ -234,7 +234,7 @@ namespace IdlingComplaintTest.Tests.Register
             string error = Driver.ExtractTextFromXPath("//mat-card-content/div[4]/div[1]/div[2]/mat-form-field/div/div[3]/div/mat-error/text()");
             Assert.That(error, Is.EqualTo(string.Empty));
         }
-        
+
 
         /*Tests for no error when security question field is filled*/
         [Test]
@@ -308,7 +308,7 @@ namespace IdlingComplaintTest.Tests.Register
         public void ProvidedTelephone()
         {
             TelephoneControl.SendKeysWithDelay("xxx", SLEEP_TIMER);
-            
+
             string error = Driver.ExtractTextFromXPath("//mat-card-content/div[10]/mat-form-field/div/div[3]/div/mat-error/text()");
             Assert.That(error, Is.EqualTo(string.Empty));
         }

@@ -1,7 +1,7 @@
-﻿using IdlingComplaintTest.Pages.Login;
+﻿using IdlingComplaints.Models.Login;
 using SeleniumUtilities.Utils;
 
-namespace IdlingComplaintTest.Tests.Login
+namespace IdlingComplaints.Tests.Login
 {
     //[Parallelizable(ParallelScope.Children)]
     //[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]

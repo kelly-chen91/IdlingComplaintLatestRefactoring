@@ -1,13 +1,13 @@
-﻿using IdlingComplaintTest.Pages.Login;
+﻿using IdlingComplaints.Models.Login;
 using SeleniumUtilities.Utils;
 
 /*
  *This is the label test class for testing the labels in the login page
  */
 
-namespace IdlingComplaintTest.Tests.Login
+namespace IdlingComplaints.Tests.Login
 {
- 
+
     internal class Label : LoginModel
     {
         [OneTimeSetUp]
@@ -75,7 +75,7 @@ namespace IdlingComplaintTest.Tests.Login
         [Category("Label Displayed - no spelling/grammar errors.")]
         public void DisplayedCreateAnAccount()
         {
-            Assert.That(CreateAccountControl.Text, Is.EqualTo(Constants.CREATE_ACCOUNT),  "Create account does not match \"" + Constants.CREATE_ACCOUNT + "\"");
+            Assert.That(CreateAccountControl.Text, Is.EqualTo(Constants.CREATE_ACCOUNT), "Create account does not match \"" + Constants.CREATE_ACCOUNT + "\"");
         }
 
         [Test]

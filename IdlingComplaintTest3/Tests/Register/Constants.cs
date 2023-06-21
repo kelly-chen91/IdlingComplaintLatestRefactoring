@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IdlingComplaintTest.Tests.Register
+namespace IdlingComplaints.Tests.Register
 {
     internal class Constants
     {
@@ -22,7 +22,7 @@ namespace IdlingComplaintTest.Tests.Register
         public static readonly string ADDRESS_2 = "Address2";
         public static readonly string CITY = "City";
         public static readonly string STATE = "State";
-       
+
         public static readonly string DEFAULT_STATE = "--";
         public static readonly string ZIPCODE = "Zip Code";
         public static readonly string TELEPHONE = "Telephone";

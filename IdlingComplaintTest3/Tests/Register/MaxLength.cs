@@ -1,4 +1,4 @@
-﻿using IdlingComplaintTest.Pages.Register;
+﻿using IdlingComplaints.Models.Register;
 using IdlingComplaintTest.Tests.Login;
 using SeleniumUtilities.Utils;
 using System;
@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IdlingComplaintTest.Tests.Register
+namespace IdlingComplaints.Tests.Register
 {
     internal class MaxLength : RegisterModel
     {
-       // private readonly RegisterModel registerModel;
+        // private readonly RegisterModel registerModel;
 
 
         [OneTimeSetUp]
@@ -31,7 +31,7 @@ namespace IdlingComplaintTest.Tests.Register
         public void MaxlengthFirstName()
         {
             int firstNameMaxlength = FirstNameControl.MaxLengthAttributeValue();
-  
+
             Assert.That(firstNameMaxlength, Is.EqualTo(Constants.MAX_NAME_LENGTH), "The maxlength attribute for first name is supposed to be: " + Constants.MAX_NAME_LENGTH);
         }
 
@@ -45,11 +45,11 @@ namespace IdlingComplaintTest.Tests.Register
         [Test]
         [Category("Maxlength attribute is present")]
         public void MaxlengthEmail()
-       {
+        {
             int emailMaxlength = EmailControl.MaxLengthAttributeValue();
             Assert.That(emailMaxlength, Is.EqualTo(Constants.MAX_EMAIL_LENGTH), "The maxlength attribute for email is supposed to be: " + Constants.MAX_EMAIL_LENGTH);
         }
- 
+
         [Test]
         [Category("Maxlength attribute is present")]
         public void MaxlengthPassword()
@@ -71,11 +71,11 @@ namespace IdlingComplaintTest.Tests.Register
         [Category("Maxlength attribute is present")]
         public void MaxlengthSecurityAnswer()
         {
-            int securityAnswerMaxlength =  SecurityAnswerControl.MaxLengthAttributeValue();
+            int securityAnswerMaxlength = SecurityAnswerControl.MaxLengthAttributeValue();
             Assert.That(securityAnswerMaxlength, Is.EqualTo(Constants.MAX_SECURITY_ANSWER_LENGTH), "The maxlength attribute for security answer is supposed to be: " + Constants.MAX_SECURITY_ANSWER_LENGTH);
-    
+
         }
-    
+
         [Test]
         [Category("Maxlength attribute is present")]
         public void MaxlengthAddress1()
@@ -98,26 +98,26 @@ namespace IdlingComplaintTest.Tests.Register
         {
             int cityMaxLength = CityControl.MaxLengthAttributeValue();
             Assert.That(cityMaxLength, Is.EqualTo(Constants.MAX_CITY_LENGTH), "The maxlength attribute for city is supposed to be: " + Constants.MAX_CITY_LENGTH);
-    
+
         }
-    
+
         [Test]
         [Category("Maxlength attribute is present")]
         public void MaxlengthZipCode()
         {
             int zipcodeMaxLength = ZipCodeControl.MaxLengthAttributeValue();
             Assert.That(zipcodeMaxLength, Is.EqualTo(Constants.MAX_ZIPCODE_LENGTH), "The maxlength attribute for zip code is supposed to be: " + Constants.MAX_ZIPCODE_LENGTH);
-    
+
         }
-    
+
         [Test]
         [Category("Maxlength attribute is present")]
         public void MaxlengthTelephone()
         {
             int telephoneMaxLength = TelephoneControl.MaxLengthAttributeValue();
             Assert.That(telephoneMaxLength, Is.EqualTo(Constants.MAX_PHONE_NUMBER_LENGTH), "The maxlength attribute for telephone is supposed to be: " + Constants.MAX_PHONE_NUMBER_LENGTH);
-    
+
         }
-    
+
     }
 }

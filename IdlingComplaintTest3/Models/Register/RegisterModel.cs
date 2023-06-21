@@ -8,11 +8,11 @@ using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Text.RegularExpressions;
 
-namespace IdlingComplaintTest.Pages.Register
+namespace IdlingComplaints.Models.Register
 {
     internal class RegisterModel : BaseModel
     {
-        public RegisterModel() 
+        public RegisterModel()
         {
         }
 
@@ -44,7 +44,7 @@ namespace IdlingComplaintTest.Pages.Register
         public IWebElement TelephoneControl => Driver.FindElement(By.CssSelector("input[formcontrolname = 'address1_telephone1']"));                  //Telephone
         public IWebElement SubmitButtonControl => Driver.FindElement(By.CssSelector("button[color = 'primary']"));                                    //Submit Button
         public IWebElement CancelButtonControl => Driver.FindElement(By.CssSelector("button[type = 'reset']"));                                       //Cancel Button
-    
+
         public string selectedSecurityQuestionControl = "--";
         public string selectedStateControl = "--";
 
@@ -189,7 +189,7 @@ namespace IdlingComplaintTest.Pages.Register
 
 
 
-        public void SelectSecurityQuestion(int questionIndex) 
+        public void SelectSecurityQuestion(int questionIndex)
         {
             SecurityQuestionControl.Click();
             var security = Driver.FindElement(By.Id("mat-select-1-panel"));
@@ -198,7 +198,7 @@ namespace IdlingComplaintTest.Pages.Register
             List<string> questionList = optionElementList.ConvertOptionToText();
             if (questionIndex >= questionList.Count || questionIndex < 0) return;
             optionElementList[questionIndex].Click();
-            this.selectedSecurityQuestionControl = questionList[questionIndex];
+            selectedSecurityQuestionControl = questionList[questionIndex];
         }
 
 
@@ -210,10 +210,10 @@ namespace IdlingComplaintTest.Pages.Register
             List<string> stateList = optionElementList.ConvertOptionToText();
             if (stateIndex >= stateList.Count || stateIndex < 0) return;
             optionElementList[stateIndex].Click();
-            this.selectedStateControl = stateList[stateIndex];
+            selectedStateControl = stateList[stateIndex];
         }
 
-     
+
         /*Buttons*/
         public void ClickSubmitButton()
         {

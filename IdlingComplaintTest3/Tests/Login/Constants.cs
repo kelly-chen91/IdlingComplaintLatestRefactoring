@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IdlingComplaintTest.Tests.Login
+namespace IdlingComplaints.Tests.Login
 {
     internal class Constants
     {
@@ -22,7 +22,7 @@ namespace IdlingComplaintTest.Tests.Login
         public static readonly int MAX_NAME_LENGTH = 50;
         public static readonly int MAX_PASSWORD_LENGTH = 50;
         public static readonly int MAX_EMAIL_LENGTH = 62;
-        
+
         public static readonly string REQUIRED = "Required";
     }
 }

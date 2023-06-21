@@ -3,12 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdlingComplaintTest2", "IdlingComplaintTest3\IdlingComplaintTest2.csproj", "{A9EBBF32-CA91-41CD-9B93-23F0321FCA02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdlingComplaints", "IdlingComplaintTest3\IdlingComplaints.csproj", "{A9EBBF32-CA91-41CD-9B93-23F0321FCA02}"
 	ProjectSection(ProjectDependencies) = postProject
 		{DF517A84-6B28-4E1C-8BAD-525E29FF45D5} = {DF517A84-6B28-4E1C-8BAD-525E29FF45D5}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumUtilities", "SeleniumUtilities\SeleniumUtilities.csproj", "{DF517A84-6B28-4E1C-8BAD-525E29FF45D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeleniumUtilities", "SeleniumUtilities\SeleniumUtilities.csproj", "{DF517A84-6B28-4E1C-8BAD-525E29FF45D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

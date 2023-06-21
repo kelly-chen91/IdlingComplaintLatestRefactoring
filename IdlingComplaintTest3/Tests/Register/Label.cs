@@ -1,5 +1,4 @@
-﻿using IdlingComplaintTest.Pages.Register;
-using IdlingComplaintTest.Tests.Login;
+﻿using IdlingComplaintTest.Tests.Login;
 using SeleniumUtilities.Utils;
 using OpenQA.Selenium;
 using System;
@@ -8,8 +7,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IdlingComplaints.Models.Register;
 
-namespace IdlingComplaintTest.Tests.Register
+namespace IdlingComplaints.Tests.Register
 {
 
     internal partial class Label : RegisterModel
