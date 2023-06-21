@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="IdlingComplaintTest.csproj" />
+    <None Include="IdlingComplaintsTest.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,10 +24,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SeleniumUtilities\SeleniumUtilities.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\NewFolder\" />
   </ItemGroup>
 
 </Project>
