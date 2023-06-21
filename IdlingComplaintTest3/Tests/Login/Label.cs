@@ -45,7 +45,7 @@ namespace IdlingComplaints.Tests.Login
         [Category("Label Displayed - no spelling/grammar errors.")]
         public void DisplayedHeading()
         {
-            Assert.That(TitleControl.Text, Is.EqualTo(Constants.LOGIN_HEADING), "Heading does not match \"" + Constants.LOGIN_HEADING + "\"");
+            Assert.That(TitleControl.Text, Is.EqualTo(Constants.LOGIN_HEADING), "Flagged for inconsistency on purpose.");
         }
 
         [Test]

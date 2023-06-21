@@ -25,10 +25,11 @@ internal class Verification : LoginModel
     [TearDown]
     public void TearDown()
     {
+        Thread.Sleep(SLEEP_TIMER);
         Driver.Quit();
     }
 
-    private readonly int SLEEP_TIMER = 0;
+    private readonly int SLEEP_TIMER = 2000;
 
     //Explicit wait to test user login 
     [Test]
@@ -76,14 +77,14 @@ internal class Verification : LoginModel
         ClickLoginButton();
         var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10)); //1 - too short
         wait.Until(d =>
-        {
-            var resultControl = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
+            {
+                var resultControl = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
 
-            Assert.IsNotNull(resultControl);
-            Assert.That(resultControl.Text.Trim(), Is.EqualTo("User is not found.")); //Added a period for consistency in error messaging
+                Assert.IsNotNull(resultControl);
+                Assert.That(resultControl.Text.Trim(), Is.EqualTo("User is not found.")); //Added a period for consistency in error messaging
 
-            return resultControl;
-        }
+                return resultControl;
+            }
         );
     }
 }
