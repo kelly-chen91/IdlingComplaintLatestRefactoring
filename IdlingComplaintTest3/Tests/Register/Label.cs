@@ -133,14 +133,14 @@ namespace IdlingComplaintTest.Tests.Register
         }
 
         [Test]
-        [Category("Label is displayed with no spelling/grammar errors.")]
+        [Category("Label Displayed - no spelling/grammar errors.")]
         public void DisplayedHeading()
         {
             Assert.That(TitleControl.Text.Trim(), Is.EqualTo(Constants.PROFILE_HEADING));
         }
 
         [Test]
-        [Category("Label is displayed with no spelling/grammar errors.")]
+        [Category("Label Displayed - no spelling/grammar errors.")]
         public void DisplayedSubmitButtonLabel()
         {
             string submitButtonText = Driver.ExtractTextFromXPath("/html/body/app-root/div/profile/form/div/button[1]/span/text()");
@@ -148,7 +148,7 @@ namespace IdlingComplaintTest.Tests.Register
         }
 
         [Test]
-        [Category("Label is displayed with no spelling/grammar errors.")]
+        [Category("Label Displayed - no spelling/grammar errors.")]
         public void DisplayedCancelButtonLabel()
         {
             string cancelButtonText = Driver.ExtractTextFromXPath("/html/body/app-root/div/profile/form/div/button[2]/span/text()");
@@ -156,7 +156,7 @@ namespace IdlingComplaintTest.Tests.Register
         }
 
         [Test]
-        [Category("Label is displayed with no spelling/grammar errors.")]
+        [Category("Label Displayed - no spelling/grammar errors.")]
         public void DisplayedPasswordPolicyPart1Label()
         {
             string passwordPolicyText1 = Driver.ExtractTextFromXPath("/html/body/app-root/div/profile/form/div/div/label/text()[1]");
@@ -164,7 +164,7 @@ namespace IdlingComplaintTest.Tests.Register
         }
 
         [Test]
-        [Category("Label is displayed with no spelling/grammar errors.")]
+        [Category("Label Displayed - no spelling/grammar errors.")]
         public void DisplayedPasswordPolicyPart2Label()
         {
             string passwordPolicyText2 = Driver.ExtractTextFromXPath("/html/body/app-root/div/profile/form/div/div/label/text()[2]");

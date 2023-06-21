@@ -56,7 +56,7 @@ namespace IdlingComplaintTest.Tests.Register
             wait.Until(d => {
                 var snackBarError = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
                 Assert.IsNotNull(snackBarError);
-                Assert.That(snackBarError.Text.Trim(), Is.EqualTo("Registration has been completed successfully")); //Added period for consistency
+                Assert.That(snackBarError.Text.Trim(), Is.EqualTo("Registration has been completed successfully.")); //Added period for consistency with other error messaging
                 return snackBarError;
             });
         }
