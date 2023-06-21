@@ -28,7 +28,7 @@ internal class Verification : LoginModel
         Driver.Quit();
     }
 
-    private readonly int SLEEP_TIMER = 1000;
+    private readonly int SLEEP_TIMER = 0;
 
     //Explicit wait to test user login 
     [Test]
