@@ -24,5 +24,7 @@ namespace IdlingComplaints.Tests.Login
         public static readonly int MAX_EMAIL_LENGTH = 62;
 
         public static readonly string REQUIRED = "Required";
+        public static readonly string PASSWORD_REQUIRED = "Password is invalid. See password policy above. ";
+        public static readonly string CONFIRM_PASSWORD_REQUIRED = " Password does not match.";
     }
 }

@@ -1,5 +1,5 @@
 ﻿using IdlingComplaints.Models.Register;
-using IdlingComplaintTest.Tests.Login;
+using IdlingComplaints.Tests.Login;
 using SeleniumUtilities.Utils;
 using System;
 using System.Collections.Generic;

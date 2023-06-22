@@ -1,4 +1,4 @@
-﻿using IdlingComplaintTest.Pages.Login;
+﻿using IdlingComplaints.Tests.Login;
 using SeleniumUtilities.Utils;
 using OpenQA.Selenium;
 using System;
