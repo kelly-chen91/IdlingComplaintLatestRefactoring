@@ -16,7 +16,6 @@ namespace IdlingComplaints.Models.Home
 {
     internal class HomeModel : BaseModel
     {
-        private LoginModel loginModel = new LoginModel();
         public HomeModel() { }
         public void OneTimeSetUp()
         {
@@ -30,7 +29,6 @@ namespace IdlingComplaints.Models.Home
             //loginModel.ClickLoginButton();
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
             wait.Until(d => d.FindElement(By.CssSelector("button[routerlink='idlingcomplaint/new']")));
-            Thread.Sleep(5000);
         }
 
         public void OneTimeTearDown()

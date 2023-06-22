@@ -97,14 +97,14 @@ namespace IdlingComplaints.Tests.Home
             Assert.That(createdYearPlaceholder, Is.EqualTo(Constants.CREATE_YEAR));
         }
 
-        //[Test]
-        //[Category("Placeholder is present.")]
-        //public void PlaceholderItemsPerPage()
-        //{
-        //    /*Cannot locate element*/
-        //    string itemsPerPagePlaceholder = Driver.ExtractTextFromXPath("/html/body/app-root/div/app-home/app-idling-list/div/mat-paginator/div/div/div[1]/div");
-        //    Assert.That(itemsPerPagePlaceholder, Is.EqualTo(Constants.ITEMS_PER_PAGE));
-        //}
+        [Test]
+        [Category("Placeholder is present.")]
+        public void PlaceholderItemsPerPage()
+        {
+            /*Cannot locate element*/
+            string itemsPerPagePlaceholder = Driver.ExtractTextFromXPath("/html/body/app-root/div/app-home/app-idling-list/div/mat-paginator/div/div/div[1]/div/text()");
+            Assert.That(itemsPerPagePlaceholder, Is.EqualTo(Constants.ITEMS_PER_PAGE), "Flagged for inconsistency on purpose.");
+        }
 
 
     }
