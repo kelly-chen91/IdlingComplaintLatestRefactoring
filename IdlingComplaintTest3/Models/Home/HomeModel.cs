@@ -46,6 +46,7 @@ namespace IdlingComplaints.Models.Home
         public IWebElement SortSummonsNumControl => Driver.FindElement(By.CssSelector("button[aria-label = 'Change sorting for idc_violationnumber']"));
         public IWebElement SortHearingDateControl => Driver.FindElement(By.CssSelector("button[aria-label = 'Change sorting for idc_hearingdate']"));
         public IWebElement ItemsPerPageControl => Driver.FindElement(By.CssSelector("mat-select[aria-label = 'Items per page:']"));
+        public IWebElement TableControl => Driver.FindElement(By.TagName("table"));
         //public IWebElement LaunchComplaint1Control => Driver.FindElement(By.CssSelector("i[tabindex = '0']"));
 
         public string selectedCreatedYear, selectedItemsPerPage;
