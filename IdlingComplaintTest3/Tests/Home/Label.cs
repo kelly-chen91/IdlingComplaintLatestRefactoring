@@ -21,6 +21,7 @@ namespace IdlingComplaints.Tests.Home
         [OneTimeTearDown]
         public new void OneTimeTearDown()
         {
+            Thread.Sleep(2000);
             base.OneTimeTearDown();
         }
 
@@ -30,6 +31,30 @@ namespace IdlingComplaints.Tests.Home
         {
             string heading = Driver.FindElement(By.TagName("h3")).Text;
             Assert.That(heading, Is.EqualTo(Constants.HEADING));
+        }
+
+        [Test]
+        [Category("Label Displayed - no spelling/grammar errors.")]
+        public void DisplayedHome()
+        {
+            string home = Driver.ExtractTextFromXPath("/html/body/app-root/app-nav-bar/mat-toolbar/mat-toolbar-row/button[1]/span/text()");
+            Assert.That(home, Is.EqualTo(Constants.HOME));
+        }
+
+        [Test]
+        [Category("Label Displayed - no spelling/grammar errors.")]
+        public void DisplayedProfile()
+        {
+            string profile = Driver.ExtractTextFromXPath("/html/body/app-root/app-nav-bar/mat-toolbar/mat-toolbar-row/button[2]/span/text()");
+            Assert.That(profile, Is.EqualTo(Constants.PROFILE));
+        }
+
+        [Test]
+        [Category("Label Displayed - no spelling/grammar errors.")]
+        public void DisplayedLogout()
+        {
+            string logout = Driver.ExtractTextFromXPath("/html/body/app-root/app-nav-bar/mat-toolbar/mat-toolbar-row/button[3]/span/text()");
+            Assert.That(logout, Is.EqualTo(Constants.LOGOUT));
         }
 
         [Test]
@@ -106,6 +131,26 @@ namespace IdlingComplaints.Tests.Home
             Assert.That(itemsPerPagePlaceholder, Is.EqualTo(Constants.ITEMS_PER_PAGE), "Flagged for inconsistency on purpose.");
         }
 
+        [Test]
+        [Category("Label Displayed - goes to correct link.")]
+        public void VerifyHomeLink()
+        {
+            Assert.That(HomeControl.GetAttribute("routerlink"), Is.EqualTo(Constants.HOME_LINK));
+        }
+
+        [Test]
+        [Category("Label Displayed - goes to correct link.")]
+        public void VerifyProfileLink()
+        {
+            Assert.That(ProfileControl.GetAttribute("routerlink"), Is.EqualTo(Constants.PROFILE_LINK));
+        }
+
+        [Test]
+        [Category("Label Displayed - goes to correct link.")]
+        public void VerifyNewComplaintLink()
+        {
+            Assert.That(NewComplaintControl.GetAttribute("routerlink"), Is.EqualTo(Constants.NEW_COMPLAINT_LINK));
+        }
 
     }
 }

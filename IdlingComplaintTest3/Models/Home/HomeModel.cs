@@ -14,32 +14,29 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace IdlingComplaints.Models.Home
 {
-    internal class HomeModel : BaseModel
+    internal class HomeModel : LoginModel
     {
         public HomeModel() { }
-        public void OneTimeSetUp()
+        public new void OneTimeSetUp()
         {
-            Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/login");
-            Driver.Manage().Window.Size = new Size(1920, 1200);
-            Driver.FindElement(By.Name("email")).SendKeysWithDelay("kchen@dep.nyc.gov", 0);
-            Driver.FindElement(By.Name("password")).SendKeysWithDelay("T3sting@1234", 0);
-            Driver.FindElement(By.TagName("button")).Click();
-            //loginModel.EmailControl.SendKeysWithDelay("kchen@dep.nyc.gov", 0);
-            //loginModel.PasswordControl.SendKeysWithDelay("T3sting@1234", 0);
-            //loginModel.ClickLoginButton();
+            //loginModel = new LoginModel();
+            base.OneTimeSetUp();
+            EmailControl.SendKeysWithDelay("kchen@dep.nyc.gov", 0);
+            PasswordControl.SendKeysWithDelay("T3sting@1234", 0);
+            ClickLoginButton();
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
             wait.Until(d => d.FindElement(By.CssSelector("button[routerlink='idlingcomplaint/new']")));
         }
 
-        public void OneTimeTearDown()
+        public new void OneTimeTearDown()
         {
-            Driver.Quit();
+            base.OneTimeTearDown();
         }
 
         public IWebElement NewComplaintControl => Driver.FindElement(By.CssSelector("button[routerlink='idlingcomplaint/new']"));
         public IWebElement CreatedYearControl => Driver.FindElement(By.CssSelector("mat-select[name = 'createdYear']"));
         public IWebElement HomeControl => Driver.FindElement(By.CssSelector("button[routerlink = '/']"));
-        public IWebElement ProfileControl => Driver.FindElement(By.CssSelector("button[routerlink = '/profile']"));
+        public IWebElement ProfileControl => Driver.FindElement(By.CssSelector("button[routerlink = 'profile']"));
         public IWebElement LogoutControl => Driver.FindElement(RelativeBy.WithLocator(By.TagName("button")).Below(ProfileControl));
         public IWebElement SortComplaintNumControl => Driver.FindElement(By.CssSelector("button[aria-label = 'Change sorting for idc_name']"));
         public IWebElement SortCompanyControl => Driver.FindElement(By.CssSelector("button[aria-label = 'Change sorting for idc_associatedlastname']"));

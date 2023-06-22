@@ -23,5 +23,9 @@ namespace IdlingComplaints.Tests.Home
         public static readonly string SORT_SUMMONS_NUM = "Summons Number";
         public static readonly string SORT_HEARING_DATE = "Hearing Date";
 
+        public static readonly string HOME_LINK = "/";
+        public static readonly string PROFILE_LINK = "profile";
+        public static readonly string NEW_COMPLAINT_LINK = "idlingcomplaint/new";
+
     }
 }
