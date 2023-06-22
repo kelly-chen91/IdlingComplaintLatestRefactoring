@@ -24,8 +24,11 @@ namespace IdlingComplaints.Models.Home
             EmailControl.SendKeysWithDelay("kchen@dep.nyc.gov", 0);
             PasswordControl.SendKeysWithDelay("T3sting@1234", 0);
             ClickLoginButton();
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
-            wait.Until(d => d.FindElement(By.CssSelector("button[routerlink='idlingcomplaint/new']")));
+
+            Driver.WaitUntilElementFound(By.CssSelector("button[routerlink = 'idlingcomplaint/new']"), 20);
+            Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
+            //var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
+            //wait.Until(d => d.FindElement(By.CssSelector("button[routerlink='idlingcomplaint/new']")));
         }
 
         public new void OneTimeTearDown()

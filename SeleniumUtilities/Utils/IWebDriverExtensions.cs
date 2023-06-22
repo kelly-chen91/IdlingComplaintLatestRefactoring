@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,21 @@ namespace SeleniumUtilities.Utils
             + "\", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;"
             + "if (element) { return element.nodeValue.trim(); } else return ''; ";
             return (string)((IJavaScriptExecutor)driver).ExecuteScript(script);
+        }
+
+        public static void WaitUntilElementIsNoLongerFound(this IWebDriver webDriver, By locator, double timeout)
+        {
+            var wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(timeout));
+            wait.IgnoreExceptionTypes(typeof(StaleElementReferenceException), typeof(NoSuchElementException));
+            wait.Until(driver => webDriver.FindElements(locator).Count == 0);
+        }
+
+
+
+        public static void WaitUntilElementFound(this IWebDriver webDriver, By locator, double timeout)
+        {
+            var wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(timeout));
+            wait.Until(d => d.FindElement(locator));
         }
 
     }
