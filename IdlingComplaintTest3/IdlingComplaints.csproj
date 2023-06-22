@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="IdlingComplaintTest.csproj" />
+    <None Include="IdlingComplaintsTest.csproj" />
   </ItemGroup>
 
   <ItemGroup>

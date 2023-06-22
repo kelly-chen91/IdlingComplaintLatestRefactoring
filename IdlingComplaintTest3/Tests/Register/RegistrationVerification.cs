@@ -1,4 +1,4 @@
-﻿using IdlingComplaints.Tests.Login;
+﻿
 using SeleniumUtilities.Utils;
 using OpenQA.Selenium;
 using System;
@@ -28,10 +28,11 @@ namespace IdlingComplaints.Tests.Register
         [TearDown]
         public void TearDown()
         {
+            Thread.Sleep(SLEEP_TIMER);
             Driver.Quit();
         }
 
-        private readonly int SLEEP_TIMER = 3000;
+        private readonly int SLEEP_TIMER = 2000;
 
         [Test]
         [Category("Successful Registration")]
@@ -57,7 +58,7 @@ namespace IdlingComplaints.Tests.Register
             {
                 var snackBarError = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
                 Assert.IsNotNull(snackBarError);
-                Assert.That(snackBarError.Text.Trim(), Is.EqualTo("Registration has been completed successfully.")); //Added period for consistency with other error messaging
+                Assert.That(snackBarError.Text.Trim(), Is.EqualTo("Registration has been completed successfully."), "Flagged for inconsistency on purpose."); //Added period for consistency with other error messaging
                 return snackBarError;
             });
         }

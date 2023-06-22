@@ -12,7 +12,7 @@ namespace SeleniumUtilities.Utils
         public static string GenerateRandomString(int length)
         {
             const string acceptedChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            var random = new Random();
+            var random = new Random(Guid.NewGuid().GetHashCode());
             string str = string.Empty;
             for (int i = 0; i < length; i++)
             {

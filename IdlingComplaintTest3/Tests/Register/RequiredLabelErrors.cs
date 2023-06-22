@@ -1,5 +1,4 @@
-﻿using IdlingComplaints.Models.Login;
-using SeleniumUtilities.Utils;
+﻿using SeleniumUtilities.Utils;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -29,7 +28,7 @@ namespace IdlingComplaints.Tests.Register
         //    base.OneTimeTearDown();
         //}
 
-        private readonly int SLEEP_TIMER = 5000;
+        private readonly int SLEEP_TIMER = 0;
 
         [SetUp]
         public void SetUp()
@@ -151,7 +150,7 @@ namespace IdlingComplaints.Tests.Register
         {
             SelectState(0);
             string error = Driver.ExtractTextFromXPath("//mat-card-content/div[8]/mat-form-field/div/div[3]/div/mat-error/text()");
-            Assert.That(error, Is.EqualTo(Constants.REQUIRED)); //Supposed to fail for consistency
+            Assert.That(error, Is.EqualTo(Constants.REQUIRED), "Flagged for inconsistency on purpose."); //Supposed to fail for consistency
         }
 
         /*Tests for error when zip code field is empty*/

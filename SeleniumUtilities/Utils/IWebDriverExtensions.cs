@@ -23,5 +23,6 @@ namespace SeleniumUtilities.Utils
             + "if (element) { return element.nodeValue.trim(); } else return ''; ";
             return (string)((IJavaScriptExecutor)driver).ExecuteScript(script);
         }
+
     }
 }
