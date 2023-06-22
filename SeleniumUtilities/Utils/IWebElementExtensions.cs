@@ -65,7 +65,6 @@ namespace SeleniumUtilities.Utils
             {
                 var classText = rowList[i].FindElement(By.ClassName(className));
 
-
                 classTextList.Add(classText.Text);
             }
             return classTextList;
@@ -77,6 +76,17 @@ namespace SeleniumUtilities.Utils
             //var rowList = body.FindElements(By.TagName("tr"));
             return body.FindElements(By.TagName("tr"));
         }
+        
+        public static Boolean EqualsTableAfterSorting(this List<string> sorted, List<string> unsorted)
+        {
+            for (int i = 0; i < sorted.Count; i++)
+            {
+                Console.WriteLine("sorted: " + sorted[i]);
+                Console.WriteLine("unsorted: " + unsorted[i]);
 
+                if (!sorted[i].Equals(unsorted[i])) return false;
+            }
+            return true;
+        }
     }
 }

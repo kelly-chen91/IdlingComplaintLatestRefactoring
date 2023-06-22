@@ -35,25 +35,134 @@ namespace IdlingComplaints.Tests.Home
         public void SortComplaintNumbers()
         {
             var rowList = TableControl.GetDataFromTable();
-            //Console.WriteLine(rowList.Count);
 
             List<string> sortedComplaintNumberTextList = rowList.GetSpecifiedRow("mat-column-idc_name");
-
             sortedComplaintNumberTextList.Sort();
-            SortComplaintNumControl.Click();
-            //Thread.Sleep(5000);
-            var sortedRowList =TableControl.GetDataFromTable();
-            List<string> unsortedComplaintNumberTextList = sortedRowList.GetSpecifiedRow("mat-column-idc_name");
-            for (int i = 0; i < unsortedComplaintNumberTextList.Count; i++)
-            {
-                Console.WriteLine("sorted" + sortedComplaintNumberTextList[i]);
-                Console.WriteLine("unsorted" + unsortedComplaintNumberTextList[i]);
 
-                Assert.That(sortedComplaintNumberTextList[i], Is.EqualTo(unsortedComplaintNumberTextList[i]));
-            } 
-       
+            SortComplaintNumControl.Click();
+
+            var sortedRowList =TableControl.GetDataFromTable();
+            List<string> newComplaintNumberTextList = sortedRowList.GetSpecifiedRow("mat-column-idc_name");
+            Boolean successfulSort = sortedComplaintNumberTextList.EqualsTableAfterSorting(newComplaintNumberTextList);
+
+            Assert.IsTrue(successfulSort);
             Assert.That(rowList.Count, Is.EqualTo(2));  
            
+        }
+
+        [Test]
+        [Category("Labels sort alphabetically or numerically.")]
+        public void SortCompanyNames()
+        {
+            var rowList = TableControl.GetDataFromTable();
+
+            List<string> sortedCompanyNameTextList = rowList.GetSpecifiedRow("mat-column-idc_associatedlastname");
+            sortedCompanyNameTextList.Sort();
+
+            SortCompanyControl.Click();
+
+            var sortedRowList = TableControl.GetDataFromTable();
+            List<string> newCompanyNameTextList = sortedRowList.GetSpecifiedRow("mat-column-idc_associatedlastname");
+            Boolean successfulSort = sortedCompanyNameTextList.EqualsTableAfterSorting(newCompanyNameTextList);
+
+            Assert.IsTrue(successfulSort);
+            Assert.That(rowList.Count, Is.EqualTo(2));
+
+        }
+
+        [Test]
+        [Category("Labels sort alphabetically or numerically.")]
+        public void SortPlaces()
+        {
+            var rowList = TableControl.GetDataFromTable();
+
+            List<string> sortedPlacesTextList = rowList.GetSpecifiedRow("mat-column-idc_occurrenceplace");
+            sortedPlacesTextList.Sort();
+
+            SortPlaceControl.Click();
+
+            var sortedRowList = TableControl.GetDataFromTable();
+            List<string> newPlacesTextList = sortedRowList.GetSpecifiedRow("mat-column-idc_occurrenceplace");
+            Boolean successfulSort = sortedPlacesTextList.EqualsTableAfterSorting(newPlacesTextList);
+
+            Assert.IsTrue(successfulSort);
+            Assert.That(rowList.Count, Is.EqualTo(2));
+        }
+
+        [Test]
+        [Category("Labels sort alphabetically or numerically.")]
+        public void SortStatuses()
+        {
+            var rowList = TableControl.GetDataFromTable();
+
+            List<string> sortedStatusTextList = rowList.GetSpecifiedRow("mat-column-statuscode");
+            sortedStatusTextList.Sort();
+
+            SortStatusControl.Click();
+
+            var sortedRowList = TableControl.GetDataFromTable();
+            List<string> newStatusTextList = sortedRowList.GetSpecifiedRow("mat-column-statuscode");
+            Boolean successfulSort = sortedStatusTextList.EqualsTableAfterSorting(newStatusTextList);
+
+            Assert.IsTrue(successfulSort);
+            Assert.That(rowList.Count, Is.EqualTo(2));
+        }
+
+        [Test]
+        [Category("Labels sort alphabetically or numerically.")]
+        public void SortSubmittedDates()
+        {
+            var rowList = TableControl.GetDataFromTable();
+
+            List<string> sortedSubmittedDatesTextList = rowList.GetSpecifiedRow("mat-column-idc_datesubmitted");
+            sortedSubmittedDatesTextList.Sort();
+
+            SortSubmittedDateControl.Click();
+
+            var sortedRowList = TableControl.GetDataFromTable();
+            List<string> newSubmittedDatesTextList = sortedRowList.GetSpecifiedRow("mat-column-idc_datesubmitted");
+            Boolean successfulSort = sortedSubmittedDatesTextList.EqualsTableAfterSorting(newSubmittedDatesTextList);
+
+            Assert.IsTrue(successfulSort);
+            Assert.That(rowList.Count, Is.EqualTo(2));
+        }
+
+        [Test]
+        [Category("Labels sort alphabetically or numerically.")]
+        public void SortSummonsNumbers()
+        {
+            var rowList = TableControl.GetDataFromTable();
+
+            List<string> sortedSummonsNumbersTextList = rowList.GetSpecifiedRow("mat-column-idc_violationnumber");
+            sortedSummonsNumbersTextList.Sort();
+
+            SortSummonsNumControl.Click();
+
+            var sortedRowList = TableControl.GetDataFromTable();
+            List<string> newSummonsNumbersTextList = sortedRowList.GetSpecifiedRow("mat-column-idc_violationnumber");
+            Boolean successfulSort = sortedSummonsNumbersTextList.EqualsTableAfterSorting(newSummonsNumbersTextList);
+
+            Assert.IsTrue(successfulSort);
+            Assert.That(rowList.Count, Is.EqualTo(2));
+        }
+
+        [Test]
+        [Category("Labels sort alphabetically or numerically.")]
+        public void SortHearingDates()
+        {
+            var rowList = TableControl.GetDataFromTable();
+
+            List<string> sortedHearingDatesTextList = rowList.GetSpecifiedRow("mat-column-idc_hearingdate");
+            sortedHearingDatesTextList.Sort();
+
+            SortHearingDateControl.Click();
+
+            var sortedRowList = TableControl.GetDataFromTable();
+            List<string> newHearingDatesTextList = sortedRowList.GetSpecifiedRow("mat-column-idc_hearingdate");
+            Boolean successfulSort = sortedHearingDatesTextList.EqualsTableAfterSorting(newHearingDatesTextList);
+
+            Assert.IsTrue(successfulSort);
+            Assert.That(rowList.Count, Is.EqualTo(2));
         }
     }
 }
