@@ -17,12 +17,12 @@ namespace IdlingComplaints.Models.Home
     internal class HomeModel : LoginModel
     {
         public HomeModel() { }
-        public new void OneTimeSetUp()
+        public void OneTimeSetUp(string email, string password)
         {
             //loginModel = new LoginModel();
             base.OneTimeSetUp();
-            EmailControl.SendKeysWithDelay("kchen@dep.nyc.gov", 0);
-            PasswordControl.SendKeysWithDelay("T3sting@1234", 0);
+            EmailControl.SendKeysWithDelay(email, 0);
+            PasswordControl.SendKeysWithDelay(password, 0);
             ClickLoginButton();
 
             Driver.WaitUntilElementFound(By.CssSelector("button[routerlink = 'idlingcomplaint/new']"), 20);

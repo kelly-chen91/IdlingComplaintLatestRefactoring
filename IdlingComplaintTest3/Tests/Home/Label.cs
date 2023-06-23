@@ -15,7 +15,7 @@ namespace IdlingComplaints.Tests.Home
         [OneTimeSetUp]
         public new void OneTimeSetUp()
         {
-            base.OneTimeSetUp();
+            base.OneTimeSetUp("kchen@dep.nyc.gov", "T3sting@1234");
         }
 
         [OneTimeTearDown]
