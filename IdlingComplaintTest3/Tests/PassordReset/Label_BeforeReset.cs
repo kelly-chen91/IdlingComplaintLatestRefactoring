@@ -18,7 +18,7 @@ namespace IdlingComplaints.Tests.PassordReset
         public new void OneTimeSetUp()
         {
             base.OneTimeSetUp();
-            Driver.Manage().Window.Position = new Point(-2000, 0);
+       
         }
 
         [OneTimeTearDown]
