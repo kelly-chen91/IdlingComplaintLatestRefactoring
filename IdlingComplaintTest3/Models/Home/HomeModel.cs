@@ -15,7 +15,7 @@ using System.Reflection.Metadata.Ecma335;
 namespace IdlingComplaints.Models.Home
 {
     internal class HomeModel : LoginModel
-    {
+    { 
         public void OneTimeSetUp(string email, string password)
         {
             //loginModel = new LoginModel();

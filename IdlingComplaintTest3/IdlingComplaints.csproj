@@ -26,4 +26,8 @@
     <ProjectReference Include="..\SeleniumUtilities\SeleniumUtilities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Tests\ComplaintForm\Occurrence\" />
+  </ItemGroup>
+
 </Project>
