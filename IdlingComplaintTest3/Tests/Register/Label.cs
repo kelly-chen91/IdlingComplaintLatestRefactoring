@@ -172,5 +172,62 @@ namespace IdlingComplaints.Tests.Register
         }
 
         /*T0-DO: Check for spelling/grammar errors for the selected options label tests.*/
+
+        [Test]
+        [Category("Label Displayed - no spelling/grammar errors.")]
+        public void DisplayedSecurityQuestionDefault()
+        {
+            SelectSecurityQuestion(0);
+            Assert.That(selectedSecurityQuestionControl, Is.EqualTo(Constants.DEFAULT_SEC_QUESTION));
+        }
+
+        [Test]
+        [Category("Label Displayed - no spelling/grammar errors.")]
+        public void DisplayedSecurityQuestionOne()
+        {
+            Thread.Sleep(1000);
+
+            SelectSecurityQuestion(1);
+            Assert.That(selectedSecurityQuestionControl, Is.EqualTo(Constants.SEC_QUESTION_1));
+        }
+
+        [Test]
+        [Category("Label Displayed - no spelling/grammar errors.")]
+        public void DisplayedSecurityQuestionTwo()
+        {
+            Thread.Sleep(1000);
+
+            SelectSecurityQuestion(2);
+            Assert.That(selectedSecurityQuestionControl, Is.EqualTo(Constants.SEC_QUESTION_2));
+        }
+
+        [Test]
+        [Category("Label Displayed - no spelling/grammar errors.")]
+        public void DisplayedSecurityQuestionThree()
+        {
+            Thread.Sleep(1000);
+
+            SelectSecurityQuestion(3);
+            Assert.That(selectedSecurityQuestionControl, Is.EqualTo(Constants.SEC_QUESTION_3));
+        }
+
+        [Test]
+        [Category("Label Displayed - no spelling/grammar errors.")]
+        public void DisplayedSecurityQuestionFour()
+        {
+            Thread.Sleep(1000);
+
+            SelectSecurityQuestion(4);
+            Assert.That(selectedSecurityQuestionControl, Is.EqualTo(Constants.SEC_QUESTION_4), "Flagged for inconsistency purpose on purpose.");
+        }
+
+        [Test]
+        [Category("Label Displayed - no spelling/grammar errors.")]
+        public void DisplayedSecurityQuestionFive()
+        {
+            Thread.Sleep(1000);
+            SelectSecurityQuestion(5);
+            Assert.That(selectedSecurityQuestionControl, Is.EqualTo(Constants.SEC_QUESTION_5));
+        }
     }
 }

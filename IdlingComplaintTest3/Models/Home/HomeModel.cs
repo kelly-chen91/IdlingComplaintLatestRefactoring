@@ -56,7 +56,7 @@ namespace IdlingComplaints.Models.Home
 
 
 
-        public string selectedCreatedYear, selectedItemsPerPage;
+        public string selectedCreatedYearControl = "Current Year", selectedItemsPerPageControl = "5";
         public void ClickNewComplaintButton()
         {
             NewComplaintControl.Click();
@@ -143,7 +143,7 @@ namespace IdlingComplaints.Models.Home
             Thread.Sleep(1000);
             List<string> createdYearList = optionElementList.ConvertOptionToText();
             if (yearIndex < 0 || yearIndex >= createdYearList.Count) { return; }
-            selectedCreatedYear = createdYearList[yearIndex];
+            selectedCreatedYearControl = createdYearList[yearIndex];
             optionElementList[yearIndex].Click();
             Thread.Sleep(1000);
 
@@ -156,7 +156,7 @@ namespace IdlingComplaints.Models.Home
             var optionElementList = itemsPerPage.FindElements(By.TagName("span")); //gathers all choices to a list
             List<string> itemsPerPageList = optionElementList.ConvertOptionToText();
             if (itemsIndex < 0 || itemsIndex >= itemsPerPageList.Count) { return; }
-            selectedItemsPerPage = itemsPerPageList[itemsIndex];
+            selectedItemsPerPageControl = itemsPerPageList[itemsIndex];
             optionElementList[itemsIndex].Click();
             Thread.Sleep(1000);
 
