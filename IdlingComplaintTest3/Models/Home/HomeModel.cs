@@ -16,7 +16,6 @@ namespace IdlingComplaints.Models.Home
 {
     internal class HomeModel : LoginModel
     {
-        public HomeModel() { }
         public void OneTimeSetUp(string email, string password)
         {
             //loginModel = new LoginModel();
