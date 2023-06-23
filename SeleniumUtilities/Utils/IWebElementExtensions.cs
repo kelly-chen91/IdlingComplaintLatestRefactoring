@@ -13,14 +13,14 @@ namespace SeleniumUtilities.Utils
         public static int MaxLengthAttributeValue(this IWebElement element)
         {
             var attribute = element.GetAttribute("maxlength");
-            Assert.IsNotNull(attribute, "The element does not have a maxlength attribute.");
+            Assert.IsNotNull(attribute, "Flagged for inconsistency on purpose.");
             return int.Parse(attribute);
         }
 
         public static int MinLengthAttributeValue(this IWebElement element)
         {
             var attribute = element.GetAttribute("minlength");
-            Assert.IsNotNull(attribute, "The element does not have a minlength attribute.");
+            Assert.IsNotNull(attribute, "Flagged for inconsistency on purpose.");
             return int.Parse(attribute);
         }
 
@@ -58,5 +58,35 @@ namespace SeleniumUtilities.Utils
             return list;
         }
 
+        public static List<string> GetSpecifiedRow(this ReadOnlyCollection<IWebElement> rowList, string className)
+        {
+            List<string> classTextList = new List<string>();
+            for (int i = 0; i < rowList.Count; i++)
+            {
+                var classText = rowList[i].FindElement(By.ClassName(className));
+
+                classTextList.Add(classText.Text);
+            }
+            return classTextList;
+        }
+        
+        public static ReadOnlyCollection<IWebElement> GetDataFromTable(this IWebElement table)
+        {
+            var body = table.FindElement(By.TagName("tbody"));
+            //var rowList = body.FindElements(By.TagName("tr"));
+            return body.FindElements(By.TagName("tr"));
+        }
+        
+        public static Boolean EqualsTableAfterSorting(this List<string> sorted, List<string> unsorted)
+        {
+            for (int i = 0; i < sorted.Count; i++)
+            {
+                Console.WriteLine("sorted: " + sorted[i]);
+                Console.WriteLine("unsorted: " + unsorted[i]);
+
+                if (!sorted[i].Equals(unsorted[i])) return false;
+            }
+            return true;
+        }
     }
 }

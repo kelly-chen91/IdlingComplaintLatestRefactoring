@@ -16,16 +16,18 @@ namespace IdlingComplaints.Models.Home
 {
     internal class HomeModel : LoginModel
     {
-        public HomeModel() { }
-        public new void OneTimeSetUp()
+        public void OneTimeSetUp(string email, string password)
         {
             //loginModel = new LoginModel();
             base.OneTimeSetUp();
-            EmailControl.SendKeysWithDelay("kchen@dep.nyc.gov", 0);
-            PasswordControl.SendKeysWithDelay("T3sting@1234", 0);
+            EmailControl.SendKeysWithDelay(email, 0);
+            PasswordControl.SendKeysWithDelay(password, 0);
             ClickLoginButton();
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
-            wait.Until(d => d.FindElement(By.CssSelector("button[routerlink='idlingcomplaint/new']")));
+
+            Driver.WaitUntilElementFound(By.CssSelector("button[routerlink = 'idlingcomplaint/new']"), 20);
+            Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
+            //var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
+            //wait.Until(d => d.FindElement(By.CssSelector("button[routerlink='idlingcomplaint/new']")));
         }
 
         public new void OneTimeTearDown()
@@ -108,24 +110,31 @@ namespace IdlingComplaints.Models.Home
         public void SelectCreatedYear(int yearIndex)
         {
             CreatedYearControl.Click();
-            var createdYear = CreatedYearControl.FindElements(By.TagName("span")); //gathers all choices to a list
-            List<string> createdYearList = createdYear.ConvertOptionToText();
+            var createdYear = Driver.FindElement(By.Id("mat-select-0-panel"));
+            var optionElementList = createdYear.FindElements(By.TagName("span")); //gathers all choices to a list
+            Thread.Sleep(1000);
+            List<string> createdYearList = optionElementList.ConvertOptionToText();
             if (yearIndex < 0 || yearIndex >= createdYearList.Count) { return; }
             selectedCreatedYear = createdYearList[yearIndex];
-            createdYear[yearIndex].Click();
+            optionElementList[yearIndex].Click();
+            Thread.Sleep(1000);
+
         }
 
         public void SelectItemsPerPage(int itemsIndex)
         {
             ItemsPerPageControl.Click();
-            var itemsPerPage = ItemsPerPageControl.FindElements(By.TagName("span")); //gathers all choices to a list
-            List<string> itemsPerPageList = itemsPerPage.ConvertOptionToText();
+            var itemsPerPage = Driver.FindElement(By.Id("mat-select-1-panel"));
+            var optionElementList = itemsPerPage.FindElements(By.TagName("span")); //gathers all choices to a list
+            List<string> itemsPerPageList = optionElementList.ConvertOptionToText();
             if (itemsIndex < 0 || itemsIndex >= itemsPerPageList.Count) { return; }
-            selectedCreatedYear = itemsPerPageList[itemsIndex];
-            itemsPerPage[itemsIndex].Click();
+            selectedItemsPerPage = itemsPerPageList[itemsIndex];
+            optionElementList[itemsIndex].Click();
+            Thread.Sleep(1000);
+
         }
 
 
-        
+
     }
 }

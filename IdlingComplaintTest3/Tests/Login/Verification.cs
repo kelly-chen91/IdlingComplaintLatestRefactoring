@@ -81,7 +81,7 @@ internal class Verification : LoginModel
                 var resultControl = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
 
                 Assert.IsNotNull(resultControl);
-                Assert.That(resultControl.Text.Trim(), Is.EqualTo("User is not found.")); //Added a period for consistency in error messaging
+                Assert.That(resultControl.Text.Trim(), Is.EqualTo("User is not found."), "Flagged for inconsistency on purpose."); //Added a period for consistency in error messaging
 
                 return resultControl;
             }
