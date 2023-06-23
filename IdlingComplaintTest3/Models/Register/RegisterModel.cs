@@ -199,6 +199,7 @@ namespace IdlingComplaints.Models.Register
             if (questionIndex >= questionList.Count || questionIndex < 0) return;
             optionElementList[questionIndex].Click();
             selectedSecurityQuestionControl = questionList[questionIndex];
+            Thread.Sleep(1000);
         }
 
 
@@ -211,6 +212,7 @@ namespace IdlingComplaints.Models.Register
             if (stateIndex >= stateList.Count || stateIndex < 0) return;
             optionElementList[stateIndex].Click();
             selectedStateControl = stateList[stateIndex];
+            Thread.Sleep(1000);
         }
 
 

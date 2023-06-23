@@ -154,6 +154,7 @@ namespace IdlingComplaints.Models.Home
             ItemsPerPageControl.Click();
             var itemsPerPage = Driver.FindElement(By.Id("mat-select-1-panel"));
             var optionElementList = itemsPerPage.FindElements(By.TagName("span")); //gathers all choices to a list
+            Thread.Sleep(1000);
             List<string> itemsPerPageList = optionElementList.ConvertOptionToText();
             if (itemsIndex < 0 || itemsIndex >= itemsPerPageList.Count) { return; }
             selectedItemsPerPageControl = itemsPerPageList[itemsIndex];
