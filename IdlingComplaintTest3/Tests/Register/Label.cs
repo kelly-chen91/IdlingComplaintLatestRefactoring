@@ -209,7 +209,7 @@ namespace IdlingComplaints.Tests.Register
         public void DisplayedSecurityQuestionFour()
         {
             SelectSecurityQuestion(4);
-            Assert.That(selectedSecurityQuestionControl, Is.EqualTo(Constants.SEC_QUESTION_4), "Flagged for inconsistency purpose on purpose.");
+            Assert.That(selectedSecurityQuestionControl, Is.EqualTo(Constants.SEC_QUESTION_4), "Flagged for inconsistency on purpose.");
         }
 
         [Test]
