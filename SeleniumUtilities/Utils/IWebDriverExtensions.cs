@@ -32,13 +32,10 @@ namespace SeleniumUtilities.Utils
             wait.Until(driver => webDriver.FindElements(locator).Count == 0);
         }
 
-
-
-        public static void WaitUntilElementFound(this IWebDriver webDriver, By locator, double timeout)
+        public static IWebElement WaitUntilElementFound(this IWebDriver webDriver, By locator, double timeout)
         {
             var wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(timeout));
-            wait.Until(d => d.FindElement(locator));
+            return wait.Until<IWebElement>(d => d.FindElement(locator));
         }
-
     }
 }
