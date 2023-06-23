@@ -14,14 +14,16 @@ namespace IdlingComplaints.Tests.PassordReset
 {
     internal class Label_ConfirmReset : PasswordResetModel
     {
-        private readonly int SLEEP_TIMER = 1;
+        private readonly int SLEEP_TIMER = 2;
 
         [OneTimeSetUp]
        public new void OneTimeSetUp()
        {
     
            base.OneTimeSetUp();
-           EmailInput = "TTseng@dep.nyc.gov";
+
+            Driver.Manage().Window.Position = new Point(-2000, 0);
+            EmailInput = "TTseng@dep.nyc.gov";
            ClickResetButton();
            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
            wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname = 'securityanswer']")));

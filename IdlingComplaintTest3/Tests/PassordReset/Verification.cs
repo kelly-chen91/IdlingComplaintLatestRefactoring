@@ -15,7 +15,7 @@ namespace IdlingComplaints.Tests.PassordReset
 {
     internal class Verification: PasswordResetModel
     {
-        private readonly int SLEEP_TIMER = 0;
+        private readonly int SLEEP_TIMER = 2;
 
         [SetUp]
         public void Setup()

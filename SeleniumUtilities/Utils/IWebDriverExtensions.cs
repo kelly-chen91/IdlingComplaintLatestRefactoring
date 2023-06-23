@@ -12,7 +12,7 @@ namespace SeleniumUtilities.Utils
         public static void ScrollTo(this IWebDriver driver, IWebElement element)
         {
             ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", element);
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
         }
 
         public static string ExtractTextFromXPath(this IWebDriver driver, string path)
