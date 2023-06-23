@@ -49,6 +49,17 @@ namespace IdlingComplaints.Models.ComplaintForm
         public IWebElement OccuranceInFrontOfSchoolControl => Driver.FindElement(By.CssSelector("mat-select[formcontrolname='idc_infrontofschool']"));
 
 
+        /*Person or Company Associated to the Complaint*/
+        public IWebElement CompanyNameControl => Driver.FindElement(By.CssSelector("input[placeholder='Company Name']"));
+        public IWebElement StateControl => Driver.FindElement(By.CssSelector("input[placeholder='State']"));
+
+        public IWebElement HouseNumberControl => Driver.FindElement(By.CssSelector("input[placeholder='House Number']"));
+        public IWebElement StreetNameControl => Driver.FindElement(By.CssSelector("input[placeholder='Street Name/P. O. Box']"));
+
+        public IWebElement AptFloorControl => Driver.FindElement(By.CssSelector("input[placeholder='Apt/Floor/Suite/Unit']"));
+        public IWebElement CityControl => Driver.FindElement(By.CssSelector("input[placeholder='City]"));
+        public IWebElement ZipCodeControl => Driver.FindElement(By.CssSelector("input[placeholder='Zip']"));
+        //public IWebElement AptFloorControl => Driver.FindElement(By.CssSelector("input[placeholder='Apt/Floor/Suite/Unit']"));
 
         public void ClickYesButton()
         {
