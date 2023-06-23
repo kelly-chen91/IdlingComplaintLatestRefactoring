@@ -27,5 +27,13 @@ namespace IdlingComplaints.Tests.Home
         public static readonly string PROFILE_LINK = "profile";
         public static readonly string NEW_COMPLAINT_LINK = "idlingcomplaint/new";
 
+        /*CREATED YEAR DROPDOWN OPTIONS*/
+        public static readonly string CURRENT_YEAR = "Current Year";
+        public static readonly string LAST_YEAR = "Last Year";
+        public static readonly string ALL = "All";
+        /*ITEMS PER PAGE DROPDOWN OPTIONS*/
+        public static readonly string FIVE_ITEMS = "5";
+        public static readonly string TEN_ITEMS = "10";
+        public static readonly string TWENTY_ITEMS = "20";
     }
 }

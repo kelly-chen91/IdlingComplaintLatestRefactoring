@@ -114,6 +114,68 @@ namespace IdlingComplaints.Tests.Home
             Assert.That(SortHearingDateControl.Text, Is.EqualTo(Constants.SORT_HEARING_DATE));
         }
 
+        /*DISPLAYED CREATED YEAR OPTIONS*/
+        [Test]
+        [Category("Label Displayed - no spelling/grammar errors.")]
+        public void DisplayedCreatedYearCurrentOption()
+        {
+            Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
+            SelectCreatedYear(0);
+            Assert.That(selectedCreatedYear, Is.EqualTo(Constants.CURRENT_YEAR));
+            //SelectCreatedYear(2);
+            //Assert.That(selectedCreatedYear, Is.EqualTo(Constants.ALL));
+
+        }
+
+        [Test]
+        [Category("Label Displayed - no spelling/grammar errors.")]
+        public void DisplayedCreatedYearLastOption()
+        {
+            Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
+            SelectCreatedYear(1);
+            Assert.That(selectedCreatedYear, Is.EqualTo(Constants.LAST_YEAR));
+        }
+
+        [Test]
+        [Category("Label Displayed - no spelling/grammar errors.")]
+        public void DisplayedCreatedYearAllOption()
+        {
+            Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
+            SelectCreatedYear(2);
+            Assert.That(selectedCreatedYear, Is.EqualTo(Constants.ALL));
+
+        }
+
+        /*DISPLAYED ITEMS PER PAGE OPTIONS*/
+        [Test]
+        [Category("Label Displayed - no spelling/grammar errors.")]
+        public void DisplayedItemsPerPageFiveOption()
+        {
+            Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
+            SelectItemsPerPage(0);
+            Assert.That(selectedItemsPerPage, Is.EqualTo(Constants.FIVE_ITEMS));
+        }
+
+        [Test]
+        [Category("Label Displayed - no spelling/grammar errors.")]
+        public void DisplayedItemsPerPageTenOption()
+        {
+            Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
+            SelectItemsPerPage(1);
+            Assert.That(selectedItemsPerPage, Is.EqualTo(Constants.TEN_ITEMS));
+        }
+
+        [Test]
+        [Category("Label Displayed - no spelling/grammar errors.")]
+        public void DisplayedItemsPerPageFifthteenOption()
+        {
+            Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
+            SelectItemsPerPage(2);
+            Assert.That(selectedItemsPerPage, Is.EqualTo(Constants.TWENTY_ITEMS));
+
+
+        }
+
         [Test]
         [Category("Placeholder is present.")]
         public void PlaceholderCreatedYear()
@@ -152,5 +214,6 @@ namespace IdlingComplaints.Tests.Home
             Assert.That(NewComplaintControl.GetAttribute("routerlink"), Is.EqualTo(Constants.NEW_COMPLAINT_LINK));
         }
 
+        
     }
 }
