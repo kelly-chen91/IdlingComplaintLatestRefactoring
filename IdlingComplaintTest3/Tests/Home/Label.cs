@@ -214,6 +214,10 @@ namespace IdlingComplaints.Tests.Home
             Assert.That(NewComplaintControl.GetAttribute("routerlink"), Is.EqualTo(Constants.NEW_COMPLAINT_LINK));
         }
 
-        
+        public void DisplayedPageRange()
+        {
+            /*Page Range is weird with this "1-2 of 2", it should be something like "1 of 2" as it is supposed to tell what page it is*/
+        }
+
     }
 }

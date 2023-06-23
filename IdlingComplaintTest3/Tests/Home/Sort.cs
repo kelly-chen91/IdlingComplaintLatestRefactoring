@@ -164,5 +164,8 @@ namespace IdlingComplaints.Tests.Home
             Assert.IsTrue(successfulSort);
             Assert.That(rowList.Count, Is.EqualTo(2));
         }
+
+        /*Items Per Range Filter Tests*/
+
     }
 }
