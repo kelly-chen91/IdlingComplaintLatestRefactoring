@@ -1,6 +1,9 @@
-﻿using IdlingComplaints.Models.Login;
+﻿using IdlingComplaints.Models.Home;
+using IdlingComplaints.Models.Login;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumUtilities.Base;
+using SeleniumUtilities.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Models.ComplaintForm
 {
-    internal class ComplaintFormModel:LoginModel
+    internal class ComplaintFormModel:HomeModel
     { 
         public new void OneTimeSetUp()
         {

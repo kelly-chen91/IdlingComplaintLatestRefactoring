@@ -58,18 +58,30 @@ namespace SeleniumUtilities.Utils
             return list;
         }
 
-        public static List<string> GetSpecifiedRow(this ReadOnlyCollection<IWebElement> rowList, string className)
+        public static List<string> GetSpecificColumnText(this ReadOnlyCollection<IWebElement> rowList, By locator)
         {
             List<string> classTextList = new List<string>();
             for (int i = 0; i < rowList.Count; i++)
             {
-                var classText = rowList[i].FindElement(By.ClassName(className));
+                var classText = rowList[i].FindElement(locator);
 
                 classTextList.Add(classText.Text);
             }
             return classTextList;
         }
-        
+
+        public static List<IWebElement> GetSpecificColumnElements(this ReadOnlyCollection<IWebElement> rowList, By locator)
+        {
+            List<IWebElement> classElementList = new List<IWebElement>();
+            for (int i = 0; i < rowList.Count; i++)
+            {
+                var classElement = rowList[i].FindElement(locator);
+
+                classElementList.Add(classElement);
+            }
+            return classElementList;
+        }
+
         public static ReadOnlyCollection<IWebElement> GetDataFromTable(this IWebElement table)
         {
             var body = table.FindElement(By.TagName("tbody"));

@@ -36,13 +36,13 @@ namespace IdlingComplaints.Tests.Home
         {
             var rowList = TableControl.GetDataFromTable();
 
-            List<string> sortedComplaintNumberTextList = rowList.GetSpecifiedRow("mat-column-idc_name");
+            List<string> sortedComplaintNumberTextList = rowList.GetSpecificColumnText(By.ClassName("mat-column-idc_name"));
             sortedComplaintNumberTextList.Sort();
 
             SortComplaintNumControl.Click();
 
             var sortedRowList =TableControl.GetDataFromTable();
-            List<string> newComplaintNumberTextList = sortedRowList.GetSpecifiedRow("mat-column-idc_name");
+            List<string> newComplaintNumberTextList = sortedRowList.GetSpecificColumnText(By.ClassName("mat-column-idc_name"));
             Boolean successfulSort = sortedComplaintNumberTextList.EqualsTableAfterSorting(newComplaintNumberTextList);
 
             Assert.IsTrue(successfulSort);
@@ -56,13 +56,13 @@ namespace IdlingComplaints.Tests.Home
         {
             var rowList = TableControl.GetDataFromTable();
 
-            List<string> sortedCompanyNameTextList = rowList.GetSpecifiedRow("mat-column-idc_associatedlastname");
+            List<string> sortedCompanyNameTextList = rowList.GetSpecificColumnText(By.ClassName("mat-column-idc_associatedlastname"));
             sortedCompanyNameTextList.Sort();
 
             SortCompanyControl.Click();
 
             var sortedRowList = TableControl.GetDataFromTable();
-            List<string> newCompanyNameTextList = sortedRowList.GetSpecifiedRow("mat-column-idc_associatedlastname");
+            List<string> newCompanyNameTextList = sortedRowList.GetSpecificColumnText(By.ClassName("mat-column-idc_associatedlastname"));
             Boolean successfulSort = sortedCompanyNameTextList.EqualsTableAfterSorting(newCompanyNameTextList);
 
             Assert.IsTrue(successfulSort);
@@ -76,13 +76,13 @@ namespace IdlingComplaints.Tests.Home
         {
             var rowList = TableControl.GetDataFromTable();
 
-            List<string> sortedPlacesTextList = rowList.GetSpecifiedRow("mat-column-idc_occurrenceplace");
+            List<string> sortedPlacesTextList = rowList.GetSpecificColumnText(By.ClassName("mat-column-idc_occurrenceplace"));
             sortedPlacesTextList.Sort();
 
             SortPlaceControl.Click();
 
             var sortedRowList = TableControl.GetDataFromTable();
-            List<string> newPlacesTextList = sortedRowList.GetSpecifiedRow("mat-column-idc_occurrenceplace");
+            List<string> newPlacesTextList = sortedRowList.GetSpecificColumnText(By.ClassName("mat-column-idc_occurrenceplace"));
             Boolean successfulSort = sortedPlacesTextList.EqualsTableAfterSorting(newPlacesTextList);
 
             Assert.IsTrue(successfulSort);
@@ -95,13 +95,13 @@ namespace IdlingComplaints.Tests.Home
         {
             var rowList = TableControl.GetDataFromTable();
 
-            List<string> sortedStatusTextList = rowList.GetSpecifiedRow("mat-column-statuscode");
+            List<string> sortedStatusTextList = rowList.GetSpecificColumnText(By.ClassName("mat-column-statuscode"));
             sortedStatusTextList.Sort();
 
             SortStatusControl.Click();
 
             var sortedRowList = TableControl.GetDataFromTable();
-            List<string> newStatusTextList = sortedRowList.GetSpecifiedRow("mat-column-statuscode");
+            List<string> newStatusTextList = sortedRowList.GetSpecificColumnText(By.ClassName("mat-column-statuscode"));
             Boolean successfulSort = sortedStatusTextList.EqualsTableAfterSorting(newStatusTextList);
 
             Assert.IsTrue(successfulSort);
@@ -114,13 +114,13 @@ namespace IdlingComplaints.Tests.Home
         {
             var rowList = TableControl.GetDataFromTable();
 
-            List<string> sortedSubmittedDatesTextList = rowList.GetSpecifiedRow("mat-column-idc_datesubmitted");
+            List<string> sortedSubmittedDatesTextList = rowList.GetSpecificColumnText(By.ClassName("mat-column-idc_datesubmitted"));
             sortedSubmittedDatesTextList.Sort();
 
             SortSubmittedDateControl.Click();
 
             var sortedRowList = TableControl.GetDataFromTable();
-            List<string> newSubmittedDatesTextList = sortedRowList.GetSpecifiedRow("mat-column-idc_datesubmitted");
+            List<string> newSubmittedDatesTextList = sortedRowList.GetSpecificColumnText(By.ClassName("mat-column-idc_datesubmitted"));
             Boolean successfulSort = sortedSubmittedDatesTextList.EqualsTableAfterSorting(newSubmittedDatesTextList);
 
             Assert.IsTrue(successfulSort);
@@ -133,13 +133,13 @@ namespace IdlingComplaints.Tests.Home
         {
             var rowList = TableControl.GetDataFromTable();
 
-            List<string> sortedSummonsNumbersTextList = rowList.GetSpecifiedRow("mat-column-idc_violationnumber");
+            List<string> sortedSummonsNumbersTextList = rowList.GetSpecificColumnText(By.ClassName("mat-column-idc_violationnumber"));
             sortedSummonsNumbersTextList.Sort();
 
             SortSummonsNumControl.Click();
 
             var sortedRowList = TableControl.GetDataFromTable();
-            List<string> newSummonsNumbersTextList = sortedRowList.GetSpecifiedRow("mat-column-idc_violationnumber");
+            List<string> newSummonsNumbersTextList = sortedRowList.GetSpecificColumnText(By.ClassName("mat-column-idc_violationnumber"));
             Boolean successfulSort = sortedSummonsNumbersTextList.EqualsTableAfterSorting(newSummonsNumbersTextList);
 
             Assert.IsTrue(successfulSort);
@@ -152,13 +152,13 @@ namespace IdlingComplaints.Tests.Home
         {
             var rowList = TableControl.GetDataFromTable();
 
-            List<string> sortedHearingDatesTextList = rowList.GetSpecifiedRow("mat-column-idc_hearingdate");
+            List<string> sortedHearingDatesTextList = rowList.GetSpecificColumnText(By.ClassName("mat-column-idc_hearingdate"));
             sortedHearingDatesTextList.Sort();
 
             SortHearingDateControl.Click();
 
             var sortedRowList = TableControl.GetDataFromTable();
-            List<string> newHearingDatesTextList = sortedRowList.GetSpecifiedRow("mat-column-idc_hearingdate");
+            List<string> newHearingDatesTextList = sortedRowList.GetSpecificColumnText(By.ClassName("mat-column-idc_hearingdate"));
             Boolean successfulSort = sortedHearingDatesTextList.EqualsTableAfterSorting(newHearingDatesTextList);
 
             Assert.IsTrue(successfulSort);
