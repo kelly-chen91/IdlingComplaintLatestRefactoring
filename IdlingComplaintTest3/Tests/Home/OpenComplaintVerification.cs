@@ -1,5 +1,6 @@
 ﻿using IdlingComplaints.Models.Home;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using SeleniumUtilities.Utils;
 using System;
 using System.Collections.Generic;
@@ -39,7 +40,29 @@ namespace IdlingComplaints.Tests.Home
         [Test]
         public void OpenComplaints()
         {
+            var rowList = TableControl.GetDataFromTable();
+            var openComplaintList = rowList.GetSpecificColumnElements(By.TagName("a"));
+            var complaintNumList = rowList.GetSpecificColumnText(By.ClassName("mat-column-idc_name"));
 
+            for (int i = 0; i < openComplaintList.Count; i++)
+            {
+                Driver.WaitUntilElementFound(By.CssSelector("button[routerlink='idlingcomplaint/new']"), 10);
+                Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir='ltr']"), 20);
+                
+                rowList = TableControl.GetDataFromTable();
+                openComplaintList = rowList.GetSpecificColumnElements(By.TagName("a"));
+                complaintNumList = rowList.GetSpecificColumnText(By.ClassName("mat-column-idc_name"));
+
+                openComplaintList[i].Click();
+
+                var complientNumberControl = Driver.WaitUntilElementFound(By.CssSelector("h4[align='center']"), 15);
+
+                string openComplaintNumber = complientNumberControl.Text;
+
+                Assert.That(openComplaintNumber, Is.EqualTo("Complaint Number: " + complaintNumList[i]));
+                ClickHomeButton();
+            }
         }
+
     }
 }

@@ -121,9 +121,7 @@ namespace IdlingComplaints.Tests.Home
         {
             Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
             SelectCreatedYear(0);
-            Assert.That(selectedCreatedYear, Is.EqualTo(Constants.CURRENT_YEAR));
-            //SelectCreatedYear(2);
-            //Assert.That(selectedCreatedYear, Is.EqualTo(Constants.ALL));
+            Assert.That(selectedCreatedYearControl, Is.EqualTo(Constants.CURRENT_YEAR));
 
         }
 
@@ -133,7 +131,7 @@ namespace IdlingComplaints.Tests.Home
         {
             Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
             SelectCreatedYear(1);
-            Assert.That(selectedCreatedYear, Is.EqualTo(Constants.LAST_YEAR));
+            Assert.That(selectedCreatedYearControl, Is.EqualTo(Constants.LAST_YEAR));
         }
 
         [Test]
@@ -142,7 +140,7 @@ namespace IdlingComplaints.Tests.Home
         {
             Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
             SelectCreatedYear(2);
-            Assert.That(selectedCreatedYear, Is.EqualTo(Constants.ALL));
+            Assert.That(selectedCreatedYearControl, Is.EqualTo(Constants.ALL));
 
         }
 
@@ -153,7 +151,7 @@ namespace IdlingComplaints.Tests.Home
         {
             Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
             SelectItemsPerPage(0);
-            Assert.That(selectedItemsPerPage, Is.EqualTo(Constants.FIVE_ITEMS));
+            Assert.That(selectedItemsPerPageControl, Is.EqualTo(Constants.FIVE_ITEMS));
         }
 
         [Test]
@@ -162,7 +160,7 @@ namespace IdlingComplaints.Tests.Home
         {
             Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
             SelectItemsPerPage(1);
-            Assert.That(selectedItemsPerPage, Is.EqualTo(Constants.TEN_ITEMS));
+            Assert.That(selectedItemsPerPageControl, Is.EqualTo(Constants.TEN_ITEMS));
         }
 
         [Test]
@@ -171,7 +169,7 @@ namespace IdlingComplaints.Tests.Home
         {
             Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
             SelectItemsPerPage(2);
-            Assert.That(selectedItemsPerPage, Is.EqualTo(Constants.TWENTY_ITEMS));
+            Assert.That(selectedItemsPerPageControl, Is.EqualTo(Constants.TWENTY_ITEMS));
 
 
         }
@@ -214,6 +212,10 @@ namespace IdlingComplaints.Tests.Home
             Assert.That(NewComplaintControl.GetAttribute("routerlink"), Is.EqualTo(Constants.NEW_COMPLAINT_LINK));
         }
 
-        
+        public void DisplayedPageRange()
+        {
+            /*Page Range is weird with this "1-2 of 2", it should be something like "1 of 2" as it is supposed to tell what page it is*/
+        }
+
     }
 }

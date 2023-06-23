@@ -14,7 +14,6 @@ namespace IdlingComplaints.Tests.Register
 
     internal partial class Label : RegisterModel
     {
-        //  private RegisterModel createAnAccountModel;
 
         [OneTimeSetUp]
         public new void OneTimeSetUp()
@@ -172,5 +171,53 @@ namespace IdlingComplaints.Tests.Register
         }
 
         /*T0-DO: Check for spelling/grammar errors for the selected options label tests.*/
+
+        [Test]
+        [Category("Label Displayed - no spelling/grammar errors.")]
+        public void DisplayedSecurityQuestionDefault()
+        {
+            SelectSecurityQuestion(0);
+            Assert.That(selectedSecurityQuestionControl, Is.EqualTo(Constants.DEFAULT_SEC_QUESTION));
+        }
+
+        [Test]
+        [Category("Label Displayed - no spelling/grammar errors.")]
+        public void DisplayedSecurityQuestionOne()
+        {
+            SelectSecurityQuestion(1);
+            Assert.That(selectedSecurityQuestionControl, Is.EqualTo(Constants.SEC_QUESTION_1));
+        }
+
+        [Test]
+        [Category("Label Displayed - no spelling/grammar errors.")]
+        public void DisplayedSecurityQuestionTwo()
+        {
+            SelectSecurityQuestion(2);
+            Assert.That(selectedSecurityQuestionControl, Is.EqualTo(Constants.SEC_QUESTION_2));
+        }
+
+        [Test]
+        [Category("Label Displayed - no spelling/grammar errors.")]
+        public void DisplayedSecurityQuestionThree()
+        {
+            SelectSecurityQuestion(3);
+            Assert.That(selectedSecurityQuestionControl, Is.EqualTo(Constants.SEC_QUESTION_3));
+        }
+
+        [Test]
+        [Category("Label Displayed - no spelling/grammar errors.")]
+        public void DisplayedSecurityQuestionFour()
+        {
+            SelectSecurityQuestion(4);
+            Assert.That(selectedSecurityQuestionControl, Is.EqualTo(Constants.SEC_QUESTION_4), "Flagged for inconsistency purpose on purpose.");
+        }
+
+        [Test]
+        [Category("Label Displayed - no spelling/grammar errors.")]
+        public void DisplayedSecurityQuestionFive()
+        {
+            SelectSecurityQuestion(5);
+            Assert.That(selectedSecurityQuestionControl, Is.EqualTo(Constants.SEC_QUESTION_5));
+        }
     }
 }
