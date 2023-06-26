@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IdlingComplaints.Tests.ComplaintForm.Complaint;
 
 namespace IdlingComplaints.Tests.ComplaintForm.Complainant
 {
@@ -93,9 +94,8 @@ namespace IdlingComplaints.Tests.ComplaintForm.Complainant
         {
             Associated_HouseNumberControl.SendTextDeleteTabWithDelay("XX", SLEEP_TIMER);
 
-            Assert.That(Constants.HOUSENUMBER_REQUIRE, Is.EqualTo(null), "Flagged for inconsistency on purpose. It should be displaying" + Constants.COMPANY_NAME_REQUIRE);
+            Assert.That((Object)" ",Is.EqualTo(Constants.HOUSENUMBER_REQUIRE), "Flagged for inconsistency on purpose. It should be displaying" + Constants.COMPANY_NAME_REQUIRE);
         }
-
         [Test, Category("Correct Label Displayed")]
         public void RequiredCompanyName()
         {

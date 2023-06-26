@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.PassordReset
 {
-    internal class Test50_Functionality: PasswordResetModel
+    internal class Test50_PasswordResetFunctionality: PasswordResetModel
     {
         private readonly int SLEEP_TIMER = 2;
 

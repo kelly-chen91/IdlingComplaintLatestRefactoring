@@ -28,34 +28,34 @@ namespace IdlingComplaints.Tests.PassordReset
         }
 
         [Test,Category("Correct Label Displayed")]
-        public void HeadingLabel()
+        public void DisplayedHeading()
         {
             Assert.That(TitleControl.Text, Is.EqualTo(Constants.RESET_PASSWORD_TITLE));
         }
 
         [Test,Category("Placeholder is present.")]
-        public void EmailLabel()
+        public void DisplayedEmail()
         {
             var placeholder = EmailControl.GetAttribute("placeholder");
             Assert.That(placeholder, Is.EqualTo(Constants.EMAIL));
         }
 
         [Test, Category("Placeholder is present.")]
-        public void ResetLabel()
+        public void DisplayedReset()
         {
             string text = Driver.ExtractTextFromXPath("/html/body/app-root/div/password-reset/form/div/div/mat-card/mat-card-content/mat-dialog-actions/button[1]/span/text()");
             Assert.That(text, Is.EqualTo(Constants.RESET));
         }
 
         [Test, Category("Placeholder is present.")]
-        public void CancelLabel()
+        public void DisplayedCancel()
         {
             string text = Driver.ExtractTextFromXPath("/html/body/app-root/div/password-reset/form/div/div/mat-card/mat-card-content/mat-dialog-actions/button[2]/span/text()");
             Assert.That(text, Is.EqualTo(Constants.CANCEL));
         }
 
         [Test, Category("Require message is present.")]
-        public void EmailRequiredText()
+        public void RequiredEmail()
         {
             EmailControl.SendTextDeleteTabWithDelay("abc", 0);
             string text = Driver.ExtractTextFromXPath("/html/body/app-root/div/password-reset/form/div/div/mat-card/mat-card-content/mat-form-field/div/div[3]/div/mat-error/text()");
@@ -63,7 +63,7 @@ namespace IdlingComplaints.Tests.PassordReset
         }
 
         [Test, Category("Require message is present.")]
-        public void InvalidEmailText()
+        public void RequiredInvalidEmail()
         { 
             EmailControl.SendKeysWithDelay("TTseng", 0);
             ClickResetButton();
