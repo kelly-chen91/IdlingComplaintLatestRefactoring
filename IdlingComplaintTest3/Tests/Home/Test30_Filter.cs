@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.Home
 {
-    internal class Filter : HomeModel
+    internal class Test30_Filter : HomeModel
     {
-        public Filter() { }
+        public Test30_Filter() { }
         [OneTimeSetUp]
         public new void OneTimeSetUp()
         {

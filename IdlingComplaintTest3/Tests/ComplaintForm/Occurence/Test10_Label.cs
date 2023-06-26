@@ -11,9 +11,9 @@ using SeleniumUtilities.Utils;
 
 namespace IdlingComplaints.Tests.ComplaintForm.Occurance
 {
-    internal class Label : ComplaintFormModel
+    internal class Test10_Label : ComplaintFormModel
     {
-        public Label() { }
+        public Test10_Label() { }
         [OneTimeSetUp]
         public new void OneTimeSetUp()
         {
