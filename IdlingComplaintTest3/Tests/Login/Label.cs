@@ -42,14 +42,14 @@ namespace IdlingComplaints.Tests.Login
 
         [Test]
         //Tests whether the heading matches with "NYC Idling Complaint"
-        [Category("Label Displayed - no spelling/grammar errors.")]
+        [Category("Correct Label Displayed")]
         public void DisplayedHeading()
         {
             Assert.That(TitleControl.Text, Is.EqualTo(Constants.LOGIN_HEADING), "Flagged for inconsistency on purpose.");
         }
 
         [Test]
-        [Category("Label Displayed - no spelling/grammar errors.")]
+        [Category("Correct Label Displayed")]
         public void DisplayedLogin()
         {
             string text = Driver.ExtractTextFromXPath("/html/body/app-root/div/app-login/mat-card/mat-card-header/div/mat-card-title/h4/text()");
@@ -65,21 +65,21 @@ namespace IdlingComplaints.Tests.Login
         }
 
         [Test]
-        [Category("Label Displayed - no spelling/grammar errors.")]
+        [Category("Correct Label Displayed")]
         public void DisplayedForgotPassword()
         {
             Assert.That(ForgotPasswordControl.Text, Is.EqualTo(Constants.FORGOT_PASS), "Forget password does not match \"" + Constants.FORGOT_PASS + "\"");
         }
 
         [Test]
-        [Category("Label Displayed - no spelling/grammar errors.")]
+        [Category("Correct Label Displayed")]
         public void DisplayedCreateAnAccount()
         {
             Assert.That(CreateAccountControl.Text, Is.EqualTo(Constants.CREATE_ACCOUNT), "Create account does not match \"" + Constants.CREATE_ACCOUNT + "\"");
         }
 
         [Test]
-        [Category("Label Displayed - no spelling/grammar errors.")]
+        [Category("Correct Label Displayed")]
         public void DisplayedNotRegistered()
         {
             string notRegisteredText = Driver.ExtractTextFromXPath("/html/body/app-root/div/app-login/mat-card/mat-card-content/form/div[4]/p/text()");

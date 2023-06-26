@@ -33,7 +33,6 @@ namespace IdlingComplaints.Models.ComplaintForm
         public IWebElement YesLabelControl =>Driver.FindElement(By.CssSelector("label[for='criteriaError']"));
         
         public IWebElement NoButtonControl => Driver.FindElement(By.CssSelector("mat-radio-button[value = 'No']"));
-        public IWebElement POBoxControl => Driver.FindElement(By.Id("mat-checkbox-4-input"));
 
         /*Occurance Section*/
         public IWebElement OccuranceFromControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_occurrencetimefrom']"));

@@ -27,7 +27,7 @@ namespace IdlingComplaints.Tests.PassordReset
             base.OneTimeTearDown();
         }
 
-        [Test,Category("Label Displayed - no spelling/grammar errors.")]
+        [Test,Category("Correct Label Displayed")]
         public void HeadingLabel()
         {
             Assert.That(TitleControl.Text, Is.EqualTo(Constants.RESET_PASSWORD_TITLE));

@@ -132,14 +132,14 @@ namespace IdlingComplaints.Tests.Register
         }
 
         [Test]
-        [Category("Label Displayed - no spelling/grammar errors.")]
+        [Category("Correct Label Displayed")]
         public void DisplayedHeading()
         {
             Assert.That(TitleControl.Text.Trim(), Is.EqualTo(Constants.PROFILE_HEADING));
         }
 
         [Test]
-        [Category("Label Displayed - no spelling/grammar errors.")]
+        [Category("Correct Label Displayed")]
         public void DisplayedSubmitButtonLabel()
         {
             string submitButtonText = Driver.ExtractTextFromXPath("/html/body/app-root/div/profile/form/div/button[1]/span/text()");
@@ -147,7 +147,7 @@ namespace IdlingComplaints.Tests.Register
         }
 
         [Test]
-        [Category("Label Displayed - no spelling/grammar errors.")]
+        [Category("Correct Label Displayed")]
         public void DisplayedCancelButtonLabel()
         {
             string cancelButtonText = Driver.ExtractTextFromXPath("/html/body/app-root/div/profile/form/div/button[2]/span/text()");
@@ -155,7 +155,7 @@ namespace IdlingComplaints.Tests.Register
         }
 
         [Test]
-        [Category("Label Displayed - no spelling/grammar errors.")]
+        [Category("Correct Label Displayed")]
         public void DisplayedPasswordPolicyPart1Label()
         {
             string passwordPolicyText1 = Driver.ExtractTextFromXPath("/html/body/app-root/div/profile/form/div/div/label/text()[1]");
@@ -163,7 +163,7 @@ namespace IdlingComplaints.Tests.Register
         }
 
         [Test]
-        [Category("Label Displayed - no spelling/grammar errors.")]
+        [Category("Correct Label Displayed")]
         public void DisplayedPasswordPolicyPart2Label()
         {
             string passwordPolicyText2 = Driver.ExtractTextFromXPath("/html/body/app-root/div/profile/form/div/div/label/text()[2]");
@@ -173,7 +173,7 @@ namespace IdlingComplaints.Tests.Register
         /*T0-DO: Check for spelling/grammar errors for the selected options label tests.*/
 
         [Test]
-        [Category("Label Displayed - no spelling/grammar errors.")]
+        [Category("Correct Label Displayed")]
         public void DisplayedSecurityQuestionDefault()
         {
             SelectSecurityQuestion(0);
@@ -181,7 +181,7 @@ namespace IdlingComplaints.Tests.Register
         }
 
         [Test]
-        [Category("Label Displayed - no spelling/grammar errors.")]
+        [Category("Correct Label Displayed")]
         public void DisplayedSecurityQuestionOne()
         {
             SelectSecurityQuestion(1);
@@ -189,7 +189,7 @@ namespace IdlingComplaints.Tests.Register
         }
 
         [Test]
-        [Category("Label Displayed - no spelling/grammar errors.")]
+        [Category("Correct Label Displayed")]
         public void DisplayedSecurityQuestionTwo()
         {
             SelectSecurityQuestion(2);
@@ -197,7 +197,7 @@ namespace IdlingComplaints.Tests.Register
         }
 
         [Test]
-        [Category("Label Displayed - no spelling/grammar errors.")]
+        [Category("Correct Label Displayed")]
         public void DisplayedSecurityQuestionThree()
         {
             SelectSecurityQuestion(3);
@@ -205,7 +205,7 @@ namespace IdlingComplaints.Tests.Register
         }
 
         [Test]
-        [Category("Label Displayed - no spelling/grammar errors.")]
+        [Category("Correct Label Displayed")]
         public void DisplayedSecurityQuestionFour()
         {
             SelectSecurityQuestion(4);
@@ -213,7 +213,7 @@ namespace IdlingComplaints.Tests.Register
         }
 
         [Test]
-        [Category("Label Displayed - no spelling/grammar errors.")]
+        [Category("Correct Label Displayed")]
         public void DisplayedSecurityQuestionFive()
         {
             SelectSecurityQuestion(5);
