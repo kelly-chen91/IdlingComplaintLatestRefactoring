@@ -33,6 +33,7 @@ namespace IdlingComplaints.Models.ComplaintForm
         public IWebElement YesLabelControl =>Driver.FindElement(By.CssSelector("label[for='criteriaError']"));
         
         public IWebElement NoButtonControl => Driver.FindElement(By.CssSelector("mat-radio-button[value = 'No']"));
+        public IWebElement POBoxControl => Driver.FindElement(By.Id("mat-checkbox-4-input"));
 
         /*Occurance Section*/
         public IWebElement OccuranceFromControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_occurrencetimefrom']"));
@@ -50,16 +51,29 @@ namespace IdlingComplaints.Models.ComplaintForm
 
 
         /*Person or Company Associated to the Complaint*/
-        public IWebElement CompanyNameControl => Driver.FindElement(By.CssSelector("input[placeholder='Company Name']"));
-        public IWebElement StateControl => Driver.FindElement(By.CssSelector("input[placeholder='State']"));
+        public IWebElement CompanyNameControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_associatedlastname']"));
+        public IWebElement StateControl => Driver.FindElement(By.CssSelector("mat-select[formcontrolname='idc_associatedstate']"));
 
-        public IWebElement HouseNumberControl => Driver.FindElement(By.CssSelector("input[placeholder='House Number']"));
-        public IWebElement StreetNameControl => Driver.FindElement(By.CssSelector("input[placeholder='Street Name/P. O. Box']"));
+        public IWebElement HouseNumberControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_associatedhouseno']"));
+        public IWebElement StreetNameControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_associatedstreet']"));
 
-        public IWebElement AptFloorControl => Driver.FindElement(By.CssSelector("input[placeholder='Apt/Floor/Suite/Unit']"));
-        public IWebElement CityControl => Driver.FindElement(By.CssSelector("input[placeholder='City]"));
-        public IWebElement ZipCodeControl => Driver.FindElement(By.CssSelector("input[placeholder='Zip']"));
-        //public IWebElement AptFloorControl => Driver.FindElement(By.CssSelector("input[placeholder='Apt/Floor/Suite/Unit']"));
+        public IWebElement AptFloorControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_associatedstreet2']"));
+        public IWebElement CityControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_associatedcity']"));
+        public IWebElement ZipCodeControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_associatedzip']"));
+
+        /*Person or Company Associated to the Complaint*/
+        //public IWebElement? RequireCompanyNameControl => Driver.FindElement(By.CssSelector("mat-error[id='mat-error-13']"));
+        public IWebElement RequireCompanyNameControl => CompanyNameControl.FindElement(By.TagName("mat-error"));
+
+        public IWebElement RequireStateControl => Driver.FindElement(By.CssSelector("mat-error[id='mat-error-11']"));
+
+        public IWebElement RequireHouseNumberControl => Driver.FindElement(By.CssSelector("mat-error[id='mat-error-24']"));
+        public IWebElement RequireStreetNameControl => Driver.FindElement(By.CssSelector("mat-error[id='mat-error-12']"));
+
+        public IWebElement? RequireAptFloorControl => null;
+        public IWebElement RequireCityControl => Driver.FindElement(By.CssSelector("mat-error[id='mat-error-14']"));
+        public IWebElement RequireZipCodeControl => Driver.FindElement(By.CssSelector("mat-error[id='mat-error-15']"));
+
 
         public void ClickYesButton()
         {
@@ -71,6 +85,15 @@ namespace IdlingComplaints.Models.ComplaintForm
             //var button = NoButtonControl.FindElement(By.TagName("input"));
             //button.Click();
             NoButtonControl.Click();
+        }
+        public void ClickNPOBoxButton()
+        {
+            
+            NoButtonControl.Click();
+        }
+        public void ScrollToZipCode()
+        {
+            Driver.ScrollTo(ZipCodeControl);
         }
     }
 }
