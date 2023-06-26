@@ -219,5 +219,6 @@ namespace IdlingComplaints.Tests.Register
             SelectSecurityQuestion(5);
             Assert.That(selectedSecurityQuestionControl, Is.EqualTo(Constants.SEC_QUESTION_5));
         }
+
     }
 }
