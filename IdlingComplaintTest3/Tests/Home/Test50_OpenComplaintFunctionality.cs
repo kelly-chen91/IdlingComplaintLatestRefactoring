@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.Home
 {
-    internal class OpenComplaintVerification : HomeModel
+    internal class Test50_OpenComplaintFunctionality : HomeModel
     {
-        public OpenComplaintVerification() { }
+        public Test50_OpenComplaintFunctionality() { }
         [SetUp]
         public void SetUp()
         {

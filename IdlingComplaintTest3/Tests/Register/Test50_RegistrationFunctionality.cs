@@ -14,7 +14,7 @@ namespace IdlingComplaints.Tests.Register
 {
     //[Parallelizable(ParallelScope.Children)]
     //[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
-    internal class RegistrationVerification : RegisterModel
+    internal class Test50_RegistrationFunctionality : RegisterModel
     {
         [SetUp]
         public void SetUp()

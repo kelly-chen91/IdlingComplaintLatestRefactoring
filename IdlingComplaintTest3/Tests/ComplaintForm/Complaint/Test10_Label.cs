@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.ComplaintForm.Complainant
 {
-    internal class Label : ComplaintFormModel
+    internal class Test10_Label : ComplaintFormModel
     {
         private readonly int SLEEP_TIMER = 1000;
 

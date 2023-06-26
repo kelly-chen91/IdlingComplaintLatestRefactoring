@@ -8,7 +8,7 @@ using SeleniumUtilities.Utils;
 namespace IdlingComplaints.Tests.Login
 {
 
-    internal class Label : LoginModel
+    internal class Test10_Label : LoginModel
     {
         [OneTimeSetUp]
         public new void OneTimeSetUp()
