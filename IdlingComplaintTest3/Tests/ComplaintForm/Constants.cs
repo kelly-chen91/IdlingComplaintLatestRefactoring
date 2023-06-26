@@ -20,12 +20,12 @@ namespace IdlingComplaints.Tests.ComplaintForm
         public static readonly string STREET_NAME = "Street Name/P.O.Box";
         public static readonly string APT_FLOOR_SUITE_UNIT = "Apt/Floor/Suite/Unit";
         public static readonly string CITY = "City";
-        public static readonly string ZIP = "Zip";
+        public static readonly string ZIP = "Zip Code";
                          //label: Complainant section/ requirement
         public static readonly string COMPANY_NAME_REQUIRE = "Company Name/Last Name is required";
         public static readonly string STATE_REQUIRE = "State is required";
         public static readonly string HOUSENUMBER_REQUIRE = "House Number is required";
-        public static readonly string STREET_NAME_REQUIRE = "Street Name/P. O. Box is required";
+        public static readonly string STREET_NAME_REQUIRE = "Street Name/P.O.Box";
         public static readonly string CITY_REQUIRE = "City is required";
         public static readonly string ZIP_REQUIRE = "Zip is required";
 
