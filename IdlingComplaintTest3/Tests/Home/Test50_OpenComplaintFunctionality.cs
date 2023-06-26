@@ -38,7 +38,8 @@ namespace IdlingComplaints.Tests.Home
         private readonly int SLEEP_TIMER = 2000;
 
         [Test]
-        public void OpenComplaints()
+        [Category("Sucessful Redirect - Complaint Details Displayed")]
+        public void SuccessfulOpenComplaints()
         {
             var rowList = TableControl.GetDataFromTable();
             var openComplaintList = rowList.GetSpecificColumnElements(By.TagName("a"));

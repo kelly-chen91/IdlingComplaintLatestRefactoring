@@ -46,31 +46,34 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurence
             Assert.That(error, Is.EqualTo(Constants.OCCURENCE_REQUIRED_TO));
         }
 
-        //[Test]
-        //[Category("Required Field Missing - Error Label Displayed")]
-        //public void Occurance_RequiredHouseNumber()
-        //{
-        //    Occurance_HouseNumControl.SendTextDeleteTabWithDelay("xxx", 2000);
-        //    //string error = Driver.ExtractTextFromXPath("//div[1]/div[2]/div/text()");
-        //    //Assert.That(error, Is.EqualTo(Constants.OCCURENCE_REQUIRED_FROM));
-        //}
-        //[Test]
-        //[Category("Required Field Missing - Error Label Displayed")]
-        //public void Occurance_RequiredBorough()
-        //{
-        //    Occurance_BoroughControl.SendTextDeleteTabWithDelay("xxx", 2000);
-        //    //string error = Driver.ExtractTextFromXPath("//div[1]/div[2]/div/text()");
-        //    //Assert.That(error, Is.EqualTo(Constants.OCCURENCE_REQUIRED_FROM));
-        //}
-        //
-        //[Test]
-        //[Category("Required Field Missing - Error Label Displayed")]
-        //public void Occurance_RequiredStreetName()
-        //{
-        //    Occurance_StreetNameControl.SendTextDeleteTabWithDelay("xxx", 2000);
-        //    //string error = Driver.ExtractTextFromXPath("//div[1]/div[2]/div/text()");
-        //    //Assert.That(error, Is.EqualTo(Constants.OCCURENCE_REQUIRED_FROM));
-        //}
+        [Test]
+        [Category("Required Field Missing - Error Label Displayed")]
+        public void Occurance_RequiredHouseNumber()
+        {
+            Occurance_HouseNumControl.SendTextDeleteTabWithDelay("xxx", 2000);
+            Assert.That((Object)"", Is.EqualTo(Constants.OCCURENCE_REQUIRED_HOUSE_NUM), "Flagged for inconsistency on purpose.");
+            //string error = Driver.ExtractTextFromXPath("//div[1]/div[2]/div/text()");
+            //Assert.That(error, Is.EqualTo(Constants.OCCURENCE_REQUIRED_FROM));
+        }
+        [Test]
+        [Category("Required Field Missing - Error Label Displayed")]
+        public void Occurance_RequiredBorough()
+        {
+            Occurance_BoroughControl.SendTextDeleteTabWithDelay("xxx", 2000);
+            Assert.That((Object)"", Is.EqualTo(Constants.OCCURENCE_REQUIRED_BOROUGH), "Flagged for inconsistency on purpose.");
+            //string error = Driver.ExtractTextFromXPath("//div[1]/div[2]/div/text()");
+            //Assert.That(error, Is.EqualTo(Constants.OCCURENCE_REQUIRED_FROM));
+        }
+        
+        [Test]
+        [Category("Required Field Missing - Error Label Displayed")]
+        public void Occurance_RequiredStreetName()
+        {
+            Occurance_StreetNameControl.SendTextDeleteTabWithDelay("xxx", 2000);
+            Assert.That((Object)"", Is.EqualTo(Constants.OCCURENCE_REQUIRED_STREET_NAME), "Flagged for inconsistency on purpose.");
+            //string error = Driver.ExtractTextFromXPath("//div[1]/div[2]/div/text()");
+            //Assert.That(error, Is.EqualTo(Constants.OCCURENCE_REQUIRED_FROM));
+        }
 
         [Test]
         [Category("Required Field Missing - Error Label Displayed")]

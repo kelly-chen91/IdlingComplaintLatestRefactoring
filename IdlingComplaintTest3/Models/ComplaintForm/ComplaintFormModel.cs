@@ -128,7 +128,8 @@ namespace IdlingComplaints.Models.ComplaintForm
         public void SelectState(int stateIndex)
         {
             Associated_StateControl.Click();
-            var optionElementList = Associated_StateControl.FindElements(By.TagName("span"));
+            var state = Driver.FindElement(By.Id("mat-select-2-panel"));
+            var optionElementList = state.FindElements(By.TagName("span"));
             Thread.Sleep(1000);
             List<string> stateList = optionElementList.ConvertOptionToText();
             if (stateIndex >= stateList.Count || stateIndex < 0) return;
