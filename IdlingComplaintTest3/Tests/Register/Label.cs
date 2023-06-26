@@ -12,7 +12,7 @@ using IdlingComplaints.Models.Register;
 namespace IdlingComplaints.Tests.Register
 {
 
-    internal partial class Label : RegisterModel
+    internal class Label : RegisterModel
     {
 
         [OneTimeSetUp]
