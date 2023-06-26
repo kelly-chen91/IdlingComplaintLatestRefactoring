@@ -89,6 +89,8 @@ namespace IdlingComplaints.Models.ComplaintForm
         public IWebElement OccurencePastOffenseControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_pastoffence']"));
         public IWebElement OccurenceSecondPastOffenseControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_secondpastoffence']"));
         public IWebElement OccurenceInFrontOfSchoolControl => Driver.FindElement(By.CssSelector("mat-select[formcontrolname='idc_infrontofschool']"));
+        public IWebElement OccurenceAdminCodeControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_occurrencesectioncode']"));
+
 
         public string selectedOccurenceLocation = "--", selectedOccurenceBorough = "--", selectedOccurenceVehicleType = "--", selectedOccurenceLicenseState = "--";
         public string selectedOccurenceInFrontOfSchool = "--";

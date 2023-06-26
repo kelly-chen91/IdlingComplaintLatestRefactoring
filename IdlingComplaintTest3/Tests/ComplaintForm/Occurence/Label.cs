@@ -42,7 +42,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurance
         public void DisplayedOccurenceTo()
         {
             string label = Driver.FindElement(RelativeBy.WithLocator(By.TagName("label")).Above(OccurenceToControl)).Text;
-            Assert.That(label, Is.EqualTo(Constants.OCCURENCE_TO));
+            Assert.That(label, Is.EqualTo(Constants.OCCURENCE_TO), "Flagged for inconsistency on purpose.");
         }
 
         [Test]
@@ -67,6 +67,14 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurance
         {
             string label = OccurenceStreetNameControl.GetAttribute("placeholder");
             Assert.That(label, Is.EqualTo(Constants.OCCURENCE_STREET_NAME));
+        }
+
+        [Test]
+        [Category("Correct Label Displayed")]
+        public void DisplayedState()
+        {
+            string label = OccurenceStateControl.GetAttribute("placeholder");
+            Assert.That(label, Is.EqualTo(Constants.OCCURENCE_STATE));
         }
 
         [Test]
@@ -123,6 +131,14 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurance
         {
             string label = OccurenceInFrontOfSchoolControl.GetAttribute("placeholder");
             Assert.That(label, Is.EqualTo(Constants.OCCURENCE_IN_FRONT_OF_SCHOOL), "Flagged for inconsistency on purpose.");
+        }
+
+        [Test]
+        [Category("Correct Label Displayed")]
+        public void DisplayedAdminCode()
+        {
+            string label = OccurenceAdminCodeControl.GetAttribute("placeholder");
+            Assert.That(label, Is.EqualTo(Constants.OCCURENCE_ADMIN_CODE), "Flagged for inconsistency on purpose.");
         }
     }
 }
