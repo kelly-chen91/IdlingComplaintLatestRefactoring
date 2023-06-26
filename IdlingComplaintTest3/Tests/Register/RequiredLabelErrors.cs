@@ -48,7 +48,7 @@ namespace IdlingComplaints.Tests.Register
 
         /*Tests for error when first name field is empty*/
         [Test]
-        [Category("Required Field Missing - Error Label Displayed")]
+        [Category("Correct Label Displayed")]
         public void MissingFirstName()
         {
             FirstNameControl.SendTextDeleteTabWithDelay("xxx", SLEEP_TIMER);
@@ -58,7 +58,7 @@ namespace IdlingComplaints.Tests.Register
         }
 
         [Test]
-        [Category("Required Field Missing - Error Label Displayed")]
+        [Category("Correct Label Displayed")]
         public void MissingLastName()
         {
             LastNameControl.SendTextDeleteTabWithDelay("xxx", SLEEP_TIMER);
@@ -69,7 +69,7 @@ namespace IdlingComplaints.Tests.Register
 
         /*Tests for error when email field is empty*/
         [Test]
-        [Category("Required Field Missing - Error Label Displayed")]
+        [Category("Correct Label Displayed")]
         public void MissingEmail()
         {
             EmailControl.SendTextDeleteTabWithDelay("xxx", SLEEP_TIMER);
@@ -80,7 +80,7 @@ namespace IdlingComplaints.Tests.Register
 
         /*Tests for error when password field is empty*/
         [Test]
-        [Category("Required Field Missing - Error Label Displayed")]
+        [Category("Correct Label Displayed")]
         public void MissingPassword()
         {
             PasswordControl.SendTextDeleteTabWithDelay("xxx", SLEEP_TIMER);
@@ -91,7 +91,7 @@ namespace IdlingComplaints.Tests.Register
 
         /*Tests for error when confirm password field is empty*/
         [Test]
-        [Category("Required Field Missing - Error Label Displayed")]
+        [Category("Correct Label Displayed")]
         public void MissingConfirmPassword()
         {
             ConfirmPasswordControl.SendTextDeleteTabWithDelay("xxx", SLEEP_TIMER);
@@ -102,7 +102,7 @@ namespace IdlingComplaints.Tests.Register
 
         /*Tests for error when security question field is empty*/
         [Test]
-        [Category("Required Field Missing - Error Label Displayed")]
+        [Category("Correct Label Displayed")]
         public void MissingSecurityQuestion()
         {
             SelectSecurityQuestion(0);
@@ -112,7 +112,7 @@ namespace IdlingComplaints.Tests.Register
 
         /*Tests for error when security answer field is empty*/
         [Test]
-        [Category("Required Field Missing - Error Label Displayed")]
+        [Category("Correct Label Displayed")]
         public void MissingSecurityAnswer()
         {
             SecurityAnswerControl.SendTextDeleteTabWithDelay("xxx", SLEEP_TIMER);
@@ -123,7 +123,7 @@ namespace IdlingComplaints.Tests.Register
 
         /*Tests for error when address1 field is empty*/
         [Test]
-        [Category("Required Field Missing - Error Label Displayed")]
+        [Category("Correct Label Displayed")]
         public void MissingAddress1()
         {
             Address1Control.SendTextDeleteTabWithDelay("xxx", SLEEP_TIMER);
@@ -134,7 +134,7 @@ namespace IdlingComplaints.Tests.Register
 
         /*Tests for error when city field is empty*/
         [Test]
-        [Category("Required Field Missing - Error Label Displayed")]
+        [Category("Correct Label Displayed")]
         public void MissingCity()
         {
             CityControl.SendTextDeleteTabWithDelay("xxx", SLEEP_TIMER);
@@ -145,7 +145,7 @@ namespace IdlingComplaints.Tests.Register
 
         /*Tests for error when state field is empty*/
         [Test]
-        [Category("Required Field Missing - Error Label Displayed")]
+        [Category("Correct Label Displayed")]
         public void MissingState()
         {
             SelectState(0);
@@ -155,7 +155,7 @@ namespace IdlingComplaints.Tests.Register
 
         /*Tests for error when zip code field is empty*/
         [Test]
-        [Category("Required Field Missing - Error Label Displayed")]
+        [Category("Correct Label Displayed")]
         public void MissingZipCode()
         {
             ZipCodeControl.SendTextDeleteTabWithDelay("xxx", SLEEP_TIMER);
@@ -166,7 +166,7 @@ namespace IdlingComplaints.Tests.Register
 
         /*Tests for error when telephone field is empty*/
         [Test]
-        [Category("Required Field Missing - Error Label Displayed")]
+        [Category("Correct Label Displayed")]
         public void MissingTelephone()
         {
             TelephoneControl.SendTextDeleteTabWithDelay("xxx", SLEEP_TIMER);
@@ -178,7 +178,7 @@ namespace IdlingComplaints.Tests.Register
 
         /*Tests for no error when first name field is filled*/
         [Test]
-        [Category("Required Field Provided - Error Label Hidden")]
+        [Category("Correct Label Displayed")]
         public void ProvidedFirstName()
         {
             FirstNameControl.SendKeysWithDelay("xxx", SLEEP_TIMER);
@@ -189,7 +189,7 @@ namespace IdlingComplaints.Tests.Register
 
         /*Tests for no error when last name field is filled*/
         [Test]
-        [Category("Required Field Provided - Error Label Hidden")]
+        [Category("Correct Label Displayed")]
         public void ProvidedLastName()
         {
             LastNameControl.SendKeysWithDelay("xxx", SLEEP_TIMER);
@@ -200,7 +200,7 @@ namespace IdlingComplaints.Tests.Register
 
         /*Tests for no error when email field is filled*/
         [Test]
-        [Category("Required Field Provided - Error Label Hidden")]
+        [Category("Correct Label Displayed")]
         public void ProvidedEmail()
         {
             EmailControl.SendKeysWithDelay("xxx", SLEEP_TIMER);
@@ -211,7 +211,7 @@ namespace IdlingComplaints.Tests.Register
 
         /*Tests for no error when password field is filled*/
         [Test]
-        [Category("Required Field Provided - Error Label Hidden")]
+        [Category("Correct Label Displayed")]
         public void ProvidedPassword()
         {
             PasswordControl.SendKeysWithDelay("T3sting.222", SLEEP_TIMER);
@@ -224,7 +224,7 @@ namespace IdlingComplaints.Tests.Register
 
         //Tests for no error when confirm password field is filled
         [Test]
-        [Category("Required Field Provided - Error Label Hidden")]
+        [Category("Correct Label Displayed")]
         public void ConfirmPasswordProvided()
         {
             PasswordControl.SendKeysWithDelay("T3sting.222", SLEEP_TIMER);
@@ -237,7 +237,7 @@ namespace IdlingComplaints.Tests.Register
 
         /*Tests for no error when security question field is filled*/
         [Test]
-        [Category("Required Field Provided - Error Label Hidden")]
+        [Category("Correct Label Displayed")]
         public void ProvidedSecurityQuestion()
         {
             SelectSecurityQuestion(1);
@@ -248,7 +248,7 @@ namespace IdlingComplaints.Tests.Register
 
         /*Tests for no error when security answer field is filled*/
         [Test]
-        [Category("Required Field Provided - Error Label Hidden")]
+        [Category("Correct Label Displayed")]
         public void ProvidedSecurityAnswer()
         {
             SecurityAnswerControl.SendKeysWithDelay("xxx", SLEEP_TIMER);
@@ -259,7 +259,7 @@ namespace IdlingComplaints.Tests.Register
 
         /*Tests for no error when Address 1 field is filled*/
         [Test]
-        [Category("Required Field Provided - Error Label Hidden")]
+        [Category("Correct Label Displayed")]
         public void ProvidedAddress1()
         {
             Address1Control.SendKeysWithDelay("xxx", SLEEP_TIMER);
@@ -270,7 +270,7 @@ namespace IdlingComplaints.Tests.Register
 
         /*Tests for no error when city field is filled*/
         [Test]
-        [Category("Required Field Provided - Error Label Hidden")]
+        [Category("Correct Label Displayed")]
         public void ProvidedCity()
         {
             CityControl.SendKeysWithDelay("xxx", SLEEP_TIMER);

@@ -24,7 +24,7 @@ namespace IdlingComplaints.Tests.PassordReset
         }
 
         [Test, Category("Maxlength attribute is missing")]
-        public void EmailMaxLangth()
+        public void MaxLengthEmail()
         {
             var MaxLength = EmailControl.GetAttribute("maxlength");
             Assert.True(MaxLength != null, "Flagged for inconsistency on purpose.");

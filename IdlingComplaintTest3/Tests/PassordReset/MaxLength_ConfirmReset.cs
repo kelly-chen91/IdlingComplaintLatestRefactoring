@@ -22,21 +22,21 @@ namespace IdlingComplaints.Tests.PassordReset
 
        
         [Test, Category("maxlength attribute is missing")]
-        public void SecurityAnswerMaxLength()
+        public void MaxLength_SecurityAnswer()
         {
             var MaxLength = SecurityAnswerControl.GetAttribute("maxlength");
             Assert.True(MaxLength != null, "Flagged for inconsistency on purpose.");
         }
 
         [Test, Category("maxlength attribute is missing")]
-        public void PasswordMaxLength()
+        public void MaxLength_Password()
         {
             var MaxLength = PasswordControl.GetAttribute("maxlength");
             Assert.True(MaxLength != null, "Flagged for inconsistency on purpose.");
         }
 
         [Test, Category("maxlength attribute is missing")]
-        public void ConfirmPasswordMaxLength()
+        public void MaxLength_ConfirmPassword()
         {
             var MaxLength = ConfirmPasswordControl.GetAttribute("maxlength");
             Assert.True(MaxLength != null, "Flagged for inconsistency on purpose.");
