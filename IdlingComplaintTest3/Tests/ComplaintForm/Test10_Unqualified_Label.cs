@@ -9,7 +9,7 @@ using IdlingComplaints.Tests.ComplaintForm.Complaint;
 
 namespace IdlingComplaints.Tests.ComplaintForm
 {
-    internal class Label_Navigtion_NotQualify : ComplaintFormModel
+    internal class Test10_Unqualified_Label : ComplaintFormModel
     {
         [OneTimeSetUp]
         public new void OneTimeSetUp()
