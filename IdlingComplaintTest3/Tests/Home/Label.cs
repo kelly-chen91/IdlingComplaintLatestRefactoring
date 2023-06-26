@@ -26,7 +26,7 @@ namespace IdlingComplaints.Tests.Home
         }
 
         [Test]
-        [Category("Label Displayed - no spelling/grammar errors.")]
+        [Category("Correct Label Displayed")]
         public void DisplayedHeading()
         {
             string heading = Driver.FindElement(By.TagName("h3")).Text;
@@ -34,7 +34,7 @@ namespace IdlingComplaints.Tests.Home
         }
 
         [Test]
-        [Category("Label Displayed - no spelling/grammar errors.")]
+        [Category("Correct Label Displayed")]
         public void DisplayedHome()
         {
             string home = Driver.ExtractTextFromXPath("/html/body/app-root/app-nav-bar/mat-toolbar/mat-toolbar-row/button[1]/span/text()");
@@ -42,7 +42,7 @@ namespace IdlingComplaints.Tests.Home
         }
 
         [Test]
-        [Category("Label Displayed - no spelling/grammar errors.")]
+        [Category("Correct Label Displayed")]
         public void DisplayedProfile()
         {
             string profile = Driver.ExtractTextFromXPath("/html/body/app-root/app-nav-bar/mat-toolbar/mat-toolbar-row/button[2]/span/text()");
@@ -50,7 +50,7 @@ namespace IdlingComplaints.Tests.Home
         }
 
         [Test]
-        [Category("Label Displayed - no spelling/grammar errors.")]
+        [Category("Correct Label Displayed")]
         public void DisplayedLogout()
         {
             string logout = Driver.ExtractTextFromXPath("/html/body/app-root/app-nav-bar/mat-toolbar/mat-toolbar-row/button[3]/span/text()");
@@ -58,7 +58,7 @@ namespace IdlingComplaints.Tests.Home
         }
 
         [Test]
-        [Category("Label Displayed - no spelling/grammar errors.")]
+        [Category("Correct Label Displayed")]
         public void DisplayedNewComplaint()
         {
             string newComplaint = Driver.ExtractTextFromXPath("/html/body/app-root/div/app-home/div/button/span/text()");
@@ -66,49 +66,49 @@ namespace IdlingComplaints.Tests.Home
         }
 
         [Test]
-        [Category("Label Displayed - no spelling/grammar errors.")]
+        [Category("Correct Label Displayed")]
         public void DisplayedSortComplaintNumber()
         {
             Assert.That(SortComplaintNumControl.Text, Is.EqualTo(Constants.SORT_COMPLAINT_NUM));
         }
 
         [Test]
-        [Category("Label Displayed - no spelling/grammar errors.")]
+        [Category("Correct Label Displayed")]
         public void DisplayedSortCompanyName()
         {
             Assert.That(SortCompanyControl.Text, Is.EqualTo(Constants.SORT_COMPANY));
         }
 
         [Test]
-        [Category("Label Displayed - no spelling/grammar errors.")]
+        [Category("Correct Label Displayed")]
         public void DisplayedSortPlace()
         {
             Assert.That(SortPlaceControl.Text, Is.EqualTo(Constants.SORT_PLACE));
         }
 
         [Test]
-        [Category("Label Displayed - no spelling/grammar errors.")]
+        [Category("Correct Label Displayed")]
         public void DisplayedSortStatus()
         {
             Assert.That(SortStatusControl.Text, Is.EqualTo(Constants.SORT_STATUS));
         }
 
         [Test]
-        [Category("Label Displayed - no spelling/grammar errors.")]
+        [Category("Correct Label Displayed")]
         public void DisplayedSortSubmittedDate()
         {
             Assert.That(SortSubmittedDateControl.Text, Is.EqualTo(Constants.SORT_SUBMITTED_DATE));
         }
 
         [Test]
-        [Category("Label Displayed - no spelling/grammar errors.")]
+        [Category("Correct Label Displayed")]
         public void DisplayedSortSummonsNumber()
         {
             Assert.That(SortSummonsNumControl.Text, Is.EqualTo(Constants.SORT_SUMMONS_NUM));
         }
 
         [Test]
-        [Category("Label Displayed - no spelling/grammar errors.")]
+        [Category("Correct Label Displayed")]
         public void DisplayedHearingDate()
         {
             Assert.That(SortHearingDateControl.Text, Is.EqualTo(Constants.SORT_HEARING_DATE));
@@ -116,7 +116,7 @@ namespace IdlingComplaints.Tests.Home
 
         /*DISPLAYED CREATED YEAR OPTIONS*/
         [Test]
-        [Category("Label Displayed - no spelling/grammar errors.")]
+        [Category("Correct Label Displayed")]
         public void DisplayedCreatedYearCurrentOption()
         {
             Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
@@ -126,7 +126,7 @@ namespace IdlingComplaints.Tests.Home
         }
 
         [Test]
-        [Category("Label Displayed - no spelling/grammar errors.")]
+        [Category("Correct Label Displayed")]
         public void DisplayedCreatedYearLastOption()
         {
             Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
@@ -135,7 +135,7 @@ namespace IdlingComplaints.Tests.Home
         }
 
         [Test]
-        [Category("Label Displayed - no spelling/grammar errors.")]
+        [Category("Correct Label Displayed")]
         public void DisplayedCreatedYearAllOption()
         {
             Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
@@ -146,7 +146,7 @@ namespace IdlingComplaints.Tests.Home
 
         /*DISPLAYED ITEMS PER PAGE OPTIONS*/
         [Test]
-        [Category("Label Displayed - no spelling/grammar errors.")]
+        [Category("Correct Label Displayed")]
         public void DisplayedItemsPerPageFiveOption()
         {
             Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
@@ -155,7 +155,7 @@ namespace IdlingComplaints.Tests.Home
         }
 
         [Test]
-        [Category("Label Displayed - no spelling/grammar errors.")]
+        [Category("Correct Label Displayed")]
         public void DisplayedItemsPerPageTenOption()
         {
             Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
@@ -164,7 +164,7 @@ namespace IdlingComplaints.Tests.Home
         }
 
         [Test]
-        [Category("Label Displayed - no spelling/grammar errors.")]
+        [Category("Correct Label Displayed")]
         public void DisplayedItemsPerPageFifthteenOption()
         {
             Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);

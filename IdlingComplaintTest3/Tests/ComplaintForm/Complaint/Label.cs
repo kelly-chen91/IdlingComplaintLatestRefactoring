@@ -28,7 +28,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Complainant
         }
 
 
-        [Test, Category("Label Displayed - no spelling/grammar errors.")]
+        [Test, Category("Correct Label Displayed")]
         public void Heading()
         {
             string text = Driver.ExtractTextFromXPath("/html/body/app-root/div/idling-complaint/form/div/mat-card[2]/mat-card-header/div/mat-card-title/h4/text()");
