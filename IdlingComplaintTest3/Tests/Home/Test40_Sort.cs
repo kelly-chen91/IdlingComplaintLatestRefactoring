@@ -12,9 +12,9 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace IdlingComplaints.Tests.Home
 {
-    internal class Sort : HomeModel
+    internal class Test40_Sort : HomeModel
     {
-        public Sort() { }
+        public Test40_Sort() { }
 
         [OneTimeSetUp]
         public new void OneTimeSetUp() 

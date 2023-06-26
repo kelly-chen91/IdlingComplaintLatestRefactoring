@@ -12,17 +12,17 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.ComplaintForm.Complainant
 {
-    internal class Label : ComplaintFormModel
+    internal class Test10_Label : ComplaintFormModel
     {
         private readonly int SLEEP_TIMER = 1000;
 
         [OneTimeSetUp]
         public new void OneTimeSetUp()
         {
-            base.OneTimeSetUp();
-
-            ClickNoButton();
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(15));
+           base.OneTimeSetUp();
+           
+           ClickNoButton();
+           var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(15));
             wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname='idc_associatedlastname']")));
             ScrollToZipCode();
 
@@ -39,7 +39,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Complainant
         public void DisplayedHeading()
         {
             string text = Driver.ExtractTextFromXPath("/html/body/app-root/div/idling-complaint/form/div/mat-card[2]/mat-card-header/div/mat-card-title/h4/text()");
-
+                                                        
             Assert.That(text, Is.EqualTo(Constants.COMPLAINT_TITLE));
         }
 

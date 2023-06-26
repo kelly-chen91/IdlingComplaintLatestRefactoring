@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.PassordReset
 {
-    internal class MaxLength_BeforeReset : PasswordResetModel
+    internal class Test20_MaxLength_BeforeReset : PasswordResetModel
     {
         private const int MAXLENGTH = 50;
 
