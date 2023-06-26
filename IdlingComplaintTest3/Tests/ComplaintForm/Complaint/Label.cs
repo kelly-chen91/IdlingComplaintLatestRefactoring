@@ -28,49 +28,49 @@ namespace IdlingComplaints.Tests.ComplaintForm.Complainant
         }
 
 
-        [Test, Category("Label Displayed - no spelling/grammar errors.")]
+        [Test, Category("Correct Label Displayed")]
         public void DisplayedHeading()
         {
             string text = Driver.ExtractTextFromXPath("/html/body/app-root/div/idling-complaint/form/div/mat-card[2]/mat-card-header/div/mat-card-title/h4/text()");
                                                         
             Assert.That(text, Is.EqualTo(Constants.COMPLAINT_TITLE));
         }
-        [Test, Category("Label Displayed - no spelling/grammar errors.")]
+        [Test, Category("Correct Label Displayed")]
         public void DisplayedCompanyName()
         {
             var text = CompanyNameControl.GetAttribute("placeholder");
 
             Assert.That(text, Is.EqualTo(Constants.COMPANY_NAME));
         }
-        [Test, Category("Label Displayed - no spelling/grammar errors.")]
+        [Test, Category("Correct Label Displayed")]
         public void DisplayedState()
         {
             var text = StateControl.GetAttribute("placeholder");
 
             Assert.That(text, Is.EqualTo(Constants.STATE));
         }
-        [Test, Category("Label Displayed - no spelling/grammar errors.")]
+        [Test, Category("Correct Label Displayed")]
         public void DisplayedHouseNumber()
         {
             var text = HouseNumberControl.GetAttribute("placeholder");
 
             Assert.That(text, Is.EqualTo(Constants.HOUSENUMBER));
         }
-        [Test, Category("Label Displayed - no spelling/grammar errors.")]
+        [Test, Category("Correct Label Displayed")]
         public void DisplayedStreet()
         {
             var text = StreetNameControl.GetAttribute("placeholder");
 
             Assert.That(text, Is.EqualTo(Constants.STREET_NAME));
         }
-        [Test, Category("Label Displayed - no spelling/grammar errors.")]
+        [Test, Category("Correct Label Displayed")]
         public void DisplayedCity()
         {
             var text = CityControl.GetAttribute("placeholder");
 
             Assert.That(text, Is.EqualTo(Constants.CITY));
         }
-        [Test, Category("Label Displayed - no spelling/grammar errors.")]
+        [Test, Category("Correct Label Displayed")]
         public void DisplayedZipCode()
         {
             var text = ZipCodeControl.GetAttribute("placeholder");
