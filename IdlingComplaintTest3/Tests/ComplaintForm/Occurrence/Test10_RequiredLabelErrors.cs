@@ -86,7 +86,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
 
         [Test]
         [Category("Required Field Missing - Error Label Displayed")]
-        public void Occurance_RequiredLicensePlate()
+        public void Occurrence_RequiredLicensePlate()
         {
             Occurrence_LicensePlateControl.SendTextDeleteTabWithDelay("xxx", 2000);
             string error = Driver.ExtractTextFromXPath("//div[6]/mat-form-field[1]/div/div[3]/div/mat-error/text()");
@@ -95,7 +95,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
 
         [Test]
         [Category("Required Field Missing - Error Label Displayed")]
-        public void Occurance_RequiredLicenseState()
+        public void Occurrence_RequiredLicenseState()
         {
             Occurrence_LicenseStateControl.SendTextDeleteTabWithDelay("xxx", 2000);
             string error = Driver.ExtractTextFromXPath("//div[6]/mat-form-field[2]/div/div[3]/div/mat-error/text()");
@@ -104,7 +104,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
 
         [Test]
         [Category("Required Field Missing - Error Label Displayed")]
-        public void Occurance_RequiredInFrontOfSchool()
+        public void Occurrence_RequiredInFrontOfSchool()
         {
             Occurrence_InFrontOfSchoolControl.SendTextDeleteTabWithDelay("xxx", 2000);
             string error = Driver.ExtractTextFromXPath("//div[8]/mat-form-field[1]/div/div[3]/div/mat-error/text()");
