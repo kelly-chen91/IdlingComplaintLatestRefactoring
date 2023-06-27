@@ -162,8 +162,5 @@ namespace IdlingComplaints.Models.Home
             Thread.Sleep(1000);
 
         }
-
-
-
     }
 }
