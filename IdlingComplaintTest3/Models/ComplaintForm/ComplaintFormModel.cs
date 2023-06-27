@@ -253,7 +253,7 @@ namespace IdlingComplaints.Models.ComplaintForm
         public void Occurrence_SelectLocation(int locationIndex)
         {
             Occurrence_LocationControl.Click();
-            var location = Occurrence_LocationControl.FindElement(By.Id("mat-select-3-panel"));
+            var location = Driver.FindElement(By.Id("mat-select-3-panel"));
             var optionElementList = location.FindElements(By.TagName("span"));
 
             Thread.Sleep(1000);
@@ -267,7 +267,7 @@ namespace IdlingComplaints.Models.ComplaintForm
         public void Occurrence_SelectBorough(int boroughIndex)
         {
             Occurrence_BoroughControl.Click();
-            var borough = Occurrence_BoroughControl.FindElement(By.Id("mat-select-5-panel"));
+            var borough = Driver.FindElement(By.Id("mat-select-5-panel"));
             var optionElementList = borough.FindElements(By.TagName("span"));
 
             Thread.Sleep(1000);
@@ -281,7 +281,7 @@ namespace IdlingComplaints.Models.ComplaintForm
         public void Occurrence_SelectVehicleType(int vehicleIndex)
         {
             Occurrence_VehicleTypeControl.Click();
-            var vehicleType = Occurrence_VehicleTypeControl.FindElement(By.Id("mat-select-6-panel"));
+            var vehicleType = Driver.FindElement(By.Id("mat-select-6-panel"));
             var optionElementList = vehicleType.FindElements(By.TagName("span"));
 
             Thread.Sleep(1000);
@@ -295,7 +295,7 @@ namespace IdlingComplaints.Models.ComplaintForm
         public void Occurrence_SelectLicenseState(int licenseStateIndex)
         {
             Occurrence_LicenseStateControl.Click();
-            var licenseState = Occurrence_LicenseStateControl.FindElement(By.Id("mat-select-7-panel"));
+            var licenseState = Driver.FindElement(By.Id("mat-select-7-panel"));
             var optionElementList = licenseState.FindElements(By.TagName("span"));
 
             Thread.Sleep(1000);
@@ -309,7 +309,7 @@ namespace IdlingComplaints.Models.ComplaintForm
         public void Occurrence_SelectInFrontOfSchool(int inFrontOfSchoolIndex)
         {
             Occurrence_InFrontOfSchoolControl.Click();
-            var inFrontOfSchool = Occurrence_InFrontOfSchoolControl.FindElement(By.Id("mat-select-8-panel"));
+            var inFrontOfSchool = Driver.FindElement(By.Id("mat-select-8-panel"));
             var optionElementList = inFrontOfSchool.FindElements(By.TagName("span"));
 
             Thread.Sleep(1000);

@@ -43,7 +43,7 @@ namespace SeleniumUtilities.Utils
         {
             if(milliseconds > 0) Thread.Sleep(milliseconds);
             element.SendKeys(text);
-            element.DeleteText(text);
+            element.Clear();
             element.SendKeys(Keys.Tab);
             if (milliseconds > 0) Thread.Sleep(milliseconds);
         }
