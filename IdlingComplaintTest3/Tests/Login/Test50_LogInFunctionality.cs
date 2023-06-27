@@ -11,7 +11,7 @@ namespace IdlingComplaints.Tests.Login;
 
 /*This is user login verification test*/
 
-internal class Test50_Functionality : LoginModel
+internal class Test50_LogInFunctionality : LoginModel
 {
     [SetUp]
     public void SetUp()
