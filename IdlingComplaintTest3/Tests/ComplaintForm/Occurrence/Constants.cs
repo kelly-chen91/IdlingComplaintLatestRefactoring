@@ -13,6 +13,14 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
         public static readonly string OCCURRENCE_LOCATION = "Location";
         public static readonly string OCCURRENCE_HOUSE_NUM = "House Number";
         public static readonly string OCCURRENCE_STREET_NAME = "Street Name";
+
+        /*Between location option*/
+        public static readonly string OCCURRENCE_ON_STREET = "On Street";
+
+        /*Between & Intersection location option*/
+        public static readonly string OCCURRENCE_CROSS_STREET1 = "Cross Street 1";
+        public static readonly string OCCURRENCE_CROSS_STREET2 = "Cross Street 2";
+
         public static readonly string OCCURRENCE_STATE = "State";
         public static readonly string OCCURRENCE_BOROUGH = "Borough";
         public static readonly string OCCURRENCE_VEHICLE_TYPE = "Vehicle Type";
@@ -34,5 +42,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
         public static readonly string OCCURRENCE_REQUIRED_LICENSE_STATE = "License State is required";
         public static readonly string OCCURRENCE_REQUIRED_IN_FRONT_OF_SCHOOL = "In Front of School is required"; //Inconsistent with uppercase
 
+        /*In front of school option*/
+        public static readonly string OCCURRENCE_SCHOOL_NAME = "School Name";
     }
 }

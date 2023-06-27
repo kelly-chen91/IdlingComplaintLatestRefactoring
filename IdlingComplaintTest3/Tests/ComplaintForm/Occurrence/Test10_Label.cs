@@ -19,6 +19,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
         {
             base.OneTimeSetUp();
             ClickNoButton();
+            Driver.ScrollTo(Occurrence_VehicleTypeControl);
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(15));
             wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname='idc_associatedlastname']")));
         }
@@ -55,18 +56,218 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
 
         [Test]
         [Category("Correct Label Displayed")]
-        public void DisplayedHouseNumber()
+        public void DisplayedHouseNumberDefault()
         {
+            Occurrence_SelectLocation(0);
+
             string label = Occurrence_HouseNumControl.GetAttribute("placeholder");
             Assert.That(label, Is.EqualTo(Constants.OCCURRENCE_HOUSE_NUM));
         }
 
         [Test]
-        [Category("Correct Label Displayed")]
-        public void DisplayedStreetName()
+        [Category("Label Hidden After Option Selection")]
+        public void DisplayedHouseNumberBetween()
         {
+            Occurrence_SelectLocation(1);
+
+            //string label = Occurrence_SchoolNameControl.GetAttribute("placeholder");
+            int labelFound = Driver.FindElements(By.CssSelector("input[formcontrolname='idc_occurrencehouseno']")).Count;
+            Assert.That(labelFound, Is.EqualTo(0));
+        }
+
+        [Test]
+        [Category("Correct Label Displayed")]
+        public void DisplayedHouseNumberInFrontOf()
+        {
+            Occurrence_SelectLocation(2);
+
+            string label = Occurrence_HouseNumControl.GetAttribute("placeholder");
+            Assert.That(label, Is.EqualTo(Constants.OCCURRENCE_HOUSE_NUM));
+        }
+
+        [Test]
+        [Category("Label Hidden After Option Selection")]
+        public void DisplayedHouseNumberIntersection()
+        {
+            Occurrence_SelectLocation(3);
+
+            //string label = Occurrence_SchoolNameControl.GetAttribute("placeholder");
+            int labelFound = Driver.FindElements(By.CssSelector("input[formcontrolname='idc_occurrencehouseno']")).Count;
+            Assert.That(labelFound, Is.EqualTo(0));
+        }
+
+        [Test]
+        [Category("Correct Label Displayed")]
+        public void DisplayedStreetNameDefault()
+        {
+            Occurrence_SelectLocation(0);
+
             string label = Occurrence_StreetNameControl.GetAttribute("placeholder");
             Assert.That(label, Is.EqualTo(Constants.OCCURRENCE_STREET_NAME));
+        }
+
+        [Test]
+        [Category("Label Hidden After Option Selection")]
+        public void DisplayedStreetNameBetween()
+        {
+            Occurrence_SelectLocation(1);
+
+            //string label = Occurrence_SchoolNameControl.GetAttribute("placeholder");
+            int labelFound = Driver.FindElements(By.CssSelector("input[formcontrolname='idc_occurrencestreet']")).Count;
+            Assert.That(labelFound, Is.EqualTo(0));
+        }
+
+        [Test]
+        [Category("Correct Label Displayed")]
+        public void DisplayedStreetNameInFrontOf()
+        {
+            Occurrence_SelectLocation(2);
+
+            string label = Occurrence_StreetNameControl.GetAttribute("placeholder");
+            Assert.That(label, Is.EqualTo(Constants.OCCURRENCE_STREET_NAME));
+        }
+
+        [Test]
+        [Category("Label Hidden After Option Selection")]
+        public void DisplayedStreetNameIntersection()
+        {
+            Occurrence_SelectLocation(3);
+
+            //string label = Occurrence_SchoolNameControl.GetAttribute("placeholder");
+            int labelFound = Driver.FindElements(By.CssSelector("input[formcontrolname='idc_occurrencestreet']")).Count;
+            Assert.That(labelFound, Is.EqualTo(0));
+        }
+
+        [Test]
+        [Category("Label Hidden After Option Selection")]
+        public void DisplayedOnStreetDefault()
+        {
+            Occurrence_SelectLocation(0);
+
+            //string label = Occurrence_SchoolNameControl.GetAttribute("placeholder");
+            int labelFound = Driver.FindElements(By.CssSelector("input[formcontrolname='idc_onstreet']")).Count;
+            Assert.That(labelFound, Is.EqualTo(0));
+        }
+
+        [Test]
+        [Category("Correct Label Displayed")]
+        public void DisplayedOnStreetBetween()
+        {
+            Occurrence_SelectLocation(1);
+
+            string label = Occurrence_OnStreetControl.GetAttribute("placeholder");
+
+            Assert.That(label, Is.EqualTo(Constants.OCCURRENCE_ON_STREET));
+        }
+
+        [Test]
+        [Category("Label Hidden After Option Selection")]
+        public void DisplayedOnStreetInFrontOf()
+        {
+            Occurrence_SelectLocation(2);
+
+            //string label = Occurrence_SchoolNameControl.GetAttribute("placeholder");
+            int labelFound = Driver.FindElements(By.CssSelector("input[formcontrolname='idc_onstreet']")).Count;
+            Assert.That(labelFound, Is.EqualTo(0));
+        }
+
+        [Test]
+        [Category("Label Hidden After Option Selection")]
+        public void DisplayedOnStreetIntersection()
+        {
+            Occurrence_SelectLocation(3);
+
+            //string label = Occurrence_SchoolNameControl.GetAttribute("placeholder");
+            int labelFound = Driver.FindElements(By.CssSelector("input[formcontrolname='idc_onstreet']")).Count;
+            Assert.That(labelFound, Is.EqualTo(0));
+        }
+
+        [Test]
+        [Category("Label Hidden After Option Selection")]
+        public void DisplayedCrossStreet1Default()
+        {
+            Occurrence_SelectLocation(0);
+
+            //string label = Occurrence_SchoolNameControl.GetAttribute("placeholder");
+            int labelFound = Driver.FindElements(By.CssSelector("input[formcontrolname='idc_crossstreet1']")).Count;
+            Assert.That(labelFound, Is.EqualTo(0));
+        }
+
+        [Test]
+        [Category("Correct Label Displayed")]
+        public void DisplayedCrossStreet1Between()
+        {
+            Occurrence_SelectLocation(1);
+
+            string label = Occurrence_CrossStreet1Control.GetAttribute("placeholder");
+
+            Assert.That(label, Is.EqualTo(Constants.OCCURRENCE_CROSS_STREET1));
+        }
+
+        [Test]
+        [Category("Label Hidden After Option Selection")]
+        public void DisplayedCrossStreet1InFrontOf()
+        {
+            Occurrence_SelectLocation(2);
+
+            //string label = Occurrence_SchoolNameControl.GetAttribute("placeholder");
+            int labelFound = Driver.FindElements(By.CssSelector("input[formcontrolname='idc_crossstreet1']")).Count;
+            Assert.That(labelFound, Is.EqualTo(0));
+        }
+
+        [Test]
+        [Category("Correct Label Displayed")]
+        public void DisplayedCrossStreet1Intersection()
+        {
+            Occurrence_SelectLocation(3);
+
+            string label = Occurrence_CrossStreet1Control.GetAttribute("placeholder");
+
+            Assert.That(label, Is.EqualTo(Constants.OCCURRENCE_CROSS_STREET1));
+        }
+
+        [Test]
+        [Category("Label Hidden After Option Selection")]
+        public void DisplayedCrossStreet2Default()
+        {
+            Occurrence_SelectLocation(0);
+
+            //string label = Occurrence_SchoolNameControl.GetAttribute("placeholder");
+            int labelFound = Driver.FindElements(By.CssSelector("input[formcontrolname='idc_crossstreet2']")).Count;
+            Assert.That(labelFound, Is.EqualTo(0));
+        }
+
+        [Test]
+        [Category("Correct Label Displayed")]
+        public void DisplayedCrossStreet2Between()
+        {
+            Occurrence_SelectLocation(1);
+
+            string label = Occurrence_CrossStreet2Control.GetAttribute("placeholder");
+
+            Assert.That(label, Is.EqualTo(Constants.OCCURRENCE_CROSS_STREET2));
+        }
+
+        [Test]
+        [Category("Label Hidden After Option Selection")]
+        public void DisplayedCrossStreet2InFrontOf()
+        {
+            Occurrence_SelectLocation(2);
+
+            //string label = Occurrence_SchoolNameControl.GetAttribute("placeholder");
+            int labelFound = Driver.FindElements(By.CssSelector("input[formcontrolname='idc_crossstreet2']")).Count;
+            Assert.That(labelFound, Is.EqualTo(0));
+        }
+
+        [Test]
+        [Category("Correct Label Displayed")]
+        public void DisplayedCrossStreet2Intersection()
+        {
+            Occurrence_SelectLocation(3);
+
+            string label = Occurrence_CrossStreet2Control.GetAttribute("placeholder");
+
+            Assert.That(label, Is.EqualTo(Constants.OCCURRENCE_CROSS_STREET2));
         }
 
         [Test]
@@ -132,6 +333,38 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
             string label = Occurrence_InFrontOfSchoolControl.GetAttribute("placeholder");
             Assert.That(label, Is.EqualTo(Constants.OCCURRENCE_IN_FRONT_OF_SCHOOL), "Flagged for inconsistency on purpose.");
         }
+        [Test]
+        [Category("Label Hidden After Option Selection")]
+        public void DisplayedSchoolNameDefault()
+        {
+            Occurrence_SelectInFrontOfSchool(0);
+
+            //string label = Occurrence_SchoolNameControl.GetAttribute("placeholder");
+            int labelFound = Driver.FindElements(By.CssSelector("input[formcontrolname='idc_schoolname']")).Count;
+            Assert.That(labelFound, Is.EqualTo(0));
+        }
+
+        [Test]
+        [Category("Correct Label Displayed")]
+        public void DisplayedSchoolNameInFrontOfSchool()
+        {
+            Occurrence_SelectInFrontOfSchool(1); //yes
+
+            string label = Occurrence_SchoolNameControl.GetAttribute("placeholder");
+            Assert.That(label, Is.EqualTo(Constants.OCCURRENCE_SCHOOL_NAME), "Flagged for inconsistency on purpose.");
+        }
+
+        [Test]
+        [Category("Label Hidden After Option Selection")]
+        public void DisplayedSchoolNameNotInFrontOfSchool()
+        {
+            Occurrence_SelectInFrontOfSchool(2);
+
+            //string label = Occurrence_SchoolNameControl.GetAttribute("placeholder");
+            int labelFound = Driver.FindElements(By.CssSelector("input[formcontrolname='idc_schoolname']")).Count;
+            Assert.That(labelFound, Is.EqualTo(0));
+        }
+
 
         [Test]
         [Category("Correct Label Displayed")]
