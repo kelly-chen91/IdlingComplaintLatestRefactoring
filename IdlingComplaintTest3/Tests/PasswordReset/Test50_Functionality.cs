@@ -25,7 +25,8 @@ namespace IdlingComplaints.Tests.PassordReset
          Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/password-reset");
          EmailControl.SendKeysWithDelay("TTseng@dep.nyc.gov", SLEEP_TIMER);
          ClickResetButton();
-         Driver.Manage().Window.Size = new Size(1920, 1200);
+            //Driver.Manage().Window.Size = new Size(1920, 1200);
+         Driver.Manage().Window.Maximize();
          var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
          wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname = 'securityanswer']")));
 

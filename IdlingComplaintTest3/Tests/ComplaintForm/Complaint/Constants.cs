@@ -29,6 +29,11 @@ namespace IdlingComplaints.Tests.ComplaintForm.Complaint
         public static readonly string CITY_REQUIRE = "City is required";
         public static readonly string ZIP_CODE_REQUIRE = "Zip Code is required";
 
-        //Kelly label: Occurrence Promption section
+        //label: Describe the Complaint session
+        public static readonly string DESCRIBE_TITLE = "Describe the Complaint";
+        public static readonly string DESCRIBE_CONTENT = "Describe the Complaint is required";
+        public static readonly string DESCRIBE_COMPLAINT_REQUIRE = "Describe the Complaint is required";
+        public static readonly string DESCRIBE_CONTENT_INPUT = "Please describe the complaint in the space here.";
+
     }
 }

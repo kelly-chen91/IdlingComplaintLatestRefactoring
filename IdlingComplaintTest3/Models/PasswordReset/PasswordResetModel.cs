@@ -43,8 +43,7 @@ namespace IdlingComplaints.Models.PasswordReset
 
         public IWebElement PasswordRequiredControl => Driver.FindElement(By.Id("mat-error-3"));
         public IWebElement ConfirmPasswordRequriedControl => Driver.FindElement(By.Id("mat-error-1"));
-
-       // public IWebElement 
+  
 
         public string EmailInput
         {

@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IdlingComplaints.Tests.ComplaintForm.Complaint;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace IdlingComplaints.Tests.ComplaintForm.Complainant
 {
@@ -25,8 +26,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Complainant
            ClickNoButton();
            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(15));
             wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname='idc_associatedlastname']")));
-            //ScrollToZipCode();
-
+           
 
         }
         [OneTimeTearDown]
@@ -51,6 +51,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Complainant
 
             Assert.That(text, Is.EqualTo(Constants.COMPANY_NAME));
         }
+
         [Test, Category("Correct Label Displayed")]
         public void DisplayedState()
         {
@@ -65,6 +66,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Complainant
 
             Assert.That(text, Is.EqualTo(Constants.HOUSENUMBER));
         }
+
         [Test, Category("Correct Label Displayed")]
         public void DisplayedStreet()
         {
@@ -72,6 +74,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Complainant
 
             Assert.That(text, Is.EqualTo(Constants.STREET_NAME));
         }
+
         [Test, Category("Correct Label Displayed")]
         public void DisplayedCity()
         {
@@ -80,6 +83,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Complainant
 
             Assert.That(text, Is.EqualTo(Constants.CITY));
         }
+
         [Test, Category("Incorrect Label Displayed")]
         public void DisplayedZipCode()
         {
@@ -89,6 +93,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Complainant
 
             Assert.That(text, Is.EqualTo(Constants.ZIP), "Flagged for inconsistency on purpose.");
         }
+
         [Test, Category("Incorrect Label Displayed")]
         public void RequiredHouseNumber()
         {
@@ -96,6 +101,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Complainant
 
             Assert.That((Object)" ",Is.EqualTo(Constants.HOUSENUMBER_REQUIRE), "Flagged for inconsistency on purpose.");
         }
+
         [Test, Category("Correct Label Displayed")]
         public void RequiredCompanyName()
         {
@@ -147,5 +153,29 @@ namespace IdlingComplaints.Tests.ComplaintForm.Complainant
             string error = Driver.ExtractTextFromXPath("//mat-form-field[2]/div/div[3]/div/mat-error/text()");
             Assert.That(error, Is.EqualTo(Constants.STATE_REQUIRE), "Flagged for inconsistency on purpose.");
         }
+
+        [Test, Category("Correct Label Displayed")]
+        public void DispalyedDescribeTitle()
+        {
+
+            string title = Driver.ExtractTextFromXPath("/html/body/app-root/div/idling-complaint/form/div/mat-card[4]/mat-card-header/div/mat-card-title/h4/text()");
+            Assert.That(title, Is.EqualTo(Constants.DESCRIBE_TITLE), "Flagged for inconsistency on purpose.");
+        }
+
+        [Test, Category("Correct Label Displayed")]
+        public void DispalyedDescribeContent()
+        {
+            string describeContent = Driver.ExtractTextFromXPath("/html/body/app-root/div/idling-complaint/form/div/mat-card[4]/mat-card-content/mat-form-field/div/div[1]/div/span/label/span/text()");
+            Assert.That(describeContent, Is.EqualTo(Constants.DESCRIBE_CONTENT_INPUT), "Flagged for inconsistency on purpose.");
+        }
+
+        [Test, Category("Correct Label Displayed")]
+        public void RequireDescribeContent()
+        {
+            Describe_ContentControl.SendTextDeleteTabWithDelay("XX", SLEEP_TIMER);
+            string requireContent = Driver.ExtractTextFromXPath("/html/body/app-root/div/idling-complaint/form/div/mat-card[4]/mat-card-content/mat-form-field/div/div[3]/div/mat-error/text()");
+            Assert.That(requireContent, Is.EqualTo(Constants.DESCRIBE_COMPLAINT_REQUIRE), "Flagged for inconsistency on purpose.");
+        }
+
     }
 }

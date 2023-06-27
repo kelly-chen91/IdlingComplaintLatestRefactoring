@@ -52,11 +52,16 @@ namespace IdlingComplaints.Models.ComplaintForm
 
         public IWebElement Associated_RequireHouseNumberControl => Driver.FindElement(By.CssSelector("mat-error[id='mat-error-24']"));
         public IWebElement Associated_RequireStreetNameControl => Driver.FindElement(By.CssSelector("mat-error[id='mat-error-12']"));
-     //
-     //   public IWebElement? RequireAptFloorControl => null;
-     //   public IWebElement RequireCityControl => Driver.FindElement(By.CssSelector("mat-error[id='mat-error-14']"));
-     //   public IWebElement RequireZipCodeControl => Driver.FindElement(By.CssSelector("mat-error[id='mat-error-15']"));
+
         public string associated_SelectedStateControl = "--";
+
+        //  Lable from Describe the complaint section
+       // public IWebElement Describe_TitleControl => Driver.FindElement(By.Extra("mat-error[id='mat-error-11']"));
+
+        public IWebElement Describe_ContentControl => Driver.FindElement(By.CssSelector("textarea[formcontrolname='idc_associateddescrip']"));
+
+
+
         public string Associated_CompanyNameInput
         {
             get
