@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IdlingComplaints.Tests.ComplaintForm.Occurence
+namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
 {
     internal class Test10_RequiredLabelErrors : ComplaintFormModel
     {
@@ -30,85 +30,85 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurence
         
         [Test]
         [Category("Required Field Missing - Error Label Displayed")]
-        public void Occurance_RequiredDateFrom()
+        public void Occurrence_RequiredDateFrom()
         {
-            Occurance_FromControl.SendTextDeleteTabWithDelay("xxx", 2000);
+            Occurrence_FromControl.SendTextDeleteTabWithDelay("xxx", 2000);
             string error = Driver.ExtractTextFromXPath("//mat-card[3]/mat-card-content/div[1]/div[1]/div/text()");
-            Assert.That(error, Is.EqualTo(Constants.OCCURENCE_REQUIRED_FROM));
+            Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_FROM), "Flagged for inconsistency on purpose.");
         }
 
         [Test]
         [Category("Required Field Missing - Error Label Displayed")]
-        public void Occurance_RequiredDateTo()
+        public void Occurrence_RequiredDateTo()
         {
-            Occurance_ToControl.SendTextDeleteTabWithDelay("xxx", 2000);
+            Occurrence_ToControl.SendTextDeleteTabWithDelay("xxx", 2000);
             string error = Driver.ExtractTextFromXPath("//mat-card[3]/mat-card-content/div[1]/div[2]/div/text()");
-            Assert.That(error, Is.EqualTo(Constants.OCCURENCE_REQUIRED_TO));
+            Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_TO), "Flagged for inconsistency on purpose.");
         }
 
         [Test]
         [Category("Required Field Missing - Error Label Displayed")]
-        public void Occurance_RequiredHouseNumber()
+        public void Occurrence_RequiredHouseNumber()
         {
-            Occurance_HouseNumControl.SendTextDeleteTabWithDelay("xxx", 2000);
-            Assert.That((Object)"", Is.EqualTo(Constants.OCCURENCE_REQUIRED_HOUSE_NUM), "Flagged for inconsistency on purpose.");
+            Occurrence_HouseNumControl.SendTextDeleteTabWithDelay("xxx", 2000);
+            Assert.That((Object)"", Is.EqualTo(Constants.OCCURRENCE_REQUIRED_HOUSE_NUM), "Flagged for inconsistency on purpose.");
             //string error = Driver.ExtractTextFromXPath("//div[1]/div[2]/div/text()");
-            //Assert.That(error, Is.EqualTo(Constants.OCCURENCE_REQUIRED_FROM));
+            //Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_FROM));
         }
         [Test]
         [Category("Required Field Missing - Error Label Displayed")]
-        public void Occurance_RequiredBorough()
+        public void Occurrence_RequiredBorough()
         {
-            Occurance_BoroughControl.SendTextDeleteTabWithDelay("xxx", 2000);
-            Assert.That((Object)"", Is.EqualTo(Constants.OCCURENCE_REQUIRED_BOROUGH), "Flagged for inconsistency on purpose.");
+            Occurrence_BoroughControl.SendTextDeleteTabWithDelay("xxx", 2000);
+            Assert.That((Object)"", Is.EqualTo(Constants.OCCURRENCE_REQUIRED_BOROUGH), "Flagged for inconsistency on purpose.");
             //string error = Driver.ExtractTextFromXPath("//div[1]/div[2]/div/text()");
-            //Assert.That(error, Is.EqualTo(Constants.OCCURENCE_REQUIRED_FROM));
+            //Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_FROM));
         }
         
         [Test]
         [Category("Required Field Missing - Error Label Displayed")]
-        public void Occurance_RequiredStreetName()
+        public void Occurrence_RequiredStreetName()
         {
-            Occurance_StreetNameControl.SendTextDeleteTabWithDelay("xxx", 2000);
-            Assert.That((Object)"", Is.EqualTo(Constants.OCCURENCE_REQUIRED_STREET_NAME), "Flagged for inconsistency on purpose.");
+            Occurrence_StreetNameControl.SendTextDeleteTabWithDelay("xxx", 2000);
+            Assert.That((Object)"", Is.EqualTo(Constants.OCCURRENCE_REQUIRED_STREET_NAME), "Flagged for inconsistency on purpose.");
             //string error = Driver.ExtractTextFromXPath("//div[1]/div[2]/div/text()");
-            //Assert.That(error, Is.EqualTo(Constants.OCCURENCE_REQUIRED_FROM));
+            //Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_FROM));
         }
 
         [Test]
         [Category("Required Field Missing - Error Label Displayed")]
-        public void Occurance_RequiredVehicleType()
+        public void Occurrence_RequiredVehicleType()
         {
-            Occurance_VehicleTypeControl.SendTextDeleteTabWithDelay("xxx", 2000);
+            Occurrence_VehicleTypeControl.SendTextDeleteTabWithDelay("xxx", 2000);
             string error = Driver.ExtractTextFromXPath("//div[5]/mat-form-field/div/div[3]/div/mat-error/text()");
-            Assert.That(error, Is.EqualTo(Constants.OCCURENCE_REQUIRED_VEHICLE_TYPE));
+            Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_VEHICLE_TYPE));
         }
 
         [Test]
         [Category("Required Field Missing - Error Label Displayed")]
         public void Occurance_RequiredLicensePlate()
         {
-            Occurance_LicensePlateControl.SendTextDeleteTabWithDelay("xxx", 2000);
+            Occurrence_LicensePlateControl.SendTextDeleteTabWithDelay("xxx", 2000);
             string error = Driver.ExtractTextFromXPath("//div[6]/mat-form-field[1]/div/div[3]/div/mat-error/text()");
-            Assert.That(error, Is.EqualTo(Constants.OCCURENCE_REQUIRED_LICENSE_PLATE));
+            Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_LICENSE_PLATE));
         }
 
         [Test]
         [Category("Required Field Missing - Error Label Displayed")]
         public void Occurance_RequiredLicenseState()
         {
-            Occurance_LicenseStateControl.SendTextDeleteTabWithDelay("xxx", 2000);
+            Occurrence_LicenseStateControl.SendTextDeleteTabWithDelay("xxx", 2000);
             string error = Driver.ExtractTextFromXPath("//div[6]/mat-form-field[2]/div/div[3]/div/mat-error/text()");
-            Assert.That(error, Is.EqualTo(Constants.OCCURENCE_REQUIRED_LICENSE_STATE));
+            Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_LICENSE_STATE));
         }
 
         [Test]
         [Category("Required Field Missing - Error Label Displayed")]
         public void Occurance_RequiredInFrontOfSchool()
         {
-            Occurance_InFrontOfSchoolControl.SendTextDeleteTabWithDelay("xxx", 2000);
+            Occurrence_InFrontOfSchoolControl.SendTextDeleteTabWithDelay("xxx", 2000);
             string error = Driver.ExtractTextFromXPath("//div[8]/mat-form-field[1]/div/div[3]/div/mat-error/text()");
-            Assert.That(error, Is.EqualTo(Constants.OCCURENCE_REQUIRED_IN_FRONT_OF_SCHOOL), "Flagged for inconsistency on purpose.");
+            Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_IN_FRONT_OF_SCHOOL), "Flagged for inconsistency on purpose.");
         }
     }
 }

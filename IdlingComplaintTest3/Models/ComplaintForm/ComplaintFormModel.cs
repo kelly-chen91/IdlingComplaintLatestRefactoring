@@ -146,177 +146,177 @@ namespace IdlingComplaints.Models.ComplaintForm
 
 
         /*Occurance Section*/
-        public IWebElement Occurance_FromControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_occurrencetimefrom']"));
-        public IWebElement Occurance_ToControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_occurrencetimeto']"));
-        public IWebElement Occurance_LocationControl => Driver.FindElement(By.CssSelector("mat-select[formcontrolname='idc_occurrencelocation']"));
-        public IWebElement Occurance_HouseNumControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_occurrencehouseno']"));
-        public IWebElement Occurance_StreetNameControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_occurrencestreet']"));
-        public IWebElement Occurance_StateControl => Driver.FindElement(By.CssSelector("mat-select[formcontrolname='idc_occurrencestate']"));
-        public IWebElement Occurance_BoroughControl => Driver.FindElement(By.CssSelector("mat-select[formcontrolname='idc_occurrenceborough']"));
-        public IWebElement Occurance_VehicleTypeControl => Driver.FindElement(By.CssSelector("mat-select[formcontrolname='idc_vehicletype']"));
-        public IWebElement Occurance_LicensePlateControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_licenseplate']"));
-        public IWebElement Occurance_LicenseStateControl => Driver.FindElement(By.CssSelector("mat-select[formcontrolname='idc_licensestate']"));
-        public IWebElement Occurance_PastOffenseControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_pastoffence']"));
-        public IWebElement Occurance_SecondPastOffenseControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_secondpastoffence']"));
-        public IWebElement Occurance_InFrontOfSchoolControl => Driver.FindElement(By.CssSelector("mat-select[formcontrolname='idc_infrontofschool']"));
-        public IWebElement Occurance_AdminCodeControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_occurrencesectioncode']"));
+        public IWebElement Occurrence_FromControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_occurrencetimefrom']"));
+        public IWebElement Occurrence_ToControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_occurrencetimeto']"));
+        public IWebElement Occurrence_LocationControl => Driver.FindElement(By.CssSelector("mat-select[formcontrolname='idc_occurrencelocation']"));
+        public IWebElement Occurrence_HouseNumControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_occurrencehouseno']"));
+        public IWebElement Occurrence_StreetNameControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_occurrencestreet']"));
+        public IWebElement Occurrence_StateControl => Driver.FindElement(By.CssSelector("mat-select[formcontrolname='idc_occurrencestate']"));
+        public IWebElement Occurrence_BoroughControl => Driver.FindElement(By.CssSelector("mat-select[formcontrolname='idc_occurrenceborough']"));
+        public IWebElement Occurrence_VehicleTypeControl => Driver.FindElement(By.CssSelector("mat-select[formcontrolname='idc_vehicletype']"));
+        public IWebElement Occurrence_LicensePlateControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_licenseplate']"));
+        public IWebElement Occurrence_LicenseStateControl => Driver.FindElement(By.CssSelector("mat-select[formcontrolname='idc_licensestate']"));
+        public IWebElement Occurrence_PastOffenseControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_pastoffence']"));
+        public IWebElement Occurrence_SecondPastOffenseControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_secondpastoffence']"));
+        public IWebElement Occurrence_InFrontOfSchoolControl => Driver.FindElement(By.CssSelector("mat-select[formcontrolname='idc_infrontofschool']"));
+        public IWebElement Occurrence_AdminCodeControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_occurrencesectioncode']"));
 
 
-        public string selectedOccurenceLocation = "--", selectedOccurenceBorough = "--", selectedOccurenceVehicleType = "--", selectedOccurenceLicenseState = "--";
-        public string selectedOccurenceInFrontOfSchool = "--";
+        public string selectedOccurrenceLocation = "--", selectedOccurrenceBorough = "--", selectedOccurrenceVehicleType = "--", selectedOccurrenceLicenseState = "--";
+        public string selectedOccurrenceInFrontOfSchool = "--";
 
-        public String Occurence_FromInput
+        public String Occurrence_FromInput
         {
             get
             {
-                return Occurance_FromControl.GetAttribute("value");
+                return Occurrence_FromControl.GetAttribute("value");
             }
             set
             {
-                Occurance_FromControl.SendKeys(value);
+                Occurrence_FromControl.SendKeys(value);
             }
         }
 
-        public String Occurence_ToInput
+        public String Occurrence_ToInput
         {
             get
             {
-                return Occurance_ToControl.GetAttribute("value");
+                return Occurrence_ToControl.GetAttribute("value");
             }
             set
             {
-                Occurance_ToControl.SendKeys(value);
+                Occurrence_ToControl.SendKeys(value);
             }
         }
 
-        public String Occurence_HouseNumInput
+        public String Occurrence_HouseNumInput
         {
             get
             {
-                return Occurance_HouseNumControl.GetAttribute("value");
+                return Occurrence_HouseNumControl.GetAttribute("value");
             }
             set
             {
-                Occurance_HouseNumControl.SendKeys(value);
+                Occurrence_HouseNumControl.SendKeys(value);
             }
         }
 
-        public String Occurence_StreetInput
+        public String Occurrence_StreetInput
         {
             get
             {
-                return Occurance_StreetNameControl.GetAttribute("value");
+                return Occurrence_StreetNameControl.GetAttribute("value");
             }
             set
             {
-                Occurance_StreetNameControl.SendKeys(value);
+                Occurrence_StreetNameControl.SendKeys(value);
             }
         }
 
-        public String Occurence_LicensePlateInput
+        public String Occurrence_LicensePlateInput
         {
             get
             {
-                return Occurance_LicensePlateControl.GetAttribute("value");
+                return Occurrence_LicensePlateControl.GetAttribute("value");
             }
             set
             {
-                Occurance_LicensePlateControl.SendKeys(value);
+                Occurrence_LicensePlateControl.SendKeys(value);
             }
         }
 
-        public String Occurence_PastOffenceInput
+        public String Occurrence_PastOffenceInput
         {
             get
             {
-                return Occurance_PastOffenseControl.GetAttribute("value");
+                return Occurrence_PastOffenseControl.GetAttribute("value");
             }
             set
             {
-                Occurance_PastOffenseControl.SendKeys(value);
+                Occurrence_PastOffenseControl.SendKeys(value);
             }
         }
 
-        public String Occurence_SecondPastOffenceInput
+        public String Occurrence_SecondPastOffenceInput
         {
             get
             {
-                return Occurance_SecondPastOffenseControl.GetAttribute("value");
+                return Occurrence_SecondPastOffenseControl.GetAttribute("value");
             }
             set
             {
-                Occurance_SecondPastOffenseControl.SendKeys(value);
+                Occurrence_SecondPastOffenseControl.SendKeys(value);
             }
         }
 
         /*DROPDOWN OPTIONS*/
-        public void Occurence_SelectLocation(int locationIndex)
+        public void Occurrence_SelectLocation(int locationIndex)
         {
-            Occurance_LocationControl.Click();
-            var location = Occurance_LocationControl.FindElement(By.Id("mat-select-3-panel"));
+            Occurrence_LocationControl.Click();
+            var location = Occurrence_LocationControl.FindElement(By.Id("mat-select-3-panel"));
             var optionElementList = location.FindElements(By.TagName("span"));
 
             Thread.Sleep(1000);
             List<string> locationList = optionElementList.ConvertOptionToText();
             optionElementList[locationIndex].Click();
             if (locationIndex < 0 || locationIndex >= locationList.Count) { return; }
-            selectedOccurenceLocation = locationList[locationIndex];
+            selectedOccurrenceLocation = locationList[locationIndex];
             Thread.Sleep(1000);
         }
 
-        public void Occurence_SelectBorough(int boroughIndex)
+        public void Occurrence_SelectBorough(int boroughIndex)
         {
-            Occurance_BoroughControl.Click();
-            var borough = Occurance_BoroughControl.FindElement(By.Id("mat-select-5-panel"));
+            Occurrence_BoroughControl.Click();
+            var borough = Occurrence_BoroughControl.FindElement(By.Id("mat-select-5-panel"));
             var optionElementList = borough.FindElements(By.TagName("span"));
 
             Thread.Sleep(1000);
             List<string> boroughList = optionElementList.ConvertOptionToText();
             optionElementList[boroughIndex].Click();
             if (boroughIndex < 0 || boroughIndex >= boroughList.Count) { return; }
-            selectedOccurenceBorough = boroughList[boroughIndex];
+            selectedOccurrenceBorough = boroughList[boroughIndex];
             Thread.Sleep(1000);
         }
 
-        public void Occurence_SelectVehicleType(int vehicleIndex)
+        public void Occurrence_SelectVehicleType(int vehicleIndex)
         {
-            Occurance_VehicleTypeControl.Click();
-            var vehicleType = Occurance_VehicleTypeControl.FindElement(By.Id("mat-select-6-panel"));
+            Occurrence_VehicleTypeControl.Click();
+            var vehicleType = Occurrence_VehicleTypeControl.FindElement(By.Id("mat-select-6-panel"));
             var optionElementList = vehicleType.FindElements(By.TagName("span"));
 
             Thread.Sleep(1000);
             List<string> vehicleTypeList = optionElementList.ConvertOptionToText();
             optionElementList[vehicleIndex].Click();
             if (vehicleIndex < 0 || vehicleIndex >= vehicleTypeList.Count) { return; }
-            selectedOccurenceVehicleType = vehicleTypeList[vehicleIndex];
+            selectedOccurrenceVehicleType = vehicleTypeList[vehicleIndex];
             Thread.Sleep(1000);
         }
 
-        public void Occurence_SelectLicenseState(int licenseStateIndex)
+        public void Occurrence_SelectLicenseState(int licenseStateIndex)
         {
-            Occurance_LicenseStateControl.Click();
-            var licenseState = Occurance_LicenseStateControl.FindElement(By.Id("mat-select-7-panel"));
+            Occurrence_LicenseStateControl.Click();
+            var licenseState = Occurrence_LicenseStateControl.FindElement(By.Id("mat-select-7-panel"));
             var optionElementList = licenseState.FindElements(By.TagName("span"));
 
             Thread.Sleep(1000);
             List<string> licenseStateList = optionElementList.ConvertOptionToText();
             optionElementList[licenseStateIndex].Click();
             if (licenseStateIndex < 0 || licenseStateIndex >= licenseStateList.Count) { return; }
-            selectedOccurenceLicenseState = licenseStateList[licenseStateIndex];
+            selectedOccurrenceLicenseState = licenseStateList[licenseStateIndex];
             Thread.Sleep(1000);
         }
 
-        public void Occurence_SelectInFrontOfSchool(int inFrontOfSchoolIndex)
+        public void Occurrence_SelectInFrontOfSchool(int inFrontOfSchoolIndex)
         {
-            Occurance_InFrontOfSchoolControl.Click();
-            var inFrontOfSchool = Occurance_InFrontOfSchoolControl.FindElement(By.Id("mat-select-8-panel"));
+            Occurrence_InFrontOfSchoolControl.Click();
+            var inFrontOfSchool = Occurrence_InFrontOfSchoolControl.FindElement(By.Id("mat-select-8-panel"));
             var optionElementList = inFrontOfSchool.FindElements(By.TagName("span"));
 
             Thread.Sleep(1000);
             List<string> inFrontOfSchoolList = optionElementList.ConvertOptionToText();
             optionElementList[inFrontOfSchoolIndex].Click();
             if (inFrontOfSchoolIndex < 0 || inFrontOfSchoolIndex >= inFrontOfSchoolList.Count) { return; }
-            selectedOccurenceInFrontOfSchool = inFrontOfSchoolList[inFrontOfSchoolIndex];
+            selectedOccurrenceInFrontOfSchool = inFrontOfSchoolList[inFrontOfSchoolIndex];
             Thread.Sleep(1000);
         }
 
