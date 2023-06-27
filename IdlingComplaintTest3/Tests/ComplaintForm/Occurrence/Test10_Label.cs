@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IdlingComplaints.Models.ComplaintForm;
-using IdlingComplaints.Tests.ComplaintForm.Occurence;
+using IdlingComplaints.Tests.ComplaintForm.Occurrence;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumUtilities.Utils;
