@@ -32,6 +32,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
         [Category("Required Field Missing - Error Label Displayed")]
         public void Occurrence_RequiredDateFrom()
         {
+            Occurrence_FromControl.DeleteText(Occurrence_FromInput);
             Occurrence_FromControl.SendTextDeleteTabWithDelay("xxx", 2000);
             string error = Driver.ExtractTextFromXPath("//mat-card[3]/mat-card-content/div[1]/div[1]/div/text()");
             Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_FROM), "Flagged for inconsistency on purpose.");
@@ -41,6 +42,8 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
         [Category("Required Field Missing - Error Label Displayed")]
         public void Occurrence_RequiredDateTo()
         {
+            Occurrence_ToControl.DeleteText(Occurrence_ToInput);
+
             Occurrence_ToControl.SendTextDeleteTabWithDelay("xxx", 2000);
             string error = Driver.ExtractTextFromXPath("//mat-card[3]/mat-card-content/div[1]/div[2]/div/text()");
             Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_TO), "Flagged for inconsistency on purpose.");
@@ -71,11 +74,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
         [Category("Required Field Missing - Error Label Displayed")]
         public void Occurrence_RequiredBorough()
         {
+            /*Borough is currently not required*/
             Occurrence_SelectLocation(2);
             Occurrence_SelectBorough(0);
             Assert.That((Object)"", Is.EqualTo(Constants.OCCURRENCE_REQUIRED_BOROUGH), "Flagged for inconsistency on purpose.");
-            //string error = Driver.ExtractTextFromXPath("//div[1]/div[2]/div/text()");
-            //Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_FROM));
         }
         
         [Test]
@@ -83,12 +85,12 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
         public void Occurrence_RequiredStreetName()
         {
             Occurrence_SelectLocation(2);
+            Occurrence_StreetNameControl.DeleteText(Occurrence_StreetInput);
             Occurrence_StreetNameControl.SendTextDeleteTabWithDelay("xxx", 2000);
             string error = Driver.ExtractTextFromXPath("//div[3]/mat-form-field[2]/div/div[3]/div/mat-error/text()");
 
             Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_STREET_NAME), "Flagged for inconsistency on purpose.");
-            //string error = Driver.ExtractTextFromXPath("//div[1]/div[2]/div/text()");
-            //Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_FROM));
+            
         }
 
         [Test]
@@ -132,7 +134,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
         [Category("Required Field Provided - Error Label Hidden")]
         public void Occurrence_ProvidedFrom()
         {
-            Occurrence_ToControl.Clear();
+            Occurrence_FromControl.DeleteText(Occurrence_FromInput);
             Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 27, 2023, 9, 0, 0, false), SLEEP_TIMER); // 6/27/2023, 9:00:00 AM
             string error = Driver.ExtractTextFromXPath("//mat-card[3]/mat-card-content/div[1]/div[1]/div/text()");
             Assert.That(error, Is.EqualTo(string.Empty));
@@ -142,7 +144,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
         [Category("Required Field Provided - Error Label Hidden")]
         public void Occurrence_ProvidedTo()
         {
-            Occurrence_ToControl.Clear();
+            Occurrence_ToControl.DeleteText(Occurrence_FromInput);
             Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 27, 2023, 9, 3, 0, false), SLEEP_TIMER); // 6/27/2023, 9:03:00 AM
             string error = Driver.ExtractTextFromXPath("//mat-card[3]/mat-card-content/div[1]/div[2]/div/text()");
             Assert.That(error, Is.EqualTo(string.Empty));
@@ -172,6 +174,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
         public void Occurrence_ProvidedStreetName()
         {
             Occurrence_SelectLocation(2);
+            Occurrence_StreetNameControl.DeleteText(Occurrence_StreetInput);
             Occurrence_StreetNameControl.SendKeysWithDelay("XXX", SLEEP_TIMER);
             string error = Driver.ExtractTextFromXPath("//div[3]/mat-form-field[2]/div/div[3]/div/mat-error/text()");
             Assert.That(error, Is.EqualTo(string.Empty));
@@ -225,8 +228,9 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
         [Category("Invalid Input for Field")]
         public void InvalidOccuranceFrom()
         {
-            Occurrence_FromControl.Clear();
+            Occurrence_FromControl.DeleteText(Occurrence_FromInput);
             Occurrence_FromControl.SendKeysWithDelay("XXX", SLEEP_TIMER);
+            Occurrence_FromControl.SendKeysWithDelay(Keys.Tab, SLEEP_TIMER);
             string error = Driver.ExtractTextFromXPath("//mat-card[3]/mat-card-content/div[1]/div[1]/div/text()");
             Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_FROM), "Flagged for inconsistency on purpose.");
 
@@ -236,10 +240,12 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
         [Category("Invalid Input for Field")]
         public void InvalidOccuranceTo()
         {
-            Occurrence_ToControl.Clear();
+            Occurrence_ToControl.DeleteText(Occurrence_FromInput);
             Occurrence_ToControl.SendKeysWithDelay("XXX", SLEEP_TIMER);
-            string error = Driver.ExtractTextFromXPath("//mat-card[3]/mat-card-content/div[1]/div[1]/div/text()");
-            Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_FROM), "Flagged for inconsistency on purpose.");
+            Occurrence_FromControl.SendKeysWithDelay(Keys.Tab, SLEEP_TIMER);
+
+            string error = Driver.ExtractTextFromXPath("//mat-card[3]/mat-card-content/div[1]/div[2]/div/text()");
+            Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_TO), "Flagged for inconsistency on purpose.");
         }
 
         public void InvalidHouseNumber()

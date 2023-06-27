@@ -156,6 +156,10 @@ namespace IdlingComplaints.Models.ComplaintForm
         public IWebElement Occurrence_LocationControl => Driver.FindElement(By.CssSelector("mat-select[formcontrolname='idc_occurrencelocation']"));
         public IWebElement Occurrence_HouseNumControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_occurrencehouseno']"));
         public IWebElement Occurrence_StreetNameControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_occurrencestreet']"));
+        public IWebElement Occurrence_OnStreetControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_onstreet']"));
+        public IWebElement Occurrence_CrossStreet1Control => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_crossstreet1']"));
+        public IWebElement Occurrence_CrossStreet2Control => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_crossstreet2']"));
+
         public IWebElement Occurrence_StateControl => Driver.FindElement(By.CssSelector("mat-select[formcontrolname='idc_occurrencestate']"));
         public IWebElement Occurrence_BoroughControl => Driver.FindElement(By.CssSelector("mat-select[formcontrolname='idc_occurrenceborough']"));
         public IWebElement Occurrence_VehicleTypeControl => Driver.FindElement(By.CssSelector("mat-select[formcontrolname='idc_vehicletype']"));
@@ -164,6 +168,7 @@ namespace IdlingComplaints.Models.ComplaintForm
         public IWebElement Occurrence_PastOffenseControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_pastoffence']"));
         public IWebElement Occurrence_SecondPastOffenseControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_secondpastoffence']"));
         public IWebElement Occurrence_InFrontOfSchoolControl => Driver.FindElement(By.CssSelector("mat-select[formcontrolname='idc_infrontofschool']"));
+        public IWebElement Occurrence_SchoolNameControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_schoolname']"));
         public IWebElement Occurrence_AdminCodeControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_occurrencesectioncode']"));
 
 
