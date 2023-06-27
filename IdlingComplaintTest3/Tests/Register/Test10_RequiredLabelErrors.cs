@@ -28,7 +28,7 @@ namespace IdlingComplaints.Tests.Register
         //    base.OneTimeTearDown();
         //}
 
-        private readonly int SLEEP_TIMER = 0;
+        private readonly int SLEEP_TIMER = 1000;
 
         [SetUp]
         public void SetUp()
@@ -43,6 +43,8 @@ namespace IdlingComplaints.Tests.Register
         [TearDown]
         public void TearDown()
         {
+            if (SLEEP_TIMER > 0)
+                Thread.Sleep(SLEEP_TIMER);
             Driver.Quit();
         }
 
@@ -225,7 +227,7 @@ namespace IdlingComplaints.Tests.Register
         //Tests for no error when confirm password field is filled
         [Test]
         [Category("Correct Label Displayed")]
-        public void ConfirmPasswordProvided()
+        public void ProvidedConfirmPassword()
         {
             PasswordControl.SendKeysWithDelay("T3sting.222", SLEEP_TIMER);
             ConfirmPasswordControl.SendKeysWithDelay("T3sting.222", SLEEP_TIMER);

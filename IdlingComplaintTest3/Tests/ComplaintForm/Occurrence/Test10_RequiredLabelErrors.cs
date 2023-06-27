@@ -236,7 +236,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
         [Category("Invalid Input for Field")]
         public void InvalidOccuranceTo()
         {
-            Occurrence_FromControl.Clear();
+            Occurrence_ToControl.Clear();
             Occurrence_ToControl.SendKeysWithDelay("XXX", SLEEP_TIMER);
             string error = Driver.ExtractTextFromXPath("//mat-card[3]/mat-card-content/div[1]/div[1]/div/text()");
             Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_FROM), "Flagged for inconsistency on purpose.");

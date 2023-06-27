@@ -14,19 +14,29 @@ namespace IdlingComplaints.Tests.Home
 {
     internal class Test40_Sort : HomeModel
     {
+        private readonly int SLEEP_TIMER = 3000;
+
         public Test40_Sort() { }
 
         [OneTimeSetUp]
-        public new void OneTimeSetUp() 
+        public new void OneTimeSetUp()
         {
             base.OneTimeSetUp("kchen@dep.nyc.gov", "T3sting@1234");
 
         }
 
+        [TearDown]
+        public void TearDown()
+        {
+            if (SLEEP_TIMER > 0)
+                Thread.Sleep(SLEEP_TIMER);
+        }
+
         [OneTimeTearDown]
         public new void OneTimeTearDown()
         {
-            Thread.Sleep(2000);
+            if (SLEEP_TIMER > 0)
+                Thread.Sleep(SLEEP_TIMER);
             base.OneTimeTearDown();
         }
 
@@ -41,13 +51,13 @@ namespace IdlingComplaints.Tests.Home
 
             SortComplaintNumControl.Click();
 
-            var sortedRowList =TableControl.GetDataFromTable();
+            var sortedRowList = TableControl.GetDataFromTable();
             List<string> newComplaintNumberTextList = sortedRowList.GetSpecificColumnText(By.ClassName("mat-column-idc_name"));
             Boolean successfulSort = sortedComplaintNumberTextList.EqualsTableAfterSorting(newComplaintNumberTextList);
 
             Assert.IsTrue(successfulSort);
-            Assert.That(rowList.Count, Is.EqualTo(2));  
-           
+            Assert.That(rowList.Count, Is.EqualTo(2));
+
         }
 
         [Test]

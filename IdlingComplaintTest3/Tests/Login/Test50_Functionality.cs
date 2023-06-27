@@ -25,7 +25,8 @@ internal class Test50_Functionality : LoginModel
     [TearDown]
     public void TearDown()
     {
-        Thread.Sleep(SLEEP_TIMER);
+        if (SLEEP_TIMER > 0)
+            Thread.Sleep(SLEEP_TIMER);
         Driver.Quit();
     }
 
@@ -41,8 +42,8 @@ internal class Test50_Functionality : LoginModel
         PasswordControl.SendKeysWithDelay("Testing1#", SLEEP_TIMER);
         ClickLoginButton();
 
-        var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10)); //1 - too short
-        wait.Until(d => d.FindElement(By.CssSelector("button[routerlink='idlingcomplaint/new']")));
+        Driver.WaitUntilElementFound(By.CssSelector("button[routerlink='idlingcomplaint/new']"), 20);
+        Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
     }
 
     //Explicit wait to test user login 
@@ -56,14 +57,14 @@ internal class Test50_Functionality : LoginModel
         ClickLoginButton();
         var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10)); //1 - too short
         wait.Until(d =>
-            {
-                var resultControl = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
+        {
+            var resultControl = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
 
-                Assert.IsNotNull(resultControl);
-                Assert.That(resultControl.Text.Trim(), Is.EqualTo("Email and password do not match."));
+            Assert.IsNotNull(resultControl);
+            Assert.That(resultControl.Text.Trim(), Is.EqualTo("Email and password do not match."));
 
-                return resultControl;
-            }
+            return resultControl;
+        }
         );
     }
 
@@ -77,14 +78,14 @@ internal class Test50_Functionality : LoginModel
         ClickLoginButton();
         var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10)); //1 - too short
         wait.Until(d =>
-            {
-                var resultControl = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
+        {
+            var resultControl = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
 
-                Assert.IsNotNull(resultControl);
-                Assert.That(resultControl.Text.Trim(), Is.EqualTo("User is not found."), "Flagged for inconsistency on purpose."); //Added a period for consistency in error messaging
+            Assert.IsNotNull(resultControl);
+            Assert.That(resultControl.Text.Trim(), Is.EqualTo("User is not found."), "Flagged for inconsistency on purpose."); //Added a period for consistency in error messaging
 
-                return resultControl;
-            }
+            return resultControl;
+        }
         );
     }
 }

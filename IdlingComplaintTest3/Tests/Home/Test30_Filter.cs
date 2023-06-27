@@ -11,11 +11,21 @@ namespace IdlingComplaints.Tests.Home
 {
     internal class Test30_Filter : HomeModel
     {
+        private readonly int SLEEP_TIMER = 2000;
+
         public Test30_Filter() { }
+
         [OneTimeSetUp]
         public new void OneTimeSetUp()
         {
             base.OneTimeSetUp("kchen@dep.nyc.gov", "T3sting@1234");
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            if (SLEEP_TIMER > 0)
+                Thread.Sleep(SLEEP_TIMER);
         }
 
         [OneTimeTearDown]
@@ -75,7 +85,8 @@ namespace IdlingComplaints.Tests.Home
             var rowList = TableControl.GetDataFromTable();
             var dateSubmittedList = rowList.GetSpecificColumnText(By.ClassName("mat-column-idc_datesubmitted"));
             string lastYear = (DateTime.Now.Year - 1).ToString();
-            foreach(var dateSubmitted in dateSubmittedList){
+            foreach (var dateSubmitted in dateSubmittedList)
+            {
                 Assert.That(lastYear, Is.EqualTo(dateSubmitted.Substring(6)));
             }
             /*Date Submitted are System Generated, so there will not be any last year's complaints*/
@@ -97,7 +108,8 @@ namespace IdlingComplaints.Tests.Home
             Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
             rowList = TableControl.GetDataFromTable();
             var allList = rowList.GetSpecificColumnText(By.ClassName("mat-column-idc_datesubmitted"));
-            Assert.That(allList.Count, Is.GreaterThanOrEqualTo(currentYearList.Count + lastYearList.Count));   
+
+            Assert.That(allList.Count, Is.GreaterThanOrEqualTo(currentYearList.Count + lastYearList.Count));
         }
     }
 }

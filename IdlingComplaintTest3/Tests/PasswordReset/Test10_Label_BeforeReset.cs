@@ -12,13 +12,12 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.PassordReset
 {
-    internal class Test10_Label_BeforeReset:PasswordResetModel
+    internal class Test10_Label_BeforeReset : PasswordResetModel
     {
         [OneTimeSetUp]
         public new void OneTimeSetUp()
         {
             base.OneTimeSetUp();
-       
         }
 
         [OneTimeTearDown]
@@ -27,13 +26,13 @@ namespace IdlingComplaints.Tests.PassordReset
             base.OneTimeTearDown();
         }
 
-        [Test,Category("Correct Label Displayed")]
+        [Test, Category("Correct Label Displayed")]
         public void DisplayedHeading()
         {
             Assert.That(TitleControl.Text, Is.EqualTo(Constants.RESET_PASSWORD_TITLE));
         }
 
-        [Test,Category("Placeholder is present.")]
+        [Test, Category("Placeholder is present.")]
         public void DisplayedEmail()
         {
             var placeholder = EmailControl.GetAttribute("placeholder");
@@ -64,13 +63,13 @@ namespace IdlingComplaints.Tests.PassordReset
 
         [Test, Category("Require message is present.")]
         public void RequiredInvalidEmail()
-        { 
+        {
             EmailControl.SendKeysWithDelay("TTseng", 0);
             ClickResetButton();
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
             wait.Until(d => d.FindElement(By.TagName("simple-snack-bar")));
 
-            string  text = Driver.ExtractTextFromXPath("/html/body/div[2]/div/div/snack-bar-container/simple-snack-bar/span/text()");
+            string text = Driver.ExtractTextFromXPath("/html/body/div[2]/div/div/snack-bar-container/simple-snack-bar/span/text()");
             Assert.That(text, Is.EqualTo(Constants.USER_NOT_FOUND));
         }
     }

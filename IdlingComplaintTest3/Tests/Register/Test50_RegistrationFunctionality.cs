@@ -33,10 +33,12 @@ namespace IdlingComplaints.Tests.Register
         public void TearDown()
         {
             Thread.Sleep(SLEEP_TIMER);
+            Thread.Sleep(SLEEP_TIMER);
+            Thread.Sleep(SLEEP_TIMER);
             Driver.Quit();
         }
 
-        private readonly int SLEEP_TIMER = 2000;
+        private readonly int SLEEP_TIMER = 1000;
 
         [Test]
         [Category("Successful Registration")]
@@ -57,7 +59,7 @@ namespace IdlingComplaints.Tests.Register
             TelephoneControl.SendKeysWithDelay("631-632-9800", SLEEP_TIMER);
             ScrollToButton();
             ClickSubmitButton();
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
+            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(20));
             wait.Until(d =>
             {
                 var snackBarError = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
@@ -69,7 +71,7 @@ namespace IdlingComplaints.Tests.Register
 
         [Test]
         [Category("Failed Registration")]
-        public void FailedRegistration()
+        public void FailedRegistrationDupEmail()
         {
             FirstNameControl.SendKeysWithDelay("Jane", SLEEP_TIMER);
             LastNameControl.SendKeysWithDelay("Doe", SLEEP_TIMER);
@@ -104,7 +106,7 @@ namespace IdlingComplaints.Tests.Register
 
         [Test]
         [Category("Cancelled Registration")]
-        public void CancelRegistration()
+        public void CancelRegistrationFullFormRedirectsToLogin()
         {
             FirstNameControl.SendKeysWithDelay("Jane", SLEEP_TIMER);
             LastNameControl.SendKeysWithDelay("Doe", SLEEP_TIMER);
@@ -130,7 +132,7 @@ namespace IdlingComplaints.Tests.Register
 
         [Test]
         [Category("Cancelled Registration")]
-        public void CancelRedirectsToLogin()
+        public void CancelRegistrationRedirectsToLogin()
         {
             ScrollToButton();
             ClickCancelButton();
@@ -143,8 +145,8 @@ namespace IdlingComplaints.Tests.Register
         [Category("Successful Registration")]
         public void ReadFileRegistration()
         {
-          //  ILoggerRepository logRepository = LogManager.GetRepository(System.Reflection.Assembly.GetEntryAssembly());
-          //  log4net.Config.XmlConfigurator.Configure(logRepository, new FileInfo("log4net.config"));
+            //  ILoggerRepository logRepository = LogManager.GetRepository(System.Reflection.Assembly.GetEntryAssembly());
+            //  log4net.Config.XmlConfigurator.Configure(logRepository, new FileInfo("log4net.config"));
 
             int localTimer = 0;
             try
@@ -171,22 +173,22 @@ namespace IdlingComplaints.Tests.Register
                         string zipCode = parts[9];
                         string telephone = parts[10];
 
-                    //   // Create a separate logger for each combination of username and password
-                    //   ILog logger = LogManager.GetLogger($"{email}_{password}");
-                    //
-                    //   Console.WriteLine("logger created");
-                    //
-                    //   // Create a new log file name based on the username and password
-                    //   string logFileName = $"C:\\Users\\Yyang\\Desktop\\SeleniumProject - Copy\\IdlingComplaintTest3\\Tests\\Register\\logs\\{email}_{password}_log.txt";
-                    //   // Configure the appender for the logger to use the new log file
-                    //   var fileAppender = (log4net.Appender.FileAppender)((log4net.Repository.Hierarchy.Logger)logger.Logger).GetAppender("FileAppender");
-                    //   Console.WriteLine("logger file name");
+                        //   // Create a separate logger for each combination of username and password
+                        //   ILog logger = LogManager.GetLogger($"{email}_{password}");
+                        //
+                        //   Console.WriteLine("logger created");
+                        //
+                        //   // Create a new log file name based on the username and password
+                        //   string logFileName = $"C:\\Users\\Yyang\\Desktop\\SeleniumProject - Copy\\IdlingComplaintTest3\\Tests\\Register\\logs\\{email}_{password}_log.txt";
+                        //   // Configure the appender for the logger to use the new log file
+                        //   var fileAppender = (log4net.Appender.FileAppender)((log4net.Repository.Hierarchy.Logger)logger.Logger).GetAppender("FileAppender");
+                        //   Console.WriteLine("logger file name");
 
-                   //   fileAppender.File = logFileName;
-                   //
-                   //   fileAppender.ActivateOptions();
-                   //
-                   //   Console.WriteLine("log file created");
+                        //   fileAppender.File = logFileName;
+                        //
+                        //   fileAppender.ActivateOptions();
+                        //
+                        //   Console.WriteLine("log file created");
 
                         FirstNameControl.SendKeysWithDelay(firstName, localTimer);
                         LastNameControl.SendKeysWithDelay(lastname, localTimer);
@@ -214,7 +216,7 @@ namespace IdlingComplaints.Tests.Register
                         });
                     }
                     reader.Close();
-                  
+
                 }
 
             }
@@ -223,8 +225,8 @@ namespace IdlingComplaints.Tests.Register
                 Console.WriteLine("File cannot be read.");
                 Console.WriteLine(ex.Message);
             }
-            
-            
+
+
         }
 
 

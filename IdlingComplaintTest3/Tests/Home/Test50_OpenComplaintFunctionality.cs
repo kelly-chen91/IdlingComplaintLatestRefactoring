@@ -13,6 +13,8 @@ namespace IdlingComplaints.Tests.Home
 {
     internal class Test50_OpenComplaintFunctionality : HomeModel
     {
+        private readonly int SLEEP_TIMER = 2000;
+
         public Test50_OpenComplaintFunctionality() { }
         [SetUp]
         public void SetUp()
@@ -32,27 +34,31 @@ namespace IdlingComplaints.Tests.Home
         [TearDown]
         public void TearDown()
         {
-            Thread.Sleep(SLEEP_TIMER);
+            if (SLEEP_TIMER > 0)
+                Thread.Sleep(SLEEP_TIMER);
+
             Driver.Quit();
         }
-        private readonly int SLEEP_TIMER = 2000;
 
         [Test]
         [Category("Sucessful Redirect - Complaint Details Displayed")]
         public void SuccessfulOpenComplaints()
         {
+            var link = By.TagName("a");
+            var complaintNumberRowControl = By.ClassName("mat-column-idc_name");
+
             var rowList = TableControl.GetDataFromTable();
-            var openComplaintList = rowList.GetSpecificColumnElements(By.TagName("a"));
-            var complaintNumList = rowList.GetSpecificColumnText(By.ClassName("mat-column-idc_name"));
+            var openComplaintList = rowList.GetSpecificColumnElements(link);
+            var complaintNumList = rowList.GetSpecificColumnText(complaintNumberRowControl);
 
             for (int i = 0; i < openComplaintList.Count; i++)
             {
                 Driver.WaitUntilElementFound(By.CssSelector("button[routerlink='idlingcomplaint/new']"), 10);
                 Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir='ltr']"), 20);
-                
+
                 rowList = TableControl.GetDataFromTable();
-                openComplaintList = rowList.GetSpecificColumnElements(By.TagName("a"));
-                complaintNumList = rowList.GetSpecificColumnText(By.ClassName("mat-column-idc_name"));
+                openComplaintList = rowList.GetSpecificColumnElements(link);
+                complaintNumList = rowList.GetSpecificColumnText(complaintNumberRowControl);
 
                 openComplaintList[i].Click();
 
@@ -61,6 +67,10 @@ namespace IdlingComplaints.Tests.Home
                 string openComplaintNumber = complientNumberControl.Text;
 
                 Assert.That(openComplaintNumber, Is.EqualTo("Complaint Number: " + complaintNumList[i]));
+
+                if (SLEEP_TIMER > 0)
+                    Thread.Sleep(SLEEP_TIMER);
+
                 ClickHomeButton();
             }
         }

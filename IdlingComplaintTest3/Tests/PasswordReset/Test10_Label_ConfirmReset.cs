@@ -17,22 +17,22 @@ namespace IdlingComplaints.Tests.PassordReset
         private readonly int SLEEP_TIMER = 2;
 
         [OneTimeSetUp]
-       public new void OneTimeSetUp()
-       {
-    
-           base.OneTimeSetUp();
+        public new void OneTimeSetUp()
+        {
+
+            base.OneTimeSetUp();
 
             Driver.Manage().Window.Position = new Point(-2000, 0);
             EmailInput = "TTseng@dep.nyc.gov";
-           ClickResetButton();
-           var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
-           wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname = 'securityanswer']")));
-       }
-       [OneTimeTearDown]
-       public new void OneTimeTearDown()
-       {
-           base.OneTimeTearDown();
-       }
+            ClickResetButton();
+            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
+            wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname = 'securityanswer']")));
+        }
+        [OneTimeTearDown]
+        public new void OneTimeTearDown()
+        {
+            base.OneTimeTearDown();
+        }
 
 
         [Test, Category("Placeholder is present.")]
@@ -53,8 +53,8 @@ namespace IdlingComplaints.Tests.PassordReset
         [Test, Category("Placeholder is present.")]
         public void DisplayConfirmPassword()
         {
-             var placeholder = ConfirmPasswordControl.GetAttribute("placeholder");
-             Assert.That(placeholder, Is.EqualTo(Constants.COMFIRM_PASSWORD));
+            var placeholder = ConfirmPasswordControl.GetAttribute("placeholder");
+            Assert.That(placeholder, Is.EqualTo(Constants.COMFIRM_PASSWORD));
         }
 
         [Test, Category("Require message is present.")]
@@ -63,14 +63,14 @@ namespace IdlingComplaints.Tests.PassordReset
             SecurityAnswerControl.SendTextDeleteTabWithDelay("XX", SLEEP_TIMER);
             String text = Driver.ExtractTextFromXPath("/html/body/app-root/div/password-reset/form/form/div/mat-card/mat-card-content/div[2]/div[1]/mat-form-field/div/div[3]/div/mat-error/text()");
             Assert.That(text, Is.EqualTo(Constants.SECURITY_ANSWER_REQUIRED));
-    
+
         }
 
-       [Test, Category("Require message is present.")]
-       public void RequirePassword()
-       {
+        [Test, Category("Require message is present.")]
+        public void RequirePassword()
+        {
             PasswordControl.SendTextDeleteTabWithDelay("XX", SLEEP_TIMER);
-            string text =  Driver.ExtractTextFromXPath("/html/body/app-root/div/password-reset/form/form/div/mat-card/mat-card-content/div[2]/div[2]/mat-form-field/div/div[3]/div/mat-error/text()");
+            string text = Driver.ExtractTextFromXPath("/html/body/app-root/div/password-reset/form/form/div/mat-card/mat-card-content/div[2]/div[2]/mat-form-field/div/div[3]/div/mat-error/text()");
             Assert.That(text, Is.EqualTo(Constants.PASSWORD_REQUIRED));
         }
 
