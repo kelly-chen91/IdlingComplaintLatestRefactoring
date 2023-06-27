@@ -70,15 +70,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
             //string error = Driver.ExtractTextFromXPath("//div[1]/div[2]/div/text()");
             //Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_FROM));
         }
-        [Test]
-        [Category("Required Field Missing - Error Label Displayed")]
-        public void Occurrence_RequiredBorough()
-        {
-            /*Borough is currently not required*/
-            Occurrence_SelectLocation(2);
-            Occurrence_SelectBorough(0);
-            Assert.That((Object)"", Is.EqualTo(Constants.OCCURRENCE_REQUIRED_BOROUGH), "Flagged for inconsistency on purpose.");
-        }
         
         [Test]
         [Category("Required Field Missing - Error Label Displayed")]
@@ -91,6 +82,77 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
 
             Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_STREET_NAME), "Flagged for inconsistency on purpose.");
             
+        }
+
+        [Test]
+        [Category("Required Field Missing - Error Label Displayed")]
+        public void Occurrence_RequiredOnStreetBetween()
+        {
+            Occurrence_SelectLocation(1);
+            Occurrence_OnStreetControl.SendTextDeleteTabWithDelay("xxx", 2000);
+            string error = Driver.ExtractTextFromXPath("//div[2]/mat-form-field[2]/div/div[3]/div/mat-error/text()");
+            Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_ON_STREET));
+            //string error = Driver.ExtractTextFromXPath("//div[1]/div[2]/div/text()");
+            //Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_FROM));
+        }
+
+        [Test]
+        [Category("Required Field Missing - Error Label Displayed")]
+        public void Occurrence_RequiredCrossStreet1Between()
+        {
+            Occurrence_SelectLocation(1);
+            Occurrence_CrossStreet1Control.SendTextDeleteTabWithDelay("xxx", 2000);
+            string error = Driver.ExtractTextFromXPath("//div[3]/mat-form-field[1]/div/div[3]/div/mat-error/text()");
+            Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_CROSS_STREET1));
+            //string error = Driver.ExtractTextFromXPath("//div[1]/div[2]/div/text()");
+            //Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_FROM));
+        }
+
+        [Test]
+        [Category("Required Field Missing - Error Label Displayed")]
+        public void Occurrence_RequiredCrossStreet2Between()
+        {
+            Occurrence_SelectLocation(1);
+            Occurrence_CrossStreet2Control.SendTextDeleteTabWithDelay("xxx", 2000);
+            string error = Driver.ExtractTextFromXPath("//div[3]/mat-form-field[2]/div/div[3]/div/mat-error/text()");
+            Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_CROSS_STREET2));
+            //string error = Driver.ExtractTextFromXPath("//div[1]/div[2]/div/text()");
+            //Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_FROM));
+        }
+
+        [Test]
+        [Category("Required Field Missing - Error Label Displayed")]
+        public void Occurrence_RequiredCrossStreet1Intersection()
+        {
+            Occurrence_SelectLocation(3);
+            Occurrence_CrossStreet1Control.SendTextDeleteTabWithDelay("xxx", 2000);
+            string error = Driver.ExtractTextFromXPath("//div[3]/mat-form-field[1]/div/div[3]/div/mat-error/text()");
+            Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_CROSS_STREET1));
+            
+            //string error = Driver.ExtractTextFromXPath("//div[1]/div[2]/div/text()");
+            //Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_FROM));
+        }
+
+        [Test]
+        [Category("Required Field Missing - Error Label Displayed")]
+        public void Occurrence_RequiredCrossStreet2Intersection()
+        {
+            Occurrence_SelectLocation(3);
+            Occurrence_CrossStreet2Control.SendTextDeleteTabWithDelay("xxx", 2000);
+            string error = Driver.ExtractTextFromXPath("//div[3]/mat-form-field[2]/div/div[3]/div/mat-error/text()");
+            Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_CROSS_STREET2));
+            //string error = Driver.ExtractTextFromXPath("//div[1]/div[2]/div/text()");
+            //Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_FROM));
+        }
+
+        [Test]
+        [Category("Required Field Missing - Error Label Displayed")]
+        public void Occurrence_RequiredBorough()
+        {
+            /*Borough is currently not required*/
+            Occurrence_SelectLocation(2);
+            Occurrence_SelectBorough(0);
+            Assert.That((Object)"", Is.EqualTo(Constants.OCCURRENCE_REQUIRED_BOROUGH), "Flagged for inconsistency on purpose.");
         }
 
         [Test]

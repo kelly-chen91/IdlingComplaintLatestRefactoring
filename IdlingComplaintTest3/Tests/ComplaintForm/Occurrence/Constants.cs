@@ -36,6 +36,14 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
         public static readonly string OCCURRENCE_REQUIRED_LOCATION = "Location is required";
         public static readonly string OCCURRENCE_REQUIRED_HOUSE_NUM = "House Number is required";
         public static readonly string OCCURRENCE_REQUIRED_STREET_NAME = "Street Name is required";
+
+        /*Between location option*/
+        public static readonly string OCCURRENCE_REQUIRED_ON_STREET = "On Street is required";
+
+        /*Between & Intersection location option*/
+        public static readonly string OCCURRENCE_REQUIRED_CROSS_STREET1 = "Cross Street 1 is required";
+        public static readonly string OCCURRENCE_REQUIRED_CROSS_STREET2 = "Cross Street 2 is required";
+
         public static readonly string OCCURRENCE_REQUIRED_BOROUGH = "Borough is required";
         public static readonly string OCCURRENCE_REQUIRED_VEHICLE_TYPE = "Vehicle Type is required";
         public static readonly string OCCURRENCE_REQUIRED_LICENSE_PLATE = "License Plate is required";
