@@ -60,8 +60,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
         [Category("Required Field Missing - Error Label Displayed")]
         public void Occurrence_RequiredHouseNumber()
         {
+            Occurrence_SelectLocation(2);
             Occurrence_HouseNumControl.SendTextDeleteTabWithDelay("xxx", 2000);
-            Assert.That((Object)"", Is.EqualTo(Constants.OCCURRENCE_REQUIRED_HOUSE_NUM), "Flagged for inconsistency on purpose.");
+            string error = Driver.ExtractTextFromXPath("//div[3]/mat-form-field[1]/div/div[3]/div/mat-error/text()");
+            Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_HOUSE_NUM));
             //string error = Driver.ExtractTextFromXPath("//div[1]/div[2]/div/text()");
             //Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_FROM));
         }
@@ -69,6 +71,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
         [Category("Required Field Missing - Error Label Displayed")]
         public void Occurrence_RequiredBorough()
         {
+            Occurrence_SelectLocation(2);
             Occurrence_SelectBorough(0);
             Assert.That((Object)"", Is.EqualTo(Constants.OCCURRENCE_REQUIRED_BOROUGH), "Flagged for inconsistency on purpose.");
             //string error = Driver.ExtractTextFromXPath("//div[1]/div[2]/div/text()");
@@ -79,8 +82,11 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
         [Category("Required Field Missing - Error Label Displayed")]
         public void Occurrence_RequiredStreetName()
         {
+            Occurrence_SelectLocation(2);
             Occurrence_StreetNameControl.SendTextDeleteTabWithDelay("xxx", 2000);
-            Assert.That((Object)"", Is.EqualTo(Constants.OCCURRENCE_REQUIRED_STREET_NAME), "Flagged for inconsistency on purpose.");
+            string error = Driver.ExtractTextFromXPath("//div[3]/mat-form-field[2]/div/div[3]/div/mat-error/text()");
+
+            Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_STREET_NAME), "Flagged for inconsistency on purpose.");
             //string error = Driver.ExtractTextFromXPath("//div[1]/div[2]/div/text()");
             //Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_FROM));
         }
@@ -98,6 +104,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
         [Category("Required Field Missing - Error Label Displayed")]
         public void Occurrence_RequiredLicensePlate()
         {
+            Occurrence_LicensePlateControl.Clear();
             Occurrence_LicensePlateControl.SendTextDeleteTabWithDelay("xxx", 2000);
             string error = Driver.ExtractTextFromXPath("//div[6]/mat-form-field[1]/div/div[3]/div/mat-error/text()");
             Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_LICENSE_PLATE));
@@ -150,20 +157,24 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
             Assert.That(error, Is.EqualTo(string.Empty));
         }
 
-        //[Test]
-        //[Category("Required Field Provided - Error Label Hidden")]
+        [Test]
+        [Category("Required Field Provided - Error Label Hidden")]
         public void Occurrence_ProvidedHouseNumber()
         {
+            Occurrence_SelectLocation(2);
             Occurrence_HouseNumControl.SendKeysWithDelay("XXX", SLEEP_TIMER);
-            /*CANNOT TEST FOR REQUIRED FIELD AS IT IS CURRENTLY AN OPTIONAL FIELD*/
+            string error = Driver.ExtractTextFromXPath("//div[3]/mat-form-field[1]/div/div[3]/div/mat-error/text()");
+            Assert.That(error, Is.EqualTo(string.Empty));
         }
 
-        //[Test]
-        //[Category("Required Field Provided - Error Label Hidden")]
+        [Test]
+        [Category("Required Field Provided - Error Label Hidden")]
         public void Occurrence_ProvidedStreetName()
         {
+            Occurrence_SelectLocation(2);
             Occurrence_StreetNameControl.SendKeysWithDelay("XXX", SLEEP_TIMER);
-            /*CANNOT TEST FOR REQUIRED FIELD AS IT IS CURRENTLY AN OPTIONAL FIELD*/
+            string error = Driver.ExtractTextFromXPath("//div[3]/mat-form-field[2]/div/div[3]/div/mat-error/text()");
+            Assert.That(error, Is.EqualTo(string.Empty));
         }
 
         //[Test]

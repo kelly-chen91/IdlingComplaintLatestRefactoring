@@ -57,7 +57,7 @@ namespace IdlingComplaints.Models.ComplaintForm
      //   public IWebElement RequireCityControl => Driver.FindElement(By.CssSelector("mat-error[id='mat-error-14']"));
      //   public IWebElement RequireZipCodeControl => Driver.FindElement(By.CssSelector("mat-error[id='mat-error-15']"));
         public string associated_SelectedStateControl = "--";
-        public string CompanyNameInput
+        public string Associated_CompanyNameInput
         {
             get
             {
@@ -68,7 +68,7 @@ namespace IdlingComplaints.Models.ComplaintForm
                 Associated_CompanyNameControl.SendKeys(value);
             }
         }
-        public string HouseNumberInput
+        public string Associated_HouseNumberInput
         {
             get
             {
@@ -79,7 +79,7 @@ namespace IdlingComplaints.Models.ComplaintForm
                 Associated_HouseNumberControl.SendKeys(value);
             }
         }
-        public string StreetNameInput
+        public string Associated_StreetNameInput
         {
             get
             {
@@ -90,7 +90,7 @@ namespace IdlingComplaints.Models.ComplaintForm
                 Associated_StreetNameControl.SendKeys(value);
             }
         }
-        public string AptFloorInput
+        public string Associated_AptFloorInput
         {
             get
             {
@@ -101,7 +101,7 @@ namespace IdlingComplaints.Models.ComplaintForm
                 Associated_AptFloorControl.SendKeys(value);
             }
         }
-        public string CityInput
+        public string Associated_CityInput
         {
             get
             {
@@ -112,7 +112,7 @@ namespace IdlingComplaints.Models.ComplaintForm
                 Associated_CityControl.SendKeys(value);
             }
         }
-        public string ZipInput
+        public string Associated_ZipInput
         {
             get
             {
@@ -125,7 +125,7 @@ namespace IdlingComplaints.Models.ComplaintForm
         }
 
 
-        public void SelectState(int stateIndex)
+        public void Associated_SelectState(int stateIndex)
         {
             Associated_StateControl.Click();
             var state = Driver.FindElement(By.Id("mat-select-2-panel"));
