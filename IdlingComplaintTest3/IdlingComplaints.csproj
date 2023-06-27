@@ -10,6 +10,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Tests\Register\logs\**" />
+    <EmbeddedResource Remove="Tests\Register\logs\**" />
+    <None Remove="Tests\Register\logs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="IdlingComplaintsTest.csproj" />
   </ItemGroup>
 
@@ -25,10 +31,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SeleniumUtilities\SeleniumUtilities.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Tests\Register\logs\" />
   </ItemGroup>
 
 </Project>
