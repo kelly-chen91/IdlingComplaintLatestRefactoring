@@ -40,11 +40,11 @@ namespace IdlingComplaints.Tests.Register
 
         private readonly int SLEEP_TIMER = 1000;
         private readonly string successfulEmailFile = "C:\\Users\\kchen\\source\\repos\\IdlingComplaintLatestRefactoring\\IdlingComplaintTest3\\Tests\\Register\\SuccessfulEmailRegistration.txt";
+        
         [Test]
         [Category("Successful Registration")]
         public void SuccessfulRegistration()
         {
-
             FirstNameControl.SendKeysWithDelay("Jane", SLEEP_TIMER);
             LastNameControl.SendKeysWithDelay("Doe", SLEEP_TIMER);
             string generatedEmail = StringUtilities.GenerateRandomEmail();
@@ -84,9 +84,6 @@ namespace IdlingComplaints.Tests.Register
                 Assert.That(snackBarError.Text.Trim(), Is.EqualTo("Registration has been completed successfully."), "Flagged for inconsistency on purpose."); //Added period for consistency with other error messaging
                 return snackBarError;
             });
-
-            
-
         }
 
         [Test]
