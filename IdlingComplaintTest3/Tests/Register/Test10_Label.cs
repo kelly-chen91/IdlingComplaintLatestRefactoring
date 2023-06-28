@@ -16,15 +16,15 @@ namespace IdlingComplaints.Tests.Register
     {
 
         [OneTimeSetUp]
-        public new void OneTimeSetUp()
+        public void OneTimeSetUp()
         {
-            base.OneTimeSetUp();
+            base.RegisterModelSetUp(true);
         }
 
         [OneTimeTearDown]
-        public new void OneTimeTearDown()
+        public void OneTimeTearDown()
         {
-            base.OneTimeTearDown();
+            base.RegisterModelTearDown();
         }
 
         [Test]

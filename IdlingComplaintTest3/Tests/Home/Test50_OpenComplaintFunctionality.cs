@@ -19,16 +19,17 @@ namespace IdlingComplaints.Tests.Home
         [SetUp]
         public void SetUp()
         {
-            Driver.Quit();
-            Driver = CreateStandardDriver("chrome");
-            Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/login");
-            Driver.Manage().Window.Size = new Size(1920, 1200);
-            EmailControl.SendKeysWithDelay("kchen@dep.nyc.gov", 0);
-            PasswordControl.SendKeysWithDelay("T3sting@1234", 0);
-            ClickLoginButton();
-
-            Driver.WaitUntilElementFound(By.CssSelector("button[routerlink = 'idlingcomplaint/new']"), 20);
-            Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
+            //Driver.Quit();
+            //Driver = CreateStandardDriver("chrome");
+            //Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/login");
+            //Driver.Manage().Window.Size = new Size(1920, 1200);
+            //EmailControl.SendKeysWithDelay("kchen@dep.nyc.gov", 0);
+            //PasswordControl.SendKeysWithDelay("T3sting@1234", 0);
+            //ClickLoginButton();
+            //
+            //Driver.WaitUntilElementFound(By.CssSelector("button[routerlink = 'idlingcomplaint/new']"), 20);
+            //Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
+            base.HomeModelSetUp("kchen@dep.nyc.gov", "T3sting@1234", false);
         }
 
         [TearDown]
@@ -37,7 +38,8 @@ namespace IdlingComplaints.Tests.Home
             if (SLEEP_TIMER > 0)
                 Thread.Sleep(SLEEP_TIMER);
 
-            Driver.Quit();
+            //Driver.Quit();
+            base.HomeModelTearDown();
         }
 
         [Test]

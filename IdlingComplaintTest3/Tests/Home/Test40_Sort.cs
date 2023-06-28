@@ -19,9 +19,9 @@ namespace IdlingComplaints.Tests.Home
         public Test40_Sort() { }
 
         [OneTimeSetUp]
-        public new void OneTimeSetUp()
+        public void OneTimeSetUp()
         {
-            base.OneTimeSetUp("kchen@dep.nyc.gov", "T3sting@1234");
+            base.HomeModelSetUp("kchen@dep.nyc.gov", "T3sting@1234", false);
 
         }
 
@@ -33,11 +33,11 @@ namespace IdlingComplaints.Tests.Home
         }
 
         [OneTimeTearDown]
-        public new void OneTimeTearDown()
+        public void OneTimeTearDown()
         {
             if (SLEEP_TIMER > 0)
                 Thread.Sleep(SLEEP_TIMER);
-            base.OneTimeTearDown();
+            base.HomeModelTearDown();
         }
 
         [Test]

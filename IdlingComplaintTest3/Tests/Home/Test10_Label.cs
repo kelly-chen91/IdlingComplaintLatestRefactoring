@@ -13,16 +13,16 @@ namespace IdlingComplaints.Tests.Home
     internal class Test10_Label : HomeModel
     {
         [OneTimeSetUp]
-        public new void OneTimeSetUp()
+        public void OneTimeSetUp()
         {
-            base.OneTimeSetUp("kchen@dep.nyc.gov", "T3sting@1234");
+            base.HomeModelSetUp("kchen@dep.nyc.gov", "T3sting@1234", true);
         }
 
         [OneTimeTearDown]
-        public new void OneTimeTearDown()
+        public void OneTimeTearDown()
         {
             Thread.Sleep(2000);
-            base.OneTimeTearDown();
+            base.HomeModelTearDown();
         }
 
         [Test]

@@ -1,4 +1,5 @@
 ﻿using IdlingComplaints.Models.Login;
+using SeleniumUtilities.Base;
 using SeleniumUtilities.Utils;
 
 /*
@@ -10,16 +11,17 @@ namespace IdlingComplaints.Tests.Login
 
     internal class Test10_Label : LoginModel
     {
+        
         [OneTimeSetUp]
-        public new void OneTimeSetUp()
+        public void OneTimeSetUp()
         {
-            base.OneTimeSetUp();
+            base.LoginModelSetUp(true);
         }
 
         [OneTimeTearDown]
-        public new void OneTimeTearDown()
+        public void OneTimeTearDown()
         {
-            base.OneTimeTearDown();
+            base.LoginModelTearDown();
         }
 
         [Test]

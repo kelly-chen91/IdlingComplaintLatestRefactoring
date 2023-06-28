@@ -11,22 +11,25 @@ namespace IdlingComplaints.Tests.Login
 {
     internal class Test10_RequiredLabelErrors : LoginModel
     {
-        private readonly int SLEEP_TIMER = 0;
+        private readonly int SLEEP_TIMER = 1000;
 
         [SetUp]
         public void SetUp()
         {
-            Driver.Quit();
-            Driver = CreateStandardDriver("chrome");
-            Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/login");
-            Driver.Manage().Window.Size = new Size(1920, 1200);
+            //Driver.Quit();
+            //Driver = CreateStandardDriver("chrome");
+            //Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/login");
+            //Driver.Manage().Window.Size = new Size(1920, 1200);
+            base.LoginModelSetUp(false);
             Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
         }
 
         [TearDown]
         public void TearDown()
         {
-            Driver.Quit();
+            if(SLEEP_TIMER > 0) { Thread.Sleep(SLEEP_TIMER); }
+            //Driver.Quit();
+            base.LoginModelTearDown();
         }
 
         [Test]

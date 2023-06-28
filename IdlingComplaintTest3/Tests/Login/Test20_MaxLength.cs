@@ -10,15 +10,15 @@ namespace IdlingComplaints.Tests.Login
         private const int MAXLENGTH = 50;
 
         [OneTimeSetUp]
-        public new void OneTimeSetUp()
+        public void OneTimeSetUp()
         {
-            base.OneTimeSetUp();
+            base.LoginModelSetUp(true);
         }
 
         [OneTimeTearDown]
-        public new void OneTimeTearDown()
+        public void OneTimeHeadlessTearDown()
         {
-            base.OneTimeTearDown();
+            base.LoginModelTearDown();
         }
 
         [Test]

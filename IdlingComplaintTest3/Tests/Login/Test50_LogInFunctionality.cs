@@ -16,10 +16,11 @@ internal class Test50_LogInFunctionality : LoginModel
     [SetUp]
     public void SetUp()
     {
-        Driver.Quit();
-        Driver = CreateStandardDriver("chrome");
-        Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/login");
-        Driver.Manage().Window.Size = new Size(1920, 1200);
+        //Driver.Quit();
+        //Driver = CreateStandardDriver("chrome");
+        //Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/login");
+        //Driver.Manage().Window.Size = new Size(1920, 1200);
+        base.LoginModelSetUp(false);
     }
 
     [TearDown]
@@ -27,7 +28,8 @@ internal class Test50_LogInFunctionality : LoginModel
     {
         if (SLEEP_TIMER > 0)
             Thread.Sleep(SLEEP_TIMER);
-        Driver.Quit();
+        //Driver.Quit();
+        base.LoginModelTearDown();
     }
 
     private readonly int SLEEP_TIMER = 2000;

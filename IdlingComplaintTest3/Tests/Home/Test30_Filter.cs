@@ -16,9 +16,9 @@ namespace IdlingComplaints.Tests.Home
         public Test30_Filter() { }
 
         [OneTimeSetUp]
-        public new void OneTimeSetUp()
+        public void OneTimeSetUp()
         {
-            base.OneTimeSetUp("kchen@dep.nyc.gov", "T3sting@1234");
+            base.HomeModelSetUp("kchen@dep.nyc.gov", "T3sting@1234", false);
         }
 
         [TearDown]
@@ -29,9 +29,9 @@ namespace IdlingComplaints.Tests.Home
         }
 
         [OneTimeTearDown]
-        public new void OneTimeTearDown()
+        public void OneTimeTearDown()
         {
-            base.OneTimeTearDown();
+            base.HomeModelTearDown();
         }
 
         [Test]

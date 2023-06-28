@@ -7,22 +7,42 @@ namespace IdlingComplaints.Models.Login
 {
     internal class LoginModel : BaseModel
     {
-        public LoginModel()
+        //public LoginModel() : base()
+        //{
+        //}
+        //public LoginModel(bool isHeadless) : base(isHeadless)
+        //{
+        //}
+        //[LoginModelSetUp]
+        public void LoginModelSetUp(bool isHeadless)
         {
-        }
-        [OneTimeSetUp]
-        public void OneTimeSetUp()
-        {
-            
+            if (isHeadless) Driver = CreateHeadlessDriver("chrome");
+            else Driver = CreateStandardDriver("chrome");
             Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/login");
             // Driver.Manage().Window.Size = new Size(1920, 1200);
             Driver.Manage().Window.Maximize();
         }
-        [OneTimeTearDown]
-        public void OneTimeTearDown()
+
+        //[LoginModelTearDown]
+        public void LoginModelTearDown()
         {
             Driver.Quit();
         }
+
+        //[LoginModelSetUp]
+        //public void LoginModelSetUp()
+        //{
+        //    Driver = CreateHeadlessDriver("chrome");
+        //    Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/login");
+        //    // Driver.Manage().Window.Size = new Size(1920, 1200);
+        //    Driver.Manage().Window.Maximize();
+        //}
+
+        //[LoginModelTearDown]
+        //public void LoginModelTearDown()
+        //{
+        //    Driver.Quit();
+        //}
 
         public IWebElement TitleControl => Driver.FindElement(By.TagName("h3"));
         public IWebElement EmailControl => Driver.FindElement(By.Name("email"));

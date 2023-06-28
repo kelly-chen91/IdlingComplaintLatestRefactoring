@@ -16,16 +16,16 @@ namespace IdlingComplaints.Tests.Register
     internal class Test10_RequiredLabelErrors : RegisterModel
     {
 
-        //[OneTimeSetUp]
-        //public new void OneTimeSetUp()
+        //[LoginModelSetUp]
+        //public new void LoginModelSetUp()
         //{
-        //    base.OneTimeSetUp();
+        //    base.LoginModelSetUp();
         //}
 
-        //[OneTimeTearDown]
-        //public new void OneTimeTearDown()
+        //[LoginModelTearDown]
+        //public new void LoginModelTearDown()
         //{
-        //    base.OneTimeTearDown();
+        //    base.LoginModelTearDown();
         //}
 
         private readonly int SLEEP_TIMER = 1000;
@@ -33,10 +33,11 @@ namespace IdlingComplaints.Tests.Register
         [SetUp]
         public void SetUp()
         {
-            Driver.Quit();
-            Driver = CreateStandardDriver("chrome");
-            Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/profile");
-            Driver.Manage().Window.Size = new Size(1920, 1200);
+            //Driver.Quit();
+            //Driver = CreateStandardDriver("chrome");
+            //Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/profile");
+            //Driver.Manage().Window.Size = new Size(1920, 1200);
+            base.RegisterModelSetUp(false);
             Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
         }
 
@@ -45,7 +46,7 @@ namespace IdlingComplaints.Tests.Register
         {
             if (SLEEP_TIMER > 0)
                 Thread.Sleep(SLEEP_TIMER);
-            Driver.Quit();
+            base.RegisterModelTearDown();
         }
 
         /*Tests for error when first name field is empty*/

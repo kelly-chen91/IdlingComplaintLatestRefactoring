@@ -13,17 +13,17 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
     internal class Test10_RequiredLabelErrors : ComplaintFormModel
     {
         [OneTimeSetUp]
-        public new void OneTimeSetUp()
+        public void OneTimeSetUp()
         {
-            base.OneTimeSetUp();
+            base.ComplaintFormModelSetUp(false);
             ClickNoButton();
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(15));
             wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname='idc_associatedlastname']")));
         }
         [OneTimeTearDown]
-        public new void OneTimeTearDown()
+        public void OneTimeTearDown()
         {
-            base.OneTimeTearDown();
+            base.ComplaintFormModelTearDown();
         }
 
         private readonly int SLEEP_TIMER = 2000;

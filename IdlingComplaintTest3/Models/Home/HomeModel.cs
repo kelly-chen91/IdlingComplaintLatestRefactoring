@@ -16,10 +16,11 @@ namespace IdlingComplaints.Models.Home
 {
     internal class HomeModel : LoginModel
     { 
-        public void OneTimeSetUp(string email, string password)
+        public void HomeModelSetUp(string email, string password, bool isHeadless)
         {
             //loginModel = new LoginModel();
-            base.OneTimeSetUp();
+            //base.RegisterModelSetUp();
+            base.LoginModelSetUp(isHeadless); 
             EmailControl.SendKeysWithDelay(email, 0);
             PasswordControl.SendKeysWithDelay(password, 0);
             ClickLoginButton();
@@ -30,10 +31,12 @@ namespace IdlingComplaints.Models.Home
             //wait.Until(d => d.FindElement(By.CssSelector("button[routerlink='idlingcomplaint/new']")));
         }
 
-        public new void OneTimeTearDown()
+        public void HomeModelTearDown()
         {
-            base.OneTimeTearDown();
+            base.LoginModelTearDown();
         }
+
+       
 
         public IWebElement NewComplaintControl => Driver.FindElement(By.CssSelector("button[routerlink='idlingcomplaint/new']"));
         public IWebElement CreatedYearControl => Driver.FindElement(By.CssSelector("mat-select[name = 'createdYear']"));

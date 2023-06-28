@@ -12,14 +12,14 @@ namespace IdlingComplaints.Tests.ComplaintForm
     internal class Test10_Unqualified_Label : ComplaintFormModel
     {
         [OneTimeSetUp]
-        public new void OneTimeSetUp()
+        public void OneTimeSetUp()
         {
-            base.OneTimeSetUp();
+            base.ComplaintFormModelSetUp(false);
         }
         [OneTimeTearDown]
-        public new void OneTimeTearDown()
+        public void OneTimeTearDown()
         {
-            base.OneTimeTearDown();
+            base.ComplaintFormModelTearDown();
         }
 
         [Test, Category("Label Test")]

@@ -15,9 +15,9 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
     {
         public Test10_Label() { }
         [OneTimeSetUp]
-        public new void OneTimeSetUp()
+        public void OneTimeSetUp()
         {
-            base.OneTimeSetUp();
+            base.ComplaintFormModelSetUp(true);
             ClickNoButton();
             Driver.ScrollTo(Occurrence_VehicleTypeControl);
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(15));
@@ -25,9 +25,9 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
         }
 
         [OneTimeTearDown]
-        public new void OneTimeTearDown()
+        public void OneTimeTearDown()
         {
-            base.OneTimeTearDown();
+            base.ComplaintFormModelTearDown();
         }
 
         [Test]

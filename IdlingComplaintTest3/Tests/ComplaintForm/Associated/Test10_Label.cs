@@ -19,9 +19,9 @@ namespace IdlingComplaints.Tests.ComplaintForm.Complainant
         private readonly int SLEEP_TIMER = 2000;
 
         [OneTimeSetUp]
-        public new void OneTimeSetUp()
+        public void OneTimeSetUp()
         {
-           base.OneTimeSetUp();
+           base.ComplaintFormModelSetUp(true);
            
            ClickNoButton();
            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(15));
@@ -30,9 +30,9 @@ namespace IdlingComplaints.Tests.ComplaintForm.Complainant
 
         }
         [OneTimeTearDown]
-        public new void OneTimeTearDown()
+        public void OneTimeTearDown()
         {
-            base.OneTimeTearDown();
+            base.ComplaintFormModelTearDown();
         }
 
 

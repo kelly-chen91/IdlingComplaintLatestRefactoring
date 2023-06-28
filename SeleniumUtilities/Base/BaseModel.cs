@@ -10,11 +10,18 @@ namespace SeleniumUtilities.Base
     {
         protected IWebDriver Driver;
         
+        //protected BaseModel(bool isHeadless)
+        //{
+        //    Driver = CreateHeadlessDriver("chrome");
+        //}
+
         protected BaseModel()
         {
-            //Driver = CreateStandardDriver("chrome");
+            //if (!isHeadless) Driver = CreateStandardDriver("chrome");
+            //Driver = CreateHeadlessDriver("chrome");
         }
-    
+
+
         protected IWebDriver CreateStandardDriver(string browserName)
         {
             switch (browserName.ToLowerInvariant())

@@ -17,10 +17,10 @@ namespace IdlingComplaints.Tests.PassordReset
         private readonly int SLEEP_TIMER = 2;
 
         [OneTimeSetUp]
-        public new void OneTimeSetUp()
+        public void OneTimeSetUp()
         {
 
-            base.OneTimeSetUp();
+            base.PasswordResetModelSetUp(true);
 
             Driver.Manage().Window.Position = new Point(-2000, 0);
             EmailInput = "TTseng@dep.nyc.gov";
@@ -29,9 +29,9 @@ namespace IdlingComplaints.Tests.PassordReset
             wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname = 'securityanswer']")));
         }
         [OneTimeTearDown]
-        public new void OneTimeTearDown()
+        public void OneTimeTearDown()
         {
-            base.OneTimeTearDown();
+            base.PasswordResetModelTearDown();
         }
 
 

@@ -15,21 +15,8 @@ namespace IdlingComplaints.Models.ComplaintForm
     internal partial class ComplaintFormModel : HomeModel
     {
 
-        [OneTimeSetUp]
-        public new void OneTimeSetUp()
-        {
-            base.OneTimeSetUp("TTseng@dep.nyc.gov", "Testing1#");
-            ClickNewComplaintButton();
-            Driver.WaitUntilElementFound(By.TagName("mat-radio-button"), 10);
-            Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
-        }
-        [OneTimeTearDown]
-        public new void OneTimeTearDown()
-        {
-            base.OneTimeTearDown();
-        }
-
        
+
         /*Person or Company Associated to the Complaint*/
         public IWebElement Associated_CompanyNameControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_associatedlastname']"));
         public IWebElement Associated_StateControl => Driver.FindElement(By.CssSelector("mat-select[formcontrolname='idc_associatedstate']"));

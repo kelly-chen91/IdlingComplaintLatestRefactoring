@@ -15,15 +15,15 @@ namespace IdlingComplaints.Tests.PassordReset
     internal class Test10_Label_BeforeReset : PasswordResetModel
     {
         [OneTimeSetUp]
-        public new void OneTimeSetUp()
+        public void OneTimeSetUp()
         {
-            base.OneTimeSetUp();
+            base.PasswordResetModelSetUp(true);
         }
 
         [OneTimeTearDown]
-        public new void OneTimeTearDown()
+        public void OneTimeTearDown()
         {
-            base.OneTimeTearDown();
+            base.PasswordResetModelTearDown();
         }
 
         [Test, Category("Correct Label Displayed")]

@@ -16,17 +16,21 @@ namespace IdlingComplaints.Models.PasswordReset
         {
 
         }
-        [OneTimeSetUp]
-        public void OneTimeSetUp()
+        //[LoginModelSetUp]
+        public void PasswordResetModelSetUp(bool isHeadless)
         {
+            //Driver = CreateStandardDriver("chrome");
+            if (isHeadless) Driver = CreateHeadlessDriver("chrome");
+            else Driver = CreateStandardDriver("chrome");
             Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/password-reset");
             Driver.Manage().Window.Size = new Size(1920, 1200);
         }
-        [OneTimeTearDown]
-        public void OneTimeTearDown()
+        //[LoginModelTearDown]
+        public void PasswordResetModelTearDown()
         {
             Driver.Quit();
         }
+
 
         public IWebElement TitleControl => Driver.FindElement(By.XPath("/html/body/app-root/div/password-reset/form/div/div/mat-card/mat-card-header/div/mat-card-title/h4"));
         public IWebElement EmailControl => Driver.FindElement(By.Name("email"));

@@ -13,14 +13,14 @@ namespace IdlingComplaints.Tests.PassordReset
         private const int MAXLENGTH = 50;
 
         [OneTimeSetUp]
-        public new void OneTimeSetUp()
+        public void OneTimeSetUp()
         {
-            base.OneTimeSetUp();
+            base.PasswordResetModelSetUp(true);
         }
         [OneTimeTearDown]
-        public new void OneTimeTearDown()
+        public void OneTimeTearDown()
         {
-            base.OneTimeTearDown();
+            base.PasswordResetModelTearDown();
         }
 
         [Test, Category("Maxlength attribute is missing")]

@@ -15,17 +15,20 @@ namespace IdlingComplaints.Models.Register
         public RegisterModel()
         {
         }
-        [OneTimeSetUp]
-        public void OneTimeSetUp()
+        //[LoginModelSetUp]
+        public void RegisterModelSetUp(bool isHeadless)
         {
+            if (isHeadless) Driver = CreateHeadlessDriver("chrome");
+            else Driver = CreateStandardDriver("chrome");
             Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/profile");
             Driver.Manage().Window.Size = new Size(1920, 1200);
         }
-        [OneTimeTearDown]
-        public void OneTimeTearDown()
+        //[LoginModelTearDown]
+        public void RegisterModelTearDown()
         {
             Driver.Quit();
         }
+
 
         public IWebElement TitleControl => Driver.FindElement(By.TagName("h4"));                                                                       //Title
         public IWebElement FirstNameControl => Driver.FindElement(By.CssSelector("input[formcontrolname = 'firstname']"));                            //First Name

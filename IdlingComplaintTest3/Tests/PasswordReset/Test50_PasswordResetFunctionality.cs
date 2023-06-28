@@ -20,12 +20,13 @@ namespace IdlingComplaints.Tests.PassordReset
         [SetUp]
         public void Setup()
         {
-            Driver.Quit();
-            Driver = CreateStandardDriver("chrome");
-            Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/password-reset");
+            //Driver.Quit();
+            base.PasswordResetModelSetUp(false);
+            //Driver = CreateStandardDriver("chrome");
+            //Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/password-reset");
             EmailControl.SendKeysWithDelay("TTseng@dep.nyc.gov", SLEEP_TIMER);
             ClickResetButton();
-            Driver.Manage().Window.Size = new Size(1920, 1200);
+            //Driver.Manage().Window.Size = new Size(1920, 1200);
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
             wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname = 'securityanswer']")));
 
@@ -35,7 +36,8 @@ namespace IdlingComplaints.Tests.PassordReset
         {
             if (SLEEP_TIMER > 0)
                 Thread.Sleep(SLEEP_TIMER);
-            Driver.Quit();
+            //Driver.Quit();
+            base.PasswordResetModelTearDown();
         }
 
         [Test, Category("Valid Reset")]

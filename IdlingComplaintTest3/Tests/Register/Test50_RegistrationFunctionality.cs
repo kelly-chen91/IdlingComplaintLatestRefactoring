@@ -23,10 +23,11 @@ namespace IdlingComplaints.Tests.Register
         [SetUp]
         public void SetUp()
         {
-            Driver.Quit();
-            Driver = CreateStandardDriver("chrome");
-            Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/profile");
-            Driver.Manage().Window.Size = new Size(1920, 1200);
+            //Driver.Quit();
+            //Driver = CreateStandardDriver("chrome");
+            //Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/profile");
+            //Driver.Manage().Window.Size = new Size(1920, 1200);
+            base.RegisterModelSetUp(false);
         }
 
         [TearDown]
@@ -35,7 +36,7 @@ namespace IdlingComplaints.Tests.Register
             Thread.Sleep(SLEEP_TIMER);
             Thread.Sleep(SLEEP_TIMER);
             Thread.Sleep(SLEEP_TIMER);
-            Driver.Quit();
+            base.RegisterModelTearDown();
         }
 
         private readonly int SLEEP_TIMER = 1000;
