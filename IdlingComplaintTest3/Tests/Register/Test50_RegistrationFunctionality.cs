@@ -39,14 +39,16 @@ namespace IdlingComplaints.Tests.Register
         }
 
         private readonly int SLEEP_TIMER = 1000;
-
+        private readonly string successfulEmailFile = "C:\\Users\\kchen\\source\\repos\\IdlingComplaintLatestRefactoring\\IdlingComplaintTest3\\Tests\\Register\\SuccessfulEmailRegistration.txt";
         [Test]
         [Category("Successful Registration")]
         public void SuccessfulRegistration()
         {
+
             FirstNameControl.SendKeysWithDelay("Jane", SLEEP_TIMER);
             LastNameControl.SendKeysWithDelay("Doe", SLEEP_TIMER);
-            EmailControl.SendKeysWithDelay(StringUtilities.GenerateRandomEmail(), SLEEP_TIMER);
+            string generatedEmail = StringUtilities.GenerateRandomEmail();
+            EmailControl.SendKeysWithDelay(generatedEmail, SLEEP_TIMER);
             PasswordControl.SendKeysWithDelay("T3sting@1234", SLEEP_TIMER);
             ConfirmPasswordControl.SendKeysWithDelay("T3sting@1234", SLEEP_TIMER);
             SelectSecurityQuestion(1);
@@ -64,9 +66,27 @@ namespace IdlingComplaints.Tests.Register
             {
                 var snackBarError = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
                 Assert.IsNotNull(snackBarError);
+                if (snackBarError.Text.Trim().Contains("successful"))
+                {
+                    using (StreamWriter sw = File.AppendText(successfulEmailFile))
+                    {
+                        try
+                        {
+                            sw.WriteLine(generatedEmail);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Cannot Write into File");
+                            Console.WriteLine(ex.ToString());
+                        }
+                    }
+                } 
                 Assert.That(snackBarError.Text.Trim(), Is.EqualTo("Registration has been completed successfully."), "Flagged for inconsistency on purpose."); //Added period for consistency with other error messaging
                 return snackBarError;
             });
+
+            
+
         }
 
         [Test]

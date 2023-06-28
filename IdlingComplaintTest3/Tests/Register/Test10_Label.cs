@@ -182,7 +182,7 @@ namespace IdlingComplaints.Tests.Register
 
         [Test]
         [Category("Correct Label Displayed")]
-        public void DisplayedSecurityQuestionOne()
+        public void DisplayedSecurityQuestion1()
         {
             SelectSecurityQuestion(1);
             Assert.That(selectedSecurityQuestionControl, Is.EqualTo(Constants.SEC_QUESTION_1));
@@ -190,7 +190,7 @@ namespace IdlingComplaints.Tests.Register
 
         [Test]
         [Category("Correct Label Displayed")]
-        public void DisplayedSecurityQuestionTwo()
+        public void DisplayedSecurityQuestion2()
         {
             SelectSecurityQuestion(2);
             Assert.That(selectedSecurityQuestionControl, Is.EqualTo(Constants.SEC_QUESTION_2));
@@ -198,7 +198,7 @@ namespace IdlingComplaints.Tests.Register
 
         [Test]
         [Category("Correct Label Displayed")]
-        public void DisplayedSecurityQuestionThree()
+        public void DisplayedSecurityQuestion3()
         {
             SelectSecurityQuestion(3);
             Assert.That(selectedSecurityQuestionControl, Is.EqualTo(Constants.SEC_QUESTION_3));
@@ -206,7 +206,7 @@ namespace IdlingComplaints.Tests.Register
 
         [Test]
         [Category("Correct Label Displayed")]
-        public void DisplayedSecurityQuestionFour()
+        public void DisplayedSecurityQuestion4()
         {
             SelectSecurityQuestion(4);
             Assert.That(selectedSecurityQuestionControl, Is.EqualTo(Constants.SEC_QUESTION_4), "Flagged for inconsistency on purpose.");
@@ -214,7 +214,7 @@ namespace IdlingComplaints.Tests.Register
 
         [Test]
         [Category("Correct Label Displayed")]
-        public void DisplayedSecurityQuestionFive()
+        public void DisplayedSecurityQuestion5()
         {
             SelectSecurityQuestion(5);
             Assert.That(selectedSecurityQuestionControl, Is.EqualTo(Constants.SEC_QUESTION_5));
