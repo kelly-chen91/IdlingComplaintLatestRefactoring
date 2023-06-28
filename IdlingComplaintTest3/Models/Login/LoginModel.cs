@@ -13,6 +13,7 @@ namespace IdlingComplaints.Models.Login
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
+            
             Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/login");
             // Driver.Manage().Window.Size = new Size(1920, 1200);
             Driver.Manage().Window.Maximize();

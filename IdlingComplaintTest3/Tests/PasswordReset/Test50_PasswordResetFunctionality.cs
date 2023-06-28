@@ -21,7 +21,7 @@ namespace IdlingComplaints.Tests.PassordReset
         public void Setup()
         {
             Driver.Quit();
-            Driver = CreateDriver("chrome");
+            Driver = CreateStandardDriver("chrome");
             Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/password-reset");
             EmailControl.SendKeysWithDelay("TTseng@dep.nyc.gov", SLEEP_TIMER);
             ClickResetButton();

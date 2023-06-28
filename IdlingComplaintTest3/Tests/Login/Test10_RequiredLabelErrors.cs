@@ -17,7 +17,7 @@ namespace IdlingComplaints.Tests.Login
         public void SetUp()
         {
             Driver.Quit();
-            Driver = CreateDriver("chrome");
+            Driver = CreateStandardDriver("chrome");
             Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/login");
             Driver.Manage().Window.Size = new Size(1920, 1200);
             Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
