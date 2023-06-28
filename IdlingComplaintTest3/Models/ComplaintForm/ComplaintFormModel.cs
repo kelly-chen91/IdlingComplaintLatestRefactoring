@@ -223,6 +223,43 @@ namespace IdlingComplaints.Models.ComplaintForm
             }
         }
 
+        public String Occurrence_OnStreetInput
+        {
+            get
+            {
+                return Occurrence_OnStreetControl.GetAttribute("value");
+            }
+            set
+            {
+                Occurrence_OnStreetControl.SendKeys(value);
+            }
+        }
+
+        public String Occurrence_CrossStreet1Input
+        {
+            get
+            {
+                return Occurrence_CrossStreet1Control.GetAttribute("value");
+            }
+            set
+            {
+                Occurrence_CrossStreet1Control.SendKeys(value);
+            }
+        }
+
+        public String Occurrence_CrossStreet2Input
+        {
+            get
+            {
+                return Occurrence_CrossStreet2Control.GetAttribute("value");
+            }
+            set
+            {
+                Occurrence_CrossStreet2Control.SendKeys(value);
+            }
+        }
+
+
         public String Occurrence_LicensePlateInput
         {
             get

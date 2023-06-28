@@ -223,7 +223,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
 
         [Test]
         [Category("Required Field Provided - Error Label Hidden")]
-        public void Occurrence_ProvidedHouseNumber()
+        public void Occurrence_ProvidedHouseNumberInFrontOf()
         {
             Occurrence_SelectLocation(2);
             Occurrence_HouseNumControl.SendKeysWithDelay("XXX", SLEEP_TIMER);
@@ -233,11 +233,66 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
 
         [Test]
         [Category("Required Field Provided - Error Label Hidden")]
-        public void Occurrence_ProvidedStreetName()
+        public void Occurrence_ProvidedStreetNameInFrontOf()
         {
             Occurrence_SelectLocation(2);
             Occurrence_StreetNameControl.DeleteText(Occurrence_StreetInput);
             Occurrence_StreetNameControl.SendKeysWithDelay("XXX", SLEEP_TIMER);
+            string error = Driver.ExtractTextFromXPath("//div[3]/mat-form-field[2]/div/div[3]/div/mat-error/text()");
+            Assert.That(error, Is.EqualTo(string.Empty));
+        }
+
+        [Test]
+        [Category("Required Field Provided - Error Label Hidden")]
+        public void Occurrence_ProvidedOnStreetBetween()
+        {
+            Occurrence_SelectLocation(1);
+            Occurrence_OnStreetControl.DeleteText(Occurrence_OnStreetInput);
+            Occurrence_OnStreetControl.SendKeysWithDelay("XXX", SLEEP_TIMER);
+            string error = Driver.ExtractTextFromXPath("//div[2]/mat-form-field[2]/div/div[3]/div/mat-error/text()");
+            Assert.That(error, Is.EqualTo(string.Empty));
+        }
+
+        [Test]
+        [Category("Required Field Provided - Error Label Hidden")]
+        public void Occurrence_ProvidedCrossStreet1Between()
+        {
+            Occurrence_SelectLocation(1);
+            Occurrence_CrossStreet1Control.DeleteText(Occurrence_CrossStreet1Input);
+            Occurrence_CrossStreet1Control.SendKeysWithDelay("XXX", SLEEP_TIMER);
+            string error = Driver.ExtractTextFromXPath("//div[3]/mat-form-field[1]/div/div[3]/div/mat-error/text()");
+            Assert.That(error, Is.EqualTo(string.Empty));
+        }
+
+        [Test]
+        [Category("Required Field Provided - Error Label Hidden")]
+        public void Occurrence_ProvidedCrossStreet2Between()
+        {
+            Occurrence_SelectLocation(1);
+            Occurrence_CrossStreet2Control.DeleteText(Occurrence_CrossStreet2Input);
+            Occurrence_CrossStreet2Control.SendKeysWithDelay("XXX", SLEEP_TIMER);
+            string error = Driver.ExtractTextFromXPath("//div[3]/mat-form-field[2]/div/div[3]/div/mat-error/text()");
+            Assert.That(error, Is.EqualTo(string.Empty));
+        }
+
+        [Test]
+        [Category("Required Field Provided - Error Label Hidden")]
+        public void Occurrence_ProvidedCrossStreet1Intersection()
+        {
+            Occurrence_SelectLocation(1);
+            Occurrence_CrossStreet1Control.DeleteText(Occurrence_CrossStreet1Input);
+            Occurrence_CrossStreet1Control.SendKeysWithDelay("XXX", SLEEP_TIMER);
+            string error = Driver.ExtractTextFromXPath("//div[3]/mat-form-field[1]/div/div[3]/div/mat-error/text()");
+            Assert.That(error, Is.EqualTo(string.Empty));
+        }
+
+        [Test]
+        [Category("Required Field Provided - Error Label Hidden")]
+        public void Occurrence_ProvidedCrossStreet2Intersection()
+        {
+            Occurrence_SelectLocation(1);
+            Occurrence_CrossStreet2Control.DeleteText(Occurrence_CrossStreet2Input);
+            Occurrence_CrossStreet2Control.SendKeysWithDelay("XXX", SLEEP_TIMER);
             string error = Driver.ExtractTextFromXPath("//div[3]/mat-form-field[2]/div/div[3]/div/mat-error/text()");
             Assert.That(error, Is.EqualTo(string.Empty));
         }
