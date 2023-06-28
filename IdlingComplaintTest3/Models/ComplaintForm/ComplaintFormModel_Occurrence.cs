@@ -228,5 +228,9 @@ namespace IdlingComplaints.Models.ComplaintForm
             Thread.Sleep(1000);
         }
 
+        public void ScrollToLicensePlate()
+        {
+            Driver.ScrollTo(Occurrence_LicensePlateControl);
+        }
     }
 }
