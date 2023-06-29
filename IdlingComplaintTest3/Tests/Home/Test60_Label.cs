@@ -10,7 +10,11 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.Home
 {
+<<<<<<<< HEAD:IdlingComplaintTest3/Tests/Home/Test60_Label.cs
     internal class Test60_Label : HomeModel
+========
+    internal class Test50_Label : HomeModel
+>>>>>>>> e818ac622b927c70ddffb813c1daa44051f9ae3f:IdlingComplaintTest3/Tests/Home/Test50_Label.cs
     {
         [OneTimeSetUp]
         public void OneTimeSetUp()

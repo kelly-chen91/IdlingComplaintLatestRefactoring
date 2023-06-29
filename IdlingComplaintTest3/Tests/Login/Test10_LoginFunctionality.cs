@@ -11,7 +11,11 @@ namespace IdlingComplaints.Tests.Login;
 
 /*This is user login verification test*/
 
+<<<<<<<< HEAD:IdlingComplaintTest3/Tests/Login/Test10_LoginFunctionality.cs
 internal class Test10_LoginFunctionality : LoginModel
+========
+internal class Test10_LogInFunctionality : LoginModel
+>>>>>>>> e818ac622b927c70ddffb813c1daa44051f9ae3f:IdlingComplaintTest3/Tests/Login/Test10_LogInFunctionality.cs
 {
     [SetUp]
     public void SetUp()

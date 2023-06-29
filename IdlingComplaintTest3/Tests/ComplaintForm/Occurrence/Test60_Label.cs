@@ -11,9 +11,15 @@ using SeleniumUtilities.Utils;
 
 namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
 {
+<<<<<<<< HEAD:IdlingComplaintTest3/Tests/ComplaintForm/Occurrence/Test60_Label.cs
     internal class Test60_Label : ComplaintFormModel
     {
         public Test60_Label() { }
+========
+    internal class Test50_Label : ComplaintFormModel
+    {
+        public Test50_Label() { }
+>>>>>>>> e818ac622b927c70ddffb813c1daa44051f9ae3f:IdlingComplaintTest3/Tests/ComplaintForm/Occurrence/Test50_Label.cs
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {

@@ -9,7 +9,11 @@ using SeleniumUtilities.Utils;
 namespace IdlingComplaints.Tests.Login
 {
 
+<<<<<<<< HEAD:IdlingComplaintTest3/Tests/Login/Test60_Label.cs
     internal class Test60_Label : LoginModel
+========
+    internal class Test50_Label : LoginModel
+>>>>>>>> e818ac622b927c70ddffb813c1daa44051f9ae3f:IdlingComplaintTest3/Tests/Login/Test50_Label.cs
     {
         
         [OneTimeSetUp]
