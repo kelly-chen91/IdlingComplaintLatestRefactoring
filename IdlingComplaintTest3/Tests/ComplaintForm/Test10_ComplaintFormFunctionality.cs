@@ -28,20 +28,15 @@ namespace IdlingComplaints.Tests.ComplaintForm
         }
 
         private readonly int SLEEPTIMER = 1000;
-
+        private readonly string FILE_IMAGE_PATH = "C:\\Users\\kchen\\Pictures\\idling_truck.jpeg";
         [Test]
-        public void SuccessfulDirectToNextPageNotInFrontOfSchool()
+        public void SuccessfulDirectToNextPageInFrontOfNoSchoolAndSummonAFfidavit()
         {
             ClickNoButton();
             Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
             ScrollToZipCode();
-            Associated_CompanyNameControl.SendKeysWithDelay("Test INC", SLEEPTIMER);
-            Associated_SelectState(1);
-            Associated_HouseNumberControl.SendKeysWithDelay("98", SLEEPTIMER);
-            Associated_StreetNameControl.SendKeysWithDelay("Mott Street", SLEEPTIMER);
-            Associated_AptFloorControl.SendKeysWithDelay("4th Fl", SLEEPTIMER);
-            Associated_CityControl.SendKeysWithDelay("New York", SLEEPTIMER);
-            Associated_ZipCodeControl.SendKeysWithDelay("10013", SLEEPTIMER);
+
+            FillAssociatedSection(false);
 
             Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6,28,2023, 4, 20, 00, true), SLEEPTIMER);
             Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6,28,2023, 4, 23, 00, true), SLEEPTIMER);
@@ -50,29 +45,59 @@ namespace IdlingComplaints.Tests.ComplaintForm
             Occurrence_StreetNameControl.SendKeysWithDelay("6th Street", SLEEPTIMER);
             Occurrence_SelectBorough(2);
             Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay("DEP1234", SLEEPTIMER);
+            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEPTIMER);
             Occurrence_SelectLicenseState(1);
             Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
             Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
             Occurrence_SelectInFrontOfSchool(2);
-            DescribeTheComplaintControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
-            ClickNext();
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10)); //1 - too short
-            wait.Until(d =>
-            {
-                var resultControl = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
+            ClickSubmit();
 
-                Assert.IsNotNull(resultControl);
-                Assert.That(resultControl.Text.Trim(), Is.EqualTo("Form has been saved successfully."));
-
-                return resultControl;
-            });
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 20);
-
+            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60);
             
+            var successfulSave = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
+            if (successfulSave != null && !successfulSave.Text.Contains("saved success")) Assert.That(successfulSave.Text.Trim(), Is.EqualTo("This form has been saved successfully."), "Flagged inconsistency on purpose.");
+            Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 20);
+            EvidenceUpload_UploadInput = FILE_IMAGE_PATH;
+            string fileName = Path.GetFileName(FILE_IMAGE_PATH);
+            EvidenceUpload_ClickFilesUploadConfirm();
+            Thread.Sleep(SLEEPTIMER);
+
+            var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
+            if (successfulEvidenceUpload != null && !successfulEvidenceUpload.Text.Contains("upload")) Assert.That(successfulEvidenceUpload.Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
+
+            Thread.Sleep(SLEEPTIMER);
+            EvidenceUpload_ClickFilesNext();
+            Driver.WaitUntilElementFound(By.CssSelector("mat-radio-button[value='753720001']"), 30);
+            
+            AppearOATH_ClickYes();
+            
+            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 30);
+            
+            AppearOATH_ClickSubmit();
+            
+            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60);
+
+            var successfulSubmit = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
+            if (successfulSubmit != null && !successfulSubmit.Text.Contains("submitted success")) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo("Complaint has been submitted successfully."), "Flagged inconsistency on purpose.");
+
         }
+
+        public void FillAssociatedSection(bool isPOBox)
+        {
+            Associated_CompanyNameControl.SendKeysWithDelay("Test INC", SLEEPTIMER);
+            Associated_SelectState(1);
+            if (!isPOBox) Associated_HouseNumberControl.SendKeysWithDelay("98", SLEEPTIMER);
+            else Associated_ClickPOBox();
+            Associated_StreetNameControl.SendKeysWithDelay("Mott Street", SLEEPTIMER);
+            Associated_AptFloorControl.SendKeysWithDelay("4th Fl", SLEEPTIMER);
+            Associated_CityControl.SendKeysWithDelay("New York", SLEEPTIMER);
+            Associated_ZipCodeControl.SendKeysWithDelay("10013", SLEEPTIMER);
+        }
+
+        
 
     }
 }

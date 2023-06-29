@@ -16,19 +16,19 @@ namespace IdlingComplaints.Models.ComplaintForm
 
         public IWebElement NoButtonControl => Driver.FindElement(By.CssSelector("mat-radio-button[value = 'No']"));
 
-        public IWebElement DescribeTheComplaintControl => Driver.FindElement(By.CssSelector("textarea[formcontrolname='idc_associateddescrip']"));
+        public IWebElement Describe_ContentControl => Driver.FindElement(By.CssSelector("textarea[formcontrolname='idc_associateddescrip']"));
         public IWebElement WitnessCertCheckboxControl => Driver.FindElement(By.CssSelector("mat-checkbox[formcontrolname='certcheckbox']"));
         public IWebElement SubmitNoCorrectionCheckboxControl => Driver.FindElement(By.CssSelector("mat-checkbox[formcontrolname='certcheckbox2']"));
-        public IWebElement NextButtonControl => Driver.FindElement(By.CssSelector("button[type='submit']"));
+        public IWebElement SubmitButtonControl => Driver.FindElement(By.CssSelector("button[type='submit']"));
         public String DescribeTheComplaintInput
         {
             get
             {
-                return DescribeTheComplaintControl.GetAttribute("value");
+                return Describe_ContentControl.GetAttribute("value");
             }
             set
             {
-                DescribeTheComplaintControl.SendKeys(value);
+                Describe_ContentControl.SendKeys(value);
             }
         }
 
@@ -44,11 +44,6 @@ namespace IdlingComplaints.Models.ComplaintForm
             NoButtonControl.Click();
         }
 
-        public void ClickNPOBoxButton()
-        {
-
-            NoButtonControl.Click();
-        }
 
         public void ScrollToZipCode()
         {
@@ -67,9 +62,9 @@ namespace IdlingComplaints.Models.ComplaintForm
             SubmitNoCorrectionCheckboxControl.Click();
         }
 
-        public void ClickNext()
+        public void ClickSubmit()
         {
-            NextButtonControl.Click();
+            SubmitButtonControl.Click();
         }
 
     }

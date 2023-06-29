@@ -36,12 +36,14 @@ namespace IdlingComplaints.Models.ComplaintForm
         public IWebElement Associated_RequireHouseNumberControl => Driver.FindElement(By.CssSelector("mat-error[id='mat-error-24']"));
         public IWebElement Associated_RequireStreetNameControl => Driver.FindElement(By.CssSelector("mat-error[id='mat-error-12']"));
 
+        /*Label Test for*/
+        public IWebElement Associated_POBoxControl => Driver.FindElement(By.CssSelector("mat-checkbox[formcontrolname='idc_ispobox']"));
+
         public string associated_SelectedStateControl = "--";
 
         //  Lable from Describe the complaint section
        // public IWebElement Describe_TitleControl => Driver.FindElement(By.Extra("mat-error[id='mat-error-11']"));
 
-        public IWebElement Describe_ContentControl => Driver.FindElement(By.CssSelector("textarea[formcontrolname='idc_associateddescrip']"));
 
 
 
@@ -110,6 +112,11 @@ namespace IdlingComplaints.Models.ComplaintForm
             {
                 Associated_ZipCodeControl.SendKeys(value);
             }
+        }
+
+        public void Associated_ClickPOBox()
+        {
+            Associated_POBoxControl.Click();
         }
 
 
