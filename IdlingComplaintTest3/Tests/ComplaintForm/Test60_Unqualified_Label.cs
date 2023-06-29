@@ -9,11 +9,7 @@ using IdlingComplaints.Tests.ComplaintForm.Complaint;
 
 namespace IdlingComplaints.Tests.ComplaintForm
 {
-<<<<<<<< HEAD:IdlingComplaintTest3/Tests/ComplaintForm/Test60_Unqualified_Label.cs
     internal class Test60_Unqualified_Label : ComplaintFormModel
-========
-    internal class Test50_Unqualified_Label : ComplaintFormModel
->>>>>>>> e818ac622b927c70ddffb813c1daa44051f9ae3f:IdlingComplaintTest3/Tests/ComplaintForm/Test50_Unqualified_Label.cs
     {
         [OneTimeSetUp]
         public void OneTimeSetUp()

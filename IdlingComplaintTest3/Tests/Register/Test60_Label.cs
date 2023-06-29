@@ -12,11 +12,7 @@ using IdlingComplaints.Models.Register;
 namespace IdlingComplaints.Tests.Register
 {
 
-<<<<<<<< HEAD:IdlingComplaintTest3/Tests/Register/Test60_Label.cs
     internal class Test60_Label : RegisterModel
-========
-    internal class Test50_Label : RegisterModel
->>>>>>>> e818ac622b927c70ddffb813c1daa44051f9ae3f:IdlingComplaintTest3/Tests/Register/Test50_Label.cs
     {
 
         [OneTimeSetUp]
