@@ -40,8 +40,8 @@ namespace IdlingComplaints.Tests.Register
         }
 
         private readonly int SLEEP_TIMER = 1000;
-       // private readonly string successfulEmailFile = ".\\Text_SuccessfulEmailRegistration.txt";
-        private readonly string successfulEmailFile = "C:\\Users\\Yyang\\Desktop\\Project\\IdlingComplaintTest3\\Tests\\Register\\Text_SuccessfulEmailRegistration.txt";
+      // private readonly string successfulEmailFile = ".\\Text_SuccessfulEmailRegistration.txt";
+       private readonly string successfulEmailFile = "C:\\Users\\Yyang\\Desktop\\Project\\IdlingComplaintTest3\\Tests\\Register\\Text_SuccessfulEmailRegistration.txt";
 
         [Test]
         [Category("Random text input Registration")]
@@ -90,7 +90,7 @@ namespace IdlingComplaints.Tests.Register
                     {
                         try
                         {
-                            sw.WriteLine(generatedEmail+ ","+password);
+                            sw.WriteLine(generatedEmail+ " "+password);
                             Console.WriteLine("Accessed the file");
                         }
                         catch (Exception ex)

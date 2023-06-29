@@ -53,5 +53,22 @@ namespace SeleniumUtilities.Utils
 
             return seriseRandomnumbers;
         }
+
+        //This method will read the last record from the Text_SuccessfulEmailRegistration.txt
+        public static string ReadTheLatestRegistrationRecord(string filePath, int emailOrPassword)
+        {
+            string lastRow = File.ReadLines(filePath).LastOrDefault();
+
+            if (!string.IsNullOrEmpty(lastRow))
+            {
+                string[] words = lastRow.Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
+                if (words.Length >= 2)
+                {
+                    return words[emailOrPassword];
+                }
+            }
+
+            return "";
+        }
     }
 }
