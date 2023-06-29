@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.PassordReset
 {
-    internal class Test20_MaxLength_ConfirmReset : Test50_Label_ConfirmReset
+    internal class Test50_MaxLength_ConfirmReset : Test60_Label_ConfirmReset
     {
         [OneTimeSetUp]
         public new void OneTimeSetUp()

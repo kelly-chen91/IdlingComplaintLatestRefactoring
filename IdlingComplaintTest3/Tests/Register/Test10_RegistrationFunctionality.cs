@@ -40,9 +40,72 @@ namespace IdlingComplaints.Tests.Register
         }
 
         private readonly int SLEEP_TIMER = 1000;
-        private readonly string successfulEmailFile = "C:\\Users\\kchen\\source\\repos\\IdlingComplaintLatestRefactoring\\IdlingComplaintTest3\\Tests\\Register\\SuccessfulEmailRegistration.txt";
-        
+       // private readonly string successfulEmailFile = ".\\Text_SuccessfulEmailRegistration.txt";
+        private readonly string successfulEmailFile = "C:\\Users\\Yyang\\Desktop\\Project\\IdlingComplaintTest3\\Tests\\Register\\Text_SuccessfulEmailRegistration.txt";
+
         [Test]
+        [Category("Random text input Registration")]
+        public void RandomtextRegistration()
+        {
+            FirstNameControl.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
+            LastNameControl.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
+           
+            string generatedEmail = RegistrationUtilities.GenerateEmail(RegistrationUtilities.GenerateRandomString(), RegistrationUtilities.GenerateRandomString(), RegistrationUtilities.GenerateRandomString());
+            EmailControl.SendKeysWithDelay(generatedEmail, SLEEP_TIMER);
+
+            //string password = RegistrationUtilities.GenerateRandomString();
+            string password = "Password1!";
+            PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
+            ConfirmPasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
+
+            int securityRandomNumber = RegistrationUtilities.GenerateRandomNumberWithRange(0, 5);
+            Console.WriteLine("securityNumber is " + securityRandomNumber+ " . And the Qustion is " + RegistrationUtilities.GenerateRandomString());
+            SelectSecurityQuestion(securityRandomNumber);
+
+            SecurityAnswerControl.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
+            Address1Control.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
+            Address2Control.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
+            CityControl.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
+
+            int stateRandomNumber = RegistrationUtilities.GenerateRandomNumberWithRange(0, 49);
+            Console.WriteLine("The state number is " + stateRandomNumber + " . And the State selected is " + StateControl);
+            SelectState(stateRandomNumber);
+
+            string zipCodeNumbers = RegistrationUtilities.GenerateSeriseNumbers();
+            ZipCodeControl.SendKeysWithDelay(zipCodeNumbers, SLEEP_TIMER);
+
+            string TelephoneNumbers = RegistrationUtilities.GenerateSeriseNumbers();
+            TelephoneControl.SendKeysWithDelay(TelephoneNumbers, SLEEP_TIMER);
+           
+            ScrollToButton();
+            ClickSubmitButton();
+            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(20));
+            wait.Until(d =>
+            {
+                var snackBarError = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
+                Assert.IsNotNull(snackBarError);
+                if (snackBarError.Text.Trim().Contains("successful"))
+                {
+                    using (StreamWriter sw = File.AppendText(successfulEmailFile))
+                    {
+                        try
+                        {
+                            sw.WriteLine(generatedEmail+ ","+password);
+                            Console.WriteLine("Accessed the file");
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Cannot Write into File");
+                            Console.WriteLine(ex.ToString());
+                        }
+                    }
+                }
+                Assert.That(snackBarError.Text.Trim(), Is.EqualTo("Registration has been completed successfully"), "Flagged for inconsistency on purpose."); //Added period for consistency with other error messaging
+                return snackBarError;
+            });
+        }
+
+            [Test]
         [Category("Successful Registration")]
         public void SuccessfulRegistration()
         {
@@ -93,7 +156,8 @@ namespace IdlingComplaints.Tests.Register
         {
             FirstNameControl.SendKeysWithDelay("Jane", SLEEP_TIMER);
             LastNameControl.SendKeysWithDelay("Doe", SLEEP_TIMER);
-            EmailControl.SendKeysWithDelay("kchen@dep.nyc.gov", SLEEP_TIMER);
+            // EmailControl.SendKeysWithDelay(StringUtilities.GenerateEmail(StringUtilities.GenerateRandomString(5), StringUtilities.GenerateRandomString(5), StringUtilities.GenerateRandomString(5)), SLEEP_TIMER);
+            EmailControl.SendKeysWithDelay("TTseng@dep.nyc.gov", SLEEP_TIMER);
             PasswordControl.SendKeysWithDelay("T3sting@1234", SLEEP_TIMER);
             ConfirmPasswordControl.SendKeysWithDelay("T3sting@1234", SLEEP_TIMER);
             SelectSecurityQuestion(1);

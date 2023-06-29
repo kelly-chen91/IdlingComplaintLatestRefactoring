@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.Register
 {
-    internal class Test20_MaxLength : RegisterModel
+    internal class Test50_MaxLength : RegisterModel
     {
         // private readonly RegisterModel registerModel;
 
