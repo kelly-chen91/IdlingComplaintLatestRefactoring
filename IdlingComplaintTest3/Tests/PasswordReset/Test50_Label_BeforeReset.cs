@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.PassordReset
 {
+   // [Parallelizable(ParallelScope.Children)]
+   // [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
     internal class Test10_Label_BeforeReset : PasswordResetModel
     {
         [OneTimeSetUp]
