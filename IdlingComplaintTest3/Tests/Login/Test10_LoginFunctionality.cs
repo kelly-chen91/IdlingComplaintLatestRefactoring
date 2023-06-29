@@ -33,6 +33,26 @@ internal class Test10_LoginFunctionality : LoginModel
     }
 
     private readonly int SLEEP_TIMER = 2000;
+    private readonly string successfulEmailFile = "C:\\Users\\Yyang\\Desktop\\Project\\IdlingComplaintTest3\\Tests\\Register\\Text_SuccessfulEmailRegistration.txt";
+
+
+
+    [Test]
+    [Category("Valid Login Loads New Page")]
+    public void LatestRecordVerification()
+    {
+        string email = RegistrationUtilities.ReadTheLatestRegistrationRecord(successfulEmailFile, 0);
+        string password = RegistrationUtilities.ReadTheLatestRegistrationRecord(successfulEmailFile, 1);
+
+        EmailControl.SendKeysWithDelay(email, SLEEP_TIMER);
+        PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
+        ClickLoginButton();
+
+        Driver.WaitUntilElementFound(By.CssSelector("button[routerlink='idlingcomplaint/new']"), 20);
+        Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
+    }
+
+
 
     //Explicit wait to test user login 
     [Test]
