@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
 {
-    internal class Test10_RequiredLabelErrors : ComplaintFormModel
+    internal class Test30_RequiredLabelErrors : ComplaintFormModel
     {
         [OneTimeSetUp]
         public void OneTimeSetUp()

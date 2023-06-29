@@ -9,7 +9,7 @@ using SeleniumUtilities.Utils;
 namespace IdlingComplaints.Tests.Login
 {
 
-    internal class Test10_Label : LoginModel
+    internal class Test50_Label : LoginModel
     {
         
         [OneTimeSetUp]

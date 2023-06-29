@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.Home
 {
-    internal class Test50_OpenComplaintFunctionality : HomeModel
+    internal class Test10_OpenComplaintFunctionality : HomeModel
     {
         private readonly int SLEEP_TIMER = 2000;
 
-        public Test50_OpenComplaintFunctionality() { }
+        public Test10_OpenComplaintFunctionality() { }
         [SetUp]
         public void SetUp()
         {
