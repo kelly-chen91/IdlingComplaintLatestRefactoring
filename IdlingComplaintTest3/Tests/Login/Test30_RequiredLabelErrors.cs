@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.Login
 {
-    internal class Test10_RequiredLabelErrors : LoginModel
+    internal class Test30_RequiredLabelErrors : LoginModel
     {
         private readonly int SLEEP_TIMER = 1000;
 

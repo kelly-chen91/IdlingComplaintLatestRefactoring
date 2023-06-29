@@ -13,7 +13,7 @@ namespace IdlingComplaints.Tests.Register
 {
     //[Parallelizable(ParallelScope.Children)]
     //[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
-    internal class Test10_RequiredLabelErrors : RegisterModel
+    internal class Test30_RequiredLabelErrors : RegisterModel
     {
 
         //[LoginModelSetUp]

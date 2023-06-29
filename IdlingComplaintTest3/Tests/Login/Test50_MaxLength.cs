@@ -5,7 +5,7 @@ namespace IdlingComplaints.Tests.Login
 {
     //[Parallelizable(ParallelScope.Children)]
     //[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
-    internal class Test20_MaxLength : LoginModel
+    internal class Test50_MaxLength : LoginModel
     {
         private const int MAXLENGTH = 50;
 

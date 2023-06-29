@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.ComplaintForm
 {
-    internal class ComplaintFormFunctionality : ComplaintFormModel
+    internal class Test10_ComplaintFormFunctionality : ComplaintFormModel
     {
 
         [SetUp]

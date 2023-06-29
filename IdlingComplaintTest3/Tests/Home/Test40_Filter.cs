@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.Home
 {
-    internal class Test30_Filter : HomeModel
+    internal class Test40_Filter : HomeModel
     {
         private readonly int SLEEP_TIMER = 2000;
 
-        public Test30_Filter() { }
+        public Test40_Filter() { }
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
