@@ -16,8 +16,10 @@ namespace IdlingComplaints.Tests.PassordReset
     internal class Test10_PasswordResetFunctionality : PasswordResetModel
     {
         private readonly int SLEEP_TIMER = 2000;
+         private readonly string successfulEmailFile = "C:\\Users\\Yyang\\Desktop\\Project\\IdlingComplaintTest3\\Tests\\Register\\Text_SuccessfulEmailRegistration.txt";
+      //  private readonly string successfulEmailFile = "./Text_SuccessfulEmailRegistration.txt";
 
-        [SetUp]
+          [SetUp]
         public void Setup()
         {
             //Driver.Quit();
@@ -39,6 +41,30 @@ namespace IdlingComplaints.Tests.PassordReset
             //Driver.Quit();
             base.PasswordResetModelTearDown();
         }
+
+        [Test, Category("Valid Reset")]
+        public void LastestUserPasswordReset()
+        {
+            string securityAnswer = RegistrationUtilities.ReadTheLatestRegistrationRecord(successfulEmailFile, 2);
+            SecurityAnswerControl.SendKeysWithDelay(securityAnswer, SLEEP_TIMER);
+
+            string password = RegistrationUtilities.GeneratePassword();
+            PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
+            ConfirmPasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
+            ClickSubmitButton();
+
+            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(30));
+            wait.Until(d =>
+            {
+                var resetControl = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
+
+                Assert.IsNotNull(resetControl);
+                Assert.That(resetControl.Text.Trim(), Is.EqualTo("Password has been reset successfully."));
+
+                return resetControl;
+            });
+        }
+
 
         [Test, Category("Valid Reset")]
         public void SuccessfulPasswordReset()

@@ -26,8 +26,9 @@ namespace IdlingComplaints.Tests.Register
             //Driver.Quit();
             //Driver = CreateStandardDriver("chrome");
             //Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/profile");
-            //Driver.Manage().Window.Size = new Size(1920, 1200);
+            
             base.RegisterModelSetUp(false);
+            Driver.Manage().Window.Size = new Size(1920, 1200);
         }
 
         [TearDown]
@@ -40,8 +41,9 @@ namespace IdlingComplaints.Tests.Register
         }
 
         private readonly int SLEEP_TIMER = 1000;
-      // private readonly string successfulEmailFile = ".\\Text_SuccessfulEmailRegistration.txt";
-       private readonly string successfulEmailFile = "C:\\Users\\Yyang\\Desktop\\Project\\IdlingComplaintTest3\\Tests\\Register\\Text_SuccessfulEmailRegistration.txt";
+        // private readonly string successfulEmailFile = ".\\Text_SuccessfulEmailRegistration.txt";
+        private readonly string successfulEmailFile = "C:\\Users\\Yyang\\Desktop\\Project\\IdlingComplaintTest3\\Tests\\Register\\Text_SuccessfulEmailRegistration.txt";
+       // private readonly string successfulEmailFile = "./Text_SuccessfulEmailRegistration.txt";
 
         [Test]
         [Category("Random text input Registration")]
@@ -54,15 +56,16 @@ namespace IdlingComplaints.Tests.Register
             EmailControl.SendKeysWithDelay(generatedEmail, SLEEP_TIMER);
 
             //string password = RegistrationUtilities.GenerateRandomString();
-            string password = "Password1!";
+            string password = RegistrationUtilities.GeneratePassword();
             PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
             ConfirmPasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
 
             int securityRandomNumber = RegistrationUtilities.GenerateRandomNumberWithRange(0, 5);
-            Console.WriteLine("securityNumber is " + securityRandomNumber+ " . And the Qustion is " + RegistrationUtilities.GenerateRandomString());
             SelectSecurityQuestion(securityRandomNumber);
 
-            SecurityAnswerControl.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
+            string securityAnswer = RegistrationUtilities.GenerateRandomString();
+            SecurityAnswerControl.SendKeysWithDelay(securityAnswer, SLEEP_TIMER);
+
             Address1Control.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
             Address2Control.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
             CityControl.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
@@ -90,7 +93,7 @@ namespace IdlingComplaints.Tests.Register
                     {
                         try
                         {
-                            sw.WriteLine(generatedEmail+ " "+password);
+                            sw.WriteLine(generatedEmail+ " "+password+" "+ securityAnswer);
                             Console.WriteLine("Accessed the file");
                         }
                         catch (Exception ex)
@@ -105,7 +108,7 @@ namespace IdlingComplaints.Tests.Register
             });
         }
 
-            [Test]
+        [Test]
         [Category("Successful Registration")]
         public void SuccessfulRegistration()
         {
