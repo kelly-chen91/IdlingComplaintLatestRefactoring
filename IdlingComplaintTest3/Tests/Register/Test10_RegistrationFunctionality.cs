@@ -13,6 +13,7 @@ using System.IO;
 using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
 using log4net.Repository;
 using log4net;
+using System.Reflection;
 
 namespace IdlingComplaints.Tests.Register
 {
@@ -40,8 +41,9 @@ namespace IdlingComplaints.Tests.Register
         }
 
         private readonly int SLEEP_TIMER = 1000;
-      // private readonly string successfulEmailFile = ".\\Text_SuccessfulEmailRegistration.txt";
-       private readonly string successfulEmailFile = "C:\\Users\\Yyang\\Desktop\\Project\\IdlingComplaintTest3\\Tests\\Register\\Text_SuccessfulEmailRegistration.txt";
+        // private readonly string successfulEmailFile = ".\\Text_SuccessfulEmailRegistration.txt";
+        //private readonly string successfulEmailFile = "C:\\Users\\Yyang\\Desktop\\Project\\IdlingComplaintTest3\\Tests\\Register\\Text_SuccessfulEmailRegistration.txt";
+        private readonly string successfulEmailFile = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Text\\Register_SuccessfulEmailRegistration.txt";
 
         [Test]
         [Category("Random text input Registration")]
@@ -123,6 +125,7 @@ namespace IdlingComplaints.Tests.Register
             SelectState(1);
             ZipCodeControl.SendKeysWithDelay("11373", SLEEP_TIMER);
             TelephoneControl.SendKeysWithDelay("631-632-9800", SLEEP_TIMER);
+            Console.WriteLine(successfulEmailFile);
             ScrollToButton();
             ClickSubmitButton();
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(20));
