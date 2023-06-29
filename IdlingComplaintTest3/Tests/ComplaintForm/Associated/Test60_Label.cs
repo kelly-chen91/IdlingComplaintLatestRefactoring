@@ -15,7 +15,8 @@ using static System.Net.Mime.MediaTypeNames;
 namespace IdlingComplaints.Tests.ComplaintForm.Complainant
 {
     internal class Test60_Label : ComplaintFormModel
-    {
+    { 
+
         private readonly int SLEEP_TIMER = 2000;
 
         [OneTimeSetUp]

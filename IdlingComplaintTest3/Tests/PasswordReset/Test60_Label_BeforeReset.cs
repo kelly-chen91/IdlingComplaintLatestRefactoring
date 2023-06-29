@@ -12,10 +12,11 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.PassordReset
 {
-   // [Parallelizable(ParallelScope.Children)]
-   // [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
-    internal class Test60_Label_BeforeReset : PasswordResetModel
-    {
+    // [Parallelizable(ParallelScope.Children)]
+    // [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
+    internal class Test60_Label_BeforeReset : PasswordResetModel 
+    { 
+
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {

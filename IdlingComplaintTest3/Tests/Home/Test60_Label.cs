@@ -11,7 +11,8 @@ using System.Threading.Tasks;
 namespace IdlingComplaints.Tests.Home
 {
     internal class Test60_Label : HomeModel
-    {
+    { 
+    
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {

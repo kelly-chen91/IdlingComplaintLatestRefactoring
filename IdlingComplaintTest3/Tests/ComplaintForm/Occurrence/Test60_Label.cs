@@ -14,6 +14,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
     internal class Test60_Label : ComplaintFormModel
     {
         public Test60_Label() { }
+    
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
