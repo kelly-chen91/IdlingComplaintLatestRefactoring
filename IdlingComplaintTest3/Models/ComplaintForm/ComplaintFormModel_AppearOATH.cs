@@ -15,18 +15,19 @@ namespace IdlingComplaints.Models.ComplaintForm
         IWebElement AppearOATH_PreviousControl => Driver.FindElement(RelativeBy.WithLocator(By.CssSelector("button[color='primary']")).Above(AppearOATH_SubmitControl));
         IWebElement AppearOATH_SubmitControl => Driver.FindElement(By.CssSelector("button[type='submit']"));
         IWebElement AppearOATH_CancelControl => Driver.FindElement(By.CssSelector("button[type='reset']"));
-        IWebElement AppearOATH_UploadFormControl => Driver.FindElement(By.CssSelector("input[type='file']"));
-        //IWebElement AppearOATH_ConfirmUploadFormControl => Driver.FindElement(By.CssSelector(""));
+        IWebElement AppearOATH_UploadControl => Driver.FindElement(By.CssSelector("input[type='file']"));
+        IWebElement AppearOATH_ConfirmUploadControl => Driver.FindElement(By.XPath("//div[2]/button[1]"));
+        IWebElement AppearOATH_CancelUploadControl => Driver.FindElement(By.XPath("//div[2]/button[2]"));
 
         public string AppearOATH_UploadFormInput
         {
             get
             {
-                return AppearOATH_UploadFormControl.GetAttribute("value");
+                return AppearOATH_UploadControl.GetAttribute("value");
             }
             set
             {
-                AppearOATH_UploadFormControl.SendKeys(value);
+                AppearOATH_UploadControl.SendKeys(value);
             }
         }
         
@@ -39,6 +40,16 @@ namespace IdlingComplaints.Models.ComplaintForm
         public void AppearOATH_ClickNo()
         {
             AppearOATH_NoControl.Click();
+        }
+
+        public void AppearOATH_ClickConfirmUpload()
+        {
+            AppearOATH_ConfirmUploadControl.Click();
+        }
+
+        public void AppearOATH_ClickCancelUpload()
+        {
+            AppearOATH_CancelUploadControl.Click();
         }
 
         public void AppearOATH_ClickPrevious()
