@@ -35,5 +35,9 @@ namespace IdlingComplaints.Tests.ComplaintForm.Complaint
         public static readonly string DESCRIBE_COMPLAINT_REQUIRE = "Describe the Complaint is required";
         public static readonly string DESCRIBE_CONTENT_INPUT = "Please describe the complaint in the space here.";
 
+
+        //label: Describe the Acknowledgement section
+        public static readonly string REQUIRED_ACKNOWLEDGEMENT = "Acknowledgement is required";
+
     }
 }
