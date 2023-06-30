@@ -29,7 +29,9 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
         private readonly int SLEEPTIMER = 1000;
         private readonly string FILE_IMAGE_PATH = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_truck.jpeg";
+        
         [Test]
+
 
         public void SuccessfulFormSubmit_InFrontOf_NoSchool_YesSummonAffidavit()
         {
@@ -78,7 +80,8 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20); // message says evidence have successfully uploaded
             Assert.IsNotNull (successfulEvidenceUpload);
-            if (!successfulEvidenceUpload.Text.Contains("upload")) Assert.That(successfulEvidenceUpload.Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
+            if (!successfulEvidenceUpload.Text.Contains("upload")) Assert.That(successfulEvidenceUpload.Text.Trim(), 
+                Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
 
             Thread.Sleep(SLEEPTIMER);
             EvidenceUpload_ClickFilesNext();
