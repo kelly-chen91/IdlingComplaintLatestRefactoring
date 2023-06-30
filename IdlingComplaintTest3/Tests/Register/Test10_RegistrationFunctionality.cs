@@ -129,6 +129,7 @@ namespace IdlingComplaints.Tests.Register
             SelectState(1);
             ZipCodeControl.SendKeysWithDelay("11373", SLEEP_TIMER);
             TelephoneControl.SendKeysWithDelay("631-632-9800", SLEEP_TIMER);
+            Console.WriteLine(successfulEmailFile);
             ScrollToButton();
             ClickSubmitButton();
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(20));
