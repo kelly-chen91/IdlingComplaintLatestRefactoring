@@ -17,7 +17,7 @@ namespace IdlingComplaints.Tests.PassordReset
     {
         private readonly int SLEEP_TIMER = 2000;
          private readonly string successfulEmailFile = "C:\\Users\\Yyang\\Desktop\\Project\\IdlingComplaintTest3\\Tests\\Register\\Text_SuccessfulEmailRegistration.txt";
-      //  private readonly string successfulEmailFile = "./Text_SuccessfulEmailRegistration.txt";
+        
 
           [SetUp]
         public void Setup()
@@ -43,7 +43,7 @@ namespace IdlingComplaints.Tests.PassordReset
         }
 
         [Test, Category("Valid Reset")]
-        public void LastestUserPasswordReset()
+        public void ReplaceRecordDataPasswordReset()
         {
             string securityAnswer = RegistrationUtilities.ReadTheLatestRegistrationRecord(successfulEmailFile, 2);
             SecurityAnswerControl.SendKeysWithDelay(securityAnswer, SLEEP_TIMER);

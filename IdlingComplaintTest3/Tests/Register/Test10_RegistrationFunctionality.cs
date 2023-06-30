@@ -13,6 +13,7 @@ using System.IO;
 using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
 using log4net.Repository;
 using log4net;
+using System.CodeDom.Compiler;
 
 namespace IdlingComplaints.Tests.Register
 {
@@ -28,7 +29,7 @@ namespace IdlingComplaints.Tests.Register
             //Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/profile");
             
             base.RegisterModelSetUp(false);
-            Driver.Manage().Window.Size = new Size(1920, 1200);
+            Driver.Manage().Window.Size = new Size(1920, 1080);
         }
 
         [TearDown]
@@ -43,7 +44,7 @@ namespace IdlingComplaints.Tests.Register
         private readonly int SLEEP_TIMER = 1000;
         // private readonly string successfulEmailFile = ".\\Text_SuccessfulEmailRegistration.txt";
         private readonly string successfulEmailFile = "C:\\Users\\Yyang\\Desktop\\Project\\IdlingComplaintTest3\\Tests\\Register\\Text_SuccessfulEmailRegistration.txt";
-       // private readonly string successfulEmailFile = "./Text_SuccessfulEmailRegistration.txt";
+       // private readonly string successfulEmailFile = ".//Text_SuccessfulEmailRegistration.txt";
 
         [Test]
         [Category("Random text input Registration")]
@@ -60,7 +61,7 @@ namespace IdlingComplaints.Tests.Register
             PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
             ConfirmPasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
 
-            int securityRandomNumber = RegistrationUtilities.GenerateRandomNumberWithRange(0, 5);
+            int securityRandomNumber = RegistrationUtilities.GenerateRandomNumberWithRange(1, 5);
             SelectSecurityQuestion(securityRandomNumber);
 
             string securityAnswer = RegistrationUtilities.GenerateRandomString();
@@ -70,18 +71,20 @@ namespace IdlingComplaints.Tests.Register
             Address2Control.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
             CityControl.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
 
-            int stateRandomNumber = RegistrationUtilities.GenerateRandomNumberWithRange(0, 49);
+            int stateRandomNumber = RegistrationUtilities.GenerateRandomNumberWithRange(1, 49);
             Console.WriteLine("The state number is " + stateRandomNumber + " . And the State selected is " + StateControl);
             SelectState(stateRandomNumber);
 
+            ScrollToButton();
             string zipCodeNumbers = RegistrationUtilities.GenerateSeriseNumbers();
             ZipCodeControl.SendKeysWithDelay(zipCodeNumbers, SLEEP_TIMER);
 
             string TelephoneNumbers = RegistrationUtilities.GenerateSeriseNumbers();
             TelephoneControl.SendKeysWithDelay(TelephoneNumbers, SLEEP_TIMER);
            
-            ScrollToButton();
             ClickSubmitButton();
+          
+
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(20));
             wait.Until(d =>
             {
@@ -93,7 +96,7 @@ namespace IdlingComplaints.Tests.Register
                     {
                         try
                         {
-                            sw.WriteLine(generatedEmail+ " "+password+" "+ securityAnswer);
+                            sw.WriteLine(generatedEmail+" " +password+" "+securityAnswer);
                             Console.WriteLine("Accessed the file");
                         }
                         catch (Exception ex)

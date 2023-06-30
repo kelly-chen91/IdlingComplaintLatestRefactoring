@@ -33,16 +33,15 @@ internal class Test10_LoginFunctionality : LoginModel
     }
 
     private readonly int SLEEP_TIMER = 2000;
-    string registedRecordPath = "C:\\Users\\Yyang\\Desktop\\Project\\IdlingComplaintTest3\\Tests\\Register\\Text_SuccessfulEmailRegistration.txt";
-    string[] lines = File.ReadAllLines(registedRecordPath);
+    private readonly string registedRecordPath = "C:\\Users\\Yyang\\Desktop\\Project\\IdlingComplaintTest3\\Tests\\Register\\Text_SuccessfulEmailRegistration.txt";
 
 
     [Test]
     [Category("Valid Login Loads New Page")]
-    public void LatestRecordVerification()
+    public void RetriveDataVerification()
     {
-        // string email = RegistrationUtilities.ReadTheLatestRegistrationRecord(registedRecordPath, 0);
-        // string password = RegistrationUtilities.ReadTheLatestRegistrationRecord(registedRecordPath, 1);
+
+        string[] lines = File.ReadAllLines(registedRecordPath);
 
         string email = RegistrationUtilities.ReadRegistrationRecord(registedRecordPath, lines.Length, 0);
         string password = RegistrationUtilities.ReadRegistrationRecord(registedRecordPath, lines.Length, 1);

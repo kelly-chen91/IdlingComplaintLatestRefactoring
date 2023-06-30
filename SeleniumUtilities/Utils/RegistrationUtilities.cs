@@ -84,7 +84,7 @@ namespace SeleniumUtilities.Utils
                 string row = lines[targetRow - 1];
 
                 // Split the row into individual columns
-                string[] columns = row.Split(',');
+                string[] columns = row.Split(' ');
 
                 // Check if the target column is within the bounds of the columns array
                 if (targetColumnIndex >= 0 && targetColumnIndex <= columns.Length-1)
