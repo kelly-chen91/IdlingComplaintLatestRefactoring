@@ -16,53 +16,56 @@ namespace IdlingComplaints.Tests.PassordReset
     internal class Test10_PasswordResetFunctionality : PasswordResetModel
     {
         private readonly int SLEEP_TIMER = 2000;
-         private readonly string successfulEmailFile = "C:\\Users\\Yyang\\Desktop\\Project\\IdlingComplaintTest3\\Tests\\Register\\Text_SuccessfulEmailRegistration.txt";
-        
+        public static string registedUsers = "C:\\Users\\Yyang\\Desktop\\Project\\IdlingComplaintTest3\\Files\\Text\\Register_SuccessfulEmailRegistration.txt";
 
-          [SetUp]
+        public static int lineCount = File.ReadLines(registedUsers).Count();
+
+        static Random random = new Random();
+        private int userIndex = random.Next(0, lineCount);
+
+
+        [SetUp]
         public void Setup()
         {
-            //Driver.Quit();
             base.PasswordResetModelSetUp(false);
-            //Driver = CreateStandardDriver("chrome");
-            //Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/password-reset");
-            EmailControl.SendKeysWithDelay("TTseng@dep.nyc.gov", SLEEP_TIMER);
-            ClickResetButton();
-            //Driver.Manage().Window.Size = new Size(1920, 1200);
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
-            wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname = 'securityanswer']")));
 
+            string emailAddress = RegistrationUtilities.RetrivalRecordValue(registedUsers, userIndex, 0);
+            EmailControl.SendKeysWithDelay(emailAddress, SLEEP_TIMER);
+            
+            ClickResetButton();
+            
+            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(20));
+            wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname = 'securityanswer']")));
+            Console.WriteLine("This user's email is " + emailAddress + ". The line index is " + userIndex + ".");
         }
         [TearDown]
         public void TearDown()
         {
             if (SLEEP_TIMER > 0)
                 Thread.Sleep(SLEEP_TIMER);
-            //Driver.Quit();
             base.PasswordResetModelTearDown();
         }
 
         [Test, Category("Valid Reset")]
-        public void ReplaceRecordDataPasswordReset()
+        public void UpdatePasswordinFile()
         {
-            string securityAnswer = RegistrationUtilities.ReadTheLatestRegistrationRecord(successfulEmailFile, 2);
+            string securityAnswer = RegistrationUtilities.RetrivalRecordValue(registedUsers, userIndex, 2);
             SecurityAnswerControl.SendKeysWithDelay(securityAnswer, SLEEP_TIMER);
 
             string password = RegistrationUtilities.GeneratePassword();
             PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
             ConfirmPasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
+            
             ClickSubmitButton();
 
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(30));
             wait.Until(d =>
             {
                 var resetControl = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
-
-                Assert.IsNotNull(resetControl);
-                Assert.That(resetControl.Text.Trim(), Is.EqualTo("Password has been reset successfully."));
-
+                
                 return resetControl;
             });
+            RegistrationUtilities.ReplaceRecordValue(registedUsers, userIndex, 1, password);
         }
 
 

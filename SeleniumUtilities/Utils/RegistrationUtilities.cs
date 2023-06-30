@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SeleniumUtilities.Utils
 {
@@ -56,48 +57,22 @@ namespace SeleniumUtilities.Utils
             return seriseRandomnumbers;
         }
 
-        //This method will read the last record from the Text_SuccessfulEmailRegistration.txt
-        public static string ReadTheLatestRegistrationRecord(string filePath, int dataIndex)
-        {
-            string lastRow = File.ReadLines(filePath).LastOrDefault();
-
-            if (!string.IsNullOrEmpty(lastRow))
-            {
-                string[] words = lastRow.Split(new[] {' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
-                if (words.Length >= 2)
-                {
-                    return words[dataIndex];
-                }
-            }
-
-            return "";
-        }
-
-        public static string ReadRegistrationRecord(string filePath, int targetRow, int targetColumnIndex)
-        {
-            string[] lines = File.ReadAllLines(filePath);
-
-            // Check if the target row is within the bounds of the lines array
-            if (targetRow >= 1 && targetRow <= lines.Length)
-            {
-                // Get the target row (subtract 1 to convert to zero-based index)
-                string row = lines[targetRow - 1];
-
-                // Split the row into individual columns
-                string[] columns = row.Split(' ');
-
-                // Check if the target column is within the bounds of the columns array
-                if (targetColumnIndex >= 0 && targetColumnIndex <= columns.Length-1)
-                {
-                    // Get the target value (subtract 1 to convert to zero-based index)
-                    string targetValue = columns[targetColumnIndex];
-                    Console.WriteLine(targetValue);
-                    return targetValue;
-                    
-                }
-            }
-            return "";
-        }
+     //  //This method will read the last record from the Text_SuccessfulEmailRegistration.txt
+     //  public static string ReadTheLatestRegistrationRecord(string filePath, int dataIndex)
+     //  {
+     //      string? lastRow = File.ReadLines(filePath).LastOrDefault();
+     //
+     //      if (!string.IsNullOrEmpty(lastRow))
+     //      {
+     //          string[] words = lastRow.Split(new[] {' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
+     //          if (words.Length >= 2)
+     //          {
+     //              return words[dataIndex];
+     //          }
+     //      }
+     //
+     //      return "";
+     //  }
 
         //This method will generate regitimate password
         public static string GeneratePassword()
@@ -123,6 +98,68 @@ namespace SeleniumUtilities.Utils
 
             password = password.OrderBy(x => random.Next()).ToArray();
             return new string(password);
+        }
+
+
+        /*This method will retrive the data from the file.
+            The targetRowIndex and targetColumnIndex are starting from 0;*/
+        public static string RetrivalRecordValue(string filePath, int targetRowIndex, int targetColumnIndex)
+        {
+            string[] lines = File.ReadAllLines(filePath);
+
+            if (targetRowIndex >= 0 && targetRowIndex <= lines.Length - 1)
+            {
+                string row = lines[targetRowIndex];
+
+                string[] columns = row.Split(' ');
+
+                if (targetColumnIndex >= 0 && targetColumnIndex <= columns.Length - 1)
+                {
+                    string targetValue = columns[targetColumnIndex];
+                   
+                    return targetValue;
+
+                }
+            }
+            return "";
+        }
+
+
+
+        public static void ReplaceRecordValue(string filePath, int targetRowIndex, int targetColumnIndex, string newValue)
+        {
+                try
+                {
+                    string[] lines = File.ReadAllLines(filePath);
+                    string[] columns = lines[targetRowIndex].Split(' ');
+                    lines[targetRowIndex] = lines[targetRowIndex].Replace(columns[targetColumnIndex], newValue);
+                    File.WriteAllLines(filePath, lines);
+                Console.WriteLine("The original password/value is " + columns[targetColumnIndex] + "\nThe current password is " + newValue);
+
+                //   if (targetRowIndex >= 0 && targetRowIndex <= lines.Length - 1)
+                //   {
+                //       string[] columns = lines[targetRowIndex].Split(' ');
+                //       Console.WriteLine("Grap the value from target value" + columns[1].ToString());
+                //
+                //       if (targetColumnIndex >= 0 && targetColumnIndex <= columns.Length - 1)
+                //       {
+                //           string targetValue = columns[targetColumnIndex];
+                //          
+                //           lines[targetRowIndex] = lines[targetRowIndex].Replace(targetValue, replacedValue);
+                //
+                //          Console.WriteLine("The original password/value is " + targetValue + ". \nThe current password is " + replacedValue);
+                //
+                //       }
+                //   }
+
+            }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Cannot replace into File");
+                    Console.WriteLine(ex.ToString());
+                }
+
+
         }
 
     }

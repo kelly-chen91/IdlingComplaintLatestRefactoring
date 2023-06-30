@@ -38,13 +38,13 @@ internal class Test10_LoginFunctionality : LoginModel
 
     [Test]
     [Category("Valid Login Loads New Page")]
-    public void RetriveDataVerification()
+    public void RetriveFileDataVerification()
     {
 
         string[] lines = File.ReadAllLines(registedRecordPath);
 
-        string email = RegistrationUtilities.ReadRegistrationRecord(registedRecordPath, lines.Length, 0);
-        string password = RegistrationUtilities.ReadRegistrationRecord(registedRecordPath, lines.Length, 1);
+        string email = RegistrationUtilities.RetrivalRecordValue(registedRecordPath, lines.Length, 0);
+        string password = RegistrationUtilities.RetrivalRecordValue(registedRecordPath, lines.Length, 1);
 
         EmailControl.SendKeysWithDelay(email, SLEEP_TIMER);
         PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
