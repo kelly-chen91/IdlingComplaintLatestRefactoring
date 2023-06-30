@@ -196,5 +196,15 @@ namespace IdlingComplaints.Tests.ComplaintForm.Complainant
             Assert.That(requireContent, Is.EqualTo(Constants.REQUIRED_ACKNOWLEDGEMENT), "Flagged for inconsistency on purpose.");
         }
 
+        [Test, Category("Correct Label Displayed")]
+        public void RequireCorrectionAcknowledgement()
+        {
+            ClickSubmitNoCorrectionCheckbox();
+            ClickSubmitNoCorrectionCheckbox();
+
+            string requireContent = Driver.ExtractTextFromXPath("/html/body/app-root/div/idling-complaint/form/div/mat-card[6]/mat-card-content/div/mat-error/text()");
+            Assert.That(requireContent, Is.EqualTo(Constants.REQUIRED_ACKNOWLEDGEMENT), "Flagged for inconsistency on purpose.");
+        }
+
     }
 }
