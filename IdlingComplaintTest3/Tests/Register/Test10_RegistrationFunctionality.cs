@@ -41,9 +41,11 @@ namespace IdlingComplaints.Tests.Register
         }
 
         private readonly int SLEEP_TIMER = 1000;
-        // private readonly string successfulEmailFile = ".\\Text_SuccessfulEmailRegistration.txt";
+        // private readonly string successfulEmailFile = "..\\Text_SuccessfulEmailRegistration.txt";
         //private readonly string successfulEmailFile = "C:\\Users\\Yyang\\Desktop\\Project\\IdlingComplaintTest3\\Tests\\Register\\Text_SuccessfulEmailRegistration.txt";
-        private readonly string successfulEmailFile = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Text\\Register_SuccessfulEmailRegistration.txt";
+        //private readonly string successfulEmailFile = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Text\\Register_SuccessfulEmailRegistration.txt";
+        //IdlingComplaintTest3\bin\Debug\net7.0
+        private readonly string successfulEmailFile = Directory.GetCurrentDirectory() + "\\..\\..\\..\\Files\\Text\\Register_SuccessfulEmailRegistration.txt";
 
         [Test]
         [Category("Random text input Registration")]

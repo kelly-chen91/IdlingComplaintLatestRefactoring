@@ -15,8 +15,20 @@ namespace IdlingComplaints.Models.ComplaintForm
         IWebElement AppearOATH_PreviousControl => Driver.FindElement(RelativeBy.WithLocator(By.CssSelector("button[color='primary']")).Above(AppearOATH_SubmitControl));
         IWebElement AppearOATH_SubmitControl => Driver.FindElement(By.CssSelector("button[type='submit']"));
         IWebElement AppearOATH_CancelControl => Driver.FindElement(By.CssSelector("button[type='reset']"));
+        IWebElement AppearOATH_UploadFormControl => Driver.FindElement(By.CssSelector("input[type='file']"));
+        //IWebElement AppearOATH_ConfirmUploadFormControl => Driver.FindElement(By.CssSelector(""));
 
-
+        public string AppearOATH_UploadFormInput
+        {
+            get
+            {
+                return AppearOATH_UploadFormControl.GetAttribute("value");
+            }
+            set
+            {
+                AppearOATH_UploadFormControl.SendKeys(value);
+            }
+        }
         
 
         public void AppearOATH_ClickYes()
