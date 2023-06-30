@@ -88,7 +88,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
             var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10);
             Assert.IsNotNull(invalidTime);
             Assert.That(invalidTime.Text.Trim(), Is.EqualTo("An error occurred while saving form: Occurrence Date From and Occurrence Date To " +
-                "cannot be later than the current date and time. Idling duration should be more than three minutes."));
+                "cannot be later than the current date and time. Idling duration should be more than three minutes."), "Flagged inconsistency on purpose.");
         }
 
         [Test]
@@ -126,7 +126,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
             var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10);
             Assert.IsNotNull(invalidTime);
             Assert.That(invalidTime.Text.Trim(), Is.EqualTo("An error occurred while saving form: Occurrence Date From and Occurrence Date To " +
-                "cannot be later than the current date and time."));
+                "cannot be later than the current date and time."), "Flagged inconsistency on purpose.");
         }
     }
 }
