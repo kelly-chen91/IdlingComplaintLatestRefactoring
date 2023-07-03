@@ -8,9 +8,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Complaint
 {
     internal class Constants
     {
-        //label: not qulify for the complaint form  
-        public static readonly string YES_LABEL = "We are sorry. Your submission can not be accepted by DEP. This idling complaint is not consistent with the requirements listed in Section 24-163 of the New York City Administrative Code.Thank you for participating in this effort to improve NYC’s air quality.";
-
+        
         //Ying label: Complainant section
         public static readonly string COMPLAINT_TITLE = "The Person or Company Associated with Your Complaint";
         // label: Complainant section/ input content

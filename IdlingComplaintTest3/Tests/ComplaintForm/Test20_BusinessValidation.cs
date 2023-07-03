@@ -14,7 +14,6 @@ namespace IdlingComplaints.Tests.ComplaintForm
     internal class Test20_BusinessValidation : FillComplaintForm_Base
     {
 
-
         [Test]
         public void FailedFormSubmit_InFrontOf_NoSchool_TimeShorterThan3Minutes()
         {
@@ -730,6 +729,17 @@ namespace IdlingComplaints.Tests.ComplaintForm
             bool isSatisfiedErrorList = error.Contains(ERROR_BASE) && error.Contains(ERROR_TO_IN_FUTURE_THAN_FROM) && error.Contains(ERROR_SHORTER_THAN_3_MINUTES)
                 && error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS) && error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS);
             Assert.True(isSatisfiedErrorList, "Flagged inconsistency on purpose.");
+        }
+
+
+        [Test]
+        public void FailedForm_NotQualified()
+        {
+            /*QUALIFYING CRITERIA*/
+            ClickYesButton();
+
+            string criteriaError = Driver.FindElement(By.CssSelector("label[for='criteriaError']")).Text;
+            Assert.That(criteriaError, Is.EqualTo(YES_LABEL), "Flagged for inconsistency on purpose");
         }
     }
 }

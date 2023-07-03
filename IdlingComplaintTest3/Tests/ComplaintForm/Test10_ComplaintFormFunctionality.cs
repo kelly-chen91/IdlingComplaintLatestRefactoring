@@ -13,34 +13,23 @@ namespace IdlingComplaints.Tests.ComplaintForm
     internal class Test10_ComplaintFormFunctionality : FillComplaintForm_Base
     {
 
-        
-        private readonly int SLEEPTIMER = 1000;
-        private readonly string FILE_IMAGE_PATH = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_truck.jpeg";
-        //private Utilities utilities = new Utilities();
         [Test]
-
+        [Category("Successful Form Submission")]
         public void SuccessfulFormSubmit_InFrontOf_NoSchool_YesSummonAffidavit()
         {
             /*QUALIFYING CRITERIA*/
-            ClickNoButton();
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+            QualifyingCriteria();
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
 
             Fill_Associated(false, false, SLEEPTIMER);
 
-            /*OCCURRENCE*/
-            Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6,28,2023, 4, 20, 00, true), SLEEPTIMER);
-            Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6,28,2023, 4, 23, 00, true), SLEEPTIMER);
+            Occurrence_ValidDate();
 
             Fill_OccurrenceAddress(2, 3, false, SLEEPTIMER);
-            
-            Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEPTIMER);
-            Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
+
+            Occurrence_VehicleInformation();
 
             Fill_InFrontOfSchool(false, SLEEPTIMER);
 
@@ -89,6 +78,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         }
 
         [Test]
+        [Category("Successful Form Submission")]
 
         public void SuccessfulFormSubmit_InFrontOf_NoSchool_NoSummonAffidavit_NoAffidavitForm()
         {
@@ -159,6 +149,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         }
         
         [Test]
+        [Category("Successful Form Submission")]
 
         public void SuccessfulFormSubmit_InFrontOf_NoSchool_NoSummonAffidavit_YesAffidavitForm()
         {
@@ -237,6 +228,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         }
 
         [Test]
+        [Category("Successful Form Submission")]
 
         public void SuccessfulFormSubmit_InFrontOf_YesSchool_NoSummonAffidavit_NoAffidavitForm()
         {
@@ -307,6 +299,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         }
 
         [Test]
+        [Category("Successful Form Submission")]
 
         public void SuccessfulFormSubmit_Between_YesSchool_NoSummonAffidavit_NoAffidavitForm()
         {
@@ -377,6 +370,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         }
 
         [Test]
+        [Category("Successful Form Submission")]
 
         public void SuccessfulFormSubmit_Intersection_YesSchool_NoSummonAffidavit_NoAffidavitForm()
         {
@@ -447,8 +441,9 @@ namespace IdlingComplaints.Tests.ComplaintForm
         }
 
         [Test]
+        [Category("Failed Form Submission")]
 
-        public void FailedFormSubmit_InFrontOf_NoSchool_YesSummonAffidavit()
+        public void DuplicateFormSubmit_InFrontOf_NoSchool_YesSummonAffidavit()
         {
             /*QUALIFYING CRITERIA*/
             ClickNoButton();
@@ -518,6 +513,8 @@ namespace IdlingComplaints.Tests.ComplaintForm
         }
 
         [Test]
+        [Category("Successful Form Submission")]
+
         public void SuccessfulFormSubmit_YesPOBox_InFrontOf_NoSchool_YesSummonAffidavit()
         {
             /*QUALIFYING CRITERIA*/
