@@ -29,7 +29,7 @@ namespace IdlingComplaints.Tests.PassordReset
         {
             base.PasswordResetModelSetUp(false);
 
-            string emailAddress = RegistrationUtilities.RetrivalRecordValue(registedUsers, userIndex, 0);
+            string emailAddress = RegistrationUtilities.RetriveRecordValue(registedUsers, userIndex, 0);
             EmailControl.SendKeysWithDelay(emailAddress, SLEEP_TIMER);
             
             ClickResetButton();
@@ -49,7 +49,7 @@ namespace IdlingComplaints.Tests.PassordReset
         [Test, Category("Valid Reset")]
         public void UpdatePasswordinFile()
         {
-            string securityAnswer = RegistrationUtilities.RetrivalRecordValue(registedUsers, userIndex, 2);
+            string securityAnswer = RegistrationUtilities.RetriveRecordValue(registedUsers, userIndex, 2);
             SecurityAnswerControl.SendKeysWithDelay(securityAnswer, SLEEP_TIMER);
 
             string password = RegistrationUtilities.GeneratePassword();
@@ -69,32 +69,35 @@ namespace IdlingComplaints.Tests.PassordReset
         }
 
 
-        [Test, Category("Valid Reset")]
-        public void SuccessfulPasswordReset()
-        {
-            SecurityAnswerControl.SendKeysWithDelay("pet", SLEEP_TIMER);
-            PasswordControl.SendKeysWithDelay("Testing1#", SLEEP_TIMER);
-            ConfirmPasswordControl.SendKeysWithDelay("Testing1#", SLEEP_TIMER);
-            ClickSubmitButton();
-
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(30));
-            wait.Until(d =>
-            {
-                var resetControl = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
-
-                Assert.IsNotNull(resetControl);
-                Assert.That(resetControl.Text.Trim(), Is.EqualTo("Password has been reset successfully."));
-
-                return resetControl;
-            });
-        }
+    //   [Test, Category("Valid Reset")]
+    //   public void SuccessfulPasswordReset()
+    //   {
+    //       SecurityAnswerControl.SendKeysWithDelay("pet", SLEEP_TIMER);
+    //       PasswordControl.SendKeysWithDelay("Testing1#", SLEEP_TIMER);
+    //       ConfirmPasswordControl.SendKeysWithDelay("Testing1#", SLEEP_TIMER);
+    //       ClickSubmitButton();
+    //
+    //       var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(30));
+    //       wait.Until(d =>
+    //       {
+    //           var resetControl = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
+    //
+    //           Assert.IsNotNull(resetControl);
+    //           Assert.That(resetControl.Text.Trim(), Is.EqualTo("Password has been reset successfully."));
+    //
+    //           return resetControl;
+    //       });
+    //   }
 
         [Test, Category("Invalid Reset")]
         public void FailedPasswordReset()
         {
-            SecurityAnswerControl.SendKeysWithDelay("XX", SLEEP_TIMER);
-            PasswordControl.SendKeysWithDelay("Testing1#", SLEEP_TIMER);
-            ConfirmPasswordControl.SendKeysWithDelay("Testing1#", SLEEP_TIMER);
+            SecurityAnswerControl.SendKeysWithDelay("This is not an actual security key", SLEEP_TIMER);
+          
+            string password = RegistrationUtilities.GeneratePassword();
+            PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
+            ConfirmPasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
+
             ClickSubmitButton();
 
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(30));

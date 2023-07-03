@@ -1,0 +1,2 @@
+DateFrom_0	DateTo_1 HouseNumber_2 StreetName_3 CrossStreet1_4 CrossStreet2_5	LicensePlate_6	PastOffence_7	SecondPasstOffence_8
+"6/9/2023, 10:49:04 AM" "6/9/2023, 11:49:04 AM" "33-24" "Northern Blvd"  "ABC123" "POffence" "SPOffence"

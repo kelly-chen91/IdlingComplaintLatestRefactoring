@@ -6,10 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IdlingComplaints.Tests.ComplaintForm.Complainant;
 
 namespace IdlingComplaints.Models.ComplaintForm
 {
-    internal partial class ComplaintFormModel : HomeModel
+    internal partial class ComplaintFormModel_Base : HomeModel
     {
         //[LoginModelSetUp]
         public void ComplaintFormModelSetUp(bool isHeadless)
@@ -25,8 +26,5 @@ namespace IdlingComplaints.Models.ComplaintForm
             base.HomeModelTearDown();
         }
 
-
-
-
+        }
     }
-}
