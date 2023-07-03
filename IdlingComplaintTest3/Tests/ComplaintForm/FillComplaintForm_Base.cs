@@ -1,4 +1,5 @@
 ﻿using IdlingComplaints.Models.ComplaintForm;
+using OpenQA.Selenium;
 using SeleniumUtilities.Utils;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,8 @@ namespace IdlingComplaints.Tests.ComplaintForm
         public readonly string ERROR_TO_AND_FROM_IN_FUTURE = " Occurrence Date From and Occurrence Date To cannot be later than the current date and time.";
         public readonly string ERROR_INVALID_ASSOCIATED_ADDRESS = " The address of the respondent associated with the complaint is invalid.";
         public readonly string ERROR_INVALID_OCCURRENCE_ADDRESS = " The occurrence address is invalid.";
+        public static readonly string YES_LABEL = "We are sorry. Your submission can not be accepted by DEP. This idling complaint is not consistent with the requirements listed in Section 24-163 of the New York City Administrative Code.Thank you for participating in this effort to improve NYC’s air quality.";
+
 
         public void Fill_Associated(bool isPOBox, bool invalidAddress, int timer)
         {
@@ -93,6 +96,29 @@ namespace IdlingComplaints.Tests.ComplaintForm
                 Occurrence_SchoolNameControl.SendKeysWithDelay("ABC School", timer);
             }
             else Occurrence_SelectInFrontOfSchool(2);
+        }
+
+        public void QualifyingCriteria()
+        {
+            /*QUALIFYING CRITERIA*/
+            ClickNoButton();
+            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+        }
+
+        public void Occurrence_ValidDate()
+        {
+            /*OCCURRENCE*/
+            Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEPTIMER);
+            Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 23, 00, true), SLEEPTIMER);
+        }
+
+        public void Occurrence_VehicleInformation()
+        {
+            Occurrence_SelectVehicleType(2);
+            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEPTIMER);
+            Occurrence_SelectLicenseState(1);
+            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
         }
     }
 }
