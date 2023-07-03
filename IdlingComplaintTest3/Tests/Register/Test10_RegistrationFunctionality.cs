@@ -13,7 +13,7 @@ using System.IO;
 using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
 using log4net.Repository;
 using log4net;
-using System.Reflection;
+using System.CodeDom.Compiler;
 
 namespace IdlingComplaints.Tests.Register
 {
@@ -27,8 +27,9 @@ namespace IdlingComplaints.Tests.Register
             //Driver.Quit();
             //Driver = CreateStandardDriver("chrome");
             //Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/profile");
-            //Driver.Manage().Window.Size = new Size(1920, 1200);
+            
             base.RegisterModelSetUp(false);
+            Driver.Manage().Window.Size = new Size(1920, 1080);
         }
 
         [TearDown]
@@ -41,13 +42,8 @@ namespace IdlingComplaints.Tests.Register
         }
 
         private readonly int SLEEP_TIMER = 1000;
-        // private readonly string successfulEmailFile = "..\\Text_SuccessfulEmailRegistration.txt";
-        //private readonly string successfulEmailFile = "C:\\Users\\Yyang\\Desktop\\Project\\IdlingComplaintTest3\\Tests\\Register\\Text_SuccessfulEmailRegistration.txt";
-        //private readonly string successfulEmailFile = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Text\\Register_SuccessfulEmailRegistration.txt";
-        //IdlingComplaintTest3\bin\Debug\net7.0
-        private readonly string successfulEmailFile = Directory.GetCurrentDirectory() + "\\..\\..\\..\\Files\\Text\\Register_SuccessfulEmailRegistration.txt";
-
-        [Test]
+        private string successfulEmailFile = "C:\\Users\\Yyang\\Desktop\\Project\\IdlingComplaintTest3\\Files\\Text\\Register_SuccessfulEmailRegistration.txt";
+         [Test]
         [Category("Random text input Registration")]
         public void RandomtextRegistration()
         {
@@ -58,31 +54,34 @@ namespace IdlingComplaints.Tests.Register
             EmailControl.SendKeysWithDelay(generatedEmail, SLEEP_TIMER);
 
             //string password = RegistrationUtilities.GenerateRandomString();
-            string password = "Password1!";
+            string password = RegistrationUtilities.GeneratePassword();
             PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
             ConfirmPasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
 
-            int securityRandomNumber = RegistrationUtilities.GenerateRandomNumberWithRange(0, 5);
-            Console.WriteLine("securityNumber is " + securityRandomNumber+ " . And the Qustion is " + RegistrationUtilities.GenerateRandomString());
+            int securityRandomNumber = RegistrationUtilities.GenerateRandomNumberWithRange(1, 5);
             SelectSecurityQuestion(securityRandomNumber);
 
-            SecurityAnswerControl.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
+            string securityAnswer = RegistrationUtilities.GenerateRandomString();
+            SecurityAnswerControl.SendKeysWithDelay(securityAnswer, SLEEP_TIMER);
+
             Address1Control.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
             Address2Control.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
             CityControl.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
 
-            int stateRandomNumber = RegistrationUtilities.GenerateRandomNumberWithRange(0, 49);
+            int stateRandomNumber = RegistrationUtilities.GenerateRandomNumberWithRange(1, 49);
             Console.WriteLine("The state number is " + stateRandomNumber + " . And the State selected is " + StateControl);
             SelectState(stateRandomNumber);
 
+            ScrollToButton();
             string zipCodeNumbers = RegistrationUtilities.GenerateSeriseNumbers();
             ZipCodeControl.SendKeysWithDelay(zipCodeNumbers, SLEEP_TIMER);
 
             string TelephoneNumbers = RegistrationUtilities.GenerateSeriseNumbers();
             TelephoneControl.SendKeysWithDelay(TelephoneNumbers, SLEEP_TIMER);
            
-            ScrollToButton();
             ClickSubmitButton();
+          
+
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(20));
             wait.Until(d =>
             {
@@ -94,7 +93,7 @@ namespace IdlingComplaints.Tests.Register
                     {
                         try
                         {
-                            sw.WriteLine(generatedEmail+ " "+password);
+                            sw.WriteLine(generatedEmail+" " +password+" "+securityAnswer);
                             Console.WriteLine("Accessed the file");
                         }
                         catch (Exception ex)
@@ -109,7 +108,7 @@ namespace IdlingComplaints.Tests.Register
             });
         }
 
-            [Test]
+        [Test]
         [Category("Successful Registration")]
         public void SuccessfulRegistration()
         {
@@ -228,93 +227,93 @@ namespace IdlingComplaints.Tests.Register
         }
 
 
-        [Test]
-        [Category("Successful Registration")]
-        public void ReadFileRegistration()
-        {
-            //  ILoggerRepository logRepository = LogManager.GetRepository(System.Reflection.Assembly.GetEntryAssembly());
-            //  log4net.Config.XmlConfigurator.Configure(logRepository, new FileInfo("log4net.config"));
-
-            int localTimer = 0;
-            try
-            {
-                using (StreamReader reader = new StreamReader("C:\\Users\\Yyang\\Desktop\\SeleniumProject - Copy\\IdlingComplaintTest3\\Tests\\Register\\UserDataFile.txt"))
-                {
-                    string line;
-                    while ((line = reader.ReadLine()) != null)
-                    {
-                        Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/profile");
-
-                        Console.WriteLine(line);
-
-                        string[] parts = line.Split(',');
-                        string firstName = parts[0];
-                        string lastname = parts[1];
-                        string email = StringUtilities.GenerateRandomEmail();
-                        string password = parts[3];
-                        string confirmPassword = parts[4];
-                        string securityAnswer = parts[5];
-                        string address1 = parts[6];
-                        string address2 = parts[7];
-                        string city = parts[8];
-                        string zipCode = parts[9];
-                        string telephone = parts[10];
-
-                        //   // Create a separate logger for each combination of username and password
-                        //   ILog logger = LogManager.GetLogger($"{email}_{password}");
-                        //
-                        //   Console.WriteLine("logger created");
-                        //
-                        //   // Create a new log file name based on the username and password
-                        //   string logFileName = $"C:\\Users\\Yyang\\Desktop\\SeleniumProject - Copy\\IdlingComplaintTest3\\Tests\\Register\\logs\\{email}_{password}_log.txt";
-                        //   // Configure the appender for the logger to use the new log file
-                        //   var fileAppender = (log4net.Appender.FileAppender)((log4net.Repository.Hierarchy.Logger)logger.Logger).GetAppender("FileAppender");
-                        //   Console.WriteLine("logger file name");
-
-                        //   fileAppender.File = logFileName;
-                        //
-                        //   fileAppender.ActivateOptions();
-                        //
-                        //   Console.WriteLine("log file created");
-
-                        FirstNameControl.SendKeysWithDelay(firstName, localTimer);
-                        LastNameControl.SendKeysWithDelay(lastname, localTimer);
-                        EmailControl.SendKeysWithDelay(email, localTimer);
-                        PasswordControl.SendKeysWithDelay(password, localTimer);
-                        ConfirmPasswordControl.SendKeysWithDelay(confirmPassword, localTimer);
-                        SelectSecurityQuestion(1);
-                        SecurityAnswerControl.SendKeysWithDelay(securityAnswer, localTimer);
-                        Address1Control.SendKeysWithDelay(address1, localTimer);
-                        Address2Control.SendKeysWithDelay(address2, localTimer);
-                        CityControl.SendKeysWithDelay(city, localTimer);
-                        SelectState(1);
-                        ZipCodeControl.SendKeysWithDelay(zipCode, localTimer);
-                        TelephoneControl.SendKeysWithDelay(telephone, localTimer);
-
-                        ScrollToButton();
-                        ClickSubmitButton();
-                        var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(20));
-                        wait.Until(d =>
-                        {
-                            var snackBarError = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
-                            Assert.IsNotNull(snackBarError);
-                            //Assert.That(snackBarError.Text.Trim(), Is.EqualTo("Registration has been completed successfully."), "Flagged for inconsistency on purpose."); //Added period for consistency with other error messaging
-                            return snackBarError;
-                        });
-                    }
-                    reader.Close();
-
-                }
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("File cannot be read.");
-                Console.WriteLine(ex.Message);
-            }
-
-
-        }
+      //  [Test]
+      //  [Category("Successful Registration")]
+      //  public void ReadFileRegistration()
+      //  {
+      //      //  ILoggerRepository logRepository = LogManager.GetRepository(System.Reflection.Assembly.GetEntryAssembly());
+      //      //  log4net.Config.XmlConfigurator.Configure(logRepository, new FileInfo("log4net.config"));
+      //
+      //      int localTimer = 0;
+      //      try
+      //      {
+      //          using (StreamReader reader = new StreamReader("C:\\Users\\Yyang\\Desktop\\SeleniumProject - Copy\\IdlingComplaintTest3\\Tests\\Register\\UserDataFile.txt"))
+      //          {
+      //              string line;
+      //              while ((line = reader.ReadLine()) != null)
+      //              {
+      //                  Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/profile");
+      //
+      //                  Console.WriteLine(line);
+      //
+      //                  string[] parts = line.Split(',');
+      //                  string firstName = parts[0];
+      //                  string lastname = parts[1];
+      //                  string email = StringUtilities.GenerateRandomEmail();
+      //                  string password = parts[3];
+      //                  string confirmPassword = parts[4];
+      //                  string securityAnswer = parts[5];
+      //                  string address1 = parts[6];
+      //                  string address2 = parts[7];
+      //                  string city = parts[8];
+      //                  string zipCode = parts[9];
+      //                  string telephone = parts[10];
+      //
+      //                  //   // Create a separate logger for each combination of username and password
+      //                  //   ILog logger = LogManager.GetLogger($"{email}_{password}");
+      //                  //
+      //                  //   Console.WriteLine("logger created");
+      //                  //
+      //                  //   // Create a new log file name based on the username and password
+      //                  //   string logFileName = $"C:\\Users\\Yyang\\Desktop\\SeleniumProject - Copy\\IdlingComplaintTest3\\Tests\\Register\\logs\\{email}_{password}_log.txt";
+      //                  //   // Configure the appender for the logger to use the new log file
+      //                  //   var fileAppender = (log4net.Appender.FileAppender)((log4net.Repository.Hierarchy.Logger)logger.Logger).GetAppender("FileAppender");
+      //                  //   Console.WriteLine("logger file name");
+      //
+      //                  //   fileAppender.File = logFileName;
+      //                  //
+      //                  //   fileAppender.ActivateOptions();
+      //                  //
+      //                  //   Console.WriteLine("log file created");
+      //
+      //                  FirstNameControl.SendKeysWithDelay(firstName, localTimer);
+      //                  LastNameControl.SendKeysWithDelay(lastname, localTimer);
+      //                  EmailControl.SendKeysWithDelay(email, localTimer);
+      //                  PasswordControl.SendKeysWithDelay(password, localTimer);
+      //                  ConfirmPasswordControl.SendKeysWithDelay(confirmPassword, localTimer);
+      //                  SelectSecurityQuestion(1);
+      //                  SecurityAnswerControl.SendKeysWithDelay(securityAnswer, localTimer);
+      //                  Address1Control.SendKeysWithDelay(address1, localTimer);
+      //                  Address2Control.SendKeysWithDelay(address2, localTimer);
+      //                  CityControl.SendKeysWithDelay(city, localTimer);
+      //                  SelectState(1);
+      //                  ZipCodeControl.SendKeysWithDelay(zipCode, localTimer);
+      //                  TelephoneControl.SendKeysWithDelay(telephone, localTimer);
+      //
+      //                  ScrollToButton();
+      //                  ClickSubmitButton();
+      //                  var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(20));
+      //                  wait.Until(d =>
+      //                  {
+      //                      var snackBarError = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
+      //                      Assert.IsNotNull(snackBarError);
+      //                      //Assert.That(snackBarError.Text.Trim(), Is.EqualTo("Registration has been completed successfully."), "Flagged for inconsistency on purpose."); //Added period for consistency with other error messaging
+      //                      return snackBarError;
+      //                  });
+      //              }
+      //              reader.Close();
+      //
+      //          }
+      //
+      //      }
+      //      catch (Exception ex)
+      //      {
+      //          Console.WriteLine("File cannot be read.");
+      //          Console.WriteLine(ex.Message);
+      //      }
+      //
+      //
+      //  }
 
 
     }
