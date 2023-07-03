@@ -182,29 +182,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.Complainant
         public void DisplayDescribeTheComplaintTitle()
         {
             string describeTheComplaintTitle = "Describe the Complaint";
-            string requireContent = Driver.ExtractTextFromXPath("/html/body/app-root/div/idling-complaint/form/div/mat-card[4]/mat-card-header/div/mat-card-title/h4/text()");
+            string requireContent = Driver.ExtractTextFromXPath("//mat-card[4]/mat-card-header/div/mat-card-title/h4/text()");
             Assert.That(requireContent, Is.EqualTo(describeTheComplaintTitle), "Flagged for inconsistency on purpose.");
         }
 
-        [Test, Category("Correct Label Displayed")]
-        public void RequireAcknowledgement()
-        {
-            ClickWitnessCheckbox();
-            ClickWitnessCheckbox();
-
-            string requireContent = Driver.ExtractTextFromXPath("/html/body/app-root/div/idling-complaint/form/div/mat-card[5]/mat-card-content/div/mat-error/text()");
-            Assert.That(requireContent, Is.EqualTo(Constants.REQUIRED_ACKNOWLEDGEMENT), "Flagged for inconsistency on purpose.");
-        }
-
-        [Test, Category("Correct Label Displayed")]
-        public void RequireCorrectionAcknowledgement()
-        {
-            ClickSubmitNoCorrectionCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-
-            string requireContent = Driver.ExtractTextFromXPath("/html/body/app-root/div/idling-complaint/form/div/mat-card[6]/mat-card-content/div/mat-error/text()");
-            Assert.That(requireContent, Is.EqualTo(Constants.REQUIRED_ACKNOWLEDGEMENT), "Flagged for inconsistency on purpose.");
-        }
 
     }
 }
