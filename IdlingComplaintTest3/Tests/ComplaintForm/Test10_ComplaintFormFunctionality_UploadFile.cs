@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IdlingComplaints.Models.ComplaintForm;
+
 using OpenQA.Selenium;
 using SeleniumUtilities.Utils;
 
 namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
 {
-    internal class Test10_ComplaintFormFunctionality_UploadFile: ComplaintFormModel_Base
+    internal class Test10_ComplaintFormFunctionality_UploadFile : ComplaintFormModel_UploadFile
     {
         private readonly int SLEEPTIMER = 1000;
         private readonly string FILE_IMAGE_PATH = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_truck.jpeg";
@@ -20,11 +21,12 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
         public void Setup()
         {
             
+            
             base.ComplaintFormModelSetUp(false);
             ClickNoButton();
             Driver.WaitUntilElementFound(By.CssSelector("input[placeholder='Company Name']"), 15);
                  //Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
-            MoveTo_ComplaintForm_SecondPage();
+          //  MoveTo_ComplaintForm_SecondPage();
         }
         [TearDown]
         public void Teardown()
