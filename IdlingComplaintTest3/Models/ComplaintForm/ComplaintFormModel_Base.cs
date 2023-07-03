@@ -10,7 +10,7 @@ using IdlingComplaints.Tests.ComplaintForm.Complainant;
 
 namespace IdlingComplaints.Models.ComplaintForm
 {
-    internal partial class ComplaintFormModel_Base : HomeModel
+    internal partial class ComplaintFormModel : HomeModel
     {
         //[LoginModelSetUp]
         public void ComplaintFormModelSetUp(bool isHeadless)

@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Models.ComplaintForm
 {
-    internal class ComplaintFormModel_UploadFile: HomeModel
+    internal partial class ComplaintFormModel : HomeModel
     {
-        public IWebElement UploadFile_FromControl => Driver.FindElement
+        //public IWebElement UploadFile_FromControl => Driver.FindElement
 
     }
 }

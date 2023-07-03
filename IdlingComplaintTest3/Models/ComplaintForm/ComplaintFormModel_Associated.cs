@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Models.ComplaintForm
 {
-    internal partial class ComplaintFormModel_Associated : HomeModel
+    internal partial class ComplaintFormModel : HomeModel
     {
 
        
