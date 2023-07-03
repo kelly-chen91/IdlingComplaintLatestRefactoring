@@ -27,7 +27,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.Associated
             base.ComplaintFormModelTearDown();
         }
 
-        private readonly int SLEEP_TIMER = 2000;
 
         [Test, Category("Required Field Missiong - Error Label Displayed")]
         public void RequireAcknowledgement()
@@ -47,6 +46,25 @@ namespace IdlingComplaints.Tests.ComplaintForm.Associated
 
             string requireContent = Driver.ExtractTextFromXPath("//mat-card[6]/mat-card-content/div/mat-error/text()");
             Assert.That(requireContent, Is.EqualTo(Constants.REQUIRED_ACKNOWLEDGEMENT), "Flagged for inconsistency on purpose.");
+        }
+
+
+        [Test, Category("Required Field Fulfilled - Error Label Hidden")]
+        public void ProvidedAcknowledgement()
+        {
+            ClickWitnessCheckbox();
+
+            string error = Driver.ExtractTextFromXPath("//mat-card[5]/mat-card-content/div/mat-error/text()");
+            Assert.That(error, Is.EqualTo(string.Empty));
+        }
+
+        [Test, Category("Required Field Fulfilled - Error Label Hidden")]
+        public void ProvidedNoCorrectionCheckbox()
+        {
+            ClickSubmitNoCorrectionCheckbox();
+
+            string error = Driver.ExtractTextFromXPath("//mat-card[6]/mat-card-content/div/mat-error");
+            Assert.That(error, Is.EqualTo(string.Empty));
         }
 
     }
