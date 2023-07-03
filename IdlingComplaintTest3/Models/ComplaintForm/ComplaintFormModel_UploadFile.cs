@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Models.ComplaintForm
 {
-    internal class ComplaintFormModel_UploadFile
+    internal class ComplaintFormModel_UploadFile: ComplaintFormModel_Base
     {
+
     }
 }

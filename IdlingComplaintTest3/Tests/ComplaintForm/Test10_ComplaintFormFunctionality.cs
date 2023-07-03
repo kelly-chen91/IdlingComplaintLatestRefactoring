@@ -16,19 +16,6 @@ namespace IdlingComplaints.Tests.ComplaintForm
         private readonly string FILE_IMAGE_PATH = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_truck.jpeg";
 
 
-    //  [SetUp]
-    //  public void SetUp()
-    //  {
-    //    base.ComplaintFormModelSetUp(false);
-    //  }
-    //
-    //  [TearDown]
-    //  public void TearDown()
-    //  {
-    //    if(SLEEPTIMER > 0) { Thread.Sleep(SLEEPTIMER); }
-    //    base.ComplaintFormModelTearDown();
-    //  }
-
       
         [Test]
 
