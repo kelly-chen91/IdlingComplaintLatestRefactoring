@@ -8,8 +8,31 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.ComplaintForm
 {
-    internal class Utilities : ComplaintFormModel
+    internal class FillComplaintForm_Base : ComplaintFormModel
     {
+        [SetUp]
+        public void SetUp()
+        {
+            base.ComplaintFormModelSetUp(false);
+
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            if (SLEEPTIMER > 0) { Thread.Sleep(SLEEPTIMER); }
+            base.ComplaintFormModelTearDown();
+        }
+
+        public readonly int SLEEPTIMER = 0;
+        public readonly string FILE_IMAGE_PATH = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_truck.jpeg";
+        public readonly string ERROR_BASE = "An error occurred while saving form: ";
+        public readonly string ERROR_SHORTER_THAN_3_MINUTES = " Idling duration should be more than three minutes.";
+        public readonly string ERROR_TO_IN_FUTURE_THAN_FROM = " Occurrence Date To should be later than Occurrence Date From.";
+        public readonly string ERROR_TO_AND_FROM_IN_FUTURE = " Occurrence Date From and Occurrence Date To cannot be later than the current date and time.";
+        public readonly string ERROR_INVALID_ASSOCIATED_ADDRESS = " The address of the respondent associated with the complaint is invalid.";
+        public readonly string ERROR_INVALID_OCCURRENCE_ADDRESS = " The occurrence address is invalid.";
+
         public void Fill_Associated(bool isPOBox, bool invalidAddress, int timer)
         {
             Associated_CompanyNameControl.SendKeysWithDelay("Test INC", timer);
@@ -37,7 +60,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
             string intersectCrossStreet1 = "57th Ave", intersectCrossStreet2 = "Junction Blvd";
             if (invalidAddress)
             {
-                streetName = "DoWhatever Street";
+                streetName = "KLAJDFKLAJDF Street";
                 onStreet = "WhyDoYouCare Blvd";
                 crossStreet1 = onStreet;
                 crossStreet2 = "DoesNotMakeSense Expy";

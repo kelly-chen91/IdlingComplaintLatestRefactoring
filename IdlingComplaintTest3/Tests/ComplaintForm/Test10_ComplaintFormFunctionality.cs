@@ -10,26 +10,13 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.ComplaintForm
 {
-    internal class Test10_ComplaintFormFunctionality : ComplaintFormModel
+    internal class Test10_ComplaintFormFunctionality : FillComplaintForm_Base
     {
 
-        [SetUp]
-        public void SetUp()
-        {
-            base.ComplaintFormModelSetUp(false);
-
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            if(SLEEPTIMER > 0) { Thread.Sleep(SLEEPTIMER); }
-            base.ComplaintFormModelTearDown();
-        }
-
+        
         private readonly int SLEEPTIMER = 1000;
         private readonly string FILE_IMAGE_PATH = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_truck.jpeg";
-        private Utilities utilities = new Utilities();
+        //private Utilities utilities = new Utilities();
         [Test]
 
         public void SuccessfulFormSubmit_InFrontOf_NoSchool_YesSummonAffidavit()
@@ -41,13 +28,13 @@ namespace IdlingComplaints.Tests.ComplaintForm
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
 
-            utilities.Fill_Associated(false, false, SLEEPTIMER);
+            Fill_Associated(false, false, SLEEPTIMER);
 
             /*OCCURRENCE*/
             Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6,28,2023, 4, 20, 00, true), SLEEPTIMER);
             Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6,28,2023, 4, 23, 00, true), SLEEPTIMER);
 
-            utilities.Fill_OccurrenceAddress(2, 3, false, SLEEPTIMER);
+            Fill_OccurrenceAddress(2, 3, false, SLEEPTIMER);
             
             Occurrence_SelectVehicleType(2);
             Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEPTIMER);
@@ -55,7 +42,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
             Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
             Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
 
-            utilities.Fill_InFrontOfSchool(false, SLEEPTIMER);
+            Fill_InFrontOfSchool(false, SLEEPTIMER);
 
             Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
 
@@ -112,13 +99,13 @@ namespace IdlingComplaints.Tests.ComplaintForm
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
 
-            utilities.Fill_Associated(false, false, SLEEPTIMER);
+            Fill_Associated(false, false, SLEEPTIMER);
 
             /*OCCURRENCE*/
             Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEPTIMER);
             Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 23, 00, true), SLEEPTIMER);
 
-            utilities.Fill_OccurrenceAddress(2, 3, false, SLEEPTIMER);
+            Fill_OccurrenceAddress(2, 3, false, SLEEPTIMER);
 
             Occurrence_SelectVehicleType(2);
             Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEPTIMER);
@@ -126,7 +113,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
             Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
             Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
 
-            utilities.Fill_InFrontOfSchool(false, SLEEPTIMER);
+            Fill_InFrontOfSchool(false, SLEEPTIMER);
 
             Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
 
@@ -182,13 +169,13 @@ namespace IdlingComplaints.Tests.ComplaintForm
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
 
-            utilities.Fill_Associated(false, false, SLEEPTIMER);
+            Fill_Associated(false, false, SLEEPTIMER);
 
             /*OCCURRENCE*/
             Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEPTIMER);
             Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 23, 00, true), SLEEPTIMER);
 
-            utilities.Fill_OccurrenceAddress(2, 3, false, SLEEPTIMER);
+            Fill_OccurrenceAddress(2, 3, false, SLEEPTIMER);
 
             Occurrence_SelectVehicleType(2);
             Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEPTIMER);
@@ -196,7 +183,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
             Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
             Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
 
-            utilities.Fill_InFrontOfSchool(false, SLEEPTIMER);
+            Fill_InFrontOfSchool(false, SLEEPTIMER);
 
             Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
 
@@ -260,13 +247,13 @@ namespace IdlingComplaints.Tests.ComplaintForm
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
 
-            utilities.Fill_Associated(false, false, SLEEPTIMER);
+            Fill_Associated(false, false, SLEEPTIMER);
 
             /*OCCURRENCE*/
             Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEPTIMER);
             Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 23, 00, true), SLEEPTIMER);
 
-            utilities.Fill_OccurrenceAddress(2, 3, false, SLEEPTIMER);
+            Fill_OccurrenceAddress(2, 3, false, SLEEPTIMER);
 
             Occurrence_SelectVehicleType(2);
             Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEPTIMER);
@@ -274,7 +261,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
             Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
             Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
 
-            utilities.Fill_InFrontOfSchool(true, SLEEPTIMER);
+            Fill_InFrontOfSchool(true, SLEEPTIMER);
 
             Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
 
@@ -330,13 +317,13 @@ namespace IdlingComplaints.Tests.ComplaintForm
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
 
-            utilities.Fill_Associated(false, false, SLEEPTIMER);
+            Fill_Associated(false, false, SLEEPTIMER);
 
             /*OCCURRENCE*/
             Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEPTIMER);
             Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 23, 00, true), SLEEPTIMER);
 
-            utilities.Fill_OccurrenceAddress(1, 4, false, SLEEPTIMER);
+            Fill_OccurrenceAddress(1, 4, false, SLEEPTIMER);
 
             Occurrence_SelectVehicleType(2);
             Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEPTIMER);
@@ -344,7 +331,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
             Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
             Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
 
-            utilities.Fill_InFrontOfSchool(true, SLEEPTIMER);
+            Fill_InFrontOfSchool(true, SLEEPTIMER);
 
             Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
 
@@ -400,13 +387,13 @@ namespace IdlingComplaints.Tests.ComplaintForm
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
 
-            utilities.Fill_Associated(false, false, SLEEPTIMER);
+            Fill_Associated(false, false, SLEEPTIMER);
 
             /*OCCURRENCE*/
             Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEPTIMER);
             Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 23, 00, true), SLEEPTIMER);
 
-            utilities.Fill_OccurrenceAddress(3, 4, false, SLEEPTIMER);
+            Fill_OccurrenceAddress(3, 4, false, SLEEPTIMER);
 
             Occurrence_SelectVehicleType(2);
             Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEPTIMER);
@@ -414,7 +401,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
             Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
             Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
 
-            utilities.Fill_InFrontOfSchool(true, SLEEPTIMER);
+            Fill_InFrontOfSchool(true, SLEEPTIMER);
 
             Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
 
@@ -470,13 +457,13 @@ namespace IdlingComplaints.Tests.ComplaintForm
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
 
-            utilities.Fill_Associated(false, false, SLEEPTIMER);
+            Fill_Associated(false, false, SLEEPTIMER);
 
             /*OCCURRENCE*/
             Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEPTIMER);
             Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 23, 00, true), SLEEPTIMER);
 
-            utilities.Fill_OccurrenceAddress(2, 3, false, SLEEPTIMER);
+            Fill_OccurrenceAddress(2, 3, false, SLEEPTIMER);
 
             Occurrence_SelectVehicleType(2);
             Occurrence_LicensePlateControl.SendKeysWithDelay("DEP1234", SLEEPTIMER);
@@ -484,7 +471,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
             Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
             Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
 
-            utilities.Fill_InFrontOfSchool(false, SLEEPTIMER);
+            Fill_InFrontOfSchool(false, SLEEPTIMER);
 
             Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
 
@@ -540,13 +527,13 @@ namespace IdlingComplaints.Tests.ComplaintForm
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
 
-            utilities.Fill_Associated(true, false, SLEEPTIMER);
+            Fill_Associated(true, false, SLEEPTIMER);
 
             /*OCCURRENCE*/
             Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEPTIMER);
             Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 23, 00, true), SLEEPTIMER);
 
-            utilities.Fill_OccurrenceAddress(2, 3, false, SLEEPTIMER);
+            Fill_OccurrenceAddress(2, 3, false, SLEEPTIMER);
 
             Occurrence_SelectVehicleType(2);
             Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEPTIMER);
@@ -554,7 +541,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
             Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
             Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
 
-            utilities.Fill_InFrontOfSchool(false, SLEEPTIMER);
+            Fill_InFrontOfSchool(false, SLEEPTIMER);
 
             Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
 
