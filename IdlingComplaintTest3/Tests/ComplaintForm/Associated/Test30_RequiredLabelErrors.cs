@@ -17,7 +17,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Associated
         public void OneTimeSetUp()
         {
             base.ComplaintFormModelSetUp(false);
-            ClickNoButton();
+            ClickNo();
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(15));
             wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname='idc_associatedlastname']")));
         }

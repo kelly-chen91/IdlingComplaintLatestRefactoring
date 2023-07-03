@@ -18,7 +18,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         public void FailedFormSubmit_InFrontOf_NoSchool_TimeShorterThan3Minutes()
         {
             /*QUALIFYING CRITERIA*/
-            ClickNoButton();
+            ClickNo();
             Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
@@ -44,7 +44,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
-            ClickSubmit();
+            ComplaintInfo_ClickNext();
 
             var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10);
             Assert.IsNotNull(invalidTime);
@@ -61,7 +61,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         public void FailedFormSubmit_InFrontOf_NoSchool_TimeShorterThan3Minutes_InvalidOccurrenceAddr()
         {
             /*QUALIFYING CRITERIA*/
-            ClickNoButton();
+            ClickNo();
             Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
@@ -87,7 +87,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
-            ClickSubmit();
+            ComplaintInfo_ClickNext();
 
             var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10);
             Assert.IsNotNull(invalidTime);
@@ -105,7 +105,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         public void FailedFormSubmit_InFrontOf_NoSchool_TimeShorterThan3Minutes_InvalidAssociatedAddr()
         {
             /*QUALIFYING CRITERIA*/
-            ClickNoButton();
+            ClickNo();
             Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
@@ -131,7 +131,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
-            ClickSubmit();
+            ComplaintInfo_ClickNext();
 
             var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10);
             Assert.IsNotNull(invalidTime);
@@ -149,7 +149,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         public void FailedFormSubmit_InFrontOf_NoSchool_TimeShorterThan3Minutes_InvalidOccurrenceAndAssociatedAddr()
         {
             /*QUALIFYING CRITERIA*/
-            ClickNoButton();
+            ClickNo();
             Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
@@ -175,7 +175,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
-            ClickSubmit();
+            ComplaintInfo_ClickNext();
 
             var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10);
             Assert.IsNotNull(invalidTime);
@@ -194,7 +194,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         public void FailedFormSubmit_InFrontOf_NoSchool_TimeInFutureAndShorterThan3Minutes()
         {
             /*QUALIFYING CRITERIA*/
-            ClickNoButton();
+            ClickNo();
             Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
@@ -222,7 +222,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
-            ClickSubmit();
+            ComplaintInfo_ClickNext();
 
             var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10);
             Assert.IsNotNull(invalidTime);
@@ -239,7 +239,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         public void FailedFormSubmit_InFrontOf_NoSchool_TimeInFutureAndShorterThan3Minutes_InvalidOccurrenceAddr()
         {
             /*QUALIFYING CRITERIA*/
-            ClickNoButton();
+            ClickNo();
             Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
@@ -267,7 +267,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
-            ClickSubmit();
+            ComplaintInfo_ClickNext();
 
             var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10);
             Assert.IsNotNull(invalidTime);
@@ -285,7 +285,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         public void FailedFormSubmit_InFrontOf_NoSchool_TimeInFutureAndShorterThan3Minutes_InvalidAssociatedAddr()
         {
             /*QUALIFYING CRITERIA*/
-            ClickNoButton();
+            ClickNo();
             Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
@@ -313,7 +313,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
-            ClickSubmit();
+            ComplaintInfo_ClickNext();
 
             var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10);
             Assert.IsNotNull(invalidTime);
@@ -331,7 +331,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         public void FailedFormSubmit_InFrontOf_NoSchool_TimeInFutureAndShorterThan3Minutes_InvalidOccurrenceAndAssociatedAddr()
         {
             /*QUALIFYING CRITERIA*/
-            ClickNoButton();
+            ClickNo();
             Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
@@ -357,7 +357,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
-            ClickSubmit();
+            ComplaintInfo_ClickNext();
 
             var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10);
             Assert.IsNotNull(invalidTime);
@@ -375,7 +375,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         public void FailedFormSubmit_InFrontOf_NoSchool_TimeInFuture()
         {
             /*QUALIFYING CRITERIA*/
-            ClickNoButton();
+            ClickNo();
             Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
@@ -403,7 +403,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
-            ClickSubmit();
+            ComplaintInfo_ClickNext();
 
             var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10);
             Assert.IsNotNull(invalidTime);
@@ -419,7 +419,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         public void FailedFormSubmit_InFrontOf_NoSchool_TimeInFuture_InvalidOccurrenceAddr()
         {
             /*QUALIFYING CRITERIA*/
-            ClickNoButton();
+            ClickNo();
             Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
@@ -447,7 +447,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
-            ClickSubmit();
+            ComplaintInfo_ClickNext();
 
             var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10);
             Assert.IsNotNull(invalidTime);
@@ -465,7 +465,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         public void FailedFormSubmit_InFrontOf_NoSchool_TimeInFuture_InvalidAssociatedAddr()
         {
             /*QUALIFYING CRITERIA*/
-            ClickNoButton();
+            ClickNo();
             Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
@@ -493,7 +493,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
-            ClickSubmit();
+            ComplaintInfo_ClickNext();
 
             var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10);
             Assert.IsNotNull(invalidTime);
@@ -511,7 +511,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         public void FailedFormSubmit_InFrontOf_NoSchool_TimeInFuture_InvalidOccurrenceAndAssociatedAddr()
         {
             /*QUALIFYING CRITERIA*/
-            ClickNoButton();
+            ClickNo();
             Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
@@ -539,7 +539,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
-            ClickSubmit();
+            ComplaintInfo_ClickNext();
 
             var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10);
             Assert.IsNotNull(invalidTime);
@@ -558,7 +558,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         public void FailedFormSubmit_InFrontOf_NoSchool_FromTimeMoreThanToTime()
         {
             /*QUALIFYING CRITERIA*/
-            ClickNoButton();
+            ClickNo();
             Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
@@ -585,7 +585,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
-            ClickSubmit();
+            ComplaintInfo_ClickNext();
 
             var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10);
             Assert.IsNotNull(invalidTime);
@@ -603,7 +603,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         public void FailedFormSubmit_InFrontOf_NoSchool_FromTimeMoreThanToTime_InvalidOccurrenceAddr()
         {
             /*QUALIFYING CRITERIA*/
-            ClickNoButton();
+            ClickNo();
             Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
@@ -629,7 +629,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
-            ClickSubmit();
+            ComplaintInfo_ClickNext();
 
             var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10);
             Assert.IsNotNull(invalidTime);
@@ -648,7 +648,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         public void FailedFormSubmit_InFrontOf_NoSchool_FromTimeMoreThanToTime_InvalidAssociatedAddress()
         {
             /*QUALIFYING CRITERIA*/
-            ClickNoButton();
+            ClickNo();
             Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
@@ -674,7 +674,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
-            ClickSubmit();
+            ComplaintInfo_ClickNext();
 
             var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10);
             Assert.IsNotNull(invalidTime);
@@ -692,7 +692,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         public void FailedFormSubmit_InFrontOf_NoSchool_FromTimeMoreThanToTime_InvalidOccurrenceAndAssociatedAddr()
         {
             /*QUALIFYING CRITERIA*/
-            ClickNoButton();
+            ClickNo();
             Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
@@ -718,7 +718,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
-            ClickSubmit();
+            ComplaintInfo_ClickNext();
 
             var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10);
             Assert.IsNotNull(invalidTime);
@@ -736,7 +736,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         public void FailedForm_NotQualified()
         {
             /*QUALIFYING CRITERIA*/
-            ClickYesButton();
+            ClickYes();
 
             string criteriaError = Driver.FindElement(By.CssSelector("label[for='criteriaError']")).Text;
             Assert.That(criteriaError, Is.EqualTo(YES_LABEL), "Flagged for inconsistency on purpose");

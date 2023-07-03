@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.ComplaintForm
 {
-    internal class Test10_ComplaintFormFunctionality : FillComplaintForm_Base
+    internal partial class Test10_ComplaintFormFunctionality : FillComplaintForm_Base
     {
 
         [Test]
@@ -37,7 +37,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
-            ClickSubmit();
+            ComplaintInfo_ClickNext();
 
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60); // loads to next page 
             
@@ -83,7 +83,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         public void SuccessfulFormSubmit_InFrontOf_NoSchool_NoSummonAffidavit_NoAffidavitForm()
         {
             /*QUALIFYING CRITERIA*/
-            ClickNoButton();
+            ClickNo();
             Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
@@ -103,7 +103,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
-            ClickSubmit();
+            ComplaintInfo_ClickNext();
 
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60); // loads to next page 
 
@@ -148,7 +148,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         public void SuccessfulFormSubmit_InFrontOf_NoSchool_NoSummonAffidavit_YesAffidavitForm()
         {
             /*QUALIFYING CRITERIA*/
-            ClickNoButton();
+            ClickNo();
             Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
@@ -168,7 +168,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
-            ClickSubmit();
+            ComplaintInfo_ClickNext();
 
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60); // loads to next page 
 
@@ -221,7 +221,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         public void SuccessfulFormSubmit_InFrontOf_YesSchool_NoSummonAffidavit_NoAffidavitForm()
         {
             /*QUALIFYING CRITERIA*/
-            ClickNoButton();
+            ClickNo();
             Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
@@ -241,7 +241,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
-            ClickSubmit();
+            ComplaintInfo_ClickNext();
 
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60); // loads to next page 
 
@@ -286,7 +286,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         public void SuccessfulFormSubmit_Between_YesSchool_NoSummonAffidavit_NoAffidavitForm()
         {
             /*QUALIFYING CRITERIA*/
-            ClickNoButton();
+            ClickNo();
             Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
@@ -306,7 +306,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
-            ClickSubmit();
+            ComplaintInfo_ClickNext();
 
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60); // loads to next page 
 
@@ -351,7 +351,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         public void SuccessfulFormSubmit_Intersection_YesSchool_NoSummonAffidavit_NoAffidavitForm()
         {
             /*QUALIFYING CRITERIA*/
-            ClickNoButton();
+            ClickNo();
             Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
@@ -370,29 +370,11 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
-            ClickSubmit();
+            ComplaintInfo_ClickNext();
 
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60); // loads to next page 
 
-            /*EVIDENCE UPLOAD*/
-
-            var successfulSave = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
-            Assert.IsNotNull(successfulSave);
-            if (!successfulSave.Text.Contains("saved success")) Assert.That(successfulSave.Text.Trim(), Is.EqualTo("This form has been saved successfully."), "Flagged inconsistency on purpose.");
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 20); //message says form is saved
-
-            EvidenceUpload_UploadInput = FILE_IMAGE_PATH;
-            string fileName = Path.GetFileName(FILE_IMAGE_PATH);
-            EvidenceUpload_ClickFilesUploadConfirm();
-            Thread.Sleep(SLEEPTIMER);
-
-            var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20); // message says evidence have successfully uploaded
-            Assert.IsNotNull(successfulEvidenceUpload);
-            if (!successfulEvidenceUpload.Text.Contains("upload")) Assert.That(successfulEvidenceUpload.Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
-
-            Thread.Sleep(SLEEPTIMER);
-            EvidenceUpload_ClickFilesNext();
-            Driver.WaitUntilElementFound(By.CssSelector("mat-radio-button[value='753720001']"), 30); //waits until the oath affidavit appears
+                        Filled_EvidenceUpload();
 
             /*OATH AFFIDAVIT*/
 
@@ -415,7 +397,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         public void DuplicateFormSubmit_InFrontOf_NoSchool_YesSummonAffidavit()
         {
             /*QUALIFYING CRITERIA*/
-            ClickNoButton();
+            ClickNo();
             Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
@@ -439,7 +421,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
-            ClickSubmit();
+            ComplaintInfo_ClickNext();
 
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60); // loads to next page 
 
@@ -485,7 +467,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         public void SuccessfulFormSubmit_YesPOBox_InFrontOf_NoSchool_YesSummonAffidavit()
         {
             /*QUALIFYING CRITERIA*/
-            ClickNoButton();
+            ClickNo();
             Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
@@ -505,7 +487,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
-            ClickSubmit();
+            ComplaintInfo_ClickNext();
 
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60); // loads to next page 
 
@@ -545,5 +527,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
         }
 
+
+        
     }
 }

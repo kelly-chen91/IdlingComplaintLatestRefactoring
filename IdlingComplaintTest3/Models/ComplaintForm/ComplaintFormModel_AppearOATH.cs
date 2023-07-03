@@ -12,7 +12,7 @@ namespace IdlingComplaints.Models.ComplaintForm
     {
         IWebElement AppearOATH_YesControl => Driver.FindElement(By.CssSelector("mat-radio-button[value='753720001']"));
         IWebElement AppearOATH_NoControl => Driver.FindElement(By.CssSelector("mat-radio-button[value='753720000']"));
-        IWebElement AppearOATH_PreviousControl => Driver.FindElement(RelativeBy.WithLocator(By.CssSelector("button[color='primary']")).Above(AppearOATH_SubmitControl));
+        IWebElement AppearOATH_PreviousControl => Driver.FindElement(By.XPath("//affidavit-upload/form/div/div/button[1]"));
         IWebElement AppearOATH_SubmitControl => Driver.FindElement(By.CssSelector("button[type='submit']"));
         IWebElement AppearOATH_CancelControl => Driver.FindElement(By.CssSelector("button[type='reset']"));
         IWebElement AppearOATH_UploadControl => Driver.FindElement(By.CssSelector("input[type='file']"));

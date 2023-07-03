@@ -101,7 +101,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         public void QualifyingCriteria()
         {
             /*QUALIFYING CRITERIA*/
-            ClickNoButton();
+            ClickNo();
             Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
         }
 
@@ -120,5 +120,60 @@ namespace IdlingComplaints.Tests.ComplaintForm
             Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
             Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
         }
+        
+        public void Filled_ComplaintInfo()
+        {
+            /*QUALIFYING CRITERIA*/
+            QualifyingCriteria();
+
+            /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
+            ScrollToZipCode();
+
+            Fill_Associated(false, false, SLEEPTIMER);
+
+            Occurrence_ValidDate();
+
+            Fill_OccurrenceAddress(2, 3, false, SLEEPTIMER);
+
+            Occurrence_VehicleInformation();
+
+            Fill_InFrontOfSchool(false, SLEEPTIMER);
+
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
+
+            ClickWitnessCheckbox();
+            ClickSubmitNoCorrectionCheckbox();
+            ComplaintInfo_ClickNext();
+
+            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60); // loads to next page 
+        }
+
+        public void Filled_EvidenceUpload()
+        {
+            /*EVIDENCE UPLOAD*/
+
+            var successfulSave = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
+            Assert.IsNotNull(successfulSave);
+            if (!successfulSave.Text.Contains("saved success")) Assert.That(successfulSave.Text.Trim(), Is.EqualTo("This form has been saved successfully."), "Flagged inconsistency on purpose.");
+            Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 20); //message says form is saved
+
+            EvidenceUpload_UploadInput = FILE_IMAGE_PATH;
+            string fileName = Path.GetFileName(FILE_IMAGE_PATH);
+            EvidenceUpload_ClickFilesUploadConfirm();
+            Thread.Sleep(SLEEPTIMER);
+
+            var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20); // message says evidence have successfully uploaded
+            Assert.IsNotNull(successfulEvidenceUpload);
+            if (!successfulEvidenceUpload.Text.Contains("upload")) Assert.That(successfulEvidenceUpload.Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
+
+            Thread.Sleep(SLEEPTIMER);
+            EvidenceUpload_ClickFilesNext();
+            Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"),10);
+            Driver.WaitUntilElementFound(By.CssSelector("mat-radio-button[value='753720001']"), 30); //waits until the oath affidavit appears
+
+        }
+
+
+
     }
 }

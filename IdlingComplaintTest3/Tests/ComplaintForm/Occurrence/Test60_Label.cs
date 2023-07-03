@@ -19,7 +19,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
         public void OneTimeSetUp()
         {
             base.ComplaintFormModelSetUp(true);
-            ClickNoButton();
+            ClickNo();
             Driver.ScrollTo(Occurrence_VehicleTypeControl);
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(15));
             wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname='idc_associatedlastname']")));
