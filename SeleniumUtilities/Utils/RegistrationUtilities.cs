@@ -103,7 +103,7 @@ namespace SeleniumUtilities.Utils
 
         /*This method will retrive the data from the file.
             The targetRowIndex and targetColumnIndex are starting from 0;*/
-        public static string RetrivalRecordValue(string filePath, int targetRowIndex, int targetColumnIndex)
+        public static string RetriveRecordValue(string filePath, int targetRowIndex, int targetColumnIndex)
         {
             string[] lines = File.ReadAllLines(filePath);
 
@@ -134,24 +134,7 @@ namespace SeleniumUtilities.Utils
                     string[] columns = lines[targetRowIndex].Split(' ');
                     lines[targetRowIndex] = lines[targetRowIndex].Replace(columns[targetColumnIndex], newValue);
                     File.WriteAllLines(filePath, lines);
-                Console.WriteLine("The original password/value is " + columns[targetColumnIndex] + "\nThe current password is " + newValue);
-
-                //   if (targetRowIndex >= 0 && targetRowIndex <= lines.Length - 1)
-                //   {
-                //       string[] columns = lines[targetRowIndex].Split(' ');
-                //       Console.WriteLine("Grap the value from target value" + columns[1].ToString());
-                //
-                //       if (targetColumnIndex >= 0 && targetColumnIndex <= columns.Length - 1)
-                //       {
-                //           string targetValue = columns[targetColumnIndex];
-                //          
-                //           lines[targetRowIndex] = lines[targetRowIndex].Replace(targetValue, replacedValue);
-                //
-                //          Console.WriteLine("The original password/value is " + targetValue + ". \nThe current password is " + replacedValue);
-                //
-                //       }
-                //   }
-
+       
             }
                 catch (Exception ex)
                 {

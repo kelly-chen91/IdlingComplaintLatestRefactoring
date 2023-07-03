@@ -43,8 +43,8 @@ internal class Test10_LoginFunctionality : LoginModel
 
         string[] lines = File.ReadAllLines(registedRecordPath);
 
-        string email = RegistrationUtilities.RetrivalRecordValue(registedRecordPath, lines.Length, 0);
-        string password = RegistrationUtilities.RetrivalRecordValue(registedRecordPath, lines.Length, 1);
+        string email = RegistrationUtilities.RetriveRecordValue(registedRecordPath, lines.Length, 0);
+        string password = RegistrationUtilities.RetriveRecordValue(registedRecordPath, lines.Length, 1);
 
         EmailControl.SendKeysWithDelay(email, SLEEP_TIMER);
         PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);

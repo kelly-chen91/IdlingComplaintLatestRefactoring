@@ -1,0 +1,2 @@
+CompanyName HouseNumber Street City Zip	
+"NYC Driver Institute, Inc" 123 "Northern Blvd" "Floor 4" "Queens" "11101"

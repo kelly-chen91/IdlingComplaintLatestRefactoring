@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IdlingComplaints.Tests.ComplaintForm.Complainant;
 
 namespace IdlingComplaints.Models.ComplaintForm
 {
@@ -25,8 +26,5 @@ namespace IdlingComplaints.Models.ComplaintForm
             base.HomeModelTearDown();
         }
 
-
-
-
+        }
     }
-}
