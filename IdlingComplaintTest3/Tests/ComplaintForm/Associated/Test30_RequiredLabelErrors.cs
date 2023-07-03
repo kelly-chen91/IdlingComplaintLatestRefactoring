@@ -29,7 +29,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Associated
 
 
         [Test, Category("Required Field Missing - Error Label Displayed")]
-        public void AcknowledgementRequire()
+        public void MissingAcknowledgement()
         {
             ClickWitnessCheckbox();
             ClickWitnessCheckbox();
@@ -39,7 +39,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Associated
         }
 
         [Test, Category("Required Field Missing - Error Label Displayed")]
-        public void CorrectionAcknowledgementRequire()
+        public void MissingCorrectionAcknowledgement()
         {
             ClickSubmitNoCorrectionCheckbox();
             ClickSubmitNoCorrectionCheckbox();
