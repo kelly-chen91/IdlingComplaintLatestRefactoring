@@ -17,10 +17,15 @@ namespace IdlingComplaints.Models.ComplaintForm
 
         IWebElement EvidenceUpload_UploadConfirmControl => Driver.FindElement(By.XPath("//app-upload/mat-card/mat-card-content/div/div[2]/div[2]/button[1]"));
 
-        IWebElement EvidenceUpload_DeleteEvidence => Driver.FindElement(By.XPath("//mat-row/mat-cell[5]/mat-icon[2]"));
         /*For Maya to practice: Please add additional elements below.*/
 
+        IWebElement EvidenceUpload_UploadCancelControl => Driver.FindElement(By.XPath("//mat-card-content/div/div[2]/div[2]/button[2]/span"));
 
+        IWebElement EvidenceUpload_DeleteEvidence => Driver.FindElement(By.XPath("//mat-row/mat-cell[5]/mat-icon[2]"));
+
+        IWebElement EvidenceUpload_DeleteConfirm => Driver.FindElement(By.XPath("//app-confirm-dialog/div[2]/button[2]/span"));
+
+        IWebElement EvidenceUpload_DeleteCancel => Driver.FindElement(By.XPath("//app-confirm-dialog/div[2]/button[1]/span"));
 
 
 
@@ -50,6 +55,11 @@ namespace IdlingComplaints.Models.ComplaintForm
         public void EvidenceUpload_ClickDeleteEvidence()
         {
             EvidenceUpload_DeleteEvidence.Click();
+        }
+
+        public void EvidenceUpload_ConfirmDelete()
+        {
+            EvidenceUpload_DeleteConfirm.Click();
         }
     }
 }
