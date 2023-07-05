@@ -13,26 +13,29 @@ namespace IdlingComplaints.Tests.ComplaintForm.UploadFile
 {
     internal class Test10_ComplaintFormFunctionality : FillComplaintForm_Base
     {
-        [SetUp]
-        public void SetUp()
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
         {
             base.ComplaintFormModelSetUp(false);
-
+            ClickNo();
+            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(15));
+            wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname='idc_associatedlastname']")));
         }
-
-        [TearDown]
-        public void TearDown()
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
         {
             if (SLEEPTIMER > 0) { Thread.Sleep(SLEEPTIMER); }
             base.ComplaintFormModelTearDown();
         }
 
+
         public readonly int SLEEPTIMER = 0;
         public readonly string FILE_IMAGE_PATH = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_truck.jpeg";
 
 
+        //For some reason opening two chrome tests when testing?
 
-        [Test, Category("Required Field Fulfilled - Error Label Hidden")] //For some reason opening two chrome tests?
+        [Test, Category("Required Field Fulfilled - Error Label Hidden")] 
         public void ProvidedUpload()
         {
             Filled_ComplaintInfo();
