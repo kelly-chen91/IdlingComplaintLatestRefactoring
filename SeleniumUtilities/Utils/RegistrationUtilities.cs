@@ -1,10 +1,13 @@
-﻿using System;
+﻿using OpenQA.Selenium;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
+using SeleniumUtilities.Base;
+using OpenQA.Selenium.Internal;
 
 namespace SeleniumUtilities.Utils
 {
@@ -126,7 +129,7 @@ namespace SeleniumUtilities.Utils
 
 
 
-        public static void ReplaceRecordValue(string filePath, int targetRowIndex, int targetColumnIndex, string newValue)
+        public static void ReplaceRecordValue(this string filePath, int targetRowIndex, int targetColumnIndex, string newValue)
         {
                 try
                 {
@@ -142,6 +145,44 @@ namespace SeleniumUtilities.Utils
                     Console.WriteLine(ex.ToString());
                 }
 
+
+        }
+        public static void UploadFiles(this IWebElement inputElement, IWebElement uploadButtonElement, params string[] filePaths)
+        //    ClickButtonAndUploadFiles(driver,               "uploadButton",             "fileInput", @"C:\path\to\file1.txt", @"C:\path\to\file2.txt");
+        {
+
+            inputElement.Click();
+            //inputElement.SendKeysWithDelay(filePath, 1000);
+            
+            foreach (string eachFile in filePaths)
+            {
+                // Send the file path to the file input element
+                inputElement.SendKeysWithDelay(eachFile, 1000);
+            }
+            Thread.Sleep(2000);
+
+            uploadButtonElement.Click();
+
+          // /*EVIDENCE UPLOAD*/
+          //
+          // var successfulSave = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
+          // Assert.IsNotNull(successfulSave);
+          // if (!successfulSave.Text.Contains("saved success")) Assert.That(successfulSave.Text.Trim(), Is.EqualTo("This form has been saved successfully."), "Flagged inconsistency on purpose.");
+          // Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 20); //message says form is saved
+          //
+          // EvidenceUpload_UploadInput = FILE_IMAGE_PATH;
+          // string fileName = Path.GetFileName(FILE_IMAGE_PATH);
+          // EvidenceUpload_ClickFilesUploadConfirm();
+          // Thread.Sleep(SLEEPTIMER);
+          //
+          // var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20); // message says evidence have successfully uploaded
+          // Assert.IsNotNull(successfulEvidenceUpload);
+          // if (!successfulEvidenceUpload.Text.Contains("upload")) Assert.That(successfulEvidenceUpload.Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
+          //
+          // Thread.Sleep(SLEEPTIMER);
+          // EvidenceUpload_ClickFilesNext();
+          // Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 10);
+          // Driver.WaitUntilElementFound(By.CssSelector("mat-radio-button[value='753720001']"), 30); //waits until the oath affidavit appears
 
         }
 

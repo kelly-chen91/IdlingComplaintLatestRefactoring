@@ -10,12 +10,19 @@ namespace IdlingComplaints.Models.ComplaintForm
 {
     internal partial class ComplaintFormModel : HomeModel
     {
-        IWebElement EvidenceUpload_UploadControl => Driver.FindElement(By.CssSelector("input[type='file']"));
-        
-        //IWebElement EvidenceUpload_PreviousControl => Driver.FindElement(By.CssSelector("button[type='button']"));
-        IWebElement EvidenceUpload_NextControl => Driver.FindElement(By.CssSelector("button[type='submit']"));
+        public IWebElement EvidenceUpload_UploadControl => Driver.FindElement(By.CssSelector("input[type='file']"));
 
-        IWebElement EvidenceUpload_UploadConfirmControl => Driver.FindElement(By.XPath("//app-upload/mat-card/mat-card-content/div/div[2]/div[2]/button[1]"));
+        //IWebElement EvidenceUpload_PreviousControl => Driver.FindElement(By.CssSelector("button[type='button']"));
+        public IWebElement EvidenceUpload_NextControl => Driver.FindElement(By.CssSelector("button[type='submit']"));
+
+        public IWebElement EvidenceUpload_UploadConfirmControl => Driver.FindElement(By.XPath("//app-upload/mat-card/mat-card-content/div/div[2]/div[2]/button[1]"));
+        
+      //  public IWebElement EvidenceUpload_UploadButtonControl => Driver.FindElement(By.XPath("mat-card-content/app-blobupload/app-upload/mat-card/mat-card-content/div/div[2]/div[2]/button[1]/span/"));
+       
+        public IWebElement EvidenceUpload_WebLinkControl => Driver.FindElement(By.PartialLinkText("Web"));
+        public IWebElement EvidenceUpload_AndroidLinkControl => Driver.FindElement(By.PartialLinkText("Android"));
+        public IWebElement EvidenceUpload_iOSLinkControl => Driver.FindElement(By.PartialLinkText("iOS"));
+
         /*For Maya to practice: Please add additional elements below.*/
 
 
@@ -43,6 +50,18 @@ namespace IdlingComplaints.Models.ComplaintForm
         public void EvidenceUpload_ClickFilesUploadConfirm()
         {
             EvidenceUpload_UploadConfirmControl.Click();
+        }
+        public void EvidenceUpload_ClickWebLink()
+        {
+            EvidenceUpload_WebLinkControl.Click();
+        }
+        public void EvidenceUpload_ClickAndroidLink()
+        {
+            EvidenceUpload_AndroidLinkControl.Click();
+        }
+        public void EvidenceUpload_ClickIOSLink()
+        {
+            EvidenceUpload_iOSLinkControl.Click();
         }
     }
 }

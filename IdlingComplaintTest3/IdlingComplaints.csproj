@@ -16,6 +16,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Files\Text\BlankTextFile_ForEvidenceUpload.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Files\Text\BlankTextFile_ForEvidenceUpload.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="IdlingComplaintsTest.csproj" />
   </ItemGroup>
 

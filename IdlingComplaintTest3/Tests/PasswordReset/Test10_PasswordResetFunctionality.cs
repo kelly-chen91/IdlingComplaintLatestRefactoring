@@ -16,8 +16,10 @@ namespace IdlingComplaints.Tests.PassordReset
     internal class Test10_PasswordResetFunctionality : PasswordResetModel
     {
         private readonly int SLEEP_TIMER = 2000;
-        
-        private new readonly string registed_EmailAddress = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Text\\Registed_EmailAddress.txt";
+
+
+       private readonly string registed_EmailAddress = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Text\\Registed_EmailAddress.txt";
+
         Random random = new Random();
 
         public int lines;
