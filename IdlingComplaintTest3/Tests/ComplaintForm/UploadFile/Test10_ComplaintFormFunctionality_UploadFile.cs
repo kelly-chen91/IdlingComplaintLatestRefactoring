@@ -13,16 +13,16 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
     {
 
         private new readonly int SLEEPTIMER = 1000;
-        private readonly string FILE_IMAGE_PATH = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_truck.jpeg";
-        private readonly string ASSOCIATED_PERSON_RECORD_PATH = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Text\\ComplaintForm_Associated.txt";
-        private readonly string Occurrence_PERSON_RECORD_PATH = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Text\\ComplaintForm_Occurrence.txt";
+       // private readonly string FILE_IMAGE_PATH = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_truck.jpeg";
+      //  private new readonly string ASSOCIATED_PERSON_RECORD_PATH = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Text\\ComplaintForm_Associated.txt";
+       // private readonly string Occurrence_PERSON_RECORD_PATH = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Text\\ComplaintForm_Occurrence.txt";
 
         [SetUp]
         public void Setup()
         {
             
             base.ComplaintFormModelSetUp(false);
-            ClickNoButton();
+           // ClickNoButton();
             Driver.WaitUntilElementFound(By.CssSelector("input[placeholder='Company Name']"), 15);
                  //Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
             MoveTo_ComplaintForm_SecondPage();

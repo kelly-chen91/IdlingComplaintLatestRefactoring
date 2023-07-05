@@ -103,7 +103,7 @@ namespace SeleniumUtilities.Utils
 
         /*This method will retrive the data from the file.
             The targetRowIndex and targetColumnIndex are starting from 0;*/
-        public static string RetriveRecordValue(string filePath, int targetRowIndex, int targetColumnIndex)
+        public static string RetriveRecordValue(this string filePath, int targetRowIndex, int targetColumnIndex)
         {
             string[] lines = File.ReadAllLines(filePath);
 

@@ -30,7 +30,7 @@ namespace IdlingComplaints.Tests.Register
 
         private readonly int SLEEP_TIMER = 1000;
 
-        [SetUp]
+        [OneTimeSetUp]
         public void SetUp()
         {
             //Driver.Quit();
@@ -41,7 +41,7 @@ namespace IdlingComplaints.Tests.Register
             Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
         }
 
-        [TearDown]
+        [OneTimeTearDown]
         public void TearDown()
         {
             if (SLEEP_TIMER > 0)

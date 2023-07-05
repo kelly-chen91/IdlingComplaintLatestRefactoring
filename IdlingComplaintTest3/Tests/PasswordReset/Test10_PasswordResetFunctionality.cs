@@ -16,12 +16,19 @@ namespace IdlingComplaints.Tests.PassordReset
     internal class Test10_PasswordResetFunctionality : PasswordResetModel
     {
         private readonly int SLEEP_TIMER = 2000;
-        public static string registedUsers = "C:\\Users\\Yyang\\Desktop\\Project\\IdlingComplaintTest3\\Files\\Text\\Register_SuccessfulEmailRegistration.txt";
+        
+        private new readonly string registed_EmailAddress = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Text\\Registed_EmailAddress.txt";
+        Random random = new Random();
 
-        public static int lineCount = File.ReadLines(registedUsers).Count();
+        public int lines;
+        public int userIndex;
 
-        static Random random = new Random();
-        private int userIndex = random.Next(0, lineCount);
+        public Test10_PasswordResetFunctionality()
+        {
+            this.lines = File.ReadAllLines(registed_EmailAddress).Length;
+            this.userIndex = random.Next(0, lines - 1);
+
+        }
 
 
         [SetUp]
@@ -29,7 +36,7 @@ namespace IdlingComplaints.Tests.PassordReset
         {
             base.PasswordResetModelSetUp(false);
 
-            string emailAddress = RegistrationUtilities.RetriveRecordValue(registedUsers, userIndex, 0);
+            string emailAddress = RegistrationUtilities.RetriveRecordValue(registed_EmailAddress, userIndex, 0);
             EmailControl.SendKeysWithDelay(emailAddress, SLEEP_TIMER);
             
             ClickResetButton();
@@ -49,7 +56,10 @@ namespace IdlingComplaints.Tests.PassordReset
         [Test, Category("Valid Reset")]
         public void UpdatePasswordinFile()
         {
-            string securityAnswer = RegistrationUtilities.RetriveRecordValue(registedUsers, userIndex, 2);
+            
+
+
+            string securityAnswer = RegistrationUtilities.RetriveRecordValue(registed_EmailAddress, userIndex, 2);
             SecurityAnswerControl.SendKeysWithDelay(securityAnswer, SLEEP_TIMER);
 
             string password = RegistrationUtilities.GeneratePassword();
@@ -65,7 +75,7 @@ namespace IdlingComplaints.Tests.PassordReset
                 
                 return resetControl;
             });
-            RegistrationUtilities.ReplaceRecordValue(registedUsers, userIndex, 1, password);
+            RegistrationUtilities.ReplaceRecordValue(registed_EmailAddress, userIndex, 1, password);
         }
 
 

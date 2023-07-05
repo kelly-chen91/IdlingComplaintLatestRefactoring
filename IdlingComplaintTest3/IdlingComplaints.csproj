@@ -35,7 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Files\Text\Register_SuccessfulEmailRegistration.txt">
+    <None Update="Files\Text\Registed_EmailAddress.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

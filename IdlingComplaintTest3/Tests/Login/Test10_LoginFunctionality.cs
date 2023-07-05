@@ -13,6 +13,8 @@ namespace IdlingComplaints.Tests.Login;
 
 internal class Test10_LoginFunctionality : LoginModel
 {
+    Random random = new Random();
+   
     [SetUp]
     public void SetUp()
     {
@@ -33,7 +35,7 @@ internal class Test10_LoginFunctionality : LoginModel
     }
 
     private readonly int SLEEP_TIMER = 2000;
-    private readonly string registedRecordPath = "C:\\Users\\Yyang\\Desktop\\Project\\IdlingComplaintTest3\\Tests\\Register\\Text_SuccessfulEmailRegistration.txt";
+    private readonly string registed_EmailAddress = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Text\\Registed_EmailAddress.txt";
 
 
     [Test]
@@ -41,16 +43,19 @@ internal class Test10_LoginFunctionality : LoginModel
     public void RetriveFileDataVerification()
     {
 
-        string[] lines = File.ReadAllLines(registedRecordPath);
+        string[] lines = File.ReadAllLines(registed_EmailAddress);
+        int userIndex = random.Next(0, lines.Length - 1);
 
-        string email = RegistrationUtilities.RetriveRecordValue(registedRecordPath, lines.Length, 0);
-        string password = RegistrationUtilities.RetriveRecordValue(registedRecordPath, lines.Length, 1);
+        string email = RegistrationUtilities.RetriveRecordValue(registed_EmailAddress, userIndex, 0);
+        string password = RegistrationUtilities.RetriveRecordValue(registed_EmailAddress, userIndex, 1);
 
         EmailControl.SendKeysWithDelay(email, SLEEP_TIMER);
         PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
         ClickLoginButton();
 
+       
         Driver.WaitUntilElementFound(By.CssSelector("button[routerlink='idlingcomplaint/new']"), 20);
+      
         Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
     }
 
@@ -67,6 +72,8 @@ internal class Test10_LoginFunctionality : LoginModel
         ClickLoginButton();
 
         Driver.WaitUntilElementFound(By.CssSelector("button[routerlink='idlingcomplaint/new']"), 20);
+        var resultControl = Driver.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
+        Assert.That(resultControl.Text.Trim(), Is.EqualTo("Email and password do not match."));
         Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
     }
 

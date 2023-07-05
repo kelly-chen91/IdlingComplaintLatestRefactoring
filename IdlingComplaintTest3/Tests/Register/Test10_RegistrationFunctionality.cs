@@ -1,19 +1,10 @@
 ﻿
 using SeleniumUtilities.Utils;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 using OpenQA.Selenium.Support.UI;
 using IdlingComplaints.Models.Register;
-using System.IO;
-using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
-using log4net.Repository;
-using log4net;
-using System.CodeDom.Compiler;
+
 
 namespace IdlingComplaints.Tests.Register
 {
@@ -42,7 +33,7 @@ namespace IdlingComplaints.Tests.Register
         }
 
         private readonly int SLEEP_TIMER = 1000;
-        private string successfulEmailFile = "C:\\Users\\Yyang\\Desktop\\Project\\IdlingComplaintTest3\\Files\\Text\\Register_SuccessfulEmailRegistration.txt";
+        private string Registered_EmailAddress = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Text\\Registered_EmailAddress.txt";
          [Test]
         [Category("Random text input Registration")]
         public void RandomtextRegistration()
@@ -89,7 +80,7 @@ namespace IdlingComplaints.Tests.Register
                 Assert.IsNotNull(snackBarError);
                 if (snackBarError.Text.Trim().Contains("successful"))
                 {
-                    using (StreamWriter sw = File.AppendText(successfulEmailFile))
+                    using (StreamWriter sw = File.AppendText(Registered_EmailAddress))
                     {
                         try
                         {
@@ -126,7 +117,7 @@ namespace IdlingComplaints.Tests.Register
             SelectState(1);
             ZipCodeControl.SendKeysWithDelay("11373", SLEEP_TIMER);
             TelephoneControl.SendKeysWithDelay("631-632-9800", SLEEP_TIMER);
-            Console.WriteLine(successfulEmailFile);
+            Console.WriteLine(Registered_EmailAddress);
             ScrollToButton();
             ClickSubmitButton();
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(20));
@@ -136,7 +127,7 @@ namespace IdlingComplaints.Tests.Register
                 Assert.IsNotNull(snackBarError);
                 if (snackBarError.Text.Trim().Contains("successful"))
                 {
-                    using (StreamWriter sw = File.AppendText(successfulEmailFile))
+                    using (StreamWriter sw = File.AppendText(Registered_EmailAddress))
                     {
                         try
                         {
@@ -156,11 +147,11 @@ namespace IdlingComplaints.Tests.Register
 
         [Test]
         [Category("Failed Registration")]
+        //Exiting user account
         public void FailedRegistrationDupEmail()
         {
             FirstNameControl.SendKeysWithDelay("Jane", SLEEP_TIMER);
             LastNameControl.SendKeysWithDelay("Doe", SLEEP_TIMER);
-            // EmailControl.SendKeysWithDelay(StringUtilities.GenerateEmail(StringUtilities.GenerateRandomString(5), StringUtilities.GenerateRandomString(5), StringUtilities.GenerateRandomString(5)), SLEEP_TIMER);
             EmailControl.SendKeysWithDelay("TTseng@dep.nyc.gov", SLEEP_TIMER);
             PasswordControl.SendKeysWithDelay("T3sting@1234", SLEEP_TIMER);
             ConfirmPasswordControl.SendKeysWithDelay("T3sting@1234", SLEEP_TIMER);
