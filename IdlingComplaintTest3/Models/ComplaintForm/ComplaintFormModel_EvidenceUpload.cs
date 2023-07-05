@@ -19,13 +19,13 @@ namespace IdlingComplaints.Models.ComplaintForm
 
         /*For Maya to practice: Please add additional elements below.*/
 
-        IWebElement EvidenceUpload_UploadCancelControl => Driver.FindElement(By.XPath("//mat-card-content/div/div[2]/div[2]/button[2]/span"));
+        //IWebElement EvidenceUpload_UploadCancelControl => Driver.FindElement(By.XPath("//mat-card-content/div/div[2]/div[2]/button[2]/span"));
 
         IWebElement EvidenceUpload_DeleteEvidence => Driver.FindElement(By.XPath("//mat-row/mat-cell[5]/mat-icon[2]"));
 
         IWebElement EvidenceUpload_DeleteConfirm => Driver.FindElement(By.XPath("//app-confirm-dialog/div[2]/button[2]/span"));
 
-        IWebElement EvidenceUpload_DeleteCancel => Driver.FindElement(By.XPath("//app-confirm-dialog/div[2]/button[1]/span"));
+        //IWebElement EvidenceUpload_DeleteCancel => Driver.FindElement(By.XPath("//app-confirm-dialog/div[2]/button[1]/span"));
 
 
 
