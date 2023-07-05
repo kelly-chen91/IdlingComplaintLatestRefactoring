@@ -40,4 +40,8 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Tests\EvidenceAndAffifdavit\" />
+  </ItemGroup>
+
 </Project>
