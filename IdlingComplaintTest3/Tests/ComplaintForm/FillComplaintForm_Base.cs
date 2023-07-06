@@ -27,6 +27,8 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
         public readonly int SLEEPTIMER = 0;
         public readonly string FILE_IMAGE_PATH = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_truck.jpeg";
+        public readonly string FILE_IMAGE_PATH_TWO = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\trucks_idle.jpg";
+        public readonly string FILE_IMAGE_PATH_THREE = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\truck_idling_img.png";
         public readonly string ERROR_BASE = "An error occurred while saving form: ";
         public readonly string ERROR_SHORTER_THAN_3_MINUTES = " Idling duration should be more than three minutes.";
         public readonly string ERROR_TO_IN_FUTURE_THAN_FROM = " Occurrence Date To should be later than Occurrence Date From.";
