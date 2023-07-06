@@ -16,7 +16,7 @@ namespace IdlingComplaints.Tests.Login
         }
 
         [OneTimeTearDown]
-        public void OneTimeHeadlessTearDown()
+        public void OneTimeTearDown()
         {
             base.LoginModelTearDown();
         }
