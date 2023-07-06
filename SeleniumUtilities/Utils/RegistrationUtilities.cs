@@ -8,12 +8,14 @@ using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 using SeleniumUtilities.Base;
 using OpenQA.Selenium.Internal;
+using OpenQA.Selenium.DevTools.V112.Network;
 
 namespace SeleniumUtilities.Utils
 {
     public static class RegistrationUtilities
     {
         public static readonly Random random = new Random();
+        private static readonly int SLEEPTIMER = 1000;
 
 
         //This method will generate random Email address
@@ -147,43 +149,19 @@ namespace SeleniumUtilities.Utils
 
 
         }
-        public static void UploadFiles(this IWebElement inputElement, IWebElement uploadButtonElement, params string[] filePaths)
-        //    ClickButtonAndUploadFiles(driver,               "uploadButton",             "fileInput", @"C:\path\to\file1.txt", @"C:\path\to\file2.txt");
+        // This method is for upload files to inputControl
+        public static void UploadFiles(this IWebElement inputControl, IWebElement uploadButtonContorl, params string[] filePaths)
         {
-
-            inputElement.Click();
-            //inputElement.SendKeysWithDelay(filePath, 1000);
-            
-            foreach (string eachFile in filePaths)
-            {
-                // Send the file path to the file input element
-                inputElement.SendKeysWithDelay(eachFile, 1000);
-            }
-            Thread.Sleep(2000);
-
-            uploadButtonElement.Click();
-
-          // /*EVIDENCE UPLOAD*/
-          //
-          // var successfulSave = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
-          // Assert.IsNotNull(successfulSave);
-          // if (!successfulSave.Text.Contains("saved success")) Assert.That(successfulSave.Text.Trim(), Is.EqualTo("This form has been saved successfully."), "Flagged inconsistency on purpose.");
-          // Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 20); //message says form is saved
-          //
-          // EvidenceUpload_UploadInput = FILE_IMAGE_PATH;
-          // string fileName = Path.GetFileName(FILE_IMAGE_PATH);
-          // EvidenceUpload_ClickFilesUploadConfirm();
-          // Thread.Sleep(SLEEPTIMER);
-          //
-          // var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20); // message says evidence have successfully uploaded
-          // Assert.IsNotNull(successfulEvidenceUpload);
-          // if (!successfulEvidenceUpload.Text.Contains("upload")) Assert.That(successfulEvidenceUpload.Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
-          //
-          // Thread.Sleep(SLEEPTIMER);
-          // EvidenceUpload_ClickFilesNext();
-          // Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 10);
-          // Driver.WaitUntilElementFound(By.CssSelector("mat-radio-button[value='753720001']"), 30); //waits until the oath affidavit appears
-
+            // foreach (string eachFile in filePaths)
+            // {
+            //     inputControl.SendKeysWithDelay(eachFile, SLEEPTIMER);
+            //     Thread.Sleep(SLEEPTIMER);
+            // }
+           // "/html/body/app-root/div/app-blob-files-upload/form/mat-card/mat-card-content/app-blobupload/app-upload/mat-card/mat-card-content/div/div[2]/div[2]/button[1]/span/text()");
+            inputControl.SendKeysWithDelay(filePaths[0], SLEEPTIMER);
+            //var wait => driver.WaitUntilIsNoLongerFound(By.XPath("/html/body/app-root/div/app-blob-files-upload/form/mat-card/mat-card-content/app-blobupload/app-upload/mat-card/mat-card-content/div/div[2]/div[2]/button[1]/span/text()"), 20);
+            Thread.Sleep(3000);
+            uploadButtonContorl.Click();
         }
 
     }
