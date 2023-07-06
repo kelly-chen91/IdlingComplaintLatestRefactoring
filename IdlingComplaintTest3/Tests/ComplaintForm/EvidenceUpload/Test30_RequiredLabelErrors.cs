@@ -1,5 +1,4 @@
 ﻿using IdlingComplaints.Models.ComplaintForm;
-using IdlingComplaints.Tests.ComplaintForm.EvidenceAndAffidavit;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumUtilities.Utils;
@@ -9,8 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IdlingComplaints.Tests.ComplaintForm.UploadFile
-{
+namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
+    {
     internal class Test10_ComplaintFormFunctionality : FillComplaintForm_Base
     {
 
@@ -62,7 +61,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.UploadFile
             var successfulEvidenceDelete = Driver.WaitUntilElementFound(By.XPath("//form/mat-card/mat-card-content/mat-error"), 20); //Wait for error message
 
             string requireContent = Driver.ExtractTextFromXPath("//form/mat-card/mat-card-content/mat-error/text()");
-            Assert.That(requireContent, Is.EqualTo(Constants.UPLOAD_FILE_REQUIRE), "Flagged for inconsistency on purpose.");
+            Assert.That(requireContent, Is.EqualTo(Contants.UPLOAD_FILE_REQUIRE), "Flagged for inconsistency on purpose.");
 
         }
 
