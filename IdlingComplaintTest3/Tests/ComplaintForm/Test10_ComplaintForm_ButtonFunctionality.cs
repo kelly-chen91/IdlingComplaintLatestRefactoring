@@ -25,6 +25,22 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
         [Test]
         [Category("Cancel - Form Submission")]
+        public void CancelAtAppearEvidenceUploadRedirectsToHome()
+        {
+            Filled_ComplaintInfo();
+            EvidenceUpload_UploadInput = FILE_IMAGE_PATH;
+            EvidenceUpload_ClickFilesUploadConfirm();
+            EvidenceUpload_ClickCancel();
+            //Filled_EvidenceUpload();
+            //AppearOATH_ClickYes();
+            //Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60); // loads to next page 
+            //AppearOATH_ClickCancel();
+
+            Driver.WaitUntilElementFound(By.CssSelector("button[routerlink = 'idlingcomplaint/new']"), 10);
+        }
+
+        [Test]
+        [Category("Cancel - Form Submission")]
         public void CancelAtAppearOATHPageFormRedirectsToHome()
         {
             Filled_ComplaintInfo();
@@ -34,6 +50,18 @@ namespace IdlingComplaints.Tests.ComplaintForm
             AppearOATH_ClickCancel();
 
             Driver.WaitUntilElementFound(By.CssSelector("button[routerlink = 'idlingcomplaint/new']"), 10);
+        }
+
+        [Test]
+        [Category("Previous - Form Submission")]
+        public void PreviousAtEvidenceUploadRedirectsToComplaintInfo()
+        {
+            Filled_ComplaintInfo();
+            EvidenceUpload_UploadInput = FILE_IMAGE_PATH;
+            EvidenceUpload_ClickFilesUploadCancel();
+            EvidenceUpload_ClickPrevious();
+            var companyNameField = Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname = 'idc_associatedlastname']"), 60);
+            Assert.IsNotNull(companyNameField);
         }
 
         [Test]

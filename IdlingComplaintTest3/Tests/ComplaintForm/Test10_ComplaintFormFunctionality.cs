@@ -59,7 +59,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
                 Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
 
             Thread.Sleep(SLEEPTIMER);
-            EvidenceUpload_ClickFilesNext();
+            EvidenceUpload_ClickNext();
             Driver.WaitUntilElementFound(By.CssSelector("mat-radio-button[value='753720001']"), 30); //waits until the oath affidavit appears
 
             /*OATH AFFIDAVIT*/
@@ -124,7 +124,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
             if (!successfulEvidenceUpload.Text.Contains("upload")) Assert.That(successfulEvidenceUpload.Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
 
             Thread.Sleep(SLEEPTIMER);
-            EvidenceUpload_ClickFilesNext();
+            EvidenceUpload_ClickNext();
             Driver.WaitUntilElementFound(By.CssSelector("mat-radio-button[value='753720001']"), 30); //waits until the oath affidavit appears
 
             /*OATH AFFIDAVIT*/
@@ -189,7 +189,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
             if (!successfulEvidenceUpload.Text.Contains("upload")) Assert.That(successfulEvidenceUpload.Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
 
             Thread.Sleep(SLEEPTIMER);
-            EvidenceUpload_ClickFilesNext();
+            EvidenceUpload_ClickNext();
             Driver.WaitUntilElementFound(By.CssSelector("mat-radio-button[value='753720001']"), 30); //waits until the oath affidavit appears
 
             /*OATH AFFIDAVIT*/
@@ -262,7 +262,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
             if (!successfulEvidenceUpload.Text.Contains("upload")) Assert.That(successfulEvidenceUpload.Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
 
             Thread.Sleep(SLEEPTIMER);
-            EvidenceUpload_ClickFilesNext();
+            EvidenceUpload_ClickNext();
             Driver.WaitUntilElementFound(By.CssSelector("mat-radio-button[value='753720001']"), 30); //waits until the oath affidavit appears
 
             /*OATH AFFIDAVIT*/
@@ -327,7 +327,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
             if (!successfulEvidenceUpload.Text.Contains("upload")) Assert.That(successfulEvidenceUpload.Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
 
             Thread.Sleep(SLEEPTIMER);
-            EvidenceUpload_ClickFilesNext();
+            EvidenceUpload_ClickNext();
             Driver.WaitUntilElementFound(By.CssSelector("mat-radio-button[value='753720001']"), 30); //waits until the oath affidavit appears
 
             /*OATH AFFIDAVIT*/
@@ -442,7 +442,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
             if (!successfulEvidenceUpload.Text.Contains("upload")) Assert.That(successfulEvidenceUpload.Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
 
             Thread.Sleep(SLEEPTIMER);
-            EvidenceUpload_ClickFilesNext();
+            EvidenceUpload_ClickNext();
             Driver.WaitUntilElementFound(By.CssSelector("mat-radio-button[value='753720001']"), 30); //waits until the oath affidavit appears
 
             /*OATH AFFIDAVIT*/
@@ -509,7 +509,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
                 Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
 
             Thread.Sleep(SLEEPTIMER);
-            EvidenceUpload_ClickFilesNext();
+            EvidenceUpload_ClickNext();
             Driver.WaitUntilElementFound(By.CssSelector("mat-radio-button[value='753720001']"), 30); //waits until the oath affidavit appears
 
             /*OATH AFFIDAVIT*/
