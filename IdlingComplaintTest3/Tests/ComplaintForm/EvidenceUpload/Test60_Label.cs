@@ -18,17 +18,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
         {
 
             base.ComplaintFormModelSetUp(false);
-            StepsBeforeEvidenceUpload();
-
-        }
-        [TearDown]
-        public void Teardown()
-        {
-            base.ComplaintFormModelTearDown();
-        }
-
-        public void StepsBeforeEvidenceUpload()
-        {
             ClickNo();
             Driver.WaitUntilElementFound(By.CssSelector("input[placeholder='Company Name']"), 15);
             Filled_ComplaintInfo();
@@ -37,6 +26,12 @@ namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
             Assert.IsNotNull(successfulSave);
             if (!successfulSave.Text.Contains("saved success")) Assert.That(successfulSave.Text.Trim(), Is.EqualTo("This form has been saved successfully."), "Flagged inconsistency on purpose.");
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 20);
+
+        }
+        [TearDown]
+        public void Teardown()
+        {
+            base.ComplaintFormModelTearDown();
         }
 
         [Test, Category("Incorrect Label Displayed")]
