@@ -82,9 +82,9 @@ namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
                 {
                     DeleteButtonControl.Click();
                    
-                    IAlert alert = 
-                        Driver.SwitchTo().Alert;
-                    alert.Accept();
+                  // IAlert alert = 
+                  //     Driver.SwitchTo().Alert;
+                  // alert.Accept();
                 }
             }
 
