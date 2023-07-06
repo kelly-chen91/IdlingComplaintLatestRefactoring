@@ -63,11 +63,31 @@ namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
                 Assert.That(successfulEvidenceUpload.Text.Trim(), Contains.Substring("Succesfully uploaded file named: "+ fileName));
 
         }
+        [Test, Category("Verify the delete button")]
+        public void EvidenceUpload_VerifyDeleteButton()
+        {
+            Console.WriteLine("Test1");
+            EvidenceUpload_MultipleFileUpload();
+            Console.WriteLine("Test2");
+            string[] filePaths = { IDLING_TRUCK, IDLING_BUS, IDLING_VAN };
+            string fileName = Path.GetFileName(filePaths[0]);
 
-   
+            var rows = Driver.FindElements(By.CssSelector("mat-card-content[class='mat-card-content']"));
+            IWebElement DeleteButtonControl = Driver.FindElement(By.CssSelector("mat-icon[aria-label='Delete']"));
+           
+            foreach (var row in rows)
+            {
+                var rowData = row.FindElement(By.XPath("/html/body/app-root/div/app-blob-files-upload/form/mat-card/mat-card-content/app-blobupload/mat-card/mat-card-content/div/mat-table/mat-row[1]/mat-cell[1]/test()"));
+                if (rowData.Equals(fileName))
+                {
+                    DeleteButtonControl.Click();
+                   
+                    IAlert alert = 
+                        Driver.SwitchTo().Alert;
+                    alert.Accept();
+                }
+            }
 
-
-
-
+        }
     }
 }

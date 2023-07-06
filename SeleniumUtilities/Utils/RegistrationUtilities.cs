@@ -150,18 +150,9 @@ namespace SeleniumUtilities.Utils
 
         }
         // This method is for upload files to inputControl
-        public static void UploadFiles(this IWebElement inputControl, IWebElement uploadButtonContorl, params string[] filePaths)
+        public static void DeleteButtonInSpecific(string fileToFind)
         {
-            // foreach (string eachFile in filePaths)
-            // {
-            //     inputControl.SendKeysWithDelay(eachFile, SLEEPTIMER);
-            //     Thread.Sleep(SLEEPTIMER);
-            // }
-           // "/html/body/app-root/div/app-blob-files-upload/form/mat-card/mat-card-content/app-blobupload/app-upload/mat-card/mat-card-content/div/div[2]/div[2]/button[1]/span/text()");
-            inputControl.SendKeysWithDelay(filePaths[0], SLEEPTIMER);
-            //var wait => driver.WaitUntilIsNoLongerFound(By.XPath("/html/body/app-root/div/app-blob-files-upload/form/mat-card/mat-card-content/app-blobupload/app-upload/mat-card/mat-card-content/div/div[2]/div[2]/button[1]/span/text()"), 20);
-            Thread.Sleep(3000);
-            uploadButtonContorl.Click();
+            
         }
 
     }
