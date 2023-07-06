@@ -13,20 +13,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.UploadFile
 {
     internal class Test10_ComplaintFormFunctionality : FillComplaintForm_Base
     {
-        //For some reason opening two chrome tests with the setup?
-        [OneTimeSetUp]
-        public void OneTimeSetUp()
-        {
-            base.ComplaintFormModelSetUp(false);
-        }
-
-        [OneTimeTearDown]
-        public void OneTimeTearDown()
-        {
-            if (SLEEPTIMER > 0) { Thread.Sleep(SLEEPTIMER); }
-            base.ComplaintFormModelTearDown();
-        }
-
 
         public readonly int SLEEPTIMER = 0;
         public readonly string FILE_IMAGE_PATH = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_truck.jpeg";
