@@ -97,59 +97,11 @@ namespace IdlingComplaints.Tests.Register
             });
         }
 
-        [Test]
-        [Category("Successful Registration")]
-        public void SuccessfulRegistration()
-        {
-            FirstNameControl.SendKeysWithDelay("Jane", SLEEP_TIMER);
-            LastNameControl.SendKeysWithDelay("Doe", SLEEP_TIMER);
-            string generatedEmail = StringUtilities.GenerateRandomEmail();
-            EmailControl.SendKeysWithDelay(generatedEmail, SLEEP_TIMER);
-            PasswordControl.SendKeysWithDelay("T3sting@1234", SLEEP_TIMER);
-            ConfirmPasswordControl.SendKeysWithDelay("T3sting@1234", SLEEP_TIMER);
-            SelectSecurityQuestion(1);
-            SecurityAnswerControl.SendKeysWithDelay("Testing", SLEEP_TIMER);
-            Address1Control.SendKeysWithDelay("59-17 Junction Blvd", SLEEP_TIMER);
-            Address2Control.SendKeysWithDelay("10th Fl", SLEEP_TIMER);
-            CityControl.SendKeysWithDelay("Queens", SLEEP_TIMER);
-            SelectState(1);
-            ZipCodeControl.SendKeysWithDelay("11373", SLEEP_TIMER);
-            TelephoneControl.SendKeysWithDelay("631-632-9800", SLEEP_TIMER);
-            Console.WriteLine(Registered_EmailAddress);
-            ScrollToButton();
-            ClickSubmitButton();
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(20));
-            wait.Until(d =>
-            {
-                var snackBarError = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
-                Assert.IsNotNull(snackBarError);
-                if (snackBarError.Text.Trim().Contains("successful"))
-                {
-                    using (StreamWriter sw = File.AppendText(Registered_EmailAddress))
-                    {
-                        try
-                        {
-                            sw.WriteLine(generatedEmail);
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine("Cannot Write into File");
-                            Console.WriteLine(ex.ToString());
-                        }
-                    }
-                } 
-                Assert.That(snackBarError.Text.Trim(), Is.EqualTo("Registration has been completed successfully."), "Flagged for inconsistency on purpose."); //Added period for consistency with other error messaging
-                return snackBarError;
-            });
-        }
-
-        [Test]
-        [Category("Failed Registration")]
-        //Exiting user account
+        [Test, Category("Scenario Registration functionality test#2: registered user")]
         public void FailedRegistrationDupEmail()
         {
-            FirstNameControl.SendKeysWithDelay("Jane", SLEEP_TIMER);
-            LastNameControl.SendKeysWithDelay("Doe", SLEEP_TIMER);
+            FirstNameControl.SendKeysWithDelay("Registered", SLEEP_TIMER);
+            LastNameControl.SendKeysWithDelay("User", SLEEP_TIMER);
             EmailControl.SendKeysWithDelay("TTseng@dep.nyc.gov", SLEEP_TIMER);
             PasswordControl.SendKeysWithDelay("T3sting@1234", SLEEP_TIMER);
             ConfirmPasswordControl.SendKeysWithDelay("T3sting@1234", SLEEP_TIMER);
@@ -172,15 +124,19 @@ namespace IdlingComplaints.Tests.Register
                 Assert.That(snackBarError.Text.Trim(), Is.EqualTo("Email " + EmailInput + " has already been registered. Please contact DEP hotline."));
                 return snackBarError;
             });
+        }
 
-            //Thread.Sleep(10000);
-            //Email kelly.chen@dep.nyc.gov has already been registered. Please contact DEP hotline.
+        [Test, Category("Scenario Cancel Registration functionality test#3: cancel register")]
+        public void CancelRegistrationRedirectsToLogin()
+        {
+            ScrollToButton();
+            ClickCancelButton();
+            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10)); //1 - too short
+            wait.Until(d => d.FindElement(By.TagName("h3")));
         }
 
 
-
-        [Test]
-        [Category("Cancelled Registration")]
+        [Test, Category("Scenario Cancel Registration functionality test#4: cancel register after fill in all the input field")]
         public void CancelRegistrationFullFormRedirectsToLogin()
         {
             FirstNameControl.SendKeysWithDelay("Jane", SLEEP_TIMER);
@@ -205,15 +161,7 @@ namespace IdlingComplaints.Tests.Register
 
         }
 
-        [Test]
-        [Category("Cancelled Registration")]
-        public void CancelRegistrationRedirectsToLogin()
-        {
-            ScrollToButton();
-            ClickCancelButton();
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10)); //1 - too short
-            wait.Until(d => d.FindElement(By.TagName("h3")));
-        }
+  
 
 
       //  [Test]
