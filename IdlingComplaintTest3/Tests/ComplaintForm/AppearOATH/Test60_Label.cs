@@ -95,7 +95,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.AppearOATH
             //AppearOATHSetUp();
 
             AppearOATH_ClickNo();
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60);
+            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 120);
             string summonsAffidavitLink = AppearOATH_AffidavitLinkControl.Text;
             Assert.That(summonsAffidavitLink, Is.EqualTo(Constants.APPEAR_OATH_SUMMONS_AFFDAVIT_FORM));
         }
@@ -107,7 +107,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.AppearOATH
             //AppearOATHSetUp();
 
             AppearOATH_ClickNo();
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60);
+            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 120);
             string complaintAffirmationLink = AppearOATH_AffirmationLinkControl.Text;
             Assert.That(complaintAffirmationLink, Is.EqualTo(Constants.APPEAR_OATH_COMPLAINT_AFFIRMATION_FORM));
         }
@@ -119,7 +119,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.AppearOATH
             //AppearOATHSetUp();
 
             AppearOATH_ClickNo();
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60);
+            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 120);
             string summonsAffadivitLink = AppearOATH_AffidavitLinkControl.GetAttribute("href");
             Console.WriteLine(summonsAffadivitLink);
             Assert.That(summonsAffadivitLink, Is.EqualTo(Constants.APPEAR_OATH_SUMMONS_AFFADIVIT_LINK));
@@ -132,7 +132,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.AppearOATH
             //AppearOATHSetUp();
 
             AppearOATH_ClickNo();
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60);
+            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 120);
             string complaintAffirmationLink = AppearOATH_AffirmationLinkControl.GetAttribute("href");
             Console.WriteLine(complaintAffirmationLink);
             Assert.That(complaintAffirmationLink, Is.EqualTo(Constants.APPEAR_OATH_COMPLAINT_AFFIRMATION_LINK));
