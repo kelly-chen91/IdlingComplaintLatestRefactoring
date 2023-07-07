@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +40,8 @@ namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
         [TearDown]
         public void Teardown()
         {
+            if (SLEEPTIMER > 0)
+                Thread.Sleep(SLEEPTIMER);
             base.ComplaintFormModelTearDown();
         }
 
@@ -66,28 +69,60 @@ namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
         [Test, Category("Verify the delete button")]
         public void EvidenceUpload_VerifyDeleteButton()
         {
-            Console.WriteLine("Test1");
             EvidenceUpload_MultipleFileUpload();
-            Console.WriteLine("Test2");
+
             string[] filePaths = { IDLING_TRUCK, IDLING_BUS, IDLING_VAN };
-            string fileName = Path.GetFileName(filePaths[0]);
+            string fileName = Path.GetFileName(filePaths[2]);
 
-            var rows = Driver.FindElements(By.CssSelector("mat-card-content[class='mat-card-content']"));
-            IWebElement DeleteButtonControl = Driver.FindElement(By.CssSelector("mat-icon[aria-label='Delete']"));
+            var rows = Driver.FindElement(By.TagName("mat-row"));
+
+            var garbegeBinControl = Driver.FindElement(By.XPath("/html/body/app-root/div/app-blob-files-upload/form/mat-card/mat-card-content/app-blobupload/mat-card/mat-card-content/div/mat-table/mat-row[1]/mat-cell[5]/mat-icon[2]"));
+          
+            var fileNameControl = Driver.FindElement(By.XPath("/html/body/app-root/div/app-blob-files-upload/form/mat-card/mat-card-content/app-blobupload/mat-card/mat-card-content/div/mat-table/mat-row[1]/mat-cell[1]"));
+
+            Console.WriteLine("1111111111111111");
+            Driver.WaitUntilElementFound(By.CssSelector("mat-icon[arial-lable='Delete']"), 21);
+            garbegeBinControl.Click();
+
+            Console.WriteLine("222222222222222222222");
+
+            // Switch focus to the alert dialog
+            //IAlert alertDialog = Driver.SwitchTo().Alert;
+
+            // Get the text of the alert dialog
+            //string alertText = alertDialog.Text;
+
+            // Print the alert text (optional)
+            //Console.WriteLine("Alert Text: " + alertText);
+
+            // Click the confirm delete button in the alert dialog
+            //alertDialog.Accept();
+
+            // Switch back to the main window
+            Driver.SwitchTo().DefaultContent();
+
+
+         //   string mainWindowHandle = Driver.CurrentWindowHandle;
+         //   ReadOnlyCollection<string> allWindowHandles = Driver.WindowHandles;
+
+            Driver.WaitUntilElementFound(By.CssSelector("mat-dialog-container[role='dialog']"), 18);
+       //    foreach (string windowHandle in allWindowHandles)
+       //    {
+       //        if (windowHandle != mainWindowHandle)
+       //        {
+       //            Driver.SwitchTo().Window(windowHandle);
+       //            var yesButtonControl = Driver.FindElement(By.XPath("/html/body/div[2]/div[2]/div/mat-dialog-container/app-confirm-dialog/div[2]/button[2]/span"));
+       //            yesButtonControl.Click();
+       //            Driver.SwitchTo().Window(mainWindowHandle);
+       //            break;
+       //        }
+       //    }
+       //    Driver.WaitUntilElementFound(By.CssSelector("input[type='file']"), 18);
+
+            string newFileNameOnTheList = fileNameControl.Text;
+            Console.WriteLine(newFileNameOnTheList);
            
-            foreach (var row in rows)
-            {
-                var rowData = row.FindElement(By.XPath("/html/body/app-root/div/app-blob-files-upload/form/mat-card/mat-card-content/app-blobupload/mat-card/mat-card-content/div/mat-table/mat-row[1]/mat-cell[1]/test()"));
-                if (rowData.Equals(fileName))
-                {
-                    DeleteButtonControl.Click();
-                   
-                  // IAlert alert = 
-                  //     Driver.SwitchTo().Alert;
-                  // alert.Accept();
-                }
-            }
-
+            Assert.That(fileName, !Is.EqualTo(newFileNameOnTheList), "File was not deleted successfully.");
         }
     }
 }

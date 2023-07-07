@@ -13,7 +13,7 @@ namespace IdlingComplaints.Tests.Login;
 
 internal class Test10_LoginFunctionality : LoginModel
 {
-    Random random = new Random();
+   Random random = new Random();
    
     [SetUp]
     public void SetUp()
@@ -30,7 +30,6 @@ internal class Test10_LoginFunctionality : LoginModel
     {
         if (SLEEP_TIMER > 0)
             Thread.Sleep(SLEEP_TIMER);
-        //Driver.Quit();
         base.LoginModelTearDown();
     }
 
@@ -38,8 +37,8 @@ internal class Test10_LoginFunctionality : LoginModel
     private readonly string registed_EmailAddress = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Text\\Registed_EmailAddress.txt";
 
 
-    [Test]
-    [Category("Valid Login Loads New Page")]
+    [Test, Category("Scenario login functionality test1: login with valid email and password")]
+    
     public void RetriveFileDataVerification()
     {
 
@@ -53,59 +52,54 @@ internal class Test10_LoginFunctionality : LoginModel
         PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
         ClickLoginButton();
 
-       
         Driver.WaitUntilElementFound(By.CssSelector("button[routerlink='idlingcomplaint/new']"), 20);
       
         Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
     }
 
 
-
-    //Explicit wait to test user login 
-    [Test]
-    [Category("Valid Login Loads New Page")]
+    [Test, Category("Scenario login functionality test2: login with valid email, but wrong password")]
     public void LoginValidEmailAndPassword()
     {
         //locate login field
         EmailControl.SendKeysWithDelay("ttseng@dep.nyc.gov", SLEEP_TIMER);
-        PasswordControl.SendKeysWithDelay("Testing1#", SLEEP_TIMER);
+        PasswordControl.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
         ClickLoginButton();
 
-        Driver.WaitUntilElementFound(By.CssSelector("button[routerlink='idlingcomplaint/new']"), 20);
+        Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
         var resultControl = Driver.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
         Assert.That(resultControl.Text.Trim(), Is.EqualTo("Email and password do not match."));
         Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
     }
 
-    //Explicit wait to test user login 
-    [Test]
-    [Category("Invalid Login - Error Displayed")]
+    
+    [Test, Category("Scenario login functionality test3: login with unregistered email address")]
     public void LoginInvalidPassword()
     {
         //locate login field
-        EmailControl.SendKeysWithDelay("ttseng@dep.nyc.gov", SLEEP_TIMER);
+        EmailControl.SendKeysWithDelay(RegistrationUtilities.GenerateEmail("unregistered", "emailAddress", "dep.nyc.gov"), SLEEP_TIMER);
         PasswordControl.SendKeysWithDelay("Testing1", SLEEP_TIMER);
         ClickLoginButton();
-        var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10)); //1 - too short
+
+        var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10)); 
         wait.Until(d =>
         {
             var resultControl = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
-
+      
             Assert.IsNotNull(resultControl);
-            Assert.That(resultControl.Text.Trim(), Is.EqualTo("Email and password do not match."));
-
+            Assert.That(resultControl.Text.Trim(), Is.EqualTo("User is not found"));
+      
             return resultControl;
         }
         );
     }
 
-    [Test]
-    [Category("Invalid Login - Error Displayed")]
+    [Test, Category("Scenario login functionality test4: login with unregistered email address, but a qulified password")]
     public void LoginEmailNotFound()
     {
         //locate login field
-        EmailControl.SendKeysWithDelay("d@gmail.com", SLEEP_TIMER);
-        PasswordControl.SendKeysWithDelay("Testing1", SLEEP_TIMER);
+        EmailControl.SendKeysWithDelay(RegistrationUtilities.GenerateEmail("unregistered", "emailAddress", "dep.nyc.gov"), SLEEP_TIMER);
+        PasswordControl.SendKeysWithDelay(RegistrationUtilities.GenerateQulifiedPassword(), SLEEP_TIMER);
         ClickLoginButton();
         var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10)); //1 - too short
         wait.Until(d =>
@@ -113,7 +107,7 @@ internal class Test10_LoginFunctionality : LoginModel
             var resultControl = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
 
             Assert.IsNotNull(resultControl);
-            Assert.That(resultControl.Text.Trim(), Is.EqualTo("User is not found."), "Flagged for inconsistency on purpose."); //Added a period for consistency in error messaging
+            Assert.That(resultControl.Text.Trim(), Is.EqualTo("User is not found")); //Added a period for consistency in error messaging
 
             return resultControl;
         }
