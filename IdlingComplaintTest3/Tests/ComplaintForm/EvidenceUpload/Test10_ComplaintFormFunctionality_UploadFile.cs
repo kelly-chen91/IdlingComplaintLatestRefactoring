@@ -25,7 +25,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
         public void Setup()
         {
             
-            base.ComplaintFormModelSetUp(false);
+            //base.ComplaintFormModelSetUp(false);
             ClickNo();
             Driver.WaitUntilElementFound(By.CssSelector("input[placeholder='Company Name']"), 15);
             Filled_ComplaintInfo();
@@ -64,8 +64,31 @@ namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
 
         }
 
-   
 
+        [Test, Category("Upload Amount Equals Table Rows")] 
+        public void EvidenceUpload_TableAppearanceCheck()
+        {
+
+            string[] filePaths = { IDLING_TRUCK, IDLING_BUS, IDLING_VAN }; //Files can be added to or removed from and will still work
+            string fileName = Path.GetFileName(filePaths[0]);
+
+            int i = 0;
+            foreach (var file in filePaths)
+            {
+                EvidenceUpload_UploadControl.SendKeysWithDelay(file, SLEEPTIMER);
+                i++;
+            }
+            EvidenceUpload_ClickFilesUploadConfirm();
+
+
+            var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
+            Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 20);
+
+
+            var rowList = MatTableControl.GetDataFromMatTable(); //Needed to make new version of this because it's a different type of table
+            Assert.That(rowList.Count, Is.EqualTo(i));
+
+        }
 
 
 
