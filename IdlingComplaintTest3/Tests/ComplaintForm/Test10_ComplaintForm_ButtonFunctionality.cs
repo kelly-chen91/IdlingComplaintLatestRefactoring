@@ -10,6 +10,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
 {
     internal partial class Test10_ComplaintFormFunctionality
     {
+
         [Test]
         [Category("Cancel - Form Submission")]
         public void CancelAtComplaintInfoPageFormRedirectsToHome()

@@ -11,19 +11,19 @@ namespace IdlingComplaints.Tests.ComplaintForm
 {
     internal class FillComplaintForm_Base : ComplaintFormModel
     {
-        [SetUp]
-        public void SetUp()
-        {
-            base.ComplaintFormModelSetUp(false);
-
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            if (SLEEPTIMER > 0) { Thread.Sleep(SLEEPTIMER); }
-            base.ComplaintFormModelTearDown();
-        }
+        //[SetUp]
+        //public void SetUp()
+        //{
+        //    base.ComplaintFormModelSetUp(false);
+        //
+        //}
+        //
+        //[TearDown]
+        //public void TearDown()
+        //{
+        //    if (SLEEPTIMER > 0) { Thread.Sleep(SLEEPTIMER); }
+        //    base.ComplaintFormModelTearDown();
+        //}
 
         public readonly int SLEEPTIMER = 0;
         public readonly string FILE_IMAGE_PATH = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_truck.jpeg";
@@ -185,16 +185,16 @@ namespace IdlingComplaints.Tests.ComplaintForm
             EvidenceUpload_UploadInput = FILE_IMAGE_PATH;
             string fileName = Path.GetFileName(FILE_IMAGE_PATH);
             EvidenceUpload_ClickFilesUploadConfirm();
-            Thread.Sleep(SLEEPTIMER);
+            //Thread.Sleep(SLEEPTIMER);
 
-            var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20); // message says evidence have successfully uploaded
+            var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10); // message says evidence have successfully uploaded
             Assert.IsNotNull(successfulEvidenceUpload);
             if (!successfulEvidenceUpload.Text.Contains("upload")) Assert.That(successfulEvidenceUpload.Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
 
-            Thread.Sleep(SLEEPTIMER);
+            //Thread.Sleep(SLEEPTIMER);
+            Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"),15);
             EvidenceUpload_ClickNext();
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"),10);
-            Driver.WaitUntilElementFound(By.CssSelector("mat-radio-button[value='753720001']"), 30); //waits until the oath affidavit appears
+            Driver.WaitUntilElementFound(By.CssSelector("mat-radio-button[value='753720001']"), 60); //waits until the oath affidavit appears
 
         }
 
