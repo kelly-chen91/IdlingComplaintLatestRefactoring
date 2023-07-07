@@ -13,6 +13,19 @@ namespace IdlingComplaints.Tests.ComplaintForm
 {
     internal class Test20_BusinessValidation : FillComplaintForm_Base
     {
+        [SetUp]
+        public void SetUp()
+        {
+            base.ComplaintFormModelSetUp(false);
+
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            if (SLEEPTIMER > 0) { Thread.Sleep(SLEEPTIMER); }
+            base.ComplaintFormModelTearDown();
+        }
 
         [Test]
         public void FailedFormSubmit_InFrontOf_NoSchool_TimeShorterThan3Minutes()
