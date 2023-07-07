@@ -52,5 +52,16 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
 
         /*In front of school option*/
         public static readonly string OCCURRENCE_SCHOOL_NAME = "School Name";
+
+
+        /*Maxlength*/
+        public static readonly int OCCURRENCE_HOUSE_NUM_MAXLENGTH = 95;
+        public static readonly int OCCURRENCE_STREET_NAME_MAXLENGTH = 95;
+        public static readonly int OCCURRENCE_ON_STREET_MAXLENGTH = 95;
+        public static readonly int OCCURRENCE_CROSS_STREET1_MAXLENGTH = 95;
+        public static readonly int OCCURRENCE_CROSS_STREET2_MAXLENGTH = 95;
+        public static readonly int OCCURRENCE_LICENSE_PLATE_MAXLENGTH = 50;
+        public static readonly int OCCURRENCE_PAST_OFFENSE_MAXLENGTH = 100;
+        public static readonly int OCCURRENCE_SCHOOL_NAME_MAXLENGTH = 100;
     }
 }

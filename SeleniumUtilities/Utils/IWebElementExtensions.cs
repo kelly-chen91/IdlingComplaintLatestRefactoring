@@ -88,7 +88,14 @@ namespace SeleniumUtilities.Utils
             //var rowList = body.FindElements(By.TagName("tr"));
             return body.FindElements(By.TagName("tr"));
         }
-        
+
+        public static ReadOnlyCollection<IWebElement> GetDataFromMatTable(this IWebElement table)
+        {
+            var body = table.FindElement(By.TagName("mat-table"));
+            //var rowList = body.FindElements(By.TagName("mat-row"));
+            return body.FindElements(By.TagName("mat-row"));
+        }
+
         public static Boolean EqualsTableAfterSorting(this List<string> sorted, List<string> unsorted)
         {
             for (int i = 0; i < sorted.Count; i++)
