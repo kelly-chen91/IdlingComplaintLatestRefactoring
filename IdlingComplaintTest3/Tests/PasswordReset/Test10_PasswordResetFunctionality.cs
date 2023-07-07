@@ -64,7 +64,7 @@ namespace IdlingComplaints.Tests.PassordReset
             string securityAnswer = RegistrationUtilities.RetriveRecordValue(registed_EmailAddress, userIndex, 2);
             SecurityAnswerControl.SendKeysWithDelay(securityAnswer, SLEEP_TIMER);
 
-            string password = RegistrationUtilities.GeneratePassword();
+            string password = RegistrationUtilities.GenerateQulifiedPassword();
             PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
             ConfirmPasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
             
@@ -106,7 +106,7 @@ namespace IdlingComplaints.Tests.PassordReset
         {
             SecurityAnswerControl.SendKeysWithDelay("This is not an actual security key", SLEEP_TIMER);
           
-            string password = RegistrationUtilities.GeneratePassword();
+            string password = RegistrationUtilities.GenerateQulifiedPassword();
             PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
             ConfirmPasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
 

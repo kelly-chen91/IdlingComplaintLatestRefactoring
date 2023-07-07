@@ -1,5 +1,6 @@
 ﻿using IdlingComplaints.Models.ComplaintForm;
 using OpenQA.Selenium;
+using OpenQA.Selenium.DevTools.V112.Input;
 using OpenQA.Selenium.Support.UI;
 using SeleniumUtilities.Utils;
 using System;
@@ -103,6 +104,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
             ScrollToZipCode();
 
             Fill_Associated(false, false, SLEEPTIMER);
+           
 
             Occurrence_ValidDate();
 
@@ -545,6 +547,18 @@ namespace IdlingComplaints.Tests.ComplaintForm
         }
 
 
-        
+       // [Test]
+       // [Category("Successful Form Submission")]
+       // public void TestPOBox()
+       // {
+       //     ClickNo();
+       //     Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+       //
+       //     /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
+       //     ScrollToZipCode();
+       //     Associated_POBoxControl.SendKeysWithDelay(" ", 5000);
+       //     Thread.Sleep(SLEEPTIMER);
+       //     
+       // }
     }
 }

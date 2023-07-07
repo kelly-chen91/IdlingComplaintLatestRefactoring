@@ -9,13 +9,14 @@ using static System.Net.Mime.MediaTypeNames;
 using SeleniumUtilities.Base;
 using OpenQA.Selenium.Internal;
 using OpenQA.Selenium.DevTools.V112.Network;
+using System.Collections.ObjectModel;
 
 namespace SeleniumUtilities.Utils
 {
     public static class RegistrationUtilities
     {
         public static readonly Random random = new Random();
-        private static readonly int SLEEPTIMER = 1000;
+      //  private static readonly int SLEEPTIMER = 1000;
 
 
         //This method will generate random Email address
@@ -62,25 +63,8 @@ namespace SeleniumUtilities.Utils
             return seriseRandomnumbers;
         }
 
-     //  //This method will read the last record from the Text_SuccessfulEmailRegistration.txt
-     //  public static string ReadTheLatestRegistrationRecord(string filePath, int dataIndex)
-     //  {
-     //      string? lastRow = File.ReadLines(filePath).LastOrDefault();
-     //
-     //      if (!string.IsNullOrEmpty(lastRow))
-     //      {
-     //          string[] words = lastRow.Split(new[] {' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
-     //          if (words.Length >= 2)
-     //          {
-     //              return words[dataIndex];
-     //          }
-     //      }
-     //
-     //      return "";
-     //  }
-
         //This method will generate regitimate password
-        public static string GeneratePassword()
+        public static string GenerateQulifiedPassword()
         {
             const string uppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             const string lowercaseLetters = "abcdefghijklmnopqrstuvwxyz";
@@ -149,19 +133,11 @@ namespace SeleniumUtilities.Utils
 
 
         }
-        // This method is for upload files to inputControl
-        public static void UploadFiles(this IWebElement inputControl, IWebElement uploadButtonContorl, params string[] filePaths)
+        public static ReadOnlyCollection<IWebElement> GetFileNameFromTable(this IWebElement table, int i)
         {
-            // foreach (string eachFile in filePaths)
-            // {
-            //     inputControl.SendKeysWithDelay(eachFile, SLEEPTIMER);
-            //     Thread.Sleep(SLEEPTIMER);
-            // }
-           // "/html/body/app-root/div/app-blob-files-upload/form/mat-card/mat-card-content/app-blobupload/app-upload/mat-card/mat-card-content/div/div[2]/div[2]/button[1]/span/text()");
-            inputControl.SendKeysWithDelay(filePaths[0], SLEEPTIMER);
-            //var wait => driver.WaitUntilIsNoLongerFound(By.XPath("/html/body/app-root/div/app-blob-files-upload/form/mat-card/mat-card-content/app-blobupload/app-upload/mat-card/mat-card-content/div/div[2]/div[2]/button[1]/span/text()"), 20);
-            Thread.Sleep(3000);
-            uploadButtonContorl.Click();
+            var body = table.FindElement(By.TagName("mat-table"));
+            //var rowList = body.FindElements(By.TagName("tr"));
+            return body.FindElements(By.TagName("tr"));
         }
 
     }

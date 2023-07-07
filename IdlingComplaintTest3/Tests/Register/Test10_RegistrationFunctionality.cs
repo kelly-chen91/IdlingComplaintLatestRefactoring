@@ -12,6 +12,9 @@ namespace IdlingComplaints.Tests.Register
     //[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
     internal class Test10_RegistrationFunctionality : RegisterModel
     {
+        private readonly int SLEEP_TIMER = 1000;
+        private string Registered_EmailAddress = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Text\\Registered_EmailAddress.txt";
+
         [SetUp]
         public void SetUp()
         {
@@ -26,16 +29,11 @@ namespace IdlingComplaints.Tests.Register
         [TearDown]
         public void TearDown()
         {
-            Thread.Sleep(SLEEP_TIMER);
-            Thread.Sleep(SLEEP_TIMER);
-            Thread.Sleep(SLEEP_TIMER);
+            if(SLEEP_TIMER>0) Thread.Sleep(SLEEP_TIMER);
             base.RegisterModelTearDown();
         }
 
-        private readonly int SLEEP_TIMER = 1000;
-        private string Registered_EmailAddress = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Text\\Registered_EmailAddress.txt";
-         [Test]
-        [Category("Random text input Registration")]
+        [Test, Category("Scenario Registration functionality test#1: new user")]
         public void RandomtextRegistration()
         {
             FirstNameControl.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
@@ -45,7 +43,7 @@ namespace IdlingComplaints.Tests.Register
             EmailControl.SendKeysWithDelay(generatedEmail, SLEEP_TIMER);
 
             //string password = RegistrationUtilities.GenerateRandomString();
-            string password = RegistrationUtilities.GeneratePassword();
+            string password = RegistrationUtilities.GenerateQulifiedPassword();
             PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
             ConfirmPasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
 

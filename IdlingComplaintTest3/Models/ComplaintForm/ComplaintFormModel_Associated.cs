@@ -37,7 +37,9 @@ namespace IdlingComplaints.Models.ComplaintForm
         public IWebElement Associated_RequireStreetNameControl => Driver.FindElement(By.CssSelector("mat-error[id='mat-error-12']"));
 
         /*Label Test for*/
-        public IWebElement Associated_POBoxControl => Driver.FindElement(By.CssSelector("mat-checkbox[formcontrolname='idc_ispobox']"));
+       // public IWebElement Associated_POBoxControl => Driver.FindElement(By.CssSelector("mat-checkbox[formcontrolname='idc_ispobox']"));
+        public IWebElement Associated_POBoxControl => Driver.FindElement(By.CssSelector("input[id='mat-checkbox-1-input']"));
+
 
         public string associated_SelectedStateControl = "--";
 
@@ -114,11 +116,22 @@ namespace IdlingComplaints.Models.ComplaintForm
             }
         }
 
-        public void Associated_ClickPOBox()
-        {
-            Associated_POBoxControl.Click();
-        }
-
+      //    public void Associated_ClickPOBox()
+      //    {
+      //        Associated_POBoxControl.Click();
+      //       
+      //    }
+       public string Associated_POBoxInput
+       {
+           get
+           {
+               return Associated_POBoxControl.GetAttribute("value");
+           }
+           set
+           {
+               Associated_POBoxControl.SendKeys(value);
+           }
+       }
 
         public void Associated_SelectState(int stateIndex)
         {
