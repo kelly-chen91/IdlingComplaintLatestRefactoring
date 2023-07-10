@@ -34,7 +34,7 @@ internal class Test10_LoginFunctionality : LoginModel
     }
 
     private readonly int SLEEP_TIMER = 2000;
-    private readonly string registed_EmailAddress = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Text\\Registed_EmailAddress.txt";
+    private readonly string registered_EmailAddress = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Text\\Registered_EmailAddress.txt";
 
 
     [Test, Category("Scenario login functionality test1: login with valid email and password")]
@@ -42,11 +42,11 @@ internal class Test10_LoginFunctionality : LoginModel
     public void RetriveFileDataVerification()
     {
 
-        string[] lines = File.ReadAllLines(registed_EmailAddress);
+        string[] lines = File.ReadAllLines(registered_EmailAddress);
         int userIndex = random.Next(0, lines.Length - 1);
 
-        string email = RegistrationUtilities.RetriveRecordValue(registed_EmailAddress, userIndex, 0);
-        string password = RegistrationUtilities.RetriveRecordValue(registed_EmailAddress, userIndex, 1);
+        string email = RegistrationUtilities.RetriveRecordValue(registered_EmailAddress, userIndex, 0);
+        string password = RegistrationUtilities.RetriveRecordValue(registered_EmailAddress, userIndex, 1);
 
         EmailControl.SendKeysWithDelay(email, SLEEP_TIMER);
         PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
@@ -72,7 +72,9 @@ internal class Test10_LoginFunctionality : LoginModel
         Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
     }
 
-    
+
+
+
     [Test, Category("Scenario login functionality test3: login with unregistered email address")]
     public void LoginInvalidPassword()
     {
