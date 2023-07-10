@@ -33,13 +33,13 @@ namespace IdlingComplaints.Models.ComplaintForm
 
         public IWebElement EvidenceUpload_UploadCancelControl => Driver.FindElement(By.XPath("//app-upload/mat-card/mat-card-content/div/div[2]/div[2]/button[2]"));
 
-        IWebElement EvidenceUpload_DeleteEvidence => Driver.FindElement(By.XPath("//mat-row/mat-cell[5]/mat-icon[2]"));
-
-        IWebElement EvidenceUpload_DeleteConfirm => Driver.FindElement(By.XPath("//app-confirm-dialog/div[2]/button[2]/span"));
-
-        //IWebElement EvidenceUpload_DeleteCancel => Driver.FindElement(By.XPath("//app-confirm-dialog/div[2]/button[1]/span"));
-
-
+        public IWebElement EvidenceUpload_DeleteEvidenceControl => Driver.FindElement(By.XPath("//mat-row/mat-cell[5]/mat-icon[2]"));
+        
+        public IWebElement EvidenceUpload_DeleteConfirmControl => Driver.FindElement(By.XPath("//app-confirm-dialog/div[2]/button[2]/span"));
+        
+        //public IWebElement EvidenceUpload_DeleteCancel => Driver.FindElement(By.XPath("//app-confirm-dialog/div[2]/button[1]/span"));
+        
+        public IWebElement EvidenceUpload_TableControl => Driver.FindElement(By.TagName("mat-table"));
 
 
         public string EvidenceUpload_UploadInput
@@ -93,12 +93,12 @@ namespace IdlingComplaints.Models.ComplaintForm
 
         public void EvidenceUpload_ClickDeleteEvidence()
         {
-            EvidenceUpload_DeleteEvidence.Click();
+            EvidenceUpload_DeleteEvidenceControl.Click();
         }
 
         public void EvidenceUpload_ConfirmDelete()
         {
-            EvidenceUpload_DeleteConfirm.Click();
+            EvidenceUpload_DeleteConfirmControl.Click();
         }
 
 

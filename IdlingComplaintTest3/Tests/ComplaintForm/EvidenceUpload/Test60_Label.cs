@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SeleniumUtilities.Utils;
+using IdlingComplaints.Tests.ComplaintForm.Functionality;
 
 namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
 {
