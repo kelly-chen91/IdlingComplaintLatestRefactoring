@@ -134,7 +134,7 @@ namespace SeleniumUtilities.Utils
 
         }
        
-        public static List<IWebElement> GetDeleteButtonControl(this ReadOnlyCollection<IWebElement> rowList, By locator)
+        public static List<IWebElement> GetCertainListControl(this ReadOnlyCollection<IWebElement> rowList, By locator)
         {
             List<IWebElement> classElementList = new List<IWebElement>();
             for (int i = 0; i < rowList.Count; i++)
