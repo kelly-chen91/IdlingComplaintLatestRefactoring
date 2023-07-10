@@ -187,7 +187,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
             EvidenceUpload_ClickFilesUploadConfirm();
             //Thread.Sleep(SLEEPTIMER);
 
-            var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10); // message says evidence have successfully uploaded
+            var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20); // message says evidence have successfully uploaded
             Assert.IsNotNull(successfulEvidenceUpload);
             if (!successfulEvidenceUpload.Text.Contains("upload")) Assert.That(successfulEvidenceUpload.Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
 

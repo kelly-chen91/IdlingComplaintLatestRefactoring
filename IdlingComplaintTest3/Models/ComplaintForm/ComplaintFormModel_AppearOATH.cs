@@ -14,8 +14,8 @@ namespace IdlingComplaints.Models.ComplaintForm
         public IWebElement AppearOATH_YesControl => Driver.FindElement(By.CssSelector("mat-radio-button[value='753720001']"));
         public IWebElement AppearOATH_NoControl => Driver.FindElement(By.CssSelector("mat-radio-button[value='753720000']"));
 
-        public IWebElement AppearOATH_AffidavitLinkControl => Driver.FindElement(By.PartialLinkText("Affidavit"));
-        public IWebElement AppearOATH_AffirmationLinkControl => Driver.FindElement(By.PartialLinkText("Affirmation"));
+        public IWebElement AppearOATH_AffidavitLinkControl => Driver.FindElement(By.PartialLinkText("Download Summons Affidavit"));
+        public IWebElement AppearOATH_AffirmationLinkControl => Driver.FindElement(By.PartialLinkText("Download Citizen Complaint"));
 
         public IWebElement AppearOATH_PreviousControl => Driver.FindElement(By.XPath("//affidavit-upload/form/div/div/button[1]"));
         public IWebElement AppearOATH_SubmitControl => Driver.FindElement(By.CssSelector("button[type='submit']"));
