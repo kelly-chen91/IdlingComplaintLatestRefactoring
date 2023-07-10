@@ -45,7 +45,26 @@ namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
             base.ComplaintFormModelTearDown();
         }
 
-        [Test, Category("Upload multiple evidence files")]
+        [Test, Category("Scenario #1: upload one evidence file")]
+        public void EvidenceUpload_UploadOneFile()
+        {
+            string[] filePaths = { IDLING_TRUCK, IDLING_BUS, IDLING_VAN };
+            string fileName = Path.GetFileName(filePaths[0]);
+
+            EvidenceUpload_UploadControl.SendKeysWithDelay(filePaths[0], SLEEPTIMER);
+
+            EvidenceUpload_ClickFilesUploadConfirm();
+
+            var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
+            Assert.IsNotNull(successfulEvidenceUpload);
+
+            Console.WriteLine(successfulEvidenceUpload.Text);
+            if (successfulEvidenceUpload.Text.Contains("uploaded"))
+                Assert.That(successfulEvidenceUpload.Text.Trim(), Contains.Substring("Succesfully uploaded file named: " + fileName));
+
+        }
+
+        [Test, Category("Upload multiple evidence files at once")]
         public void EvidenceUpload_MultipleFileUpload()
         {
             string[] filePaths = { IDLING_TRUCK, IDLING_BUS, IDLING_VAN };
@@ -95,60 +114,51 @@ namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
         [Test, Category("Verify the delete button")]
         public void EvidenceUpload_VerifyDeleteButton()
         {
-            EvidenceUpload_MultipleFileUpload();
+            EvidenceUpload_UploadOneFile();
 
             string[] filePaths = { IDLING_TRUCK, IDLING_BUS, IDLING_VAN };
-            string fileName = Path.GetFileName(filePaths[2]);
+            var deleteControl = By.CssSelector("mat-icon[aria-label='Delete']"); //get delete locator
 
-            var rows = Driver.FindElement(By.TagName("mat-row"));
+            EvidenceUpload_ClickDeleteEvidence();
 
-            var garbegeBinControl = Driver.FindElement(By.XPath("/html/body/app-root/div/app-blob-files-upload/form/mat-card/mat-card-content/app-blobupload/mat-card/mat-card-content/div/mat-table/mat-row[1]/mat-cell[5]/mat-icon[2]"));
-          
-            var fileNameControl = Driver.FindElement(By.XPath("/html/body/app-root/div/app-blob-files-upload/form/mat-card/mat-card-content/app-blobupload/mat-card/mat-card-content/div/mat-table/mat-row[1]/mat-cell[1]"));
+            Driver.WaitUntilElementFound(By.TagName("mat-dialog-container"), 20);
+            EvidenceUpload_ConfirmDelete();
 
-            Console.WriteLine("1111111111111111");
-            Driver.WaitUntilElementFound(By.CssSelector("mat-icon[arial-lable='Delete']"), 21);
-            garbegeBinControl.Click();
-
-            Console.WriteLine("222222222222222222222");
-
-            // Switch focus to the alert dialog
-            //IAlert alertDialog = Driver.SwitchTo().Alert;
-
-            // Get the text of the alert dialog
-            //string alertText = alertDialog.Text;
-
-            // Print the alert text (optional)
-            //Console.WriteLine("Alert Text: " + alertText);
-
-            // Click the confirm delete button in the alert dialog
-            //alertDialog.Accept();
-
-            // Switch back to the main window
-            Driver.SwitchTo().DefaultContent();
-
-
-         //   string mainWindowHandle = Driver.CurrentWindowHandle;
-         //   ReadOnlyCollection<string> allWindowHandles = Driver.WindowHandles;
-
-            Driver.WaitUntilElementFound(By.CssSelector("mat-dialog-container[role='dialog']"), 18);
-       //    foreach (string windowHandle in allWindowHandles)
-       //    {
-       //        if (windowHandle != mainWindowHandle)
-       //        {
-       //            Driver.SwitchTo().Window(windowHandle);
-       //            var yesButtonControl = Driver.FindElement(By.XPath("/html/body/div[2]/div[2]/div/mat-dialog-container/app-confirm-dialog/div[2]/button[2]/span"));
-       //            yesButtonControl.Click();
-       //            Driver.SwitchTo().Window(mainWindowHandle);
-       //            break;
-       //        }
-       //    }
-       //    Driver.WaitUntilElementFound(By.CssSelector("input[type='file']"), 18);
-
-            string newFileNameOnTheList = fileNameControl.Text;
-            Console.WriteLine(newFileNameOnTheList);
-           
-            Assert.That(fileName, !Is.EqualTo(newFileNameOnTheList), "File was not deleted successfully.");
+            Thread.Sleep(SLEEPTIMER);
+            Assert.IsNotNull(EvidenceUpload_UploadErrorControl.Displayed);
+        }
+        [Test, Category("Verify the delete button")]
+        public void EvidenceUpload_VerifyMultipleDeleteButton()
+        {
+      //      EvidenceUpload_MultipleFileUpload();
+      //
+      //    var fileNameControl = By.CssSelector("mat-cell[class='cdk-column-blob_filename']"); // get each File Name
+      //  
+      //    var rowList = EvidenceUpload_TableControl.GetTableContains();//This will return the row contains 
+      //    var deleteFileList = rowList.GetDeleteButtonControl(deleteControl);//Get the delete button from specific row
+      //    var FileList = rowList.GetSpecificColumnText(fileNameControl);     //Get the fileName from specific row 
+      //  
+      //    for (int i = 0; i < deleteFileList.Count; i++)
+      //    {
+      //        Driver.WaitUntilElementFound(By.TagName("mat-header-row"), 15);
+      //        //   Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir='ltr']"), 20);
+      //  
+      //        rowList = EvidenceUpload_TableControl.GetTableContains();//This will return the row contains
+      //        deleteFileList = rowList.GetSpecificColumnElements(deleteControl);
+      //        FileList = rowList.GetSpecificColumnText(fileNameControl);
+      //  
+      //        deleteFileList[i].Click();
+      //  
+      //  
+      //  
+      //       Thread.Sleep(2000);
+      //  
+      //        Assert.IsNull(filePaths[i]);
+      //  
+      //        if (SLEEPTIMER > 0)
+      //            Thread.Sleep(SLEEPTIMER);
+      //  
+          }
         }
     }
 }

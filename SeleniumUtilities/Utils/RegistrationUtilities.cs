@@ -133,12 +133,17 @@ namespace SeleniumUtilities.Utils
 
 
         }
-        public static ReadOnlyCollection<IWebElement> GetFileNameFromTable(this IWebElement table, int i)
+       
+        public static List<IWebElement> GetDeleteButtonControl(this ReadOnlyCollection<IWebElement> rowList, By locator)
         {
-            var body = table.FindElement(By.TagName("mat-table"));
-            //var rowList = body.FindElements(By.TagName("tr"));
-            return body.FindElements(By.TagName("tr"));
-        }
+            List<IWebElement> classElementList = new List<IWebElement>();
+            for (int i = 0; i < rowList.Count; i++)
+            {
+                var classElement = rowList[i].FindElement(locator);
 
+                classElementList.Add(classElement);
+            }
+            return classElementList;
+        }
     }
 }
