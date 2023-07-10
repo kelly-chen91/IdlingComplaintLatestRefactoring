@@ -43,7 +43,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Files\Text\Registed_EmailAddress.txt">
+    <None Update="Files\Text\Registered_EmailAddress.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
