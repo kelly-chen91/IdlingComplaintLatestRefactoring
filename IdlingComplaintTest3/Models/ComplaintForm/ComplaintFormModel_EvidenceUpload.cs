@@ -26,7 +26,7 @@ namespace IdlingComplaints.Models.ComplaintForm
         public IWebElement EvidenceUpload_WebLinkControl => Driver.FindElement(By.PartialLinkText("Web"));
         public IWebElement EvidenceUpload_AndroidLinkControl => Driver.FindElement(By.PartialLinkText("Android"));
         public IWebElement EvidenceUpload_iOSLinkControl => Driver.FindElement(By.PartialLinkText("iOS"));
-        public IWebElement EvidenceUpload_TableControl => Driver.FindElement(By.ClassName("mat-elevation-z8"));
+        //public IWebElement EvidenceUpload_TableControl => Driver.FindElement(By.ClassName("mat-elevation-z8"));
         public IWebElement EvidenceUpload_UploadErrorControl => Driver.FindElement(By.TagName("mat-error"));
 
         /*For Maya to practice: Please add additional elements below.*/

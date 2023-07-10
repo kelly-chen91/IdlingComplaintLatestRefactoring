@@ -21,7 +21,7 @@ namespace IdlingComplaints.Tests.Home
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            base.HomeModelSetUp("kchen@dep.nyc.gov", "T3sting@1234", false);
+            base.HomeModelSetUp("ttseng@dep.nyc.gov", "Testing1#", false);
 
         }
 
