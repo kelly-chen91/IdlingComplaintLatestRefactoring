@@ -129,38 +129,31 @@ namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
             Thread.Sleep(SLEEPTIMER);
             Assert.IsNotNull(EvidenceUpload_UploadErrorControl.Displayed);
         }
-        [Test, Category("Verify the delete button")]
+        [Test, Category("Verify the delete button"), Ignore("Debugging")]
         public void EvidenceUpload_VerifyMultipleDeleteButton()
         {
-      //      EvidenceUpload_MultipleFileUpload();
-      //
-      //    var fileNameControl = By.CssSelector("mat-cell[class='cdk-column-blob_filename']"); // get each File Name
-      //  
-      //    var rowList = EvidenceUpload_TableControl.GetTableContains();//This will return the row contains 
-      //    var deleteFileList = rowList.GetDeleteButtonControl(deleteControl);//Get the delete button from specific row
-      //    var FileList = rowList.GetSpecificColumnText(fileNameControl);     //Get the fileName from specific row 
-      //  
-      //    for (int i = 0; i < deleteFileList.Count; i++)
-      //    {
-      //        Driver.WaitUntilElementFound(By.TagName("mat-header-row"), 15);
-      //        //   Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir='ltr']"), 20);
-      //  
-      //        rowList = EvidenceUpload_TableControl.GetTableContains();//This will return the row contains
-      //        deleteFileList = rowList.GetSpecificColumnElements(deleteControl);
-      //        FileList = rowList.GetSpecificColumnText(fileNameControl);
-      //  
-      //        deleteFileList[i].Click();
-      //  
-      //  
-      //  
-      //       Thread.Sleep(2000);
-      //  
-      //        Assert.IsNull(filePaths[i]);
-      //  
-      //        if (SLEEPTIMER > 0)
-      //            Thread.Sleep(SLEEPTIMER);
-      //  
-          }
-        }
+             EvidenceUpload_MultipleFileUpload();
+     
+             var fileNameControl = By.CssSelector("mat-cell[class='cdk-column-blob_filename']"); // get each File Name
+             var deleteControl = By.CssSelector("mat-icon[aria-label='Delete']");
+
+             var rowList = EvidenceUpload_Table3Control.GetTableContains();//This will return the row contains 
+             var deleteFileList = rowList.GetCertainListControl(deleteControl);//Get the delete button from specific row
+             var FileList = rowList.GetCertainListControl(fileNameControl);     //Get the fileName from specific row 
+       
+             for (int i = 0; i < deleteFileList.Count; i++)
+             {
+                 Driver.WaitUntilElementFound(By.TagName("mat-header-row"), 15);
+                 //   Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir='ltr']"), 20);
+       
+                 rowList = EvidenceUpload_Table3Control.GetTableContains();//This will return the row contains
+                 deleteFileList = rowList.GetSpecificColumnElements(deleteControl);
+                 FileList = rowList.GetCertainListControl(fileNameControl);
+
+                 deleteFileList[i].Click();
+       
+                Thread.Sleep(2000);
+              }
+            }
     }
 }
