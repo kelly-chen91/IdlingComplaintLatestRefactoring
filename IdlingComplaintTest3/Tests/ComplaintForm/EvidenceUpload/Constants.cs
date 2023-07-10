@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
 {
-    internal class Contants
+    internal class Constants
     {
         
         public static readonly string FORM_SAVE = "This form has been saved successfully";

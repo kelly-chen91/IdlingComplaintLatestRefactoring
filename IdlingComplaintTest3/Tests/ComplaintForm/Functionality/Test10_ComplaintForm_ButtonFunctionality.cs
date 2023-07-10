@@ -79,7 +79,19 @@ namespace IdlingComplaints.Tests.ComplaintForm
             Assert.That(header.Text, Is.EqualTo("Files Upload"));
         }
 
+        [Test]
+        [Category("Previous - Disabled field kept disabled.")]
+        public void PreviousAtEvidenceUploadDisabledState()
+        {
+            Filled_ComplaintInfo();
+            EvidenceUpload_UploadInput = FILE_IMAGE_PATH;
+            EvidenceUpload_ClickFilesUploadCancel();
+            EvidenceUpload_ClickPrevious();
+            var companyNameField = Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname = 'idc_associatedlastname']"), 60);
+            Assert.IsNotNull(companyNameField);
 
+            Assert.That(Occurrence_StateControl.GetAttribute("aria-disabled"), Is.EqualTo("true"));
+        }
 
     }
 }

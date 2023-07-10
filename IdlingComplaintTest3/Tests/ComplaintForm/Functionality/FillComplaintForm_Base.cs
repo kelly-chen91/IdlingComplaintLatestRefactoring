@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IdlingComplaints.Tests.ComplaintForm
+namespace IdlingComplaints.Tests.ComplaintForm.Functionality
 {
     internal class FillComplaintForm_Base : ComplaintFormModel
     {
@@ -36,43 +36,44 @@ namespace IdlingComplaints.Tests.ComplaintForm
         public static readonly string YES_LABEL = "We are sorry. Your submission can not be accepted by DEP. This idling complaint is not consistent with the requirements listed in Section 24-163 of the New York City Administrative Code.Thank you for participating in this effort to improve NYC’s air quality.";
 
 
-           public void Fill_Associated(bool isPOBox, bool invalidAddress, int timer)
-           {
-               Associated_CompanyNameControl.SendKeysWithDelay("Test INC", timer);
-               Associated_SelectState(1);
-            if (!isPOBox) {
+        public void Fill_Associated(bool isPOBox, bool invalidAddress, int timer)
+        {
+            Associated_CompanyNameControl.SendKeysWithDelay("Test INC", timer);
+            Associated_SelectState(1);
+            if (!isPOBox)
+            {
                 Associated_HouseNumberControl.SendKeysWithDelay("98", timer);
                 Associated_AptFloorControl.SendKeysWithDelay("4th Fl", timer);
             }
             else Associated_POBoxControl.SendKeysWithDelay(" ", timer);
             string street = "Mott Street";
-               if (invalidAddress) street = "WhoCares Street";
-               Associated_StreetNameControl.SendKeysWithDelay(street, timer);
-              
-               Associated_CityControl.SendKeysWithDelay("New York", timer);
-               Associated_ZipCodeControl.SendKeysWithDelay("10013", timer);
-           }
+            if (invalidAddress) street = "WhoCares Street";
+            Associated_StreetNameControl.SendKeysWithDelay(street, timer);
 
-       //    public void Fill_Associated(bool isPOBox, bool invalidAddress, int timer)
-       //   {
-       //        Associated_CompanyNameControl.SendKeysWithDelay("Testing INC", timer);
-       //        Associated_SelectState(1);
-       //        if (isPOBox)
-       //         {
-       //          Associated_POBoxControl.SendKeysWithDelay(" ", timer);
-       //          }
-       //          else
-       //          {
-       //         Associated_HouseNumberControl.SendKeysWithDelay("123", timer);
-       //         Associated_AptFloorControl.SendKeysWithDelay("4th Fl", timer);
-       //         }
-       //          string street = "Mott Street";
-       //          if (invalidAddress) street = "WhoCares Street";
-       //          Associated_StreetNameControl.SendKeysWithDelay(street, timer);
-       //        Associated_AptFloorControl.SendKeysWithDelay("4th Fl", timer);
-       //        Associated_CityControl.SendKeysWithDelay("New York", timer);
-       //        Associated_ZipCodeControl.SendKeysWithDelay("10013", timer);
-       //    }
+            Associated_CityControl.SendKeysWithDelay("New York", timer);
+            Associated_ZipCodeControl.SendKeysWithDelay("10013", timer);
+        }
+
+        //    public void Fill_Associated(bool isPOBox, bool invalidAddress, int timer)
+        //   {
+        //        Associated_CompanyNameControl.SendKeysWithDelay("Testing INC", timer);
+        //        Associated_SelectState(1);
+        //        if (isPOBox)
+        //         {
+        //          Associated_POBoxControl.SendKeysWithDelay(" ", timer);
+        //          }
+        //          else
+        //          {
+        //         Associated_HouseNumberControl.SendKeysWithDelay("123", timer);
+        //         Associated_AptFloorControl.SendKeysWithDelay("4th Fl", timer);
+        //         }
+        //          string street = "Mott Street";
+        //          if (invalidAddress) street = "WhoCares Street";
+        //          Associated_StreetNameControl.SendKeysWithDelay(street, timer);
+        //        Associated_AptFloorControl.SendKeysWithDelay("4th Fl", timer);
+        //        Associated_CityControl.SendKeysWithDelay("New York", timer);
+        //        Associated_ZipCodeControl.SendKeysWithDelay("10013", timer);
+        //    }
 
 
         public void Fill_OccurrenceAddress(int location, int borough, bool invalidAddress, int timer)
@@ -145,7 +146,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
             Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
             Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
         }
-        
+
         public void Filled_ComplaintInfo()
         {
             /*QUALIFYING CRITERIA*/
@@ -192,12 +193,21 @@ namespace IdlingComplaints.Tests.ComplaintForm
             if (!successfulEvidenceUpload.Text.Contains("upload")) Assert.That(successfulEvidenceUpload.Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
 
             //Thread.Sleep(SLEEPTIMER);
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"),15);
+            Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 15);
             EvidenceUpload_ClickNext();
             Driver.WaitUntilElementFound(By.CssSelector("mat-radio-button[value='753720001']"), 60); //waits until the oath affidavit appears
 
         }
 
+        public void Filled_AppearOATH()
+        {
+            AppearOATH_ClickNo();
+
+            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60);
+
+            AppearOATH_ClickSubmit();
+
+        }
 
 
     }

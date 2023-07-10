@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using IdlingComplaints.Tests.ComplaintForm.Functionality;
+using OpenQA.Selenium;
 using SeleniumUtilities.Utils;
 using System;
 using System.Collections.Generic;
@@ -73,7 +74,9 @@ namespace IdlingComplaints.Tests.ComplaintForm.AppearOATH
         {
             AppearOATH_ClickNo();
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60);
-            string fileUploadInstruction = Driver.ExtractTextFromXPath("//affidavit-upload/form/div/mat-card/mat-card-content/div[4]/div[1]/p/label/text()");
+            Driver.WaitUntilElementFound(By.CssSelector("div[style='border: 1px solid silver; background: ivory; padding-left: 0.25cm; padding-top: 0.25cm; padding-right: 0.25cm;']"), 10);
+
+            string fileUploadInstruction = AppearOATH_FileInstructionControl.FindElement(By.TagName("label")).Text;
             Assert.That(fileUploadInstruction, Is.EqualTo(Constants.APPEAR_OATH_FILE_UPLOAD_EXPLANATION));
         }
 
@@ -82,8 +85,11 @@ namespace IdlingComplaints.Tests.ComplaintForm.AppearOATH
         public void DisplayedAppearOathFileUploadSummonsAffadivitLink()
         {
             AppearOATH_ClickNo();
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 180);
-            string summonsAffidavitLink = AppearOATH_AffidavitLinkControl.Text;
+            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 120);
+            Driver.WaitUntilElementFound(By.CssSelector("div[style='border: 1px solid silver; background: ivory; padding-left: 0.25cm; padding-top: 0.25cm; padding-right: 0.25cm;']"), 10);
+           string summonsAffidavitLink = AppearOATH_AffidavitLinkControl.Text;
+            //  string summonsAffidavitLink = Driver.ExtractTextFromXPath("//affidavit-upload/form/div/mat-card/mat-card-content/div[4]/div[1]/p/a[1]/u/text()");
+            
             Assert.That(summonsAffidavitLink, Is.EqualTo(Constants.APPEAR_OATH_SUMMONS_AFFDAVIT_FORM));
         }
 
@@ -92,7 +98,9 @@ namespace IdlingComplaints.Tests.ComplaintForm.AppearOATH
         public void DisplayedAppearOathFileUploadCitizenAffirmationLink()
         {
             AppearOATH_ClickNo();
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 180);
+            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 120);
+            Driver.WaitUntilElementFound(By.CssSelector("div[style='border: 1px solid silver; background: ivory; padding-left: 0.25cm; padding-top: 0.25cm; padding-right: 0.25cm;']"), 10);
+
             string complaintAffirmationLink = AppearOATH_AffirmationLinkControl.Text;
             Assert.That(complaintAffirmationLink, Is.EqualTo(Constants.APPEAR_OATH_COMPLAINT_AFFIRMATION_FORM));
         }
