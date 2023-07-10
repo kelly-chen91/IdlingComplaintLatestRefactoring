@@ -125,9 +125,9 @@ namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
 
             Driver.WaitUntilElementFound(By.TagName("mat-dialog-container"), 20);
             EvidenceUpload_ConfirmDelete();
-
-            Thread.Sleep(SLEEPTIMER);
-            Assert.IsNotNull(EvidenceUpload_UploadErrorControl.Displayed);
+            Driver.WaitUntilElementFound(By.TagName("mat-error"), 10);
+            //Thread.Sleep(SLEEPTIMER);
+            Assert.IsNotNull(EvidenceUpload_UploadErrorControl);
         }
 
 
