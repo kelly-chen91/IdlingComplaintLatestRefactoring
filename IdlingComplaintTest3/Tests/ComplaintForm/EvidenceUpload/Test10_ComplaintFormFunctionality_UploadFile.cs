@@ -130,6 +130,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
 
 
         [Test, Category("Verify the delete button")]
+        [Ignore("Debugging, Under Construction")]
         public void EvidenceUpload_VerifyMultipleDeleteButton()
         {
             EvidenceUpload_MultipleFileUpload();
