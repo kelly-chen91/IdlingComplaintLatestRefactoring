@@ -113,7 +113,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
         }
 
         [Test, Category("Verify the delete button")]
-        //[Ignore("Test is buggy, under construction")]
         public void EvidenceUpload_VerifyDeleteButton()
         {
             EvidenceUpload_UploadOneFile();
@@ -130,31 +129,49 @@ namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
         }
 
 
-        [Test, Category("Verify the delete button"), Ignore("Debugging")]
+        [Test, Category("Verify the delete button")]
         public void EvidenceUpload_VerifyMultipleDeleteButton()
         {
-             EvidenceUpload_MultipleFileUpload();
-     
-             var fileNameControl = By.CssSelector("mat-cell[class='cdk-column-blob_filename']"); // get each File Name
-             var deleteControl = By.CssSelector("mat-icon[aria-label='Delete']");
+            EvidenceUpload_MultipleFileUpload();
+            /* 
+            var fileNameControl = By.CssSelector("mat-cell[class='cdk-column-blob_filename']"); // get each File Name
+            var deleteControl = By.CssSelector("mat-icon[aria-label='Delete']");
 
-             var rowList = EvidenceUpload_Table3Control.GetTableContains();//This will return the row contains 
-             var deleteFileList = rowList.GetCertainListControl(deleteControl);//Get the delete button from specific row
-             var FileList = rowList.GetCertainListControl(fileNameControl);     //Get the fileName from specific row 
+            var rowList = EvidenceUpload_Table3Control.GetTableContains();//This will return the row contains 
+            var deleteFileList = rowList.GetCertainListControl(deleteControl);//Get the delete button from specific row
+            var FileList = rowList.GetCertainListControl(fileNameControl);     //Get the fileName from specific row 
        
-             for (int i = 0; i < deleteFileList.Count; i++)
-             {
-                 Driver.WaitUntilElementFound(By.TagName("mat-header-row"), 15);
-                 //   Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir='ltr']"), 20);
+            for (int i = 0; i < deleteFileList.Count; i++)
+            {
+                Driver.WaitUntilElementFound(By.TagName("mat-header-row"), 15);
+                //   Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir='ltr']"), 20);
        
-                 rowList = EvidenceUpload_Table3Control.GetTableContains();//This will return the row contains
-                 deleteFileList = rowList.GetSpecificColumnElements(deleteControl);
-                 FileList = rowList.GetCertainListControl(fileNameControl);
+                rowList = EvidenceUpload_Table3Control.GetTableContains();//This will return the row contains
+                deleteFileList = rowList.GetSpecificColumnElements(deleteControl);
+                FileList = rowList.GetCertainListControl(fileNameControl);
 
-                 deleteFileList[i].Click();
+                deleteFileList[i].Click();
        
-                Thread.Sleep(2000);
-              }
+               Thread.Sleep(2000);
+             }
+            */
+            var fileList = EvidenceUpload_TableControl.GetDataFromMatTable();
+            Console.WriteLine(fileList.Count);
+
+            List<IWebElement> deleteFileList = fileList.GetSpecificColumnElements(By.CssSelector("mat-icon[aria-label='Delete']")); //Gets the Delete button for each row
+            while(fileList.Count > 0)
+            {
+                fileList = EvidenceUpload_TableControl.GetDataFromMatTable();
+                Console.WriteLine(fileList.Count);
+                deleteFileList = fileList.GetSpecificColumnElements(By.CssSelector("mat-icon[aria-label='Delete']")); //Gets the Delete button for each row
+                deleteFileList[0].Click();
+                Driver.WaitUntilElementFound(By.TagName("mat-dialog-container"), 20);
+                EvidenceUpload_ConfirmDelete();
+                Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-dialog-container"), 20);
             }
+            Driver.WaitUntilElementFound(By.TagName("mat-error"), 10);
+            Assert.IsNotNull(EvidenceUpload_UploadErrorControl);
+
+        }
     }
 }
