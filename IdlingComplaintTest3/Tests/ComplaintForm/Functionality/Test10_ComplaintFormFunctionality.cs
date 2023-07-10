@@ -58,26 +58,8 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             /*EVIDENCE UPLOAD*/
 
-            //var successfulSave = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
-            //Assert.IsNotNull(successfulSave);
-            //if (!successfulSave.Text.Contains("saved success")) Assert.That(successfulSave.Text.Trim(), Is.EqualTo("This form has been saved successfully."), "Flagged inconsistency on purpose.");
-            //Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 20); //message says form is saved
-            //
-            //EvidenceUpload_UploadInput = FILE_IMAGE_PATH;
-            //string fileName = Path.GetFileName(FILE_IMAGE_PATH);
-            //EvidenceUpload_ClickFilesUploadConfirm();
-            //Thread.Sleep(SLEEPTIMER);
-            //
-            //var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20); // message says evidence have successfully uploaded
-            //Assert.IsNotNull (successfulEvidenceUpload);
-            //if (!successfulEvidenceUpload.Text.Contains("upload")) Assert.That(successfulEvidenceUpload.Text.Trim(), 
-            //    Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
-            //
-            //Thread.Sleep(SLEEPTIMER);
-            //EvidenceUpload_ClickNext();
-            //Driver.WaitUntilElementFound(By.CssSelector("mat-radio-button[value='753720001']"), 30); //waits until the oath affidavit appears
-
             Filled_EvidenceUpload();
+
             /*OATH AFFIDAVIT*/
             
             AppearOATH_ClickYes();
@@ -86,7 +68,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
             
             AppearOATH_ClickSubmit();
 
-            var successfulSubmit = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 60);
+            var successfulSubmit = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 60).FindElement(By.TagName("span"));
             if (successfulSubmit != null && !successfulSubmit.Text.Contains("submitted success")) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo("Complaint has been submitted successfully."), "Flagged inconsistency on purpose.");
 
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60);
@@ -130,7 +112,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             Filled_AppearOATH();
 
-            var successfulSubmit = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 60);
+            var successfulSubmit = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 60).FindElement(By.TagName("span"));
             if (successfulSubmit != null && !successfulSubmit.Text.Contains("submitted success")) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo("Complaint has been submitted successfully."), "Flagged inconsistency on purpose.");
 
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60);
@@ -168,23 +150,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             /*EVIDENCE UPLOAD*/
 
-            var successfulSave = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
-            Assert.IsNotNull(successfulSave);
-            if (!successfulSave.Text.Contains("saved success")) Assert.That(successfulSave.Text.Trim(), Is.EqualTo("This form has been saved successfully."), "Flagged inconsistency on purpose.");
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 20); //message says form is saved
-
-            EvidenceUpload_UploadControl.SendKeysWithDelay(FILE_IMAGE_PATH, 1000);
-            string fileName = Path.GetFileName(FILE_IMAGE_PATH);
-            EvidenceUpload_ClickFilesUploadConfirm();
-
-            Driver.WaitUntilElementIsNoLongerFound(By.XPath("//app-upload/mat-card/mat-card-content/div/div[2]/div[2]/button[2]"), 10);
-            var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20); // message says evidence have successfully uploaded
-            Assert.IsNotNull(successfulEvidenceUpload);
-            if (!successfulEvidenceUpload.Text.Contains("upload")) Assert.That(successfulEvidenceUpload.Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
-
-            //Thread.Sleep(SLEEPTIMER);
-            EvidenceUpload_ClickNext();
-            Driver.WaitUntilElementFound(By.CssSelector("mat-radio-button[value='753720001']"), 30); //waits until the oath affidavit appears
+            Filled_EvidenceUpload();
 
             /*OATH AFFIDAVIT*/
 
@@ -195,9 +161,11 @@ namespace IdlingComplaints.Tests.ComplaintForm
             AppearOATH_UploadFormInput = FILE_IMAGE_PATH;
             AppearOATH_ClickConfirmUpload();
 
-            var successfulAffidavitUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10); // message says evidence have successfully uploaded
+            var successfulAffidavitUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10).FindElement(By.TagName("span")); // message says evidence have successfully uploaded
 
             Assert.IsNotNull(successfulAffidavitUpload);
+            string fileName = Path.GetFileName(FILE_IMAGE_PATH);
+
             if (!successfulAffidavitUpload.Text.Contains("upload")) Assert.That(successfulAffidavitUpload.Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
 
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 15);
@@ -205,7 +173,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             AppearOATH_ClickSubmit();
 
-            var successfulSubmit = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 60);
+            var successfulSubmit = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 60).FindElement(By.TagName("span"));
             if (successfulSubmit != null && !successfulSubmit.Text.Contains("submitted success")) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo("Complaint has been submitted successfully."), "Flagged inconsistency on purpose.");
 
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60);
@@ -243,29 +211,12 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             /*EVIDENCE UPLOAD*/
 
-            var successfulSave = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
-            Assert.IsNotNull(successfulSave);
-            if (!successfulSave.Text.Contains("saved success")) Assert.That(successfulSave.Text.Trim(), Is.EqualTo("This form has been saved successfully."), "Flagged inconsistency on purpose.");
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 20); //message says form is saved
-
-            EvidenceUpload_UploadInput = FILE_IMAGE_PATH;
-            string fileName = Path.GetFileName(FILE_IMAGE_PATH);
-            EvidenceUpload_ClickFilesUploadConfirm();
-            //Thread.Sleep(SLEEPTIMER);
-
-            var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20); // message says evidence have successfully uploaded
-            Assert.IsNotNull(successfulEvidenceUpload);
-            if (!successfulEvidenceUpload.Text.Contains("upload")) Assert.That(successfulEvidenceUpload.Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
-
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 10);
-            EvidenceUpload_ClickNext();
-            Driver.WaitUntilElementFound(By.CssSelector("mat-radio-button[value='753720001']"), 30); //waits until the oath affidavit appears
-
+            Filled_EvidenceUpload();
             /*OATH AFFIDAVIT*/
 
             Filled_AppearOATH();
 
-            var successfulSubmit = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 60);
+            var successfulSubmit = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 60).FindElement(By.TagName("span"));
             if (successfulSubmit != null && !successfulSubmit.Text.Contains("submitted success")) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo("Complaint has been submitted successfully."), "Flagged inconsistency on purpose.");
 
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60);
@@ -303,29 +254,12 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             /*EVIDENCE UPLOAD*/
 
-            var successfulSave = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
-            Assert.IsNotNull(successfulSave);
-            if (!successfulSave.Text.Contains("saved success")) Assert.That(successfulSave.Text.Trim(), Is.EqualTo("This form has been saved successfully."), "Flagged inconsistency on purpose.");
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 20); //message says form is saved
-
-            EvidenceUpload_UploadInput = FILE_IMAGE_PATH;
-            string fileName = Path.GetFileName(FILE_IMAGE_PATH);
-            EvidenceUpload_ClickFilesUploadConfirm();
-            //Thread.Sleep(SLEEPTIMER);
-
-            var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20); // message says evidence have successfully uploaded
-            Assert.IsNotNull(successfulEvidenceUpload);
-            if (!successfulEvidenceUpload.Text.Contains("upload")) Assert.That(successfulEvidenceUpload.Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 10);
-            //Thread.Sleep(SLEEPTIMER);
-            EvidenceUpload_ClickNext();
-            Driver.WaitUntilElementFound(By.CssSelector("mat-radio-button[value='753720001']"), 30); //waits until the oath affidavit appears
-
+            Filled_EvidenceUpload();
             /*OATH AFFIDAVIT*/
 
             Filled_AppearOATH();
 
-            var successfulSubmit = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 60);
+            var successfulSubmit = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 60).FindElement(By.TagName("span"));
             if (successfulSubmit != null && !successfulSubmit.Text.Contains("submitted success")) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo("Complaint has been submitted successfully."), "Flagged inconsistency on purpose.");
 
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60);
@@ -366,7 +300,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             Filled_AppearOATH();
 
-            var successfulSubmit = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 60);
+            var successfulSubmit = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 60).FindElement(By.TagName("span"));
             if (successfulSubmit != null && !successfulSubmit.Text.Contains("submitted success")) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo("Complaint has been submitted successfully."), "Flagged inconsistency on purpose.");
 
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60);
@@ -408,25 +342,6 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60); // loads to next page 
 
-            /*EVIDENCE UPLOAD*/
-
-            //var successfulSave = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
-            //Assert.IsNotNull(successfulSave);
-            //if (!successfulSave.Text.Contains("saved success")) Assert.That(successfulSave.Text.Trim(), Is.EqualTo("This form has been saved successfully."), "Flagged inconsistency on purpose.");
-            //Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 20); //message says form is saved
-            //
-            //EvidenceUpload_UploadInput = FILE_IMAGE_PATH;
-            //string fileName = Path.GetFileName(FILE_IMAGE_PATH);
-            //EvidenceUpload_ClickFilesUploadConfirm();
-            //Thread.Sleep(SLEEPTIMER);
-            //
-            //var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20); // message says evidence have successfully uploaded
-            //Assert.IsNotNull(successfulEvidenceUpload);
-            //if (!successfulEvidenceUpload.Text.Contains("upload")) Assert.That(successfulEvidenceUpload.Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
-            //
-            //Thread.Sleep(SLEEPTIMER);
-            //EvidenceUpload_ClickNext();
-            //Driver.WaitUntilElementFound(By.CssSelector("mat-radio-button[value='753720001']"), 30); //waits until the oath affidavit appears
             Filled_EvidenceUpload();
             /*OATH AFFIDAVIT*/
 
@@ -438,7 +353,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60);
 
-            var failSubmit = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
+            var failSubmit = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span"));
             if (failSubmit != null && !failSubmit.Text.Contains("submitted before")) Assert.True(failSubmit.Text.Trim().Contains("This Idling Complaint has been submitted before: ")
                 , "Flagged inconsistency on purpose.");
 
@@ -475,28 +390,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
             ComplaintInfo_ClickNext();
 
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60); // loads to next page 
-
-            /*EVIDENCE UPLOAD*/
-
-            //var successfulSave = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
-            //Assert.IsNotNull(successfulSave);
-            //Console.WriteLine(successfulSave.Text);
-            //if (!successfulSave.Text.Contains("saved success")) Assert.That(successfulSave.Text.Trim(), Is.EqualTo("This form has been saved successfully."), "Flagged inconsistency on purpose.");
-            //Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 20); //message says form is saved
-            //
-            //EvidenceUpload_UploadInput = FILE_IMAGE_PATH;
-            //string fileName = Path.GetFileName(FILE_IMAGE_PATH);
-            //EvidenceUpload_ClickFilesUploadConfirm();
-            //Thread.Sleep(SLEEPTIMER);
-            //
-            //var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20); // message says evidence have successfully uploaded
-            //Assert.IsNotNull(successfulEvidenceUpload);
-            //if (!successfulEvidenceUpload.Text.Contains("upload")) Assert.That(successfulEvidenceUpload.Text.Trim(),
-            //    Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
-            //
-            //Thread.Sleep(SLEEPTIMER);
-            //EvidenceUpload_ClickNext();
-            //Driver.WaitUntilElementFound(By.CssSelector("mat-radio-button[value='753720001']"), 30); //waits until the oath affidavit appears
+            
             Filled_EvidenceUpload();
             /*OATH AFFIDAVIT*/
 
@@ -508,7 +402,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60);
 
-            var successfulSubmit = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
+            var successfulSubmit = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span"));
             if (successfulSubmit != null && !successfulSubmit.Text.Contains("submitted success")) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo("Complaint has been submitted successfully."), "Flagged inconsistency on purpose.");
 
         }

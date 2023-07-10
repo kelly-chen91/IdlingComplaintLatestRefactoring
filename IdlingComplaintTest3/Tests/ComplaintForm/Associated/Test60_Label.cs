@@ -156,7 +156,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Complainant
         }
 
         [Test, Category("Correct Label Displayed")]
-        public void DispalyedDescribeTitle()
+        public void DisplayedDescribeTitle()
         {
 
             string title = Driver.ExtractTextFromXPath("/html/body/app-root/div/idling-complaint/form/div/mat-card[4]/mat-card-header/div/mat-card-title/h4/text()");
@@ -164,7 +164,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Complainant
         }
 
         [Test, Category("Correct Label Displayed")]
-        public void DispalyedDescribeContent()
+        public void DisplayedDescribeContent()
         {
             string describeContent = Driver.ExtractTextFromXPath("/html/body/app-root/div/idling-complaint/form/div/mat-card[4]/mat-card-content/mat-form-field/div/div[1]/div/span/label/span/text()");
             Assert.That(describeContent, Is.EqualTo(Constants.DESCRIBE_CONTENT_INPUT), "Flagged for inconsistency on purpose.");
@@ -179,7 +179,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Complainant
         }
 
         [Test, Category("Correct Label Displayed")]
-        public void DisplayDescribeTheComplaintTitle()
+        public void DisplayedDescribeTheComplaintTitle()
         {
             string describeTheComplaintTitle = "Describe the Complaint";
             string requireContent = Driver.ExtractTextFromXPath("//mat-card[4]/mat-card-header/div/mat-card-title/h4/text()");

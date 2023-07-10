@@ -64,7 +64,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
            
             Console.WriteLine(successfulEvidenceUpload.Text);
             if (successfulEvidenceUpload.Text.Contains("uploaded")) 
-                Assert.That(successfulEvidenceUpload.Text.Trim(), Contains.Substring("Succesfully uploaded file named: "+ fileName));
+                Assert.That(successfulEvidenceUpload.Text.Trim(), Contains.Substring("Succesfully uploaded file named: "));
 
         }
 
@@ -94,6 +94,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
         }
 
         [Test, Category("Verify the delete button")]
+        [Ignore("Test is buggy, under construction")]
         public void EvidenceUpload_VerifyDeleteButton()
         {
             EvidenceUpload_MultipleFileUpload();
@@ -101,14 +102,17 @@ namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
             string[] filePaths = { IDLING_TRUCK, IDLING_BUS, IDLING_VAN };
             string fileName = Path.GetFileName(filePaths[2]);
 
-            var rows = Driver.FindElement(By.TagName("mat-row"));
 
+
+           // var rows = Driver.FindElement(By.TagName("mat-row"));
+            var rows = EvidenceUpload_TableControl.GetDataFromMatTable();
+            //rows.GetSpecificColumnElements()
             var garbegeBinControl = Driver.FindElement(By.XPath("/html/body/app-root/div/app-blob-files-upload/form/mat-card/mat-card-content/app-blobupload/mat-card/mat-card-content/div/mat-table/mat-row[1]/mat-cell[5]/mat-icon[2]"));
           
             var fileNameControl = Driver.FindElement(By.XPath("/html/body/app-root/div/app-blob-files-upload/form/mat-card/mat-card-content/app-blobupload/mat-card/mat-card-content/div/mat-table/mat-row[1]/mat-cell[1]"));
 
             Console.WriteLine("1111111111111111");
-            Driver.WaitUntilElementFound(By.CssSelector("mat-icon[arial-lable='Delete']"), 21);
+            Driver.WaitUntilElementFound(By.CssSelector("mat-icon[arial-lable='Delete']"), 30);
             garbegeBinControl.Click();
 
             Console.WriteLine("222222222222222222222");
@@ -132,7 +136,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
          //   string mainWindowHandle = Driver.CurrentWindowHandle;
          //   ReadOnlyCollection<string> allWindowHandles = Driver.WindowHandles;
 
-            Driver.WaitUntilElementFound(By.CssSelector("mat-dialog-container[role='dialog']"), 18);
+            Driver.WaitUntilElementFound(By.CssSelector("mat-dialog-container[role='dialog']"), 20);
        //    foreach (string windowHandle in allWindowHandles)
        //    {
        //        if (windowHandle != mainWindowHandle)

@@ -8,12 +8,15 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.ComplaintForm.Functionality
 {
+    [Parallelizable(ParallelScope.Children)]
+    [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
     internal class Test10_ComplaintForm_FunctionalityLabel : FillComplaintForm_Base
     {
+
         [SetUp]
         public void SetUp()
         {
-            ComplaintFormModelSetUp(false);
+            ComplaintFormModelSetUp(true);
         }
 
         [TearDown]
@@ -49,9 +52,9 @@ namespace IdlingComplaints.Tests.ComplaintForm.Functionality
         {
             base.Filled_ComplaintInfo();
 
-            var successfulSave = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
+            var successfulSave = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span"));
             Assert.IsNotNull(successfulSave);
-            Assert.That(successfulSave.FindElement(By.TagName("span")).Text.Trim(), Is.EqualTo("This form has been saved successfully."), "Flagged inconsistency on purpose.");
+            Assert.That(successfulSave.Text.Trim(), Is.EqualTo("This form has been saved successfully."), "Flagged inconsistency on purpose.");
         }
 
 
@@ -61,7 +64,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Functionality
         {
             base.Filled_ComplaintInfo();
 
-            var successfulSave = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
+            var successfulSave = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span"));
             Assert.IsNotNull(successfulSave);
             if (!successfulSave.Text.Contains("saved success")) Assert.That(successfulSave.Text.Trim(), Is.EqualTo("This form has been saved successfully."), "Flagged inconsistency on purpose.");
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 20); //message says form is saved
@@ -71,9 +74,9 @@ namespace IdlingComplaints.Tests.ComplaintForm.Functionality
             EvidenceUpload_ClickFilesUploadConfirm();
             //Thread.Sleep(SLEEPTIMER);
 
-            var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20); // message says evidence have successfully uploaded
+            var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span")); // message says evidence have successfully uploaded
             Assert.IsNotNull(successfulEvidenceUpload);
-            Assert.That(successfulEvidenceUpload.FindElement(By.TagName("span")).Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
+            Assert.That(successfulEvidenceUpload.Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
             
         }
 
@@ -91,9 +94,9 @@ namespace IdlingComplaints.Tests.ComplaintForm.Functionality
             AppearOATH_ClickConfirmUpload();
 
 
-            var successfulDocumentUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20); // message says evidence have successfully uploaded
+            var successfulDocumentUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span")); // message says evidence have successfully uploaded
             Assert.IsNotNull(successfulDocumentUpload);
-            Assert.That(successfulDocumentUpload.FindElement(By.TagName("span")).Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
+            Assert.That(successfulDocumentUpload.Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
 
         }
 
@@ -133,7 +136,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Functionality
             base.Filled_AppearOATH();
 
             string duplicateMessage = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 60).FindElement(By.TagName("span")).Text;
-
+            Console.WriteLine(duplicateMessage);
             Assert.True(duplicateMessage.Trim().Contains("This idling complaint has been submitted before: ")
                 , "Flagged inconsistency on purpose.");
         }
@@ -149,7 +152,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Functionality
             EvidenceUpload_UploadControl.SendKeysWithDelay(filePaths[0], SLEEPTIMER);
 
 
-            var failedEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
+            var failedEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span"));
             Assert.IsNotNull(failedEvidenceUpload);
 
             if (failedEvidenceUpload.Text.Contains("Please try a different file type."))

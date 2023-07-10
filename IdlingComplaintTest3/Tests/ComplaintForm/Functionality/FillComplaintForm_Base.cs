@@ -33,7 +33,9 @@ namespace IdlingComplaints.Tests.ComplaintForm.Functionality
         public readonly string ERROR_TO_AND_FROM_IN_FUTURE = " Occurrence Date From and Occurrence Date To cannot be later than the current date and time.";
         public readonly string ERROR_INVALID_ASSOCIATED_ADDRESS = " The address of the respondent associated with the complaint is invalid.";
         public readonly string ERROR_INVALID_OCCURRENCE_ADDRESS = " The occurrence address is invalid.";
-        public static readonly string YES_LABEL = "We are sorry. Your submission can not be accepted by DEP. This idling complaint is not consistent with the requirements listed in Section 24-163 of the New York City Administrative Code.Thank you for participating in this effort to improve NYC’s air quality.";
+        public static readonly string YES_LABEL = "We are sorry. Your submission can not be accepted by DEP. This idling complaint " +
+            "is not consistent with the requirements listed in Section 24-163 of the New York City Administrative Code. " +
+            "Thank you for participating in this effort to improve NYC’s air quality.";
 
 
         public void Fill_Associated(bool isPOBox, bool invalidAddress, int timer)
@@ -178,7 +180,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Functionality
         {
             /*EVIDENCE UPLOAD*/
 
-            var successfulSave = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
+            var successfulSave = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span"));
             Assert.IsNotNull(successfulSave);
             if (!successfulSave.Text.Contains("saved success")) Assert.That(successfulSave.Text.Trim(), Is.EqualTo("This form has been saved successfully."), "Flagged inconsistency on purpose.");
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 20); //message says form is saved
@@ -188,7 +190,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Functionality
             EvidenceUpload_ClickFilesUploadConfirm();
             //Thread.Sleep(SLEEPTIMER);
 
-            var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20); // message says evidence have successfully uploaded
+            var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span")); // message says evidence have successfully uploaded
             Assert.IsNotNull(successfulEvidenceUpload);
             if (!successfulEvidenceUpload.Text.Contains("upload")) Assert.That(successfulEvidenceUpload.Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
 
