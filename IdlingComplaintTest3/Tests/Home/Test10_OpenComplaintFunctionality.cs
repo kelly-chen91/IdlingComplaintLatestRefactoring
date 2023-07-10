@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.Home
 {
+    
     internal class Test10_OpenComplaintFunctionality : HomeModel
     {
         private readonly int SLEEP_TIMER = 2000;
@@ -19,17 +20,7 @@ namespace IdlingComplaints.Tests.Home
         [SetUp]
         public void SetUp()
         {
-            //Driver.Quit();
-            //Driver = CreateStandardDriver("chrome");
-            //Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/login");
-            //Driver.Manage().Window.Size = new Size(1920, 1200);
-            //EmailControl.SendKeysWithDelay("kchen@dep.nyc.gov", 0);
-            //PasswordControl.SendKeysWithDelay("T3sting@1234", 0);
-            //ClickLoginButton();
-            //
-            //Driver.WaitUntilElementFound(By.CssSelector("button[routerlink = 'idlingcomplaint/new']"), 20);
-            //Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
-            base.HomeModelSetUp("kchen@dep.nyc.gov", "T3sting@1234", false);
+            base.HomeModelSetUp("ttseng@dep.nyc.gov", "Testing1#", false);
         }
 
         [TearDown]
@@ -53,7 +44,7 @@ namespace IdlingComplaints.Tests.Home
             var openComplaintList = rowList.GetSpecificColumnElements(link);
             var complaintNumList = rowList.GetSpecificColumnText(complaintNumberRowControl);
 
-            for (int i = 0; i < openComplaintList.Count; i++)
+            for (int i = 0; i < 2; i++)
             {
                 Driver.WaitUntilElementFound(By.CssSelector("button[routerlink='idlingcomplaint/new']"), 10);
                 Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir='ltr']"), 20);

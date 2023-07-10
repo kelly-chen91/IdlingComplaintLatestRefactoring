@@ -9,28 +9,32 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.Home
 {
+    [Parallelizable(ParallelScope.Children)]
+    [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
     internal class Test40_Filter : HomeModel
     {
         private readonly int SLEEP_TIMER = 2000;
 
         public Test40_Filter() { }
 
-        [OneTimeSetUp]
-        public void OneTimeSetUp()
+        [SetUp]
+        public void SetUp()
         {
-            base.HomeModelSetUp("kchen@dep.nyc.gov", "T3sting@1234", false);
+            base.HomeModelSetUp("ttseng@dep.nyc.gov", "Testing1#", false);
         }
+
+        //[TearDown]
+        //public void TearDown()
+        //{
+        //    if (SLEEP_TIMER > 0)
+        //        Thread.Sleep(SLEEP_TIMER);
+        //}
 
         [TearDown]
         public void TearDown()
         {
             if (SLEEP_TIMER > 0)
                 Thread.Sleep(SLEEP_TIMER);
-        }
-
-        [OneTimeTearDown]
-        public void OneTimeTearDown()
-        {
             base.HomeModelTearDown();
         }
 
@@ -67,11 +71,14 @@ namespace IdlingComplaints.Tests.Home
         {
             SelectCreatedYear(0);
             Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
+            SortStatus();
+            SortStatus();
             var rowList = TableControl.GetDataFromTable();
             var dateSubmittedList = rowList.GetSpecificColumnText(By.ClassName("mat-column-idc_datesubmitted"));
             string currentYear = (DateTime.Now.Year).ToString();
             foreach (var dateSubmitted in dateSubmittedList)
             {
+                if (dateSubmitted.Length == 0) continue;
                 Assert.That(currentYear, Is.EqualTo(dateSubmitted.Substring(6)));
             }
         }

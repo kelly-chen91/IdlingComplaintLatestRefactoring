@@ -113,7 +113,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
         }
 
         [Test, Category("Verify the delete button")]
-        [Ignore("Test is buggy, under construction")]
+        //[Ignore("Test is buggy, under construction")]
         public void EvidenceUpload_VerifyDeleteButton()
         {
             EvidenceUpload_UploadOneFile();
@@ -130,6 +130,9 @@ namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
             Assert.IsNotNull(EvidenceUpload_UploadErrorControl.Displayed);
         }
         [Test, Category("Verify the delete button"), Ignore("Debugging")]
+
+        [Ignore("Test is buggy, under construction")]
+
         public void EvidenceUpload_VerifyMultipleDeleteButton()
         {
              EvidenceUpload_MultipleFileUpload();
