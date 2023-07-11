@@ -26,21 +26,22 @@ namespace IdlingComplaints.Models.ComplaintForm
         public IWebElement EvidenceUpload_WebLinkControl => Driver.FindElement(By.PartialLinkText("Web"));
         public IWebElement EvidenceUpload_AndroidLinkControl => Driver.FindElement(By.PartialLinkText("Android"));
         public IWebElement EvidenceUpload_iOSLinkControl => Driver.FindElement(By.PartialLinkText("iOS"));
-         public IWebElement EvidenceUpload_Table3Control => Driver.FindElement(By.ClassName("mat-elevation-z8"));
         public IWebElement EvidenceUpload_UploadErrorControl => Driver.FindElement(By.TagName("mat-error"));
+        public IWebElement EvidenceUpload_UploadCommentControl => Driver.FindElement(By.TagName("textarea"));
 
         /*For Maya to practice: Please add additional elements below.*/
 
         public IWebElement EvidenceUpload_UploadCancelControl => Driver.FindElement(By.XPath("//app-upload/mat-card/mat-card-content/div/div[2]/div[2]/button[2]"));
-
+       
         public IWebElement EvidenceUpload_DeleteEvidenceControl => Driver.FindElement(By.XPath("//mat-row/mat-cell[5]/mat-icon[2]"));
         
         public IWebElement EvidenceUpload_DeleteConfirmControl => Driver.FindElement(By.XPath("//app-confirm-dialog/div[2]/button[2]/span"));
         
+        
         //public IWebElement EvidenceUpload_DeleteCancel => Driver.FindElement(By.XPath("//app-confirm-dialog/div[2]/button[1]/span"));
         
         public IWebElement EvidenceUpload_TableControl => Driver.FindElement(By.TagName("mat-table"));
-
+        public IWebElement EvidenceUpload_RefreshControl => EvidenceUpload_TableControl.FindElement(By.CssSelector("button[mattooltip='Click to download']"));
 
         public string EvidenceUpload_UploadInput
         {
@@ -53,6 +54,20 @@ namespace IdlingComplaints.Models.ComplaintForm
                 EvidenceUpload_UploadControl.SendKeys(value);
             }
         }
+
+        public string EvidenceUpload_CommentInput
+        {
+            get
+            {
+                return EvidenceUpload_UploadCommentControl.GetAttribute("value");
+            }
+            set
+            {
+                EvidenceUpload_UploadCommentControl.SendKeys(value);
+            }
+        }
+
+
 
         public void EvidenceUpload_ClickPrevious()
         {
@@ -101,7 +116,10 @@ namespace IdlingComplaints.Models.ComplaintForm
             EvidenceUpload_DeleteConfirmControl.Click();
         }
 
-
+        public void EvidenceUpload_ClickRefresh()
+        {
+            EvidenceUpload_RefreshControl.Click();
+        }
       
     }
 }
