@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IdlingComplaints.Tests.PassordReset
+namespace IdlingComplaints.Tests.PasswordReset
 {
     internal class Test50_MaxLength_ConfirmReset : Test60_Label_ConfirmReset
     {
@@ -21,14 +21,14 @@ namespace IdlingComplaints.Tests.PassordReset
         }
 
 
-        [Test, Category("maxlength attribute is missing")]
+        [Test, Category("Maxlength attribute is present")]
         public void MaxLength_SecurityAnswer()
         {
             var MaxLength = SecurityAnswerControl.GetAttribute("maxlength");
             Assert.True(MaxLength != null, "Flagged for inconsistency on purpose.");
         }
 
-        [Test, Category("maxlength attribute is missing")]
+        [Test, Category("Maxlength attribute is present")]
         public void MaxLength_Password()
         {
             var MaxLength = PasswordControl.GetAttribute("maxlength");

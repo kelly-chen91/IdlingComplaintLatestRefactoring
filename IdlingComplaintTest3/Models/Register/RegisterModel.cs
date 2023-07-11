@@ -15,15 +15,16 @@ namespace IdlingComplaints.Models.Register
         public RegisterModel()
         {
         }
-        //[LoginModelSetUp]
+
         public void RegisterModelSetUp(bool isHeadless)
         {
             if (isHeadless) Driver = CreateHeadlessDriver("chrome");
             else Driver = CreateStandardDriver("chrome");
             Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/profile");
-            Driver.Manage().Window.Size = new Size(1920, 1200);
+            //Driver.Manage().Window.Size = new Size(1920, 1200);
+            Driver.Manage().Window.Maximize();
         }
-        //[LoginModelTearDown]
+        
         public void RegisterModelTearDown()
         {
             Driver.Quit();
@@ -50,13 +51,6 @@ namespace IdlingComplaints.Models.Register
 
         public string selectedSecurityQuestionControl = "--";
         public string selectedStateControl = "--";
-
-   //  public List<string> securityQuestionList;
-   //  public List<IWebElement> securityQuestionElementList;
-   //
-   //  public List<string> stateOptionList;
-   //  public List<IWebElement> stateOptionElementList;
-
 
         public string FirstNameInput
         {

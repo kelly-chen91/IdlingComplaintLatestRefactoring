@@ -16,21 +16,13 @@ namespace IdlingComplaints.Models.ComplaintForm
         public IWebElement EvidenceUpload_PreviousControl => Driver.FindElement(By.XPath("//app-blob-files-upload/form/div/button[1]"));
         public IWebElement EvidenceUpload_NextControl => Driver.FindElement(By.CssSelector("button[type='submit']"));
         public IWebElement EvidenceUpload_CancelControl => Driver.FindElement(By.CssSelector("button[type='reset']"));
-
-        //IWebElement EvidenceUpload_UploadConfirmControl => Driver.FindElement(By.XPath("//app-upload/mat-card/mat-card-content/div/div[2]/div[2]/button[1]"));
-
         public IWebElement EvidenceUpload_UploadConfirmControl => Driver.FindElement(By.XPath("//app-upload/mat-card/mat-card-content/div/div[2]/div[2]/button[1]"));
-        
-      //  public IWebElement EvidenceUpload_UploadButtonControl => Driver.FindElement(By.XPath("mat-card-content/app-blobupload/app-upload/mat-card/mat-card-content/div/div[2]/div[2]/button[1]/span/"));
-       
+
         public IWebElement EvidenceUpload_WebLinkControl => Driver.FindElement(By.PartialLinkText("Web"));
         public IWebElement EvidenceUpload_AndroidLinkControl => Driver.FindElement(By.PartialLinkText("Android"));
         public IWebElement EvidenceUpload_iOSLinkControl => Driver.FindElement(By.PartialLinkText("iOS"));
-         public IWebElement EvidenceUpload_Table3Control => Driver.FindElement(By.ClassName("mat-elevation-z8"));
         public IWebElement EvidenceUpload_UploadErrorControl => Driver.FindElement(By.TagName("mat-error"));
         public IWebElement EvidenceUpload_UploadCommentControl => Driver.FindElement(By.TagName("textarea"));
-
-        /*For Maya to practice: Please add additional elements below.*/
 
         public IWebElement EvidenceUpload_UploadCancelControl => Driver.FindElement(By.XPath("//app-upload/mat-card/mat-card-content/div/div[2]/div[2]/button[2]"));
        
@@ -40,7 +32,7 @@ namespace IdlingComplaints.Models.ComplaintForm
 
         
         public IWebElement EvidenceUpload_TableControl => Driver.FindElement(By.TagName("mat-table"));
-
+        public IWebElement EvidenceUpload_RefreshControl => EvidenceUpload_TableControl.FindElement(By.CssSelector("button[mattooltip='Click to download']"));
 
         public string EvidenceUpload_UploadInput
         {
@@ -115,7 +107,10 @@ namespace IdlingComplaints.Models.ComplaintForm
             EvidenceUpload_DeleteConfirmControl.Click();
         }
 
-
+        public void EvidenceUpload_ClickRefresh()
+        {
+            EvidenceUpload_RefreshControl.Click();
+        }
       
     }
 }

@@ -1,9 +1,11 @@
 ﻿using IdlingComplaints.Models.Home;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumUtilities.Utils;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,13 +16,13 @@ namespace IdlingComplaints.Tests.Home
     
     internal class Test10_OpenComplaintFunctionality : HomeModel
     {
-        private readonly int SLEEP_TIMER = 2000;
+        private readonly int SLEEP_TIMER = 0;
 
         public Test10_OpenComplaintFunctionality() { }
         [SetUp]
         public void SetUp()
         {
-            base.HomeModelSetUp("ttseng@dep.nyc.gov", "Testing1#", false);
+            base.HomeModelSetUp("ttseng@dep.nyc.gov", "Testing1#", true);
         }
 
         [TearDown]
@@ -34,7 +36,7 @@ namespace IdlingComplaints.Tests.Home
         }
 
         [Test]
-        [Category("Sucessful Redirect - Complaint Details Displayed")]
+        [Category("Successful Redirect - Complaint Details Displayed")]
         public void SuccessfulOpenComplaints()
         {
             var link = By.TagName("a");
@@ -55,7 +57,7 @@ namespace IdlingComplaints.Tests.Home
 
                 openComplaintList[i].Click();
 
-                var complientNumberControl = Driver.WaitUntilElementFound(By.CssSelector("h4[align='center']"), 15);
+                var complientNumberControl = Driver.WaitUntilElementFound(By.CssSelector("h4[align='center']"), 30);
 
                 string openComplaintNumber = complientNumberControl.Text;
 
@@ -68,5 +70,70 @@ namespace IdlingComplaints.Tests.Home
             }
         }
 
+
+        [Test, Category("Next Arrow Till Last Page + Counter")]
+        public void NextArrow_CountPages()
+        {
+            //Change amount of items per page
+            SelectItemsPerPage(1);
+
+            int pageCount = 1;
+            while (NextPageArrowControl.Enabled) 
+            {
+                NextPageArrowControl.Click();
+                pageCount++;
+            } //Manually going through each page and counting
+
+            string complaintCount = Driver.ExtractTextFromXPath("//mat-paginator/div/div/div[2]/div/text()");
+            int index = complaintCount.IndexOf("f") + 2;
+            string outOfComplaintAmount = complaintCount.Substring(index);
+            int totalComplaintAmount = int.Parse(outOfComplaintAmount); //Taking the listed total amount of complaints and turning into int
+            //Console.WriteLine(totalComplaintAmount);
+
+            string itemsPerPage = Driver.ExtractTextFromXPath("//div[1]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span/span/text()");
+            int divideItemsPerPage = int.Parse(itemsPerPage); //Taking the items per page and turning into int
+
+            int calculatedPageCount = totalComplaintAmount % divideItemsPerPage == 0 ? totalComplaintAmount / divideItemsPerPage : (totalComplaintAmount / divideItemsPerPage) + 1;
+
+            //Console.WriteLine("Manual page count is: " + pageCount);
+            //Console.WriteLine("Calculated page count is: " + calculatedPageCount);
+            Assert.That(pageCount, Is.EqualTo(calculatedPageCount));
+
+ 
+        }
+
+        [Test, Category("Previous Arrow Till First Page + Counter")]
+        public void PreviousArrow_CountPages()
+        {
+            //Change amount of items per page
+            SelectItemsPerPage(1);
+
+            ClickLastPage();
+
+            int pageCount = 1;
+            while (PreviousPageArrowControl.Enabled)
+            {
+                PreviousPageArrowControl.Click();
+                pageCount++;
+            } //Manually going through each page and counting
+
+            string complaintCount = Driver.ExtractTextFromXPath("//mat-paginator/div/div/div[2]/div/text()");
+            int index = complaintCount.IndexOf("f") + 2;
+            string outOfComplaintAmount = complaintCount.Substring(index);
+            int totalComplaintAmount = int.Parse(outOfComplaintAmount); //Taking the listed total amount of complaints and turning into int
+            Console.WriteLine(totalComplaintAmount);
+
+            string itemsPerPage = Driver.ExtractTextFromXPath("//div[1]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span/span/text()");
+            int divideItemsPerPage = int.Parse(itemsPerPage); //Taking the items per page and turning into int
+
+
+            //decimal calculatedPageCount = (decimal)totalComplaintAmount / divideItemsPerPage; //Dividing by 10 items per page
+            int calculatedPageCount = totalComplaintAmount % divideItemsPerPage == 0 ? totalComplaintAmount / divideItemsPerPage : (totalComplaintAmount / divideItemsPerPage) + 1;
+
+            Console.WriteLine("Manual page count is: " + pageCount);
+            Console.WriteLine("Calculated page count is: " + calculatedPageCount);
+            Assert.That(pageCount, Is.EqualTo(calculatedPageCount));
+
+        }
     }
 }

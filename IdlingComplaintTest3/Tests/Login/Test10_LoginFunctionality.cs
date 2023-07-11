@@ -13,15 +13,11 @@ namespace IdlingComplaints.Tests.Login;
 
 internal class Test10_LoginFunctionality : LoginModel
 {
-   Random random = new Random();
+    Random random = new Random();
    
     [SetUp]
     public void SetUp()
     {
-        //Driver.Quit();
-        //Driver = CreateStandardDriver("chrome");
-        //Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/login");
-        //Driver.Manage().Window.Size = new Size(1920, 1200);
         base.LoginModelSetUp(false);
     }
 

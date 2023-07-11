@@ -16,16 +16,17 @@ namespace IdlingComplaints.Models.PasswordReset
         {
 
         }
-        //[LoginModelSetUp]
+        
         public void PasswordResetModelSetUp(bool isHeadless)
         {
-            //Driver = CreateStandardDriver("chrome");
             if (isHeadless) Driver = CreateHeadlessDriver("edge");
             else Driver = CreateStandardDriver("edge");
             Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/password-reset");
-            Driver.Manage().Window.Size = new Size(1920, 1200);
+            //Driver.Manage().Window.Size = new Size(1920, 1200);
+            Driver.Manage().Window.Maximize();
+
         }
-        //[LoginModelTearDown]
+
         public void PasswordResetModelTearDown()
         {
             Driver.Quit();

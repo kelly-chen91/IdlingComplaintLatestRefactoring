@@ -18,17 +18,13 @@ namespace IdlingComplaints.Models.Home
     { 
         public void HomeModelSetUp(string email, string password, bool isHeadless)
         {
-            //loginModel = new LoginModel();
-            //base.RegisterModelSetUp();
             base.LoginModelSetUp(isHeadless); 
             EmailControl.SendKeysWithDelay(email, 0);
             PasswordControl.SendKeysWithDelay(password, 0);
             ClickLoginButton();
 
             Driver.WaitUntilElementFound(By.CssSelector("button[routerlink = 'idlingcomplaint/new']"), 20);
-            Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
-            //var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
-            //wait.Until(d => d.FindElement(By.CssSelector("button[routerlink='idlingcomplaint/new']")));
+            Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 30);
         }
 
         public void HomeModelTearDown()

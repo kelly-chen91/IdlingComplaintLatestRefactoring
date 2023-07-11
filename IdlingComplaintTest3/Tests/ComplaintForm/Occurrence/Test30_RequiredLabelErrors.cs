@@ -67,8 +67,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
             Occurrence_HouseNumControl.SendTextDeleteTabWithDelay("xxx", 2000);
             string error = Driver.ExtractTextFromXPath("//div[3]/mat-form-field[1]/div/div[3]/div/mat-error/text()");
             Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_HOUSE_NUM));
-            //string error = Driver.ExtractTextFromXPath("//div[1]/div[2]/div/text()");
-            //Assert.That(error, Is.EqualTo(Constants.OCCURRENCE_REQUIRED_FROM));
+            
         }
         
         [Test]

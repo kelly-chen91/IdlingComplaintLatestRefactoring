@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IdlingComplaints.Tests.PassordReset
+namespace IdlingComplaints.Tests.PasswordReset
 {
     internal class Constants
     {
@@ -28,11 +28,6 @@ namespace IdlingComplaints.Tests.PassordReset
         public static readonly string CONFIRM_PASSWORD_REQUIRED = "Password does not match.";
 
         public static readonly string USER_NOT_FOUND = "User is not found";
-
-
-
-
-
 
     }
 }

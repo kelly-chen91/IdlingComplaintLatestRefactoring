@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IdlingComplaints.Tests.PassordReset
+namespace IdlingComplaints.Tests.PasswordReset
 {
     internal class Test50_MaxLength_BeforeReset : PasswordResetModel
     {
@@ -23,7 +23,7 @@ namespace IdlingComplaints.Tests.PassordReset
             base.PasswordResetModelTearDown();
         }
 
-        [Test, Category("Maxlength attribute is missing")]
+        [Test, Category("Maxlength attribute is present")]
         public void MaxLengthEmail()
         {
             var MaxLength = EmailControl.GetAttribute("maxlength");
