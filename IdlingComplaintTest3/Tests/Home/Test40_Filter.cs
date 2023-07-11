@@ -13,14 +13,14 @@ namespace IdlingComplaints.Tests.Home
     [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
     internal class Test40_Filter : HomeModel
     {
-        private readonly int SLEEP_TIMER = 2000;
+        private readonly int SLEEP_TIMER = 0;
 
         public Test40_Filter() { }
 
         [SetUp]
         public void SetUp()
         {
-            base.HomeModelSetUp("ttseng@dep.nyc.gov", "Testing1#", false);
+            base.HomeModelSetUp("ttseng@dep.nyc.gov", "Testing1#", true);
         }
 
         //[TearDown]

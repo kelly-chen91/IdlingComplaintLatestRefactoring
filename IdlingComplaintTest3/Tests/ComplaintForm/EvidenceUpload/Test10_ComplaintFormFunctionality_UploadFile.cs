@@ -46,7 +46,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
             base.ComplaintFormModelTearDown();
         }
 
-        [Test, Category("Scenario #1: upload one evidence file")]
+        [Test, Category("Upload Files")]
         public void EvidenceUpload_UploadOneFile()
         {
             string[] filePaths = { IDLING_TRUCK, IDLING_BUS, IDLING_VAN };
@@ -65,8 +65,8 @@ namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
 
         }
 
-        [Test, Category("Upload multiple evidence files at once")]
-        public void EvidenceUpload_MultipleFileUpload()
+        [Test, Category("Upload Files")]
+        public void EvidenceUpload_UploadMultipleFiles()
         {
             string[] filePaths = { IDLING_TRUCK, IDLING_BUS, IDLING_VAN };
             string fileName = Path.GetFileName(filePaths[0]);
@@ -88,7 +88,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
         }
 
         [Test, Category("Upload Amount Equals Table Rows")]
-        public void EvidenceUpload_TableAppearanceCheck()
+        public void EvidenceUpload_CheckTableAppearance()
         {
 
             string[] filePaths = { IDLING_TRUCK, IDLING_BUS, IDLING_VAN }; //Files can be added to or removed from and will still work
@@ -112,7 +112,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
 
         }
 
-        [Test, Category("Verify the delete button")]
+        [Test, Category("Delete Files")]
         public void EvidenceUpload_VerifyDeleteButton()
         {
             EvidenceUpload_UploadOneFile();
@@ -129,11 +129,11 @@ namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
         }
 
 
-        [Test, Category("Verify the delete button")]
+        [Test, Category("Delete Files")]
         //[Ignore("Debugging, Under Construction")]
         public void EvidenceUpload_VerifyMultipleDeleteButton()
         {
-            EvidenceUpload_MultipleFileUpload();
+            EvidenceUpload_UploadMultipleFiles();
             /* 
             var fileNameControl = By.CssSelector("mat-cell[class='cdk-column-blob_filename']"); // get each File Name
             var deleteControl = By.CssSelector("mat-icon[aria-label='Delete']");
@@ -175,6 +175,15 @@ namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
             Driver.WaitUntilElementFound(By.TagName("mat-error"), 10);
             Assert.IsNotNull(EvidenceUpload_UploadErrorControl);
 
+        }
+
+        [Test, Category("Refresh Table")]
+        public void EvidenceUpload_VerifyRefreshButton()
+        {
+            EvidenceUpload_UploadOneFile();
+            EvidenceUpload_ClickRefresh();
+            var appearOATH = Driver.WaitUntilElementFound(By.CssSelector("mat-radio-button[value='753720001']"), 60);
+            
         }
     }
 }

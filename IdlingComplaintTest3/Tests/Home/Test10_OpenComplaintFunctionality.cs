@@ -14,13 +14,13 @@ namespace IdlingComplaints.Tests.Home
     
     internal class Test10_OpenComplaintFunctionality : HomeModel
     {
-        private readonly int SLEEP_TIMER = 2000;
+        private readonly int SLEEP_TIMER = 0;
 
         public Test10_OpenComplaintFunctionality() { }
         [SetUp]
         public void SetUp()
         {
-            base.HomeModelSetUp("ttseng@dep.nyc.gov", "Testing1#", false);
+            base.HomeModelSetUp("ttseng@dep.nyc.gov", "Testing1#", true);
         }
 
         [TearDown]
@@ -34,7 +34,7 @@ namespace IdlingComplaints.Tests.Home
         }
 
         [Test]
-        [Category("Sucessful Redirect - Complaint Details Displayed")]
+        [Category("Successful Redirect - Complaint Details Displayed")]
         public void SuccessfulOpenComplaints()
         {
             var link = By.TagName("a");
@@ -55,7 +55,7 @@ namespace IdlingComplaints.Tests.Home
 
                 openComplaintList[i].Click();
 
-                var complientNumberControl = Driver.WaitUntilElementFound(By.CssSelector("h4[align='center']"), 15);
+                var complientNumberControl = Driver.WaitUntilElementFound(By.CssSelector("h4[align='center']"), 30);
 
                 string openComplaintNumber = complientNumberControl.Text;
 

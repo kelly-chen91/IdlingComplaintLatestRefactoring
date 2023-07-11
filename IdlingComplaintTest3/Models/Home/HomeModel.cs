@@ -26,7 +26,7 @@ namespace IdlingComplaints.Models.Home
             ClickLoginButton();
 
             Driver.WaitUntilElementFound(By.CssSelector("button[routerlink = 'idlingcomplaint/new']"), 20);
-            Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
+            Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 30);
             //var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
             //wait.Until(d => d.FindElement(By.CssSelector("button[routerlink='idlingcomplaint/new']")));
         }
