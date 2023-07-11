@@ -111,6 +111,8 @@ namespace IdlingComplaints.Tests.ComplaintForm.AppearOATH
         {
             AppearOATH_ClickNo();
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 120);
+            Driver.WaitUntilElementFound(By.CssSelector("div[style='border: 1px solid silver; background: ivory; padding-left: 0.25cm; padding-top: 0.25cm; padding-right: 0.25cm;']"), 10);
+
             string summonsAffadivitLink = AppearOATH_AffidavitLinkControl.GetAttribute("href");
             Console.WriteLine(summonsAffadivitLink);
             Assert.That(summonsAffadivitLink, Is.EqualTo(Constants.APPEAR_OATH_SUMMONS_AFFADIVIT_LINK));
@@ -122,6 +124,8 @@ namespace IdlingComplaints.Tests.ComplaintForm.AppearOATH
         {
             AppearOATH_ClickNo();
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 120);
+            Driver.WaitUntilElementFound(By.CssSelector("div[style='border: 1px solid silver; background: ivory; padding-left: 0.25cm; padding-top: 0.25cm; padding-right: 0.25cm;']"), 10);
+
             string complaintAffirmationLink = AppearOATH_AffirmationLinkControl.GetAttribute("href");
             Console.WriteLine(complaintAffirmationLink);
             Assert.That(complaintAffirmationLink, Is.EqualTo(Constants.APPEAR_OATH_COMPLAINT_AFFIRMATION_LINK));

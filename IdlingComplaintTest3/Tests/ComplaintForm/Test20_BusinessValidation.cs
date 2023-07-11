@@ -29,6 +29,8 @@ namespace IdlingComplaints.Tests.ComplaintForm
         }
 
         [Test]
+        [Category("Required Field Provided Invalid Input - Error Label Displayed")]
+
         public void FailedFormSubmit_InFrontOf_NoSchool_TimeShorterThan3Minutes()
         {
             /*QUALIFYING CRITERIA*/
@@ -72,6 +74,8 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
 
         [Test]
+        [Category("Required Field Provided Invalid Input - Error Label Displayed")]
+
         public void FailedFormSubmit_InFrontOf_NoSchool_TimeShorterThan3Minutes_InvalidOccurrenceAddr()
         {
             /*QUALIFYING CRITERIA*/
@@ -115,7 +119,10 @@ namespace IdlingComplaints.Tests.ComplaintForm
            
         }
 
+
         [Test]
+        [Category("Required Field Provided Invalid Input - Error Label Displayed")]
+
         public void FailedFormSubmit_InFrontOf_NoSchool_TimeShorterThan3Minutes_InvalidAssociatedAddr()
         {
             /*QUALIFYING CRITERIA*/
@@ -160,6 +167,8 @@ namespace IdlingComplaints.Tests.ComplaintForm
         }
 
         [Test]
+        [Category("Required Field Provided Invalid Input - Error Label Displayed")]
+
         public void FailedFormSubmit_InFrontOf_NoSchool_TimeShorterThan3Minutes_InvalidOccurrenceAndAssociatedAddr()
         {
             /*QUALIFYING CRITERIA*/
@@ -205,6 +214,8 @@ namespace IdlingComplaints.Tests.ComplaintForm
         }
 
         [Test]
+        [Category("Required Field Provided Invalid Input - Error Label Displayed")]
+
         public void FailedFormSubmit_InFrontOf_NoSchool_TimeInFutureAndShorterThan3Minutes()
         {
             /*QUALIFYING CRITERIA*/
@@ -250,6 +261,8 @@ namespace IdlingComplaints.Tests.ComplaintForm
         }
 
         [Test]
+        [Category("Required Field Provided Invalid Input - Error Label Displayed")]
+
         public void FailedFormSubmit_InFrontOf_NoSchool_TimeInFutureAndShorterThan3Minutes_InvalidOccurrenceAddr()
         {
             /*QUALIFYING CRITERIA*/
@@ -296,6 +309,8 @@ namespace IdlingComplaints.Tests.ComplaintForm
         }
 
         [Test]
+        [Category("Required Field Provided Invalid Input - Error Label Displayed")]
+
         public void FailedFormSubmit_InFrontOf_NoSchool_TimeInFutureAndShorterThan3Minutes_InvalidAssociatedAddr()
         {
             /*QUALIFYING CRITERIA*/
@@ -342,6 +357,8 @@ namespace IdlingComplaints.Tests.ComplaintForm
         }
 
         [Test]
+        [Category("Required Field Provided Invalid Input - Error Label Displayed")]
+
         public void FailedFormSubmit_InFrontOf_NoSchool_TimeInFutureAndShorterThan3Minutes_InvalidOccurrenceAndAssociatedAddr()
         {
             /*QUALIFYING CRITERIA*/
@@ -386,6 +403,8 @@ namespace IdlingComplaints.Tests.ComplaintForm
         }
 
         [Test]
+        [Category("Required Field Provided Invalid Input - Error Label Displayed")]
+
         public void FailedFormSubmit_InFrontOf_NoSchool_TimeInFuture()
         {
             /*QUALIFYING CRITERIA*/
@@ -430,6 +449,8 @@ namespace IdlingComplaints.Tests.ComplaintForm
         }
 
         [Test]
+        [Category("Required Field Provided Invalid Input - Error Label Displayed")]
+
         public void FailedFormSubmit_InFrontOf_NoSchool_TimeInFuture_InvalidOccurrenceAddr()
         {
             /*QUALIFYING CRITERIA*/
@@ -476,6 +497,8 @@ namespace IdlingComplaints.Tests.ComplaintForm
         }
 
         [Test]
+        [Category("Required Field Provided Invalid Input - Error Label Displayed")]
+
         public void FailedFormSubmit_InFrontOf_NoSchool_TimeInFuture_InvalidAssociatedAddr()
         {
             /*QUALIFYING CRITERIA*/
@@ -522,6 +545,8 @@ namespace IdlingComplaints.Tests.ComplaintForm
         }
 
         [Test]
+        [Category("Required Field Provided Invalid Input - Error Label Displayed")]
+
         public void FailedFormSubmit_InFrontOf_NoSchool_TimeInFuture_InvalidOccurrenceAndAssociatedAddr()
         {
             /*QUALIFYING CRITERIA*/
@@ -569,6 +594,8 @@ namespace IdlingComplaints.Tests.ComplaintForm
         }
 
         [Test]
+        [Category("Required Field Provided Invalid Input - Error Label Displayed")]
+
         public void FailedFormSubmit_InFrontOf_NoSchool_FromTimeMoreThanToTime()
         {
             /*QUALIFYING CRITERIA*/
@@ -614,6 +641,8 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
 
         [Test]
+        [Category("Required Field Provided Invalid Input - Error Label Displayed")]
+
         public void FailedFormSubmit_InFrontOf_NoSchool_FromTimeMoreThanToTime_InvalidOccurrenceAddr()
         {
             /*QUALIFYING CRITERIA*/
@@ -659,6 +688,8 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
 
         [Test]
+        [Category("Required Field Provided Invalid Input - Error Label Displayed")]
+
         public void FailedFormSubmit_InFrontOf_NoSchool_FromTimeMoreThanToTime_InvalidAssociatedAddress()
         {
             /*QUALIFYING CRITERIA*/
@@ -703,6 +734,8 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
 
         [Test]
+        [Category("Required Field Provided Invalid Input - Error Label Displayed")]
+
         public void FailedFormSubmit_InFrontOf_NoSchool_FromTimeMoreThanToTime_InvalidOccurrenceAndAssociatedAddr()
         {
             /*QUALIFYING CRITERIA*/
@@ -747,6 +780,8 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
 
         [Test]
+        [Category("Required Field Provided Invalid Input - Error Label Displayed")]
+
         public void FailedForm_NotQualified()
         {
             /*QUALIFYING CRITERIA*/

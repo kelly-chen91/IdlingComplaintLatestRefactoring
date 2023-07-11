@@ -1,5 +1,5 @@
 ﻿using IdlingComplaints.Models.ComplaintForm;
-using IdlingComplaints.Tests.ComplaintForm.Complaint;
+using IdlingComplaints.Tests.ComplaintForm.Associated;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumUtilities.Utils;

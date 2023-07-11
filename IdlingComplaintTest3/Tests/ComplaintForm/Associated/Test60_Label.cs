@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IdlingComplaints.Tests.ComplaintForm.Complaint;
+using IdlingComplaints.Tests.ComplaintForm.Associated;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace IdlingComplaints.Tests.ComplaintForm.Associated
