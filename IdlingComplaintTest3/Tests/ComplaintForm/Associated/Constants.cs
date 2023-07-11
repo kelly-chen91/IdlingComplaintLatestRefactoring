@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IdlingComplaints.Tests.ComplaintForm.Complaint
+namespace IdlingComplaints.Tests.ComplaintForm.Associated
 {
     internal class Constants
     {

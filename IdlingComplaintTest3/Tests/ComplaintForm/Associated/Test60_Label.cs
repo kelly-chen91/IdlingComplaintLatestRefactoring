@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using IdlingComplaints.Tests.ComplaintForm.Complaint;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace IdlingComplaints.Tests.ComplaintForm.Complainant
+namespace IdlingComplaints.Tests.ComplaintForm.Associated
 {
     internal class Test60_Label : ComplaintFormModel
     { 
