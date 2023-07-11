@@ -47,24 +47,24 @@ namespace SeleniumUtilities.Utils
             return random.Next(minValue, maxValue + 1);
         }
 
-        //This method will generate a serise random numbers
-        public static string GenerateSeriseNumbers()
+        //This method will generate a series random numbers
+        public static string GenerateSeriesNumbers()
         { 
             int length = random.Next(1, 20);
 
-            string seriseRandomnumbers="";
+            string seriesRandomNumbers="";
 
             for (int i = 0; i < length; i++)
             {
                 int pickedNumber = random.Next(0,9);
-                seriseRandomnumbers+=pickedNumber.ToString();
+                seriesRandomNumbers+=pickedNumber.ToString();
             }
 
-            return seriseRandomnumbers;
+            return seriesRandomNumbers;
         }
 
         //This method will generate regitimate password
-        public static string GenerateQulifiedPassword()
+        public static string GenerateQualifiedPassword()
         {
             const string uppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             const string lowercaseLetters = "abcdefghijklmnopqrstuvwxyz";
@@ -92,7 +92,7 @@ namespace SeleniumUtilities.Utils
 
         /*This method will retrive the data from the file.
             The targetRowIndex and targetColumnIndex are starting from 0;*/
-        public static string RetriveRecordValue(this string filePath, int targetRowIndex, int targetColumnIndex)
+        public static string RetrieveRecordValue(this string filePath, int targetRowIndex, int targetColumnIndex)
         {
             string[] lines = File.ReadAllLines(filePath);
 
