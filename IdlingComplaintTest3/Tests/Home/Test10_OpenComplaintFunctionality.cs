@@ -101,8 +101,44 @@ namespace IdlingComplaints.Tests.Home
             Console.WriteLine("Calculated page count is: " + calculatedPageCount);
             Assert.That(pageCount, Is.EqualTo(calculatedPageCount));
 
-
-            
+ 
         }
+
+        [Test, Category("Previous Arrow Till First Page + Counter")]
+        public void PreviousArrow_CountPages()
+        {
+            //Change amount of items per page
+            SelectItemsPerPage(1);
+
+            ClickLastPage();
+
+            int pageCount = 1;
+            while (PreviousPageArrowControl.Enabled)
+            {
+                PreviousPageArrowControl.Click();
+                pageCount++;
+            } //Manually going through each page and counting
+
+            string complaintCount = Driver.ExtractTextFromXPath("//mat-paginator/div/div/div[2]/div/text()");
+            int index = complaintCount.IndexOf("f") + 2;
+            string outOfComplaintAmount = complaintCount.Substring(index);
+            int totalComplaintAmount = int.Parse(outOfComplaintAmount); //Taking the listed total amount of complaints and turning into int
+            Console.WriteLine(totalComplaintAmount);
+
+            string itemsPerPage = Driver.ExtractTextFromXPath("//div[1]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span/span/text()");
+            int divideItemsPerPage = int.Parse(itemsPerPage); //Taking the items per page and turning into int
+
+
+            //decimal calculatedPageCount = (decimal)totalComplaintAmount / divideItemsPerPage; //Dividing by 10 items per page
+            int calculatedPageCount = totalComplaintAmount % divideItemsPerPage == 0 ? totalComplaintAmount / divideItemsPerPage : (totalComplaintAmount / divideItemsPerPage) + 1;
+
+            Console.WriteLine("Manual page count is: " + pageCount);
+            Console.WriteLine("Calculated page count is: " + calculatedPageCount);
+            Assert.That(pageCount, Is.EqualTo(calculatedPageCount));
+
+        }
+
+
+
     }
 }
