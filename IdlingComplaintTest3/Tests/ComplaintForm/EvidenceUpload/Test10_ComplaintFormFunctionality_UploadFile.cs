@@ -157,5 +157,19 @@ namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
                 Thread.Sleep(2000);
               }
             }
+
+        [Test, Category("Verify the delete button"), Ignore("Debugging")]
+        public void EvidenceUpload_Comment()
+        {
+            EvidenceUpload_MultipleFileUpload();
+            string commentTest = "Testing the comment box" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "End the comments from here.";
+            EvidenceUpload_UploadComment.SendKeysWithDelay(commentTest, SLEEPTIMER);
+            EvidenceUpload_ClickFilesUploadConfirm();
+
+           // var commentInUploadedFiles = (WaitUntilNotFound())
+            
+
+
+        }
     }
 }
