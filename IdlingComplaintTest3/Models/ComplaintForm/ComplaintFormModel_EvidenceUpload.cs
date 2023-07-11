@@ -37,9 +37,7 @@ namespace IdlingComplaints.Models.ComplaintForm
         public IWebElement EvidenceUpload_DeleteEvidenceControl => Driver.FindElement(By.XPath("//mat-row/mat-cell[5]/mat-icon[2]"));
         
         public IWebElement EvidenceUpload_DeleteConfirmControl => Driver.FindElement(By.XPath("//app-confirm-dialog/div[2]/button[2]/span"));
-        
-        
-        //public IWebElement EvidenceUpload_DeleteCancel => Driver.FindElement(By.XPath("//app-confirm-dialog/div[2]/button[1]/span"));
+
         
         public IWebElement EvidenceUpload_TableControl => Driver.FindElement(By.TagName("mat-table"));
 
