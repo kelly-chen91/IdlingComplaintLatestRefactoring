@@ -129,7 +129,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
         //[Ignore("Debugging, Under Construction")]
         public void EvidenceUpload_VerifyMultipleDeleteButton()
         {
-            EvidenceUpload_MultipleFileUpload();
+            EvidenceUpload_UploadMultipleFiles();
 
             Thread.Sleep(1000);
             var fileList = EvidenceUpload_TableControl.GetDataFromMatTable();

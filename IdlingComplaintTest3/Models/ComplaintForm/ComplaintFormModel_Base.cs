@@ -12,7 +12,6 @@ namespace IdlingComplaints.Models.ComplaintForm
 {
     internal partial class ComplaintFormModel : HomeModel
     {
-        //[LoginModelSetUp]
         public void ComplaintFormModelSetUp(bool isHeadless)
         {
             base.HomeModelSetUp("TTseng@dep.nyc.gov", "Testing1#", isHeadless);
@@ -20,7 +19,7 @@ namespace IdlingComplaints.Models.ComplaintForm
             Driver.WaitUntilElementFound(By.TagName("mat-radio-button"), 10);
             Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
         }
-        //[LoginModelTearDown]
+
         public void ComplaintFormModelTearDown()
         {
             base.HomeModelTearDown();
