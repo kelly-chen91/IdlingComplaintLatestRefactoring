@@ -107,11 +107,6 @@ namespace SeleniumUtilities.Utils
             }
             return true;
         }
-        public static ReadOnlyCollection<IWebElement> GetTableContains(this IWebElement table)
-        {
-            var body = table.FindElement(By.TagName("mat-card-content")).FindElement(By.TagName("mat-table"));
-            return body.FindElements(By.TagName("mat-row"));
-        }
     }
 
 }
