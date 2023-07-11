@@ -10,7 +10,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace IdlingComplaints.Tests.PassordReset
+namespace IdlingComplaints.Tests.PasswordReset
 {
     internal class Test60_Label_ConfirmReset : PasswordResetModel
     {

@@ -11,7 +11,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IdlingComplaints.Tests.PassordReset
+namespace IdlingComplaints.Tests.PasswordReset
 {
     internal class Test10_PasswordResetFunctionality : PasswordResetModel
     {
@@ -42,9 +42,10 @@ namespace IdlingComplaints.Tests.PassordReset
             EmailControl.SendKeysWithDelay(emailAddress, SLEEP_TIMER);
             
             ClickResetButton();
-            
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(20));
-            wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname = 'securityanswer']")));
+
+            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname = 'securityanswer']"), 20);
+            //var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(20));
+            //wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname = 'securityanswer']")));
             Console.WriteLine("This user's email is " + emailAddress + ". The line index is " + userIndex + ".");
         }
         [TearDown]
@@ -69,13 +70,14 @@ namespace IdlingComplaints.Tests.PassordReset
             
             ClickSubmitButton();
 
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(30));
-            wait.Until(d =>
-            {
-                var resetControl = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
-                
-                return resetControl;
-            });
+            var resetControl = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"),30).FindElement(By.TagName("span"));
+            //var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(30));
+            //wait.Until(d =>
+            //{
+            //    var resetControl = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
+            //    
+            //    return resetControl;
+            //});
             RegistrationUtilities.ReplaceRecordValue(registeredd_EmailAddress, userIndex, 1, password);
         }
 
@@ -91,16 +93,20 @@ namespace IdlingComplaints.Tests.PassordReset
 
             ClickSubmitButton();
 
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(30));
-            wait.Until(d =>
-            {
-                var resetControl = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
+            var resetControl = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 30).FindElement(By.TagName("span"));
+            Assert.IsNotNull(resetControl);
+            Assert.That(resetControl.Text.Trim(), Is.EqualTo("Security answer is not correct."));
 
-                Assert.IsNotNull(resetControl);
-                Assert.That(resetControl.Text.Trim(), Is.EqualTo("Security answer is not correct."));
-
-                return resetControl;
-            });
+            //var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(30));
+            //wait.Until(d =>
+            //{
+            //    var resetControl = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
+            //
+            //    Assert.IsNotNull(resetControl);
+            //    Assert.That(resetControl.Text.Trim(), Is.EqualTo("Security answer is not correct."));
+            //
+            //    return resetControl;
+            //});
         }
 
         [Test, Category("Scenario #1: cancel password update")]
@@ -108,15 +114,20 @@ namespace IdlingComplaints.Tests.PassordReset
         {
             ClickCancelButton();
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
-            wait.Until(d =>
-            {
-                var TitleControl = d.FindElement(By.TagName("h3"));
+            //wait.Until(d =>
+            //{
+            //    var TitleControl = d.FindElement(By.TagName("h3"));
+            //
+            //    Assert.IsNotNull(TitleControl);
+            //    Assert.That(TitleControl.Text.Trim(), Is.EqualTo("NYC Idling Complaint"));
+            //
+            //    return TitleControl;
+            //});
 
-                Assert.IsNotNull(TitleControl);
-                Assert.That(TitleControl.Text.Trim(), Is.EqualTo("NYC Idling Complaint"));
+            var titleControl = Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='password']"), 10);
+            Assert.IsNotNull(titleControl);
+            Assert.That(titleControl.GetAttribute("placeholder").Trim(), Is.EqualTo("Password"));
 
-                return TitleControl;
-            });
         }
 
 
