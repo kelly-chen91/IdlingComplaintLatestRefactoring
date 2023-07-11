@@ -74,8 +74,8 @@ namespace IdlingComplaints.Tests.Home
         [Test, Category("Next Arrow Till Last Page + Counter")]
         public void NextArrow_CountPages()
         {
-            // Change amount of items per page
-            //SelectItemsPerPage(1);
+            //Change amount of items per page
+            SelectItemsPerPage(1);
 
             int pageCount = 1;
             while (NextPageArrowControl.Enabled) 
@@ -95,9 +95,9 @@ namespace IdlingComplaints.Tests.Home
 
             decimal calculatedPageCount = (decimal)totalComplaintAmount / divideItemsPerPage; //Dividing by 10 items per page
 
-            Assert.That(pageCount, Is.EqualTo(Math.Ceiling((double)calculatedPageCount)));
             Console.WriteLine("Manual page count is: " + pageCount);
             Console.WriteLine("Calculated page count is: " + Math.Ceiling((double)calculatedPageCount));
+            Assert.That(pageCount, Is.EqualTo(Math.Ceiling((double)calculatedPageCount)));
 
 
             
