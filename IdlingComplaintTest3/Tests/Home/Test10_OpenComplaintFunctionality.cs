@@ -1,9 +1,11 @@
 ﻿using IdlingComplaints.Models.Home;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumUtilities.Utils;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -68,5 +70,37 @@ namespace IdlingComplaints.Tests.Home
             }
         }
 
+
+        [Test, Category("Next Arrow Till Last Page + Counter")]
+        public void NextArrow_CountPages()
+        {
+            // Change amount of items per page
+            //SelectItemsPerPage(1);
+
+            int pageCount = 1;
+            while (NextPageArrowControl.Enabled) 
+            {
+                NextPageArrowControl.Click();
+                pageCount++;
+            } //Manually going through each page and counting
+
+            string complaintCount = Driver.ExtractTextFromXPath("//mat-paginator/div/div/div[2]/div/text()");
+            int index = complaintCount.IndexOf("f") + 2;
+            string outOfComplaintAmount = complaintCount.Substring(index);
+            int totalComplaintAmount = int.Parse(outOfComplaintAmount); //Taking the listed total amount of complaints and turning into int
+
+            string itemsPerPage = Driver.ExtractTextFromXPath("//div[1]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span/span/text()");
+            int divideItemsPerPage = int.Parse(itemsPerPage); //Taking the items per page and turning into int
+
+
+            decimal calculatedPageCount = (decimal)totalComplaintAmount / divideItemsPerPage; //Dividing by 10 items per page
+
+            Assert.That(pageCount, Is.EqualTo(Math.Ceiling((double)calculatedPageCount)));
+            Console.WriteLine("Manual page count is: " + pageCount);
+            Console.WriteLine("Calculated page count is: " + Math.Ceiling((double)calculatedPageCount));
+
+
+            
+        }
     }
 }
