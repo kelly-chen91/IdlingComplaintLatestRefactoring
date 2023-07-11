@@ -91,9 +91,9 @@ namespace SeleniumUtilities.Utils
 
         public static ReadOnlyCollection<IWebElement> GetDataFromMatTable(this IWebElement table)
         {
-            var body = table.FindElement(By.TagName("mat-table"));
+            //var body = table.FindElement(By.TagName("mat-table"));
             //var rowList = body.FindElements(By.TagName("mat-row"));
-            return body.FindElements(By.TagName("mat-row"));
+            return table.FindElements(By.TagName("mat-row"));
         }
 
         public static Boolean EqualsTableAfterSorting(this List<string> sorted, List<string> unsorted)
