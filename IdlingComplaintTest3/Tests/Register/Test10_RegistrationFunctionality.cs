@@ -71,30 +71,52 @@ namespace IdlingComplaints.Tests.Register
             ClickSubmitButton();
           
 
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(20));
-            wait.Until(d =>
+            //var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(20));
+            //wait.Until(d =>
+            //{
+            //    var snackBarError = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
+            //    Assert.IsNotNull(snackBarError);
+            //    if (snackBarError.Text.Trim().Contains("successful"))
+            //    {
+            //        using (StreamWriter sw = File.AppendText(Registered_EmailAddress))
+            //        {
+            //            try
+            //            {
+            //                sw.WriteLine(generatedEmail+" " +password+" "+securityAnswer);
+            //                Console.WriteLine("Accessed the file");
+            //            }
+            //            catch (Exception ex)
+            //            {
+            //                Console.WriteLine("Cannot Write into File");
+            //                Console.WriteLine(ex.ToString());
+            //            }
+            //        }
+            //    }
+            //    Assert.That(snackBarError.Text.Trim(), Is.EqualTo("Registration has been completed successfully"), "Flagged for inconsistency on purpose."); //Added period for consistency with other error messaging
+            //    return snackBarError;
+            //});
+
+            var snackBarError = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span"));
+            Assert.IsNotNull(snackBarError);
+            if (snackBarError.Text.Trim().Contains("successful"))
             {
-                var snackBarError = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
-                Assert.IsNotNull(snackBarError);
-                if (snackBarError.Text.Trim().Contains("successful"))
+                using (StreamWriter sw = File.AppendText(Registered_EmailAddress))
                 {
-                    using (StreamWriter sw = File.AppendText(Registered_EmailAddress))
+                    try
                     {
-                        try
-                        {
-                            sw.WriteLine(generatedEmail+" " +password+" "+securityAnswer);
-                            Console.WriteLine("Accessed the file");
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine("Cannot Write into File");
-                            Console.WriteLine(ex.ToString());
-                        }
+                        sw.WriteLine(generatedEmail + " " + password + " " + securityAnswer);
+                        Console.WriteLine("Accessed the file");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Cannot Write into File");
+                        Console.WriteLine(ex.ToString());
                     }
                 }
-                Assert.That(snackBarError.Text.Trim(), Is.EqualTo("Registration has been completed successfully"), "Flagged for inconsistency on purpose."); //Added period for consistency with other error messaging
-                return snackBarError;
-            });
+            }
+            Assert.That(snackBarError.Text.Trim(), Is.EqualTo("Registration has been completed successfully"), "Flagged for inconsistency on purpose."); //Added period for consistency with other error messaging
+
+
         }
 
         [Test, Category("Scenario Registration functionality test#2: registered user")]
@@ -116,14 +138,19 @@ namespace IdlingComplaints.Tests.Register
             ScrollToButton();
             ClickSubmitButton();
 
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
-            wait.Until(d =>
-            {
-                var snackBarError = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
-                Assert.IsNotNull(snackBarError);
-                Assert.That(snackBarError.Text.Trim(), Is.EqualTo("Email " + EmailInput + " has already been registered. Please contact DEP hotline."));
-                return snackBarError;
-            });
+            //var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
+            //wait.Until(d =>
+            //{
+            //    var snackBarError = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
+            //    Assert.IsNotNull(snackBarError);
+            //    Assert.That(snackBarError.Text.Trim(), Is.EqualTo("Email " + EmailInput + " has already been registered. Please contact DEP hotline."));
+            //    return snackBarError;
+            //});
+
+            var snackBarError = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"),10).FindElement(By.TagName("span"));
+            Assert.IsNotNull(snackBarError);
+            Assert.That(snackBarError.Text.Trim(), Is.EqualTo("Email " + EmailInput + " has already been registered. Please contact DEP hotline."));
+
         }
 
         [Test, Category("Scenario Cancel Registration functionality test#3: cancel register")]
@@ -131,8 +158,10 @@ namespace IdlingComplaints.Tests.Register
         {
             ScrollToButton();
             ClickCancelButton();
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10)); //1 - too short
-            wait.Until(d => d.FindElement(By.TagName("h3")));
+            //var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10)); //1 - too short
+            //wait.Until(d => d.FindElement(By.TagName("h3")));
+
+            Driver.WaitUntilElementFound(By.TagName("h3"), 10);
         }
 
 
@@ -155,8 +184,11 @@ namespace IdlingComplaints.Tests.Register
             ScrollToButton();
             ClickCancelButton();
 
-            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            var loginButton = Driver.FindElement(By.XPath("/html/body/app-root/div/app-login/mat-card/mat-card-content/form/div[3]/button"));
+            //Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            //var loginButton = Driver.FindElement(By.XPath("/html/body/app-root/div/app-login/mat-card/mat-card-content/form/div[3]/button"));
+            //Assert.IsNotNull(loginButton);
+
+            var loginButton = Driver.WaitUntilElementFound(By.XPath("//app-login/mat-card/mat-card-content/form/div[3]/button"),10);
             Assert.IsNotNull(loginButton);
 
         }

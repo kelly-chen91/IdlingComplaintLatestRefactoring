@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SeleniumUtilities.Utils;
-using IdlingComplaints.Tests.ComplaintForm.Functionality;
+using IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality;
 
-namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
+namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 {
     internal class Test60_Label : FillComplaintForm_Base
     {

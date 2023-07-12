@@ -7,24 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IdlingComplaints.Tests.ComplaintForm.Functionality
+namespace IdlingComplaints.Tests.ComplaintForm
 {
     internal class FillComplaintForm_Base : ComplaintFormModel
     {
-        //[SetUp]
-        //public void SetUp()
-        //{
-        //    base.ComplaintFormModelSetUp(false);
-        //
-        //}
-        //
-        //[TearDown]
-        //public void TearDown()
-        //{
-        //    if (SLEEP_TIMER > 0) { Thread.Sleep(SLEEP_TIMER); }
-        //    base.ComplaintFormModelTearDown();
-        //}
-
+        
         public readonly int SLEEP_TIMER = 0;
         public readonly string FILE_IMAGE_PATH = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_truck.jpeg";
         public readonly string ERROR_BASE = "An error occurred while saving form: ";
@@ -141,9 +128,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.Functionality
 
             Occurrence_ToControl.SendKeysWithDelay(
                                 StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
-
-            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEP_TIMER);
-            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 23, 00, true), SLEEP_TIMER);
         }
 
         public void Occurrence_VehicleInformation()

@@ -1,5 +1,5 @@
 ﻿using IdlingComplaints.Models.ComplaintForm;
-using IdlingComplaints.Tests.ComplaintForm.Functionality;
+using IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality;
 using OpenQA.Selenium;
 using OpenQA.Selenium.DevTools.V112.Database;
 using SeleniumUtilities.Utils;
@@ -10,14 +10,14 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace IdlingComplaints.Tests.ComplaintForm
+namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 {
     internal class Test20_BusinessValidation : FillComplaintForm_Base
     {
         [SetUp]
         public void SetUp()
         {
-            base.ComplaintFormModelSetUp(false);
+            ComplaintFormModelSetUp(false);
 
         }
 
@@ -25,13 +25,13 @@ namespace IdlingComplaints.Tests.ComplaintForm
         public void TearDown()
         {
             if (SLEEP_TIMER > 0) { Thread.Sleep(SLEEP_TIMER); }
-            base.ComplaintFormModelTearDown();
+            ComplaintFormModelTearDown();
         }
 
         [Test]
         [Category("Required Field Provided Invalid Input - Error Label Displayed")]
 
-        public void FailedFormSubmit_InFrontOf_NoSchool_TimeShorterThan3Minutes()
+        public void FailedSubmission_InFrontOf_NoSchool_TimeShorterThan3Minutes()
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
@@ -43,9 +43,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
             Fill_Associated(false, false, SLEEP_TIMER);
 
             /*OCCURRENCE*/
-            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEP_TIMER);
-            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 01, true), SLEEP_TIMER);
-
+            
             Occurrence_FromControl.SendKeysWithDelay(
                 StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-1).Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time (1 minutes ago)
 
@@ -75,15 +73,20 @@ namespace IdlingComplaints.Tests.ComplaintForm
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
-            bool isSatisfiedErrorList = error.Contains(ERROR_BASE) && error.Contains(ERROR_SHORTER_THAN_3_MINUTES); 
-            Assert.True(isSatisfiedErrorList, "Flagged inconsistency on purpose.");
+            if (!error.Contains(ERROR_BASE))
+                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
+                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
+
+            if (!error.Contains(ERROR_SHORTER_THAN_3_MINUTES))
+                Assert.That(error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length), Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
+                    "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length) + "]");
         }
 
 
         [Test]
         [Category("Required Field Provided Invalid Input - Error Label Displayed")]
 
-        public void FailedFormSubmit_InFrontOf_NoSchool_TimeShorterThan3Minutes_InvalidOccurrenceAddr()
+        public void FailedSubmission_InFrontOf_NoSchool_TimeShorterThan3Minutes_InvalidOccurrenceAddr()
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
@@ -95,8 +98,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
             Fill_Associated(false, false, SLEEP_TIMER);
 
             /*OCCURRENCE*/
-            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEP_TIMER);
-            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 01, true), SLEEP_TIMER);
+
             Occurrence_FromControl.SendKeysWithDelay(
                 StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-1).Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time (1 minutes ago)
 
@@ -125,17 +127,25 @@ namespace IdlingComplaints.Tests.ComplaintForm
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
-            bool isSatisfiedErrorList = error.Contains(ERROR_BASE) && error.Contains(ERROR_SHORTER_THAN_3_MINUTES) && error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS);
-            Assert.True(isSatisfiedErrorList, "Flagged inconsistency on purpose.");
+            if (!error.Contains(ERROR_BASE))
+                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
+                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
 
-           
+            if (!error.Contains(ERROR_SHORTER_THAN_3_MINUTES))
+                Assert.That(error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length), Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
+                    "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length) + "]");
+
+            if (!error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS))
+                Assert.That(error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
+                    "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length) + "]");
+
         }
 
 
         [Test]
         [Category("Required Field Provided Invalid Input - Error Label Displayed")]
 
-        public void FailedFormSubmit_InFrontOf_NoSchool_TimeShorterThan3Minutes_InvalidAssociatedAddr()
+        public void FailedSubmission_InFrontOf_NoSchool_TimeShorterThan3Minutes_InvalidAssociatedAddr()
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
@@ -147,8 +157,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
             Fill_Associated(false, true, SLEEP_TIMER);
 
             /*OCCURRENCE*/
-            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEP_TIMER);
-            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 01, true), SLEEP_TIMER);
+
             Occurrence_FromControl.SendKeysWithDelay(
                 StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-1).Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time (3 minutes ago)
 
@@ -177,16 +186,26 @@ namespace IdlingComplaints.Tests.ComplaintForm
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
-            bool isSatisfiedErrorList = error.Contains(ERROR_BASE) && error.Contains(ERROR_SHORTER_THAN_3_MINUTES) && error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS);
-            Assert.True(isSatisfiedErrorList, "Flagged inconsistency on purpose.");
 
-            
+            if (!error.Contains(ERROR_BASE))
+                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
+                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
+
+            if (!error.Contains(ERROR_SHORTER_THAN_3_MINUTES))
+                Assert.That(error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length), Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
+                    "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length) + "]");
+
+            if (!error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS))
+                Assert.That(error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
+                    "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length) + "]");
+
+
         }
 
         [Test]
         [Category("Required Field Provided Invalid Input - Error Label Displayed")]
 
-        public void FailedFormSubmit_InFrontOf_NoSchool_TimeShorterThan3Minutes_InvalidOccurrenceAndAssociatedAddr()
+        public void FailedSubmission_InFrontOf_NoSchool_TimeShorterThan3Minutes_InvalidOccurrenceAndAssociatedAddr()
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
@@ -198,8 +217,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
             Fill_Associated(false, true, SLEEP_TIMER);
 
             /*OCCURRENCE*/
-            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEP_TIMER);
-            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 01, true), SLEEP_TIMER);
+
             Occurrence_FromControl.SendKeysWithDelay(
                 StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-1).Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time (1 minutes ago)
 
@@ -229,17 +247,28 @@ namespace IdlingComplaints.Tests.ComplaintForm
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
-            bool isSatisfiedErrorList = error.Contains(ERROR_BASE) && error.Contains(ERROR_SHORTER_THAN_3_MINUTES) && error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS)
-                && error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS);
-            Assert.True(isSatisfiedErrorList, "Flagged inconsistency on purpose.");
+            if (!error.Contains(ERROR_BASE))
+                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
+                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
 
+            if (!error.Contains(ERROR_SHORTER_THAN_3_MINUTES))
+                Assert.That(error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length), Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
+                    "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length) + "]");
+
+            if (!error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS))
+                Assert.That(error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
+                    "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length) + "]");
+
+            if (!error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS))
+                Assert.That(error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
+                    "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length) + "]");
 
         }
 
         [Test]
         [Category("Required Field Provided Invalid Input - Error Label Displayed")]
 
-        public void FailedFormSubmit_InFrontOf_NoSchool_TimeInFutureAndShorterThan3Minutes()
+        public void FailedSubmission_InFrontOf_NoSchool_TimeInFutureAndShorterThan3Minutes()
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
@@ -253,8 +282,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
             int year = DateTime.Now.Year + 1;
 
             /*OCCURRENCE*/
-            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 00, true), SLEEP_TIMER);
-            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 01, true), SLEEP_TIMER);
+
             Occurrence_FromControl.SendKeysWithDelay(
                 StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-1).Minute, DateTime.Now.Second), SLEEP_TIMER); //Time in a year (1 minutes ago)
 
@@ -283,15 +311,24 @@ namespace IdlingComplaints.Tests.ComplaintForm
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
-            bool isSatisfiedErrorList = error.Contains(ERROR_BASE) && error.Contains(ERROR_SHORTER_THAN_3_MINUTES) && error.Contains(ERROR_TO_AND_FROM_IN_FUTURE);
-            Assert.True(isSatisfiedErrorList, "Flagged inconsistency on purpose.");
+            if (!error.Contains(ERROR_BASE))
+                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
+                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
+
+            if (!error.Contains(ERROR_SHORTER_THAN_3_MINUTES))
+                Assert.That(error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length), Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
+                    "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length) + "]");
+
+            if (!error.Contains(ERROR_TO_AND_FROM_IN_FUTURE))
+                Assert.That(error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length), Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
+                    "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length) + "]");
 
         }
 
         [Test]
         [Category("Required Field Provided Invalid Input - Error Label Displayed")]
 
-        public void FailedFormSubmit_InFrontOf_NoSchool_TimeInFutureAndShorterThan3Minutes_InvalidOccurrenceAddr()
+        public void FailedSubmission_InFrontOf_NoSchool_TimeInFutureAndShorterThan3Minutes_InvalidOccurrenceAddr()
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
@@ -305,116 +342,6 @@ namespace IdlingComplaints.Tests.ComplaintForm
             int year = DateTime.Now.Year + 1;
 
             /*OCCURRENCE*/
-            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 00, true), SLEEP_TIMER);
-            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 01, true), SLEEP_TIMER);
-
-
-            Occurrence_FromControl.SendKeysWithDelay(
-                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-1).Minute, DateTime.Now.Second), SLEEP_TIMER); //Time in a year (1 minutes ago)
-
-            Occurrence_ToControl.SendKeysWithDelay(
-                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
-
-            Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
-
-            Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
-            Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-
-            Fill_InFrontOfSchool(false, SLEEP_TIMER);
-
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
-
-            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10);
-            Assert.IsNotNull(invalidTime);
-
-            string error = invalidTime.Text.Trim();
-            Console.WriteLine(error);
-
-            bool isSatisfiedErrorList = error.Contains(ERROR_BASE) && error.Contains(ERROR_SHORTER_THAN_3_MINUTES) && error.Contains(ERROR_TO_AND_FROM_IN_FUTURE)
-                && error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS);
-            Assert.True(isSatisfiedErrorList, "Flagged inconsistency on purpose.");
-
-        }
-
-        [Test]
-        [Category("Required Field Provided Invalid Input - Error Label Displayed")]
-
-        public void FailedFormSubmit_InFrontOf_NoSchool_TimeInFutureAndShorterThan3Minutes_InvalidAssociatedAddr()
-        {
-            /*QUALIFYING CRITERIA*/
-            ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
-
-            /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
-            ScrollToZipCode();
-
-            Fill_Associated(false, true, SLEEP_TIMER);
-
-            int year = DateTime.Now.Year + 1;
-
-            /*OCCURRENCE*/
-            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 00, true), SLEEP_TIMER);
-            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 01, true), SLEEP_TIMER);
-
-            Occurrence_FromControl.SendKeysWithDelay(
-                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-1).Minute, DateTime.Now.Second), SLEEP_TIMER); //Time in a year (1 minutes ago)
-
-            Occurrence_ToControl.SendKeysWithDelay(
-                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
-
-
-            Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
-
-            Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
-            Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-
-            Fill_InFrontOfSchool(false, SLEEP_TIMER);
-
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
-
-            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10);
-            Assert.IsNotNull(invalidTime);
-
-            string error = invalidTime.Text.Trim();
-            Console.WriteLine(error);
-
-            bool isSatisfiedErrorList = error.Contains(ERROR_BASE) && error.Contains(ERROR_SHORTER_THAN_3_MINUTES) && error.Contains(ERROR_TO_AND_FROM_IN_FUTURE)
-                && error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS);
-            Assert.True(isSatisfiedErrorList, "Flagged inconsistency on purpose.");
-
-        }
-
-        [Test]
-        [Category("Required Field Provided Invalid Input - Error Label Displayed")]
-
-        public void FailedFormSubmit_InFrontOf_NoSchool_TimeInFutureAndShorterThan3Minutes_InvalidOccurrenceAndAssociatedAddr()
-        {
-            /*QUALIFYING CRITERIA*/
-            ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
-
-            /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
-            ScrollToZipCode();
-
-            Fill_Associated(false, true, SLEEP_TIMER);
-            int year = DateTime.Now.Year + 1;
-            /*OCCURRENCE*/
-            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 00, true), SLEEP_TIMER);
-            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 01, true), SLEEP_TIMER);
 
             Occurrence_FromControl.SendKeysWithDelay(
                 StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-1).Minute, DateTime.Now.Second), SLEEP_TIMER); //Time in a year (1 minutes ago)
@@ -444,16 +371,164 @@ namespace IdlingComplaints.Tests.ComplaintForm
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
-            bool isSatisfiedErrorList = error.Contains(ERROR_BASE) && error.Contains(ERROR_SHORTER_THAN_3_MINUTES) && error.Contains(ERROR_TO_AND_FROM_IN_FUTURE)
-                && error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS) && error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS);
-            Assert.True(isSatisfiedErrorList, "Flagged inconsistency on purpose.");
+
+            if (!error.Contains(ERROR_BASE))
+                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
+                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
+
+            if (!error.Contains(ERROR_SHORTER_THAN_3_MINUTES))
+                Assert.That(error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length), Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
+                    "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length) + "]");
+
+            if (!error.Contains(ERROR_TO_AND_FROM_IN_FUTURE))
+                Assert.That(error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length), Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
+                    "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length) + "]");
+
+            if (!error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS))
+                Assert.That(error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
+                    "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length) + "]");
+
 
         }
 
         [Test]
         [Category("Required Field Provided Invalid Input - Error Label Displayed")]
 
-        public void FailedFormSubmit_InFrontOf_NoSchool_TimeInFuture()
+        public void FailedSubmission_InFrontOf_NoSchool_TimeInFutureAndShorterThan3Minutes_InvalidAssociatedAddr()
+        {
+            /*QUALIFYING CRITERIA*/
+            ClickNo();
+            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+
+            /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
+            ScrollToZipCode();
+
+            Fill_Associated(false, true, SLEEP_TIMER);
+
+            int year = DateTime.Now.Year + 1;
+
+            /*OCCURRENCE*/
+
+            Occurrence_FromControl.SendKeysWithDelay(
+                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-1).Minute, DateTime.Now.Second), SLEEP_TIMER); //Time in a year (1 minutes ago)
+
+            Occurrence_ToControl.SendKeysWithDelay(
+                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+
+
+            Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
+
+            Occurrence_SelectVehicleType(2);
+            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
+            Occurrence_SelectLicenseState(1);
+            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+
+            Fill_InFrontOfSchool(false, SLEEP_TIMER);
+
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+
+            ClickWitnessCheckbox();
+            ClickSubmitNoCorrectionCheckbox();
+            ComplaintInfo_ClickNext();
+
+            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10);
+            Assert.IsNotNull(invalidTime);
+
+            string error = invalidTime.Text.Trim();
+            Console.WriteLine(error);
+
+            if (!error.Contains(ERROR_BASE))
+                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
+                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
+
+            if (!error.Contains(ERROR_SHORTER_THAN_3_MINUTES))
+                Assert.That(error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length), Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
+                    "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length) + "]");
+
+            if (!error.Contains(ERROR_TO_AND_FROM_IN_FUTURE))
+                Assert.That(error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length), Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
+                    "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length) + "]");
+
+            if (!error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS))
+                Assert.That(error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
+                    "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length) + "]");
+
+
+
+        }
+
+        [Test]
+        [Category("Required Field Provided Invalid Input - Error Label Displayed")]
+
+        public void FailedSubmission_InFrontOf_NoSchool_TimeInFutureAndShorterThan3Minutes_InvalidOccurrenceAndAssociatedAddr()
+        {
+            /*QUALIFYING CRITERIA*/
+            ClickNo();
+            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+
+            /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
+            ScrollToZipCode();
+
+            Fill_Associated(false, true, SLEEP_TIMER);
+            int year = DateTime.Now.Year + 1;
+            /*OCCURRENCE*/
+
+            Occurrence_FromControl.SendKeysWithDelay(
+                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-1).Minute, DateTime.Now.Second), SLEEP_TIMER); //Time in a year (1 minutes ago)
+
+            Occurrence_ToControl.SendKeysWithDelay(
+                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+
+            Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
+
+            Occurrence_SelectVehicleType(2);
+            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
+            Occurrence_SelectLicenseState(1);
+            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+
+            Fill_InFrontOfSchool(false, SLEEP_TIMER);
+
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+
+            ClickWitnessCheckbox();
+            ClickSubmitNoCorrectionCheckbox();
+            ComplaintInfo_ClickNext();
+
+            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10);
+            Assert.IsNotNull(invalidTime);
+
+            string error = invalidTime.Text.Trim();
+            Console.WriteLine(error);
+
+            if (!error.Contains(ERROR_BASE))
+                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
+                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
+
+            if (!error.Contains(ERROR_SHORTER_THAN_3_MINUTES))
+                Assert.That(error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length), Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
+                    "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length) + "]");
+
+            if (!error.Contains(ERROR_TO_AND_FROM_IN_FUTURE))
+                Assert.That(error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length), Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
+                    "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length) + "]");
+
+            if (!error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS))
+                Assert.That(error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
+                    "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length) + "]");
+
+            if (!error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS))
+                Assert.That(error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
+                    "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length) + "]");
+
+
+        }
+
+        [Test]
+        [Category("Required Field Provided Invalid Input - Error Label Displayed")]
+
+        public void FailedSubmission_InFrontOf_NoSchool_TimeInFuture()
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
@@ -467,8 +542,6 @@ namespace IdlingComplaints.Tests.ComplaintForm
             int year = DateTime.Now.Year + 1;
 
             /*OCCURRENCE*/
-            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 00, true), SLEEP_TIMER);
-            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 23, 01, true), SLEEP_TIMER);
 
             Occurrence_FromControl.SendKeysWithDelay(
                 StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Time in a year (3 minutes ago)
@@ -498,14 +571,20 @@ namespace IdlingComplaints.Tests.ComplaintForm
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
-            bool isSatisfiedErrorList = error.Contains(ERROR_BASE) && error.Contains(ERROR_TO_AND_FROM_IN_FUTURE);
-            Assert.True(isSatisfiedErrorList, "Flagged inconsistency on purpose.");
+            if (!error.Contains(ERROR_BASE))
+                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
+                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
+
+            if (!error.Contains(ERROR_TO_AND_FROM_IN_FUTURE))
+                Assert.That(error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length), Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
+                    "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length) + "]");
+
         }
 
         [Test]
         [Category("Required Field Provided Invalid Input - Error Label Displayed")]
 
-        public void FailedFormSubmit_InFrontOf_NoSchool_TimeInFuture_InvalidOccurrenceAddr()
+        public void FailedSubmission_InFrontOf_NoSchool_TimeInFuture_InvalidOccurrenceAddr()
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
@@ -519,115 +598,6 @@ namespace IdlingComplaints.Tests.ComplaintForm
             int year = DateTime.Now.Year + 1;
 
             /*OCCURRENCE*/
-            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 00, true), SLEEP_TIMER);
-            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 23, 01, true), SLEEP_TIMER);
-            Occurrence_FromControl.SendKeysWithDelay(
-                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Time in a year (3 minutes ago)
-
-            Occurrence_ToControl.SendKeysWithDelay(
-                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
-
-            Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
-
-            Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
-            Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-
-            Fill_InFrontOfSchool(false, SLEEP_TIMER);
-
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
-
-            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10);
-            Assert.IsNotNull(invalidTime);
-
-            string error = invalidTime.Text.Trim();
-            Console.WriteLine(error);
-
-            bool isSatisfiedErrorList = error.Contains(ERROR_BASE) && error.Contains(ERROR_TO_AND_FROM_IN_FUTURE)
-                && error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS);
-            Assert.True(isSatisfiedErrorList, "Flagged inconsistency on purpose.");
-
-        }
-
-        [Test]
-        [Category("Required Field Provided Invalid Input - Error Label Displayed")]
-
-        public void FailedFormSubmit_InFrontOf_NoSchool_TimeInFuture_InvalidAssociatedAddr()
-        {
-            /*QUALIFYING CRITERIA*/
-            ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
-
-            /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
-            ScrollToZipCode();
-
-            Fill_Associated(false, true, SLEEP_TIMER);
-
-            int year = DateTime.Now.Year + 1;
-
-            /*OCCURRENCE*/
-            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 00, true), SLEEP_TIMER);
-            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 23, 01, true), SLEEP_TIMER);
-
-            Occurrence_FromControl.SendKeysWithDelay(
-                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Time in a year (3 minutes ago)
-
-            Occurrence_ToControl.SendKeysWithDelay(
-                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
-
-            Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
-
-            Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
-            Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-
-            Fill_InFrontOfSchool(false, SLEEP_TIMER);
-
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
-
-            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10);
-            Assert.IsNotNull(invalidTime);
-
-            string error = invalidTime.Text.Trim();
-            Console.WriteLine(error);
-
-            bool isSatisfiedErrorList = error.Contains(ERROR_BASE) && error.Contains(ERROR_TO_AND_FROM_IN_FUTURE)
-                && error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS);
-            Assert.True(isSatisfiedErrorList, "Flagged inconsistency on purpose.");
-
-        }
-
-        [Test]
-        [Category("Required Field Provided Invalid Input - Error Label Displayed")]
-
-        public void FailedFormSubmit_InFrontOf_NoSchool_TimeInFuture_InvalidOccurrenceAndAssociatedAddr()
-        {
-            /*QUALIFYING CRITERIA*/
-            ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
-
-            /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
-            ScrollToZipCode();
-
-            Fill_Associated(false, true, SLEEP_TIMER);
-
-            int year = DateTime.Now.Year + 1;
-
-            /*OCCURRENCE*/
-            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 00, true), SLEEP_TIMER);
-            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 23, 01, true), SLEEP_TIMER);
 
             Occurrence_FromControl.SendKeysWithDelay(
                 StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Time in a year (3 minutes ago)
@@ -657,17 +627,150 @@ namespace IdlingComplaints.Tests.ComplaintForm
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
-            bool isSatisfiedErrorList = error.Contains(ERROR_BASE) && error.Contains(ERROR_TO_AND_FROM_IN_FUTURE)
-                && error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS) && error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS);
-            Assert.True(isSatisfiedErrorList, "Flagged inconsistency on purpose.");
+            if (!error.Contains(ERROR_BASE))
+                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
+                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
 
-                    
+            if (!error.Contains(ERROR_TO_AND_FROM_IN_FUTURE))
+                Assert.That(error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length), Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
+                    "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length) + "]");
+
+            if (!error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS))
+                Assert.That(error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
+                    "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length) + "]");
+
+
         }
 
         [Test]
         [Category("Required Field Provided Invalid Input - Error Label Displayed")]
 
-        public void FailedFormSubmit_InFrontOf_NoSchool_FromTimeMoreThanToTime()
+        public void FailedSubmission_InFrontOf_NoSchool_TimeInFuture_InvalidAssociatedAddr()
+        {
+            /*QUALIFYING CRITERIA*/
+            ClickNo();
+            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+
+            /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
+            ScrollToZipCode();
+
+            Fill_Associated(false, true, SLEEP_TIMER);
+
+            int year = DateTime.Now.Year + 1;
+
+            /*OCCURRENCE*/
+
+            Occurrence_FromControl.SendKeysWithDelay(
+                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Time in a year (3 minutes ago)
+
+            Occurrence_ToControl.SendKeysWithDelay(
+                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+
+            Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
+
+            Occurrence_SelectVehicleType(2);
+            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
+            Occurrence_SelectLicenseState(1);
+            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+
+            Fill_InFrontOfSchool(false, SLEEP_TIMER);
+
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+
+            ClickWitnessCheckbox();
+            ClickSubmitNoCorrectionCheckbox();
+            ComplaintInfo_ClickNext();
+
+            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10);
+            Assert.IsNotNull(invalidTime);
+
+            string error = invalidTime.Text.Trim();
+            Console.WriteLine(error);
+
+            if (!error.Contains(ERROR_BASE))
+                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
+                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
+
+            if (!error.Contains(ERROR_TO_AND_FROM_IN_FUTURE))
+                Assert.That(error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length), Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
+                    "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length) + "]");
+
+            if (!error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS))
+                Assert.That(error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
+                    "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length) + "]");
+
+            
+        }
+
+        [Test]
+        [Category("Required Field Provided Invalid Input - Error Label Displayed")]
+
+        public void FailedSubmission_InFrontOf_NoSchool_TimeInFuture_InvalidOccurrenceAndAssociatedAddr()
+        {
+            /*QUALIFYING CRITERIA*/
+            ClickNo();
+            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+
+            /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
+            ScrollToZipCode();
+
+            Fill_Associated(false, true, SLEEP_TIMER);
+
+            int year = DateTime.Now.Year + 1;
+
+            /*OCCURRENCE*/
+
+            Occurrence_FromControl.SendKeysWithDelay(
+                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Time in a year (3 minutes ago)
+
+            Occurrence_ToControl.SendKeysWithDelay(
+                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+
+            Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
+
+            Occurrence_SelectVehicleType(2);
+            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
+            Occurrence_SelectLicenseState(1);
+            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+
+            Fill_InFrontOfSchool(false, SLEEP_TIMER);
+
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+
+            ClickWitnessCheckbox();
+            ClickSubmitNoCorrectionCheckbox();
+            ComplaintInfo_ClickNext();
+
+            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10);
+            Assert.IsNotNull(invalidTime);
+
+            string error = invalidTime.Text.Trim();
+            Console.WriteLine(error);
+
+            if (!error.Contains(ERROR_BASE))
+                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
+                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
+
+            if (!error.Contains(ERROR_TO_AND_FROM_IN_FUTURE))
+                Assert.That(error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length), Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
+                    "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length) + "]");
+
+            if (!error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS))
+                Assert.That(error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
+                    "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length) + "]");
+
+            if (!error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS))
+                Assert.That(error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
+                    "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length) + "]");
+
+        }
+
+        [Test]
+        [Category("Required Field Provided Invalid Input - Error Label Displayed")]
+
+        public void FailedSubmission_InFrontOf_NoSchool_FromTimeMoreThanToTime()
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
@@ -680,8 +783,6 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
 
             /*OCCURRENCE*/
-            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 23, 00, true), SLEEP_TIMER);
-            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEP_TIMER);
 
             Occurrence_FromControl.SendKeysWithDelay(
                 StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.AddDays(-1).Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Current Time (3 minutes over)
@@ -711,15 +812,25 @@ namespace IdlingComplaints.Tests.ComplaintForm
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
-            bool isSatisfiedErrorList = error.Contains(ERROR_BASE) && error.Contains(ERROR_TO_IN_FUTURE_THAN_FROM) && error.Contains(ERROR_SHORTER_THAN_3_MINUTES);
-            Assert.True(isSatisfiedErrorList, "Flagged inconsistency on purpose.");
+
+            if (!error.Contains(ERROR_BASE))
+                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
+                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
+
+            if (!error.Contains(ERROR_TO_IN_FUTURE_THAN_FROM))
+                Assert.That(error.Substring(0, ERROR_TO_IN_FUTURE_THAN_FROM.Length), Is.EqualTo(ERROR_TO_IN_FUTURE_THAN_FROM),
+                    "Expecting [" + ERROR_TO_IN_FUTURE_THAN_FROM + "], but found [" + error.Substring(0, ERROR_TO_IN_FUTURE_THAN_FROM.Length) + "]");
+
+            if (!error.Contains(ERROR_SHORTER_THAN_3_MINUTES))
+                Assert.That(error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length), Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
+                    "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length) + "]");
 
         }
 
         [Test]
         [Category("Required Field Provided Invalid Input - Error Label Displayed")]
 
-        public void FailedFormSubmit_InFrontOf_NoSchool_FromTimeMoreThanToTime_InvalidOccurrenceAddr()
+        public void FailedSubmission_InFrontOf_NoSchool_FromTimeMoreThanToTime_InvalidOccurrenceAddr()
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
@@ -731,9 +842,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
             Fill_Associated(false, false, SLEEP_TIMER);
 
             /*OCCURRENCE*/
-            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 23, 00, true), SLEEP_TIMER);
-            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEP_TIMER);
-
+           
             Occurrence_FromControl.SendKeysWithDelay(
                 StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.AddDays(-1).Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Current Time (3 minutes over)
 
@@ -762,9 +871,22 @@ namespace IdlingComplaints.Tests.ComplaintForm
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
-            bool isSatisfiedErrorList = error.Contains(ERROR_BASE) && error.Contains(ERROR_TO_IN_FUTURE_THAN_FROM) && error.Contains(ERROR_SHORTER_THAN_3_MINUTES)
-                && error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS);
-            Assert.True(isSatisfiedErrorList, "Flagged inconsistency on purpose.");
+
+            if (!error.Contains(ERROR_BASE))
+                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
+                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
+
+            if (!error.Contains(ERROR_TO_IN_FUTURE_THAN_FROM))
+                Assert.That(error.Substring(0, ERROR_TO_IN_FUTURE_THAN_FROM.Length), Is.EqualTo(ERROR_TO_IN_FUTURE_THAN_FROM),
+                    "Expecting [" + ERROR_TO_IN_FUTURE_THAN_FROM + "], but found [" + error.Substring(0, ERROR_TO_IN_FUTURE_THAN_FROM.Length) + "]");
+
+            if (!error.Contains(ERROR_SHORTER_THAN_3_MINUTES))
+                Assert.That(error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length), Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
+                    "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length) + "]");
+
+            if (!error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS))
+                Assert.That(error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
+                    "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length) + "]");
 
         }
 
@@ -772,7 +894,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         [Test]
         [Category("Required Field Provided Invalid Input - Error Label Displayed")]
 
-        public void FailedFormSubmit_InFrontOf_NoSchool_FromTimeMoreThanToTime_InvalidAssociatedAddress()
+        public void FailedSubmission_InFrontOf_NoSchool_FromTimeMoreThanToTime_InvalidAssociatedAddress()
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
@@ -784,8 +906,6 @@ namespace IdlingComplaints.Tests.ComplaintForm
             Fill_Associated(false, true, SLEEP_TIMER);
 
             /*OCCURRENCE*/
-            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 23, 00, true), SLEEP_TIMER);
-            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEP_TIMER);
 
             Occurrence_FromControl.SendKeysWithDelay(
                 StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.AddDays(-1).Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Current Time (3 minutes over)
@@ -815,16 +935,29 @@ namespace IdlingComplaints.Tests.ComplaintForm
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
-            bool isSatisfiedErrorList = error.Contains(ERROR_BASE) && error.Contains(ERROR_TO_IN_FUTURE_THAN_FROM) && error.Contains(ERROR_SHORTER_THAN_3_MINUTES)
-                && error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS);
-            Assert.True(isSatisfiedErrorList, "Flagged inconsistency on purpose.");
+            if (!error.Contains(ERROR_BASE))
+                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
+                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
+
+            if (!error.Contains(ERROR_TO_IN_FUTURE_THAN_FROM))
+                Assert.That(error.Substring(0, ERROR_TO_IN_FUTURE_THAN_FROM.Length), Is.EqualTo(ERROR_TO_IN_FUTURE_THAN_FROM),
+                    "Expecting [" + ERROR_TO_IN_FUTURE_THAN_FROM + "], but found [" + error.Substring(0, ERROR_TO_IN_FUTURE_THAN_FROM.Length) + "]");
+
+            if (!error.Contains(ERROR_SHORTER_THAN_3_MINUTES))
+                Assert.That(error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length), Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
+                    "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length) + "]");
+
+            if (!error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS))
+                Assert.That(error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
+                    "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length) + "]");
+            
         }
 
 
         [Test]
         [Category("Required Field Provided Invalid Input - Error Label Displayed")]
 
-        public void FailedFormSubmit_InFrontOf_NoSchool_FromTimeMoreThanToTime_InvalidOccurrenceAndAssociatedAddr()
+        public void FailedSubmission_InFrontOf_NoSchool_FromTimeMoreThanToTime_InvalidOccurrenceAndAssociatedAddr()
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
@@ -836,8 +969,6 @@ namespace IdlingComplaints.Tests.ComplaintForm
             Fill_Associated(false, true, SLEEP_TIMER);
 
             /*OCCURRENCE*/
-            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 23, 00, true), SLEEP_TIMER);
-            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEP_TIMER);
 
             Occurrence_FromControl.SendKeysWithDelay(
                 StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.AddDays(-1).Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Current Time (3 minutes over)
@@ -867,14 +998,31 @@ namespace IdlingComplaints.Tests.ComplaintForm
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
-            bool isSatisfiedErrorList = error.Contains(ERROR_BASE) && error.Contains(ERROR_TO_IN_FUTURE_THAN_FROM) && error.Contains(ERROR_SHORTER_THAN_3_MINUTES)
-                && error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS) && error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS);
-            Assert.True(isSatisfiedErrorList, "Flagged inconsistency on purpose.");
+            if (!error.Contains(ERROR_BASE))
+                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
+                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
+
+            if (!error.Contains(ERROR_TO_IN_FUTURE_THAN_FROM))
+                Assert.That(error.Substring(0, ERROR_TO_IN_FUTURE_THAN_FROM.Length), Is.EqualTo(ERROR_TO_IN_FUTURE_THAN_FROM),
+                    "Expecting [" + ERROR_TO_IN_FUTURE_THAN_FROM + "], but found [" + error.Substring(0, ERROR_TO_IN_FUTURE_THAN_FROM.Length) + "]");
+
+            if (!error.Contains(ERROR_SHORTER_THAN_3_MINUTES))
+                Assert.That(error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length), Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
+                    "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length) + "]");
+
+            if (!error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS))
+                Assert.That(error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
+                    "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length) + "]");
+
+            if (!error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS))
+                Assert.That(error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
+                    "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length) + "]");
+
         }
 
         [Test]
         [Category("Required Field Provided Invalid Input - Error Label Displayed")]
-        public void FailedFormSubmit_InFrontOf_NoSchool_FromTimeMoreThanToCurrentTime()
+        public void FailedSubmission_InFrontOf_NoSchool_FromTimeMoreThanToCurrentTime()
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
@@ -887,8 +1035,6 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
 
             /*OCCURRENCE*/
-            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 23, 00, true), SLEEP_TIMER);
-            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEP_TIMER);
 
             Occurrence_FromControl.SendKeysWithDelay(
                 StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Current Time (3 minutes over)
@@ -918,15 +1064,29 @@ namespace IdlingComplaints.Tests.ComplaintForm
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
-            bool isSatisfiedErrorList = error.Contains(ERROR_BASE) && error.Contains(ERROR_TO_IN_FUTURE_THAN_FROM)
-                && error.Contains(ERROR_TO_AND_FROM_IN_FUTURE) && error.Contains(ERROR_SHORTER_THAN_3_MINUTES);
-            Assert.True(isSatisfiedErrorList, "Flagged inconsistency on purpose.");
+
+            if (!error.Contains(ERROR_BASE))
+                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
+                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
+
+            if (!error.Contains(ERROR_TO_IN_FUTURE_THAN_FROM))
+                Assert.That(error.Substring(0, ERROR_TO_IN_FUTURE_THAN_FROM.Length), Is.EqualTo(ERROR_TO_IN_FUTURE_THAN_FROM),
+                    "Expecting [" + ERROR_TO_IN_FUTURE_THAN_FROM + "], but found [" + error.Substring(0, ERROR_TO_IN_FUTURE_THAN_FROM.Length) + "]");
+
+            if (!error.Contains(ERROR_TO_AND_FROM_IN_FUTURE))
+                Assert.That(error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length), Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
+                    "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length) + "]");
+
+            if (!error.Contains(ERROR_SHORTER_THAN_3_MINUTES))
+                Assert.That(error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length), Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
+                    "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length) + "]");
+
 
         }
 
         [Test]
         [Category("Required Field Provided Invalid Input - Error Label Displayed")]
-        public void FailedFormSubmit_InFrontOf_NoSchool_FromTimeMoreThanToCurrentTime_InvalidOccurrenceAddr()
+        public void FailedSubmission_InFrontOf_NoSchool_FromTimeMoreThanToCurrentTime_InvalidOccurrenceAddr()
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
@@ -939,8 +1099,6 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
 
             /*OCCURRENCE*/
-            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 23, 00, true), SLEEP_TIMER);
-            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEP_TIMER);
 
             Occurrence_FromControl.SendKeysWithDelay(
                 StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Current Time (3 minutes over)
@@ -970,15 +1128,31 @@ namespace IdlingComplaints.Tests.ComplaintForm
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
-            bool isSatisfiedErrorList = error.Contains(ERROR_BASE) && error.Contains(ERROR_TO_IN_FUTURE_THAN_FROM)
-                && error.Contains(ERROR_TO_AND_FROM_IN_FUTURE) && error.Contains(ERROR_SHORTER_THAN_3_MINUTES) && error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS);
-            Assert.True(isSatisfiedErrorList, "Flagged inconsistency on purpose.");
+            if (!error.Contains(ERROR_BASE))
+                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
+                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
+
+            if (!error.Contains(ERROR_TO_IN_FUTURE_THAN_FROM))
+                Assert.That(error.Substring(0, ERROR_TO_IN_FUTURE_THAN_FROM.Length), Is.EqualTo(ERROR_TO_IN_FUTURE_THAN_FROM),
+                    "Expecting [" + ERROR_TO_IN_FUTURE_THAN_FROM + "], but found [" + error.Substring(0, ERROR_TO_IN_FUTURE_THAN_FROM.Length) + "]");
+
+            if (!error.Contains(ERROR_TO_AND_FROM_IN_FUTURE))
+                Assert.That(error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length), Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
+                    "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length) + "]");
+
+            if (!error.Contains(ERROR_SHORTER_THAN_3_MINUTES))
+                Assert.That(error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length), Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
+                    "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length) + "]");
+
+            if (!error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS))
+                Assert.That(error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
+                    "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length) + "]");
 
         }
 
         [Test]
         [Category("Required Field Provided Invalid Input - Error Label Displayed")]
-        public void FailedFormSubmit_InFrontOf_NoSchool_FromTimeMoreThanToCurrentTime_InvalidAssociatedAddress()
+        public void FailedSubmission_InFrontOf_NoSchool_FromTimeMoreThanToCurrentTime_InvalidAssociatedAddress()
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
@@ -991,8 +1165,6 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
 
             /*OCCURRENCE*/
-            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 23, 00, true), SLEEP_TIMER);
-            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEP_TIMER);
 
             Occurrence_FromControl.SendKeysWithDelay(
                 StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Current Time (3 minutes over)
@@ -1022,15 +1194,32 @@ namespace IdlingComplaints.Tests.ComplaintForm
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
-            bool isSatisfiedErrorList = error.Contains(ERROR_BASE) && error.Contains(ERROR_TO_IN_FUTURE_THAN_FROM)
-                && error.Contains(ERROR_TO_AND_FROM_IN_FUTURE) && error.Contains(ERROR_SHORTER_THAN_3_MINUTES) && error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS);
-            Assert.True(isSatisfiedErrorList, "Flagged inconsistency on purpose.");
+            if (!error.Contains(ERROR_BASE))
+                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
+                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
+
+            if (!error.Contains(ERROR_TO_IN_FUTURE_THAN_FROM))
+                Assert.That(error.Substring(0, ERROR_TO_IN_FUTURE_THAN_FROM.Length), Is.EqualTo(ERROR_TO_IN_FUTURE_THAN_FROM),
+                    "Expecting [" + ERROR_TO_IN_FUTURE_THAN_FROM + "], but found [" + error.Substring(0, ERROR_TO_IN_FUTURE_THAN_FROM.Length) + "]");
+
+            if (!error.Contains(ERROR_TO_AND_FROM_IN_FUTURE))
+                Assert.That(error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length), Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
+                    "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length) + "]");
+
+            if (!error.Contains(ERROR_SHORTER_THAN_3_MINUTES))
+                Assert.That(error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length), Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
+                    "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length) + "]");
+
+            if (!error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS))
+                Assert.That(error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
+                    "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length) + "]");
+
 
         }
 
         [Test]
         [Category("Required Field Provided Invalid Input - Error Label Displayed")]
-        public void FailedFormSubmit_InFrontOf_NoSchool_FromTimeMoreThanToCurrentTime_InvalidOccurrenceAndAssociatedAddr()
+        public void FailedSubmission_InFrontOf_NoSchool_FromTimeMoreThanToCurrentTime_InvalidOccurrenceAndAssociatedAddr()
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
@@ -1043,8 +1232,6 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
 
             /*OCCURRENCE*/
-            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 23, 00, true), SLEEP_TIMER);
-            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEP_TIMER);
 
             Occurrence_FromControl.SendKeysWithDelay(
                 StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Current Time (3 minutes over)
@@ -1074,10 +1261,31 @@ namespace IdlingComplaints.Tests.ComplaintForm
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
-            bool isSatisfiedErrorList = error.Contains(ERROR_BASE) && error.Contains(ERROR_TO_IN_FUTURE_THAN_FROM)
-                && error.Contains(ERROR_TO_AND_FROM_IN_FUTURE) && error.Contains(ERROR_SHORTER_THAN_3_MINUTES) && error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS)
-                && error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS);
-            Assert.True(isSatisfiedErrorList, "Flagged inconsistency on purpose.");
+
+            if (!error.Contains(ERROR_BASE))
+                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
+                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
+
+            if (!error.Contains(ERROR_TO_IN_FUTURE_THAN_FROM))
+                Assert.That(error.Substring(0, ERROR_TO_IN_FUTURE_THAN_FROM.Length), Is.EqualTo(ERROR_TO_IN_FUTURE_THAN_FROM),
+                    "Expecting [" + ERROR_TO_IN_FUTURE_THAN_FROM + "], but found [" + error.Substring(0, ERROR_TO_IN_FUTURE_THAN_FROM.Length) + "]");
+
+            if (!error.Contains(ERROR_TO_AND_FROM_IN_FUTURE))
+                Assert.That(error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length), Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
+                    "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length) + "]");
+
+            if (!error.Contains(ERROR_SHORTER_THAN_3_MINUTES))
+                Assert.That(error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length), Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
+                    "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length) + "]");
+
+            if (!error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS))
+                Assert.That(error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
+                    "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length) + "]");
+
+            if (!error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS))
+                Assert.That(error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
+                    "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length) + "]");
+
 
         }
 

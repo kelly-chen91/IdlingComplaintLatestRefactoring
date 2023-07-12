@@ -1,5 +1,5 @@
 ﻿using IdlingComplaints.Models.ComplaintForm;
-using IdlingComplaints.Tests.ComplaintForm.Associated;
+using IdlingComplaints.Tests.ComplaintForm.P10_Associated;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumUtilities.Utils;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IdlingComplaints.Tests.ComplaintForm.Associated
+namespace IdlingComplaints.Tests.ComplaintForm.P10_Associated
 {
     internal class Test30_RequiredLabelErrors : ComplaintFormModel
     {

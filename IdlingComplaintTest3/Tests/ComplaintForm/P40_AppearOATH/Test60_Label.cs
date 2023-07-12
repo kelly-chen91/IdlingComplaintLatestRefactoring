@@ -1,4 +1,4 @@
-﻿using IdlingComplaints.Tests.ComplaintForm.Functionality;
+﻿using IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality;
 using OpenQA.Selenium;
 using SeleniumUtilities.Utils;
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IdlingComplaints.Tests.ComplaintForm.AppearOATH
+namespace IdlingComplaints.Tests.ComplaintForm.P40_AppearOATH
 {
     [Parallelizable(ParallelScope.Children)]
     [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]

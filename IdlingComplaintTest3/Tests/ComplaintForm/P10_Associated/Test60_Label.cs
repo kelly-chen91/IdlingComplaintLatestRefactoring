@@ -9,10 +9,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IdlingComplaints.Tests.ComplaintForm.Associated;
+using IdlingComplaints.Tests.ComplaintForm.P10_Associated;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace IdlingComplaints.Tests.ComplaintForm.Associated
+namespace IdlingComplaints.Tests.ComplaintForm.P10_Associated
 {
     internal class Test60_Label : ComplaintFormModel
     { 

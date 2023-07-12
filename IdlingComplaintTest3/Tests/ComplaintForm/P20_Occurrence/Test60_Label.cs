@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IdlingComplaints.Models.ComplaintForm;
-using IdlingComplaints.Tests.ComplaintForm.Occurrence;
+using IdlingComplaints.Tests.ComplaintForm.P20_Occurrence;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumUtilities.Utils;
 
-namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
+namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 {
     internal class Test60_Label : ComplaintFormModel
     {
