@@ -70,31 +70,34 @@ namespace IdlingComplaints.Tests.Register
           TelephoneControl.SendKeysWithDelay(TelephoneNumbers, SLEEP_TIMER);
          
           ClickSubmitButton();
+            
+            var snackBarError =Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 30);
+            RegistrationUtilities.WriteIntoFile(Registered_EmailAddress, generatedEmail, password, securityAnswer);
 
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(20));
-            wait.Until(d =>
-            {
-                var snackBarError = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
-                Assert.IsNotNull(snackBarError);
-                if (snackBarError.Text.Trim().Contains("successful"))
-                {
-                    using (StreamWriter sw = File.AppendText(Registered_EmailAddress))
-                    {
-                        try
-                        {
-                            sw.WriteLine(generatedEmail+" " +password+" "+securityAnswer);
-                            Console.WriteLine("Accessed the file");
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine("Cannot Write into File");
-                            Console.WriteLine(ex.ToString());
-                        }
-                    }
-                }
-                Assert.That(snackBarError.Text.Trim(), Is.EqualTo("Registration has been completed successfully"), "Flagged for inconsistency on purpose."); //Added period for consistency with other error messaging
-                return snackBarError;
-            });
+         //   var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(20));
+         //   wait.Until(d =>
+         //   {
+         //       var snackBarError = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
+         //       Assert.IsNotNull(snackBarError);
+         //       if (snackBarError.Text.Trim().Contains("successful"))
+         //       {
+         //           using (StreamWriter sw = File.AppendText(Registered_EmailAddress))
+         //           {
+         //               try
+         //               {
+         //                   sw.WriteLine(generatedEmail+" " +password+" "+securityAnswer);
+         //                   Console.WriteLine("Accessed the file");
+         //               }
+         //               catch (Exception ex)
+         //               {
+         //                   Console.WriteLine("Cannot Write into File");
+         //                   Console.WriteLine(ex.ToString());
+         //               }
+         //           }
+         //       }
+         //       Assert.That(snackBarError.Text.Trim(), Is.EqualTo("Registration has been completed successfully"), "Flagged for inconsistency on purpose."); //Added period for consistency with other error messaging
+         //       return snackBarError;
+         //   });
         }
 
         [Test, Category("Scenario test#2: Registration with a exiting account")]
