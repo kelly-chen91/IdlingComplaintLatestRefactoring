@@ -24,7 +24,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         [TearDown]
         public void TearDown()
         {
-            if (SLEEPTIMER > 0) { Thread.Sleep(SLEEPTIMER); }
+            if (SLEEP_TIMER > 0) { Thread.Sleep(SLEEP_TIMER); }
             base.ComplaintFormModelTearDown();
         }
 
@@ -40,23 +40,30 @@ namespace IdlingComplaints.Tests.ComplaintForm
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
 
-            Fill_Associated(false, false, SLEEPTIMER);
+            Fill_Associated(false, false, SLEEP_TIMER);
 
             /*OCCURRENCE*/
-            Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEPTIMER);
-            Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 01, true), SLEEPTIMER);
+            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEP_TIMER);
+            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 01, true), SLEEP_TIMER);
 
-            Fill_OccurrenceAddress(2, 3, false, SLEEPTIMER);
+            Occurrence_FromControl.SendKeysWithDelay(
+                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-1).Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time (1 minutes ago)
+
+            Occurrence_ToControl.SendKeysWithDelay(
+                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+
+
+            Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 
             Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEPTIMER);
+            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
             Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
-            Fill_InFrontOfSchool(false, SLEEPTIMER);
+            Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
@@ -85,23 +92,28 @@ namespace IdlingComplaints.Tests.ComplaintForm
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
 
-            Fill_Associated(false, false, SLEEPTIMER);
+            Fill_Associated(false, false, SLEEP_TIMER);
 
             /*OCCURRENCE*/
-            Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEPTIMER);
-            Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 01, true), SLEEPTIMER);
+            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEP_TIMER);
+            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 01, true), SLEEP_TIMER);
+            Occurrence_FromControl.SendKeysWithDelay(
+                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-1).Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time (1 minutes ago)
 
-            Fill_OccurrenceAddress(2, 3, true, SLEEPTIMER);
+            Occurrence_ToControl.SendKeysWithDelay(
+                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+
+            Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
 
             Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEPTIMER);
+            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
             Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
-            Fill_InFrontOfSchool(false, SLEEPTIMER);
+            Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
@@ -132,23 +144,28 @@ namespace IdlingComplaints.Tests.ComplaintForm
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
 
-            Fill_Associated(false, true, SLEEPTIMER);
+            Fill_Associated(false, true, SLEEP_TIMER);
 
             /*OCCURRENCE*/
-            Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEPTIMER);
-            Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 01, true), SLEEPTIMER);
+            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEP_TIMER);
+            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 01, true), SLEEP_TIMER);
+            Occurrence_FromControl.SendKeysWithDelay(
+                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-1).Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time (3 minutes ago)
 
-            Fill_OccurrenceAddress(2, 3, true, SLEEPTIMER);
+            Occurrence_ToControl.SendKeysWithDelay(
+                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+
+            Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
 
             Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEPTIMER);
+            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
             Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
-            Fill_InFrontOfSchool(false, SLEEPTIMER);
+            Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
@@ -178,23 +195,29 @@ namespace IdlingComplaints.Tests.ComplaintForm
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
 
-            Fill_Associated(false, true, SLEEPTIMER);
+            Fill_Associated(false, true, SLEEP_TIMER);
 
             /*OCCURRENCE*/
-            Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEPTIMER);
-            Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 01, true), SLEEPTIMER);
+            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEP_TIMER);
+            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 01, true), SLEEP_TIMER);
+            Occurrence_FromControl.SendKeysWithDelay(
+                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-1).Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time (1 minutes ago)
 
-            Fill_OccurrenceAddress(2, 3, true, SLEEPTIMER);
+            Occurrence_ToControl.SendKeysWithDelay(
+                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+
+
+            Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
 
             Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEPTIMER);
+            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
             Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
-            Fill_InFrontOfSchool(false, SLEEPTIMER);
+            Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
@@ -225,25 +248,30 @@ namespace IdlingComplaints.Tests.ComplaintForm
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
 
-            Fill_Associated(false, false, SLEEPTIMER);
+            Fill_Associated(false, false, SLEEP_TIMER);
 
             int year = DateTime.Now.Year + 1;
 
             /*OCCURRENCE*/
-            Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 00, true), SLEEPTIMER);
-            Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 01, true), SLEEPTIMER);
+            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 00, true), SLEEP_TIMER);
+            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 01, true), SLEEP_TIMER);
+            Occurrence_FromControl.SendKeysWithDelay(
+                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-1).Minute, DateTime.Now.Second), SLEEP_TIMER); //Time in a year (1 minutes ago)
 
-            Fill_OccurrenceAddress(2, 3, false, SLEEPTIMER);
+            Occurrence_ToControl.SendKeysWithDelay(
+                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+
+            Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 
             Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEPTIMER);
+            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
             Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
-            Fill_InFrontOfSchool(false, SLEEPTIMER);
+            Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
@@ -272,25 +300,32 @@ namespace IdlingComplaints.Tests.ComplaintForm
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
 
-            Fill_Associated(false, false, SLEEPTIMER);
+            Fill_Associated(false, false, SLEEP_TIMER);
 
             int year = DateTime.Now.Year + 1;
 
             /*OCCURRENCE*/
-            Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 00, true), SLEEPTIMER);
-            Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 01, true), SLEEPTIMER);
+            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 00, true), SLEEP_TIMER);
+            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 01, true), SLEEP_TIMER);
 
-            Fill_OccurrenceAddress(2, 3, true, SLEEPTIMER);
+
+            Occurrence_FromControl.SendKeysWithDelay(
+                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-1).Minute, DateTime.Now.Second), SLEEP_TIMER); //Time in a year (1 minutes ago)
+
+            Occurrence_ToControl.SendKeysWithDelay(
+                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+
+            Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
 
             Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEPTIMER);
+            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
             Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
-            Fill_InFrontOfSchool(false, SLEEPTIMER);
+            Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
@@ -320,25 +355,32 @@ namespace IdlingComplaints.Tests.ComplaintForm
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
 
-            Fill_Associated(false, true, SLEEPTIMER);
+            Fill_Associated(false, true, SLEEP_TIMER);
 
             int year = DateTime.Now.Year + 1;
 
             /*OCCURRENCE*/
-            Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 00, true), SLEEPTIMER);
-            Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 01, true), SLEEPTIMER);
+            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 00, true), SLEEP_TIMER);
+            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 01, true), SLEEP_TIMER);
 
-            Fill_OccurrenceAddress(2, 3, false, SLEEPTIMER);
+            Occurrence_FromControl.SendKeysWithDelay(
+                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-1).Minute, DateTime.Now.Second), SLEEP_TIMER); //Time in a year (1 minutes ago)
+
+            Occurrence_ToControl.SendKeysWithDelay(
+                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+
+
+            Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 
             Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEPTIMER);
+            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
             Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
-            Fill_InFrontOfSchool(false, SLEEPTIMER);
+            Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
@@ -368,23 +410,29 @@ namespace IdlingComplaints.Tests.ComplaintForm
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
 
-            Fill_Associated(false, true, SLEEPTIMER);
+            Fill_Associated(false, true, SLEEP_TIMER);
             int year = DateTime.Now.Year + 1;
             /*OCCURRENCE*/
-            Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 00, true), SLEEPTIMER);
-            Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 01, true), SLEEPTIMER);
+            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 00, true), SLEEP_TIMER);
+            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 01, true), SLEEP_TIMER);
 
-            Fill_OccurrenceAddress(2, 3, true, SLEEPTIMER);
+            Occurrence_FromControl.SendKeysWithDelay(
+                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-1).Minute, DateTime.Now.Second), SLEEP_TIMER); //Time in a year (1 minutes ago)
+
+            Occurrence_ToControl.SendKeysWithDelay(
+                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+
+            Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
 
             Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEPTIMER);
+            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
             Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
-            Fill_InFrontOfSchool(false, SLEEPTIMER);
+            Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
@@ -414,25 +462,31 @@ namespace IdlingComplaints.Tests.ComplaintForm
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
 
-            Fill_Associated(false, false, SLEEPTIMER);
+            Fill_Associated(false, false, SLEEP_TIMER);
 
             int year = DateTime.Now.Year + 1;
 
             /*OCCURRENCE*/
-            Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 00, true), SLEEPTIMER);
-            Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 23, 01, true), SLEEPTIMER);
+            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 00, true), SLEEP_TIMER);
+            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 23, 01, true), SLEEP_TIMER);
 
-            Fill_OccurrenceAddress(2, 3, false, SLEEPTIMER);
+            Occurrence_FromControl.SendKeysWithDelay(
+                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Time in a year (3 minutes ago)
+
+            Occurrence_ToControl.SendKeysWithDelay(
+                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+
+            Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 
             Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEPTIMER);
+            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
             Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
-            Fill_InFrontOfSchool(false, SLEEPTIMER);
+            Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
@@ -460,25 +514,30 @@ namespace IdlingComplaints.Tests.ComplaintForm
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
 
-            Fill_Associated(false, false, SLEEPTIMER);
+            Fill_Associated(false, false, SLEEP_TIMER);
 
             int year = DateTime.Now.Year + 1;
 
             /*OCCURRENCE*/
-            Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 00, true), SLEEPTIMER);
-            Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 23, 01, true), SLEEPTIMER);
+            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 00, true), SLEEP_TIMER);
+            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 23, 01, true), SLEEP_TIMER);
+            Occurrence_FromControl.SendKeysWithDelay(
+                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Time in a year (3 minutes ago)
 
-            Fill_OccurrenceAddress(2, 3, true, SLEEPTIMER);
+            Occurrence_ToControl.SendKeysWithDelay(
+                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+
+            Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
 
             Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEPTIMER);
+            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
             Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
-            Fill_InFrontOfSchool(false, SLEEPTIMER);
+            Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
@@ -508,25 +567,31 @@ namespace IdlingComplaints.Tests.ComplaintForm
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
 
-            Fill_Associated(false, true, SLEEPTIMER);
+            Fill_Associated(false, true, SLEEP_TIMER);
 
             int year = DateTime.Now.Year + 1;
 
             /*OCCURRENCE*/
-            Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 00, true), SLEEPTIMER);
-            Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 23, 01, true), SLEEPTIMER);
+            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 00, true), SLEEP_TIMER);
+            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 23, 01, true), SLEEP_TIMER);
 
-            Fill_OccurrenceAddress(2, 3, false, SLEEPTIMER);
+            Occurrence_FromControl.SendKeysWithDelay(
+                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Time in a year (3 minutes ago)
+
+            Occurrence_ToControl.SendKeysWithDelay(
+                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+
+            Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 
             Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEPTIMER);
+            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
             Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
-            Fill_InFrontOfSchool(false, SLEEPTIMER);
+            Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
@@ -556,25 +621,31 @@ namespace IdlingComplaints.Tests.ComplaintForm
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
 
-            Fill_Associated(false, true, SLEEPTIMER);
+            Fill_Associated(false, true, SLEEP_TIMER);
 
             int year = DateTime.Now.Year + 1;
 
             /*OCCURRENCE*/
-            Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 00, true), SLEEPTIMER);
-            Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 23, 01, true), SLEEPTIMER);
+            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 20, 00, true), SLEEP_TIMER);
+            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, year, 4, 23, 01, true), SLEEP_TIMER);
 
-            Fill_OccurrenceAddress(2, 3, true, SLEEPTIMER);
+            Occurrence_FromControl.SendKeysWithDelay(
+                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Time in a year (3 minutes ago)
+
+            Occurrence_ToControl.SendKeysWithDelay(
+                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+
+            Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
 
             Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEPTIMER);
+            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
             Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
-            Fill_InFrontOfSchool(false, SLEEPTIMER);
+            Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
@@ -605,24 +676,30 @@ namespace IdlingComplaints.Tests.ComplaintForm
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
 
-            Fill_Associated(false, false, SLEEPTIMER);
+            Fill_Associated(false, false, SLEEP_TIMER);
 
 
             /*OCCURRENCE*/
-            Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 23, 00, true), SLEEPTIMER);
-            Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEPTIMER);
+            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 23, 00, true), SLEEP_TIMER);
+            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEP_TIMER);
 
-            Fill_OccurrenceAddress(2, 3, false, SLEEPTIMER);
+            Occurrence_FromControl.SendKeysWithDelay(
+                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.AddDays(-1).Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Current Time (3 minutes over)
+
+            Occurrence_ToControl.SendKeysWithDelay(
+                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.AddDays(-1).Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+
+            Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 
             Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEPTIMER);
+            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
             Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
-            Fill_InFrontOfSchool(false, SLEEPTIMER);
+            Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
@@ -639,7 +716,6 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
         }
 
-
         [Test]
         [Category("Required Field Provided Invalid Input - Error Label Displayed")]
 
@@ -652,23 +728,29 @@ namespace IdlingComplaints.Tests.ComplaintForm
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
 
-            Fill_Associated(false, false, SLEEPTIMER);
+            Fill_Associated(false, false, SLEEP_TIMER);
 
             /*OCCURRENCE*/
-            Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 23, 00, true), SLEEPTIMER);
-            Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEPTIMER);
+            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 23, 00, true), SLEEP_TIMER);
+            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEP_TIMER);
 
-            Fill_OccurrenceAddress(2, 3, true, SLEEPTIMER);
+            Occurrence_FromControl.SendKeysWithDelay(
+                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.AddDays(-1).Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Current Time (3 minutes over)
+
+            Occurrence_ToControl.SendKeysWithDelay(
+                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.AddDays(-1).Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+
+            Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
 
             Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEPTIMER);
+            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
             Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
-            Fill_InFrontOfSchool(false, SLEEPTIMER);
+            Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
@@ -699,23 +781,29 @@ namespace IdlingComplaints.Tests.ComplaintForm
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
 
-            Fill_Associated(false, true, SLEEPTIMER);
+            Fill_Associated(false, true, SLEEP_TIMER);
 
             /*OCCURRENCE*/
-            Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 23, 00, true), SLEEPTIMER);
-            Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEPTIMER);
+            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 23, 00, true), SLEEP_TIMER);
+            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEP_TIMER);
 
-            Fill_OccurrenceAddress(2, 3, false, SLEEPTIMER);
+            Occurrence_FromControl.SendKeysWithDelay(
+                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.AddDays(-1).Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Current Time (3 minutes over)
+
+            Occurrence_ToControl.SendKeysWithDelay(
+                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.AddDays(-1).Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+
+            Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 
             Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEPTIMER);
+            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
             Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
-            Fill_InFrontOfSchool(false, SLEEPTIMER);
+            Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
@@ -745,23 +833,29 @@ namespace IdlingComplaints.Tests.ComplaintForm
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
 
-            Fill_Associated(false, true, SLEEPTIMER);
+            Fill_Associated(false, true, SLEEP_TIMER);
 
             /*OCCURRENCE*/
-            Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 23, 00, true), SLEEPTIMER);
-            Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEPTIMER);
+            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 23, 00, true), SLEEP_TIMER);
+            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEP_TIMER);
 
-            Fill_OccurrenceAddress(2, 3, true, SLEEPTIMER);
+            Occurrence_FromControl.SendKeysWithDelay(
+                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.AddDays(-1).Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Current Time (3 minutes over)
+
+            Occurrence_ToControl.SendKeysWithDelay(
+                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.AddDays(-1).Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+
+            Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
 
             Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEPTIMER);
+            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
             Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
-            Fill_InFrontOfSchool(false, SLEEPTIMER);
+            Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
@@ -778,6 +872,214 @@ namespace IdlingComplaints.Tests.ComplaintForm
             Assert.True(isSatisfiedErrorList, "Flagged inconsistency on purpose.");
         }
 
+        [Test]
+        [Category("Required Field Provided Invalid Input - Error Label Displayed")]
+        public void FailedFormSubmit_InFrontOf_NoSchool_FromTimeMoreThanToCurrentTime()
+        {
+            /*QUALIFYING CRITERIA*/
+            ClickNo();
+            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+
+            /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
+            ScrollToZipCode();
+
+            Fill_Associated(false, false, SLEEP_TIMER);
+
+
+            /*OCCURRENCE*/
+            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 23, 00, true), SLEEP_TIMER);
+            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEP_TIMER);
+
+            Occurrence_FromControl.SendKeysWithDelay(
+                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Current Time (3 minutes over)
+
+            Occurrence_ToControl.SendKeysWithDelay(
+                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+
+            Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
+
+            Occurrence_SelectVehicleType(2);
+            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
+            Occurrence_SelectLicenseState(1);
+            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+
+            Fill_InFrontOfSchool(false, SLEEP_TIMER);
+
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+
+            ClickWitnessCheckbox();
+            ClickSubmitNoCorrectionCheckbox();
+            ComplaintInfo_ClickNext();
+
+            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10);
+            Assert.IsNotNull(invalidTime);
+
+            string error = invalidTime.Text.Trim();
+            Console.WriteLine(error);
+
+            bool isSatisfiedErrorList = error.Contains(ERROR_BASE) && error.Contains(ERROR_TO_IN_FUTURE_THAN_FROM)
+                && error.Contains(ERROR_TO_AND_FROM_IN_FUTURE) && error.Contains(ERROR_SHORTER_THAN_3_MINUTES);
+            Assert.True(isSatisfiedErrorList, "Flagged inconsistency on purpose.");
+
+        }
+
+        [Test]
+        [Category("Required Field Provided Invalid Input - Error Label Displayed")]
+        public void FailedFormSubmit_InFrontOf_NoSchool_FromTimeMoreThanToCurrentTime_InvalidOccurrenceAddr()
+        {
+            /*QUALIFYING CRITERIA*/
+            ClickNo();
+            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+
+            /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
+            ScrollToZipCode();
+
+            Fill_Associated(false, false, SLEEP_TIMER);
+
+
+            /*OCCURRENCE*/
+            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 23, 00, true), SLEEP_TIMER);
+            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEP_TIMER);
+
+            Occurrence_FromControl.SendKeysWithDelay(
+                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Current Time (3 minutes over)
+
+            Occurrence_ToControl.SendKeysWithDelay(
+                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+
+            Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
+
+            Occurrence_SelectVehicleType(2);
+            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
+            Occurrence_SelectLicenseState(1);
+            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+
+            Fill_InFrontOfSchool(false, SLEEP_TIMER);
+
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+
+            ClickWitnessCheckbox();
+            ClickSubmitNoCorrectionCheckbox();
+            ComplaintInfo_ClickNext();
+
+            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10);
+            Assert.IsNotNull(invalidTime);
+
+            string error = invalidTime.Text.Trim();
+            Console.WriteLine(error);
+
+            bool isSatisfiedErrorList = error.Contains(ERROR_BASE) && error.Contains(ERROR_TO_IN_FUTURE_THAN_FROM)
+                && error.Contains(ERROR_TO_AND_FROM_IN_FUTURE) && error.Contains(ERROR_SHORTER_THAN_3_MINUTES) && error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS);
+            Assert.True(isSatisfiedErrorList, "Flagged inconsistency on purpose.");
+
+        }
+
+        [Test]
+        [Category("Required Field Provided Invalid Input - Error Label Displayed")]
+        public void FailedFormSubmit_InFrontOf_NoSchool_FromTimeMoreThanToCurrentTime_InvalidAssociatedAddress()
+        {
+            /*QUALIFYING CRITERIA*/
+            ClickNo();
+            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+
+            /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
+            ScrollToZipCode();
+
+            Fill_Associated(false, true, SLEEP_TIMER);
+
+
+            /*OCCURRENCE*/
+            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 23, 00, true), SLEEP_TIMER);
+            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEP_TIMER);
+
+            Occurrence_FromControl.SendKeysWithDelay(
+                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Current Time (3 minutes over)
+
+            Occurrence_ToControl.SendKeysWithDelay(
+                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+
+            Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
+
+            Occurrence_SelectVehicleType(2);
+            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
+            Occurrence_SelectLicenseState(1);
+            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+
+            Fill_InFrontOfSchool(false, SLEEP_TIMER);
+
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+
+            ClickWitnessCheckbox();
+            ClickSubmitNoCorrectionCheckbox();
+            ComplaintInfo_ClickNext();
+
+            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10);
+            Assert.IsNotNull(invalidTime);
+
+            string error = invalidTime.Text.Trim();
+            Console.WriteLine(error);
+
+            bool isSatisfiedErrorList = error.Contains(ERROR_BASE) && error.Contains(ERROR_TO_IN_FUTURE_THAN_FROM)
+                && error.Contains(ERROR_TO_AND_FROM_IN_FUTURE) && error.Contains(ERROR_SHORTER_THAN_3_MINUTES) && error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS);
+            Assert.True(isSatisfiedErrorList, "Flagged inconsistency on purpose.");
+
+        }
+
+        [Test]
+        [Category("Required Field Provided Invalid Input - Error Label Displayed")]
+        public void FailedFormSubmit_InFrontOf_NoSchool_FromTimeMoreThanToCurrentTime_InvalidOccurrenceAndAssociatedAddr()
+        {
+            /*QUALIFYING CRITERIA*/
+            ClickNo();
+            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+
+            /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
+            ScrollToZipCode();
+
+            Fill_Associated(false, true, SLEEP_TIMER);
+
+
+            /*OCCURRENCE*/
+            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 23, 00, true), SLEEP_TIMER);
+            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEP_TIMER);
+
+            Occurrence_FromControl.SendKeysWithDelay(
+                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Current Time (3 minutes over)
+
+            Occurrence_ToControl.SendKeysWithDelay(
+                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+
+            Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
+
+            Occurrence_SelectVehicleType(2);
+            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
+            Occurrence_SelectLicenseState(1);
+            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+
+            Fill_InFrontOfSchool(false, SLEEP_TIMER);
+
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+
+            ClickWitnessCheckbox();
+            ClickSubmitNoCorrectionCheckbox();
+            ComplaintInfo_ClickNext();
+
+            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10);
+            Assert.IsNotNull(invalidTime);
+
+            string error = invalidTime.Text.Trim();
+            Console.WriteLine(error);
+
+            bool isSatisfiedErrorList = error.Contains(ERROR_BASE) && error.Contains(ERROR_TO_IN_FUTURE_THAN_FROM)
+                && error.Contains(ERROR_TO_AND_FROM_IN_FUTURE) && error.Contains(ERROR_SHORTER_THAN_3_MINUTES) && error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS)
+                && error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS);
+            Assert.True(isSatisfiedErrorList, "Flagged inconsistency on purpose.");
+
+        }
 
         [Test]
         [Category("Required Field Provided Invalid Input - Error Label Displayed")]

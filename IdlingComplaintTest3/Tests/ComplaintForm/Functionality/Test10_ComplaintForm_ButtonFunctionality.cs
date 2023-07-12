@@ -17,7 +17,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         {
             QualifyingCriteria();
 
-            Fill_Associated(false, false, SLEEPTIMER);
+            Fill_Associated(false, false, SLEEP_TIMER);
 
             ComplaintInfo_ClickCancel();
 
