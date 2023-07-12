@@ -135,5 +135,45 @@ namespace IdlingComplaints.Tests.Home
             Assert.That(pageCount, Is.EqualTo(calculatedPageCount));
 
         }
+
+        [Test, Category("Last Page + Verify Last Complaint Shown")]
+        public void LastArrow_VerifyPagination()
+        {
+            ClickLastPage();
+
+            string complaintCount = Driver.ExtractTextFromXPath("//mat-paginator/div/div/div[2]/div/text()");
+
+            // End Range Number | __ - __
+            int index1 = complaintCount.IndexOf("–");
+            int index2 = complaintCount.IndexOf("o");
+            string complaintRange = complaintCount.Substring(index1 + 2, index2 - index1 - 3);
+
+
+            // Total Complaint Number | of __
+            int indexTotal = complaintCount.IndexOf("f") + 2;
+            string totalComplaintAmount = complaintCount.Substring(indexTotal);
+
+            Console.WriteLine("Total Complaint Amount: " + totalComplaintAmount);
+            Console.WriteLine("Complaint End Range Number: " + complaintRange);
+            Assert.That(complaintRange, Is.EqualTo(totalComplaintAmount));
+
+        }
+
+        [Test, Category("First Page + Verify Last Complaint Shown")]
+        public void FirstArrow_VerifyPagination()
+        {
+            ClickLastPage();
+            ClickFirstPage();
+
+            string complaintCount = Driver.ExtractTextFromXPath("//mat-paginator/div/div/div[2]/div/text()");
+
+            // Begin Range Number | __ - __
+            string complaintRange = complaintCount.Split('–')[0];
+
+
+            Console.WriteLine("Complaint End Range Number: " + complaintRange);
+            Assert.That(complaintRange, Is.EqualTo("1 "));
+
+        }
     }
 }
