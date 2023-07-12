@@ -1,5 +1,5 @@
 ﻿using IdlingComplaints.Models.PasswordReset;
-using IdlingComplaints.Tests.PassordReset;
+using IdlingComplaints.Tests.PasswordReset;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumUtilities.Utils;

@@ -43,7 +43,7 @@ namespace IdlingComplaints.Tests.Register
             EmailControl.SendKeysWithDelay(generatedEmail, SLEEP_TIMER);
 
             //string password = RegistrationUtilities.GenerateRandomString();
-            string password = RegistrationUtilities.GenerateQulifiedPassword();
+            string password = RegistrationUtilities.GenerateQualifiedPassword();
             PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
             ConfirmPasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
 
@@ -62,10 +62,10 @@ namespace IdlingComplaints.Tests.Register
             SelectState(stateRandomNumber);
 
             ScrollToButton();
-            string zipCodeNumbers = RegistrationUtilities.GenerateSeriseNumbers();
+            string zipCodeNumbers = RegistrationUtilities.GenerateSeriesNumbers();
             ZipCodeControl.SendKeysWithDelay(zipCodeNumbers, SLEEP_TIMER);
 
-            string TelephoneNumbers = RegistrationUtilities.GenerateSeriseNumbers();
+            string TelephoneNumbers = RegistrationUtilities.GenerateSeriesNumbers();
             TelephoneControl.SendKeysWithDelay(TelephoneNumbers, SLEEP_TIMER);
            
             ClickSubmitButton();

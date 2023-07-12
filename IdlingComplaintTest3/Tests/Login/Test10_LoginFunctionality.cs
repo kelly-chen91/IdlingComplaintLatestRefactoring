@@ -41,8 +41,8 @@ internal class Test10_LoginFunctionality : LoginModel
         string[] lines = File.ReadAllLines(registered_EmailAddress);
         int userIndex = random.Next(0, lines.Length - 1);
 
-        string email = RegistrationUtilities.RetriveRecordValue(registered_EmailAddress, userIndex, 0);
-        string password = RegistrationUtilities.RetriveRecordValue(registered_EmailAddress, userIndex, 1);
+        string email = RegistrationUtilities.RetrieveRecordValue(registered_EmailAddress, userIndex, 0);
+        string password = RegistrationUtilities.RetrieveRecordValue(registered_EmailAddress, userIndex, 1);
 
         EmailControl.SendKeysWithDelay(email, SLEEP_TIMER);
         PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
@@ -97,7 +97,7 @@ internal class Test10_LoginFunctionality : LoginModel
     {
         //locate login field
         EmailControl.SendKeysWithDelay(RegistrationUtilities.GenerateEmail("unregistered", "emailAddress", "dep.nyc.gov"), SLEEP_TIMER);
-        PasswordControl.SendKeysWithDelay(RegistrationUtilities.GenerateQulifiedPassword(), SLEEP_TIMER);
+        PasswordControl.SendKeysWithDelay(RegistrationUtilities.GenerateQualifiedPassword(), SLEEP_TIMER);
         ClickLoginButton();
         var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10)); //1 - too short
         wait.Until(d =>

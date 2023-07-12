@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IdlingComplaints.Tests.ComplaintForm.Complainant;
+using IdlingComplaints.Tests.ComplaintForm.Associated;
 
 namespace IdlingComplaints.Models.ComplaintForm
 {

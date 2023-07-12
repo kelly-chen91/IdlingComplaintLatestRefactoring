@@ -88,7 +88,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Functionality
             base.Filled_EvidenceUpload();
 
             AppearOATH_ClickNo();
-
+            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 30);
             AppearOATH_UploadFormInput = FILE_IMAGE_PATH;
             string fileName = Path.GetFileName(FILE_IMAGE_PATH);
             AppearOATH_ClickConfirmUpload();

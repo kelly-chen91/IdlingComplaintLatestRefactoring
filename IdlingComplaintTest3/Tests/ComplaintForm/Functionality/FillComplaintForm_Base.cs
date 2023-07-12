@@ -195,7 +195,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Functionality
             if (!successfulEvidenceUpload.Text.Contains("upload")) Assert.That(successfulEvidenceUpload.Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
 
             //Thread.Sleep(SLEEPTIMER);
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 15);
+            Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 20);
             EvidenceUpload_ClickNext();
             Driver.WaitUntilElementFound(By.CssSelector("mat-radio-button[value='753720001']"), 60); //waits until the oath affidavit appears
 

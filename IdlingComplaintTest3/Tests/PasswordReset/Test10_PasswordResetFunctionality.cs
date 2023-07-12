@@ -38,7 +38,7 @@ namespace IdlingComplaints.Tests.PasswordReset
         {
             base.PasswordResetModelSetUp(false);
 
-            string emailAddress = RegistrationUtilities.RetriveRecordValue(registeredd_EmailAddress, userIndex, 0);
+            string emailAddress = RegistrationUtilities.RetrieveRecordValue(registeredd_EmailAddress, userIndex, 0);
             EmailControl.SendKeysWithDelay(emailAddress, SLEEP_TIMER);
             
             ClickResetButton();
@@ -59,11 +59,11 @@ namespace IdlingComplaints.Tests.PasswordReset
         [Test, Category("Scenario #1: the user password will be updated with the new password in the user txt file after user reset password successfully")]
         public void UpdatePasswordinFile()
         {
-            string securityAnswer = RegistrationUtilities.RetriveRecordValue(registeredd_EmailAddress, userIndex, 2);
-            Console.WriteLine("The old password is " + RegistrationUtilities.RetriveRecordValue(registeredd_EmailAddress, userIndex, 1));
+            string securityAnswer = RegistrationUtilities.RetrieveRecordValue(registeredd_EmailAddress, userIndex, 2);
+            Console.WriteLine("The old password is " + RegistrationUtilities.RetrieveRecordValue(registeredd_EmailAddress, userIndex, 1));
             SecurityAnswerControl.SendKeysWithDelay(securityAnswer, SLEEP_TIMER);
 
-            string password = RegistrationUtilities.GenerateQulifiedPassword();
+            string password = RegistrationUtilities.GenerateQualifiedPassword();
             PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
             Console.WriteLine("The new password is " + password);
             ConfirmPasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
@@ -87,7 +87,7 @@ namespace IdlingComplaints.Tests.PasswordReset
         {
             SecurityAnswerControl.SendKeysWithDelay("This is not an actual security key", SLEEP_TIMER);
 
-            string password = RegistrationUtilities.GenerateQulifiedPassword();
+            string password = RegistrationUtilities.GenerateQualifiedPassword();
             PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
             ConfirmPasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
 
