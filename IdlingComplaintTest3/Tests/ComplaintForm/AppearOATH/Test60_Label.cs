@@ -23,7 +23,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.AppearOATH
         [TearDown]
         public void TearDown()
         {
-            //if (SLEEPTIMER > 0) { Thread.Sleep(SLEEPTIMER); }
+            //if (SLEEP_TIMER > 0) { Thread.Sleep(SLEEP_TIMER); }
            ComplaintFormModelTearDown();
         }
 

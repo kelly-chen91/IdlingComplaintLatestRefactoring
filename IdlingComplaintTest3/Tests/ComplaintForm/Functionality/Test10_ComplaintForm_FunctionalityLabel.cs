@@ -72,7 +72,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Functionality
             EvidenceUpload_UploadInput = FILE_IMAGE_PATH;
             string fileName = Path.GetFileName(FILE_IMAGE_PATH);
             EvidenceUpload_ClickFilesUploadConfirm();
-            //Thread.Sleep(SLEEPTIMER);
+            //Thread.Sleep(SLEEP_TIMER);
 
             var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span")); // message says evidence have successfully uploaded
             Assert.IsNotNull(successfulEvidenceUpload);
@@ -110,21 +110,21 @@ namespace IdlingComplaints.Tests.ComplaintForm.Functionality
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
 
-            Fill_Associated(false, false, SLEEPTIMER);
+            Fill_Associated(false, false, SLEEP_TIMER);
 
             Occurrence_ValidDate();
 
-            Fill_OccurrenceAddress(2, 3, false, SLEEPTIMER);
+            Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 
             Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay("DEP1234", SLEEPTIMER);
+            Occurrence_LicensePlateControl.SendKeysWithDelay("DEP1234", SLEEP_TIMER);
             Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
-            Fill_InFrontOfSchool(false, SLEEPTIMER);
+            Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
@@ -149,7 +149,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Functionality
             // RegistrationUtilities.UploadFiles(EvidenceUpload_UploadControl, EvidenceUpload_UploadConfirmControl, filePaths);
             Filled_ComplaintInfo();
             string[] filePaths = { NOT_SUPPORTED_FILE, IDLING_TRUCK, IDLING_BUS };
-            EvidenceUpload_UploadControl.SendKeysWithDelay(filePaths[0], SLEEPTIMER);
+            EvidenceUpload_UploadControl.SendKeysWithDelay(filePaths[0], SLEEP_TIMER);
 
 
             var failedEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span"));

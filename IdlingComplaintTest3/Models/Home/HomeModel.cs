@@ -38,7 +38,7 @@ namespace IdlingComplaints.Models.Home
         public IWebElement CreatedYearControl => Driver.FindElement(By.CssSelector("mat-select[name = 'createdYear']"));
         public IWebElement HomeControl => Driver.FindElement(By.CssSelector("button[routerlink = '/']"));
         public IWebElement ProfileControl => Driver.FindElement(By.CssSelector("button[routerlink = 'profile']"));
-        public IWebElement LogoutControl => Driver.FindElement(RelativeBy.WithLocator(By.TagName("button")).Below(ProfileControl));
+        public IWebElement LogoutControl => Driver.FindElement(By.XPath("//mat-toolbar-row/button[3]"));
         public IWebElement SortComplaintNumControl => Driver.FindElement(By.CssSelector("button[aria-label = 'Change sorting for idc_name']"));
         public IWebElement SortCompanyControl => Driver.FindElement(By.CssSelector("button[aria-label = 'Change sorting for idc_associatedlastname']"));
         public IWebElement SortPlaceControl => Driver.FindElement(By.CssSelector("button[aria-label = 'Change sorting for idc_occurrenceplace']"));

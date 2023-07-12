@@ -10,17 +10,19 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.Home
 {
+    [Parallelizable(ParallelScope.Children)]
+    [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
     internal class Test60_Label : HomeModel
     { 
     
-        [OneTimeSetUp]
-        public void OneTimeSetUp()
+        [SetUp]
+        public void SetUp()
         {
             base.HomeModelSetUp("ttseng@dep.nyc.gov", "Testing1#", true);
         }
 
-        [OneTimeTearDown]
-        public void OneTimeTearDown()
+        [TearDown]
+        public void TearDown()
         {
             Thread.Sleep(2000);
             base.HomeModelTearDown();
@@ -204,6 +206,11 @@ namespace IdlingComplaints.Tests.Home
         public void VerifyProfileLink()
         {
             Assert.That(ProfileControl.GetAttribute("routerlink"), Is.EqualTo(Constants.PROFILE_LINK));
+
+            ClickProfileButton();
+            var profile = Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='firstname']"),15);
+            Assert.IsNotNull(profile);
+
         }
 
         [Test]
@@ -211,6 +218,23 @@ namespace IdlingComplaints.Tests.Home
         public void VerifyNewComplaintLink()
         {
             Assert.That(NewComplaintControl.GetAttribute("routerlink"), Is.EqualTo(Constants.NEW_COMPLAINT_LINK));
+
+            ClickNewComplaintButton();
+            var newComplaint = Driver.WaitUntilElementFound(By.CssSelector("mat-radio-group[formcontrolname='qualicriteria']"), 15);
+            Assert.IsNotNull(newComplaint);
+
+        }
+
+        [Test]
+        [Category("Label Displayed - goes to correct link.")]
+        public void VerifyLogout()
+        {
+            //Assert.That(NewComplaintControl.GetAttribute("routerlink"), Is.EqualTo(Constants.NEW_COMPLAINT_LINK));
+
+            ClickLogoutButton();
+            var logout = Driver.WaitUntilElementFound(By.CssSelector("a[href='/password-reset']"), 15);
+            Assert.IsNotNull(logout);
+
         }
 
         public void DisplayedPageRange()

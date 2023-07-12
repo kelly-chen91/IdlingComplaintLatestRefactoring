@@ -196,7 +196,9 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
         public void Occurrence_ProvidedFrom()
         {
             Occurrence_FromControl.DeleteText(Occurrence_FromInput);
-            Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 27, 2023, 9, 0, 0, false), SLEEP_TIMER); // 6/27/2023, 9:00:00 AM
+            
+            Occurrence_FromControl.SendKeysWithDelay(
+                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-3).Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time (3 minutes ago)
             string error = Driver.ExtractTextFromXPath("//mat-card[3]/mat-card-content/div[1]/div[1]/div/text()");
             Assert.That(error, Is.EqualTo(string.Empty));
         }
@@ -206,7 +208,9 @@ namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
         public void Occurrence_ProvidedTo()
         {
             Occurrence_ToControl.DeleteText(Occurrence_FromInput);
-            Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 27, 2023, 9, 3, 0, false), SLEEP_TIMER); // 6/27/2023, 9:03:00 AM
+            Occurrence_ToControl.SendKeysWithDelay(
+                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+
             string error = Driver.ExtractTextFromXPath("//mat-card[3]/mat-card-content/div[1]/div[2]/div/text()");
             Assert.That(error, Is.EqualTo(string.Empty));
         }

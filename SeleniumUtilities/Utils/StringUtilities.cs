@@ -66,24 +66,22 @@ namespace SeleniumUtilities.Utils
             return Regex.IsMatch(phoneNumber, validPhoneRegex);
         }
 
-        public static string SelectDate(int month, int day, int year, int hour, int minutes, int seconds, bool isPM)
+        public static string SelectDate(int month, int day, int year, int hour, int minutes, int seconds)
         {
-            if (month <= 0 || month > 12 || day <= 0 || day > 31 || year.ToString().Length != 4 || hour <= 0 || hour > 12 || minutes < 0 || minutes > 60
-                || seconds < 0 || seconds > 60) { throw new ArgumentException("Invalid Date and Time"); }
-
-            if (IsLeapYear(year) && month == 2 && day > 29) throw new ArgumentException("There are no more than 29 days for February in a leap year.");
-            if (!IsLeapYear(year) && month == 2 && day > 28) throw new ArgumentException("There are no more than 28 days for February in a nonleap year.");
-            if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30) throw new ArgumentException("Invalid day for the specified month " + month.ToString());
+            //if (month <= 0 || month > 12 || day <= 0 || day > 31 || year.ToString().Length != 4 || hour <= 0 || hour > 12 || minutes < 0 || minutes > 60
+            //    || seconds < 0 || seconds > 60) { throw new ArgumentException("Invalid Date and Time"); }
+            //
+            //if (DateTime.IsLeapYear(year) && month == 2 && day > 29) throw new ArgumentException("There are no more than 29 days for February in a leap year.");
+            //if (!DateTime.IsLeapYear(year) && month == 2 && day > 28) throw new ArgumentException("There are no more than 28 days for February in a nonleap year.");
+            //if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30) throw new ArgumentException("Invalid day for the specified month " + month.ToString());
 
            
-            string morningOrAfternoon = " AM";
-            if (isPM) morningOrAfternoon = " PM";
-            return month.ToString() + "/" + day.ToString() + "/" + year.ToString() + ", " + hour + ":" + minutes + ":" + seconds + morningOrAfternoon;
-        }
+            //string morningOrAfternoon = " AM";
+            //if (isPM) morningOrAfternoon = " PM";
+            //return month.ToString() + "/" + day.ToString() + "/" + year.ToString() + ", " + hour + ":" + minutes + ":" + seconds + morningOrAfternoon;
+            DateTime date = new DateTime(year, month, day, hour, minutes, seconds);
+            return date.ToShortDateString() + ", " + date.ToLongTimeString();
 
-        public static Boolean IsLeapYear(int year)
-        {
-            return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
         }
     }
 }

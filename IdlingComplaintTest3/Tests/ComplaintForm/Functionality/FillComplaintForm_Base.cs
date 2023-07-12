@@ -21,11 +21,11 @@ namespace IdlingComplaints.Tests.ComplaintForm.Functionality
         //[TearDown]
         //public void TearDown()
         //{
-        //    if (SLEEPTIMER > 0) { Thread.Sleep(SLEEPTIMER); }
+        //    if (SLEEP_TIMER > 0) { Thread.Sleep(SLEEP_TIMER); }
         //    base.ComplaintFormModelTearDown();
         //}
 
-        public readonly int SLEEPTIMER = 0;
+        public readonly int SLEEP_TIMER = 0;
         public readonly string FILE_IMAGE_PATH = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_truck.jpeg";
         public readonly string ERROR_BASE = "An error occurred while saving form: ";
         public readonly string ERROR_SHORTER_THAN_3_MINUTES = " Idling duration should be more than three minutes.";
@@ -40,7 +40,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.Functionality
 
         public void Fill_Associated(bool isPOBox, bool invalidAddress, int timer)
         {
-            Associated_CompanyNameControl.SendKeysWithDelay("Test INC", timer);
+            Associated_CompanyNameControl.SendKeysWithDelay(DateTime.Now.ToShortDateString() + "_Test", timer);
             Associated_SelectState(1);
             if (!isPOBox)
             {
@@ -136,17 +136,23 @@ namespace IdlingComplaints.Tests.ComplaintForm.Functionality
         public void Occurrence_ValidDate()
         {
             /*OCCURRENCE*/
-            Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEPTIMER);
-            Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 23, 00, true), SLEEPTIMER);
+            Occurrence_FromControl.SendKeysWithDelay(
+                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-3).Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time (3 minutes ago)
+
+            Occurrence_ToControl.SendKeysWithDelay(
+                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+
+            //Occurrence_FromControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 20, 00, true), SLEEP_TIMER);
+            //Occurrence_ToControl.SendKeysWithDelay(StringUtilities.SelectDate(6, 28, 2023, 4, 23, 00, true), SLEEP_TIMER);
         }
 
         public void Occurrence_VehicleInformation()
         {
             Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEPTIMER);
+            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
             Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
         }
 
         public void Filled_ComplaintInfo()
@@ -157,17 +163,17 @@ namespace IdlingComplaints.Tests.ComplaintForm.Functionality
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
 
-            Fill_Associated(false, false, SLEEPTIMER);
+            Fill_Associated(false, false, SLEEP_TIMER);
 
             Occurrence_ValidDate();
 
-            Fill_OccurrenceAddress(2, 3, false, SLEEPTIMER);
+            Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 
             Occurrence_VehicleInformation();
 
-            Fill_InFrontOfSchool(false, SLEEPTIMER);
+            Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
@@ -188,13 +194,13 @@ namespace IdlingComplaints.Tests.ComplaintForm.Functionality
             EvidenceUpload_UploadInput = FILE_IMAGE_PATH;
             string fileName = Path.GetFileName(FILE_IMAGE_PATH);
             EvidenceUpload_ClickFilesUploadConfirm();
-            //Thread.Sleep(SLEEPTIMER);
+            //Thread.Sleep(SLEEP_TIMER);
 
             var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span")); // message says evidence have successfully uploaded
             Assert.IsNotNull(successfulEvidenceUpload);
             if (!successfulEvidenceUpload.Text.Contains("upload")) Assert.That(successfulEvidenceUpload.Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
 
-            //Thread.Sleep(SLEEPTIMER);
+            //Thread.Sleep(SLEEP_TIMER);
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 20);
             EvidenceUpload_ClickNext();
             Driver.WaitUntilElementFound(By.CssSelector("mat-radio-button[value='753720001']"), 60); //waits until the oath affidavit appears

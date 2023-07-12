@@ -24,7 +24,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         [TearDown]
         public void TearDown()
         {
-            if (SLEEPTIMER > 0) { Thread.Sleep(SLEEPTIMER); }
+            if (SLEEP_TIMER > 0) { Thread.Sleep(SLEEP_TIMER); }
             base.ComplaintFormModelTearDown();
         }
 
@@ -38,17 +38,17 @@ namespace IdlingComplaints.Tests.ComplaintForm
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
 
-            Fill_Associated(false, false, SLEEPTIMER);
+            Fill_Associated(false, false, SLEEP_TIMER);
 
             Occurrence_ValidDate();
 
-            Fill_OccurrenceAddress(2, 3, false, SLEEPTIMER);
+            Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 
             Occurrence_VehicleInformation();
 
-            Fill_InFrontOfSchool(false, SLEEPTIMER);
+            Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
@@ -86,18 +86,18 @@ namespace IdlingComplaints.Tests.ComplaintForm
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
 
-            Fill_Associated(false, false, SLEEPTIMER);
+            Fill_Associated(false, false, SLEEP_TIMER);
            
 
             Occurrence_ValidDate();
 
-            Fill_OccurrenceAddress(2, 3, false, SLEEPTIMER);
+            Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 
             Occurrence_VehicleInformation();
 
-            Fill_InFrontOfSchool(false, SLEEPTIMER);
+            Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
@@ -130,17 +130,17 @@ namespace IdlingComplaints.Tests.ComplaintForm
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
 
-            Fill_Associated(false, false, SLEEPTIMER);
+            Fill_Associated(false, false, SLEEP_TIMER);
 
             Occurrence_ValidDate();
 
-            Fill_OccurrenceAddress(2, 3, false, SLEEPTIMER);
+            Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 
             Occurrence_VehicleInformation();
 
-            Fill_InFrontOfSchool(false, SLEEPTIMER);
+            Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
@@ -191,17 +191,17 @@ namespace IdlingComplaints.Tests.ComplaintForm
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
 
-            Fill_Associated(false, false, SLEEPTIMER);
+            Fill_Associated(false, false, SLEEP_TIMER);
 
             Occurrence_ValidDate();
 
-            Fill_OccurrenceAddress(2, 3, false, SLEEPTIMER);
+            Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 
             Occurrence_VehicleInformation();
 
-            Fill_InFrontOfSchool(true, SLEEPTIMER);
+            Fill_InFrontOfSchool(true, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
@@ -234,17 +234,17 @@ namespace IdlingComplaints.Tests.ComplaintForm
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
 
-            Fill_Associated(false, false, SLEEPTIMER);
+            Fill_Associated(false, false, SLEEP_TIMER);
 
             Occurrence_ValidDate();
 
-            Fill_OccurrenceAddress(1, 4, false, SLEEPTIMER);
+            Fill_OccurrenceAddress(1, 4, false, SLEEP_TIMER);
 
             Occurrence_VehicleInformation();
 
-            Fill_InFrontOfSchool(true, SLEEPTIMER);
+            Fill_InFrontOfSchool(true, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
@@ -277,16 +277,16 @@ namespace IdlingComplaints.Tests.ComplaintForm
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
 
-            Fill_Associated(false, false, SLEEPTIMER);
+            Fill_Associated(false, false, SLEEP_TIMER);
 
             Occurrence_ValidDate();
-            Fill_OccurrenceAddress(3, 4, false, SLEEPTIMER);
+            Fill_OccurrenceAddress(3, 4, false, SLEEP_TIMER);
 
             Occurrence_VehicleInformation();
 
-            Fill_InFrontOfSchool(true, SLEEPTIMER);
+            Fill_InFrontOfSchool(true, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
@@ -320,21 +320,21 @@ namespace IdlingComplaints.Tests.ComplaintForm
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
 
-            Fill_Associated(false, false, SLEEPTIMER);
+            Fill_Associated(false, false, SLEEP_TIMER);
 
             Occurrence_ValidDate();
 
-            Fill_OccurrenceAddress(2, 3, false, SLEEPTIMER);
+            Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 
             Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay("DEP1234", SLEEPTIMER);
+            Occurrence_LicensePlateControl.SendKeysWithDelay("DEP1234", SLEEP_TIMER);
             Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
-            Fill_InFrontOfSchool(false, SLEEPTIMER);
+            Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
@@ -373,17 +373,17 @@ namespace IdlingComplaints.Tests.ComplaintForm
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
 
-            Fill_Associated(true, false, SLEEPTIMER);
+            Fill_Associated(true, false, SLEEP_TIMER);
 
             Occurrence_ValidDate();
 
-            Fill_OccurrenceAddress(2, 3, false, SLEEPTIMER);
+            Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 
             Occurrence_VehicleInformation();
 
-            Fill_InFrontOfSchool(false, SLEEPTIMER);
+            Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEPTIMER);
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
             ClickWitnessCheckbox();
             ClickSubmitNoCorrectionCheckbox();
@@ -418,7 +418,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
        //     /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
        //     ScrollToZipCode();
        //     Associated_POBoxControl.SendKeysWithDelay(" ", 5000);
-       //     Thread.Sleep(SLEEPTIMER);
+       //     Thread.Sleep(SLEEP_TIMER);
        //     
        // }
     }
