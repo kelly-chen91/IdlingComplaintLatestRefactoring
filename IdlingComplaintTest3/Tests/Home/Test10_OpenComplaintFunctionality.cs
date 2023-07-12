@@ -121,18 +121,57 @@ namespace IdlingComplaints.Tests.Home
             int index = complaintCount.IndexOf("f") + 2;
             string outOfComplaintAmount = complaintCount.Substring(index);
             int totalComplaintAmount = int.Parse(outOfComplaintAmount); //Taking the listed total amount of complaints and turning into int
-            Console.WriteLine(totalComplaintAmount);
+            //Console.WriteLine(totalComplaintAmount);
 
             string itemsPerPage = Driver.ExtractTextFromXPath("//div[1]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span/span/text()");
             int divideItemsPerPage = int.Parse(itemsPerPage); //Taking the items per page and turning into int
 
 
-            //decimal calculatedPageCount = (decimal)totalComplaintAmount / divideItemsPerPage; //Dividing by 10 items per page
             int calculatedPageCount = totalComplaintAmount % divideItemsPerPage == 0 ? totalComplaintAmount / divideItemsPerPage : (totalComplaintAmount / divideItemsPerPage) + 1;
 
-            Console.WriteLine("Manual page count is: " + pageCount);
-            Console.WriteLine("Calculated page count is: " + calculatedPageCount);
+            //Console.WriteLine("Manual page count is: " + pageCount);
+            //Console.WriteLine("Calculated page count is: " + calculatedPageCount);
             Assert.That(pageCount, Is.EqualTo(calculatedPageCount));
+
+        }
+
+        [Test, Category("Last Page + Verify Last Complaint Shown")]
+        public void LastArrow_VerifyPagination()
+        {
+            ClickLastPage();
+
+            string complaintCount = Driver.ExtractTextFromXPath("//mat-paginator/div/div/div[2]/div/text()");
+
+            // End Range Number | __ - __
+            int index1 = complaintCount.IndexOf("–");
+            int index2 = complaintCount.IndexOf("o");
+            string complaintRange = complaintCount.Substring(index1 + 2, index2 - index1 - 3);
+
+
+            // Total Complaint Number | of __
+            int indexTotal = complaintCount.IndexOf("f") + 2;
+            string totalComplaintAmount = complaintCount.Substring(indexTotal);
+
+            //Console.WriteLine("Total Complaint Amount: " + totalComplaintAmount);
+            //Console.WriteLine("Complaint End Range Number: " + complaintRange);
+            Assert.That(complaintRange, Is.EqualTo(totalComplaintAmount));
+
+        }
+
+        [Test, Category("First Page + Verify Last Complaint Shown")]
+        public void FirstArrow_VerifyPagination()
+        {
+            ClickLastPage();
+            ClickFirstPage();
+
+            string complaintCount = Driver.ExtractTextFromXPath("//mat-paginator/div/div/div[2]/div/text()");
+
+            // Begin Range Number | __ - __
+            string complaintRange = complaintCount.Split('–')[0];
+
+
+            //Console.WriteLine("Complaint Start Range Number: " + complaintRange);
+            Assert.That(complaintRange, Is.EqualTo("1 "));
 
         }
     }
