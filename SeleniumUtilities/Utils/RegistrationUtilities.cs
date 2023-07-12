@@ -10,6 +10,8 @@ using SeleniumUtilities.Base;
 using OpenQA.Selenium.Internal;
 using OpenQA.Selenium.DevTools.V112.Network;
 using System.Collections.ObjectModel;
+using System.Xml.Linq;
+using System.Linq.Expressions;
 
 namespace SeleniumUtilities.Utils
 {
@@ -94,22 +96,41 @@ namespace SeleniumUtilities.Utils
             The targetRowIndex and targetColumnIndex are starting from 0;*/
         public static string RetrieveRecordValue(this string filePath, int targetRowIndex, int targetColumnIndex)
         {
-            string[] lines = File.ReadAllLines(filePath);
+            try { 
+                  string[] lines = File.ReadAllLines(filePath);
 
-            if (targetRowIndex >= 0 && targetRowIndex <= lines.Length - 1)
-            {
-                string row = lines[targetRowIndex];
+                  if (targetRowIndex >= 0 && targetRowIndex < lines.Length)
+                  {
+                      string row = lines[targetRowIndex];
 
-                string[] columns = row.Split(' ');
+                      string[] columns = row.Split(' ');
 
-                if (targetColumnIndex >= 0 && targetColumnIndex <= columns.Length - 1)
-                {
-                    string targetValue = columns[targetColumnIndex];
-                   
-                    return targetValue;
+                      if (targetColumnIndex >= 0 && targetColumnIndex <= columns.Length - 1)
+                      {
+                          string targetValue = columns[targetColumnIndex];
+                         
+                          return targetValue;
 
-                }
+                      }
+                      else
+                      {
+                          throw new IndexOutOfRangeException("Target column index is out of range.");
+                      }
+                  }
+                  else
+                  {
+                      throw new IndexOutOfRangeException("Target row index is out of range.");
+                  }
             }
+            catch(IndexOutOfRangeException ex)
+            {
+               Console.WriteLine("An index out of range error occurred "+ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred " + ex.Message);
+            }
+       
             return "";
         }
 
@@ -134,16 +155,16 @@ namespace SeleniumUtilities.Utils
 
         }
        
-        public static List<IWebElement> GetCertainListControl(this ReadOnlyCollection<IWebElement> rowList, By locator)
-        {
-            List<IWebElement> classElementList = new List<IWebElement>();
-            for (int i = 0; i < rowList.Count; i++)
-            {
-                var classElement = rowList[i].FindElement(locator);
-
-                classElementList.Add(classElement);
-            }
-            return classElementList;
-        }
+     //  public static List<IWebElement> GetCertainListControl(this ReadOnlyCollection<IWebElement> rowList, By locator)
+     //  {
+     //      List<IWebElement> classElementList = new List<IWebElement>();
+     //      for (int i = 0; i < rowList.Count; i++)
+     //      {
+     //          var classElement = rowList[i].FindElement(locator);
+     //
+     //          classElementList.Add(classElement);
+     //      }
+     //      return classElementList;
+     //  }
     }
 }

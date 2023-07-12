@@ -33,43 +33,43 @@ namespace IdlingComplaints.Tests.Register
             base.RegisterModelTearDown();
         }
 
-        [Test, Category("Scenario Registration functionality test#1: new user")]
+        [Test, Category("Scenario test#1: New user with all random text input")]
         public void RandomtextRegistration()
         {
-            FirstNameControl.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
-            LastNameControl.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
-           
-            string generatedEmail = RegistrationUtilities.GenerateEmail(RegistrationUtilities.GenerateRandomString(), RegistrationUtilities.GenerateRandomString(), RegistrationUtilities.GenerateRandomString());
+          FirstNameControl.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
+          LastNameControl.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
+
+            // string generatedEmail = RegistrationUtilities.GenerateEmail(RegistrationUtilities.GenerateRandomString(), RegistrationUtilities.GenerateRandomString(), RegistrationUtilities.GenerateRandomString());
+            string generatedEmail = RegistrationUtilities.GenerateRandomString();
             EmailControl.SendKeysWithDelay(generatedEmail, SLEEP_TIMER);
-
-            //string password = RegistrationUtilities.GenerateRandomString();
-            string password = RegistrationUtilities.GenerateQualifiedPassword();
-            PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
-            ConfirmPasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
-
-            int securityRandomNumber = RegistrationUtilities.GenerateRandomNumberWithRange(1, 5);
-            SelectSecurityQuestion(securityRandomNumber);
-
-            string securityAnswer = RegistrationUtilities.GenerateRandomString();
-            SecurityAnswerControl.SendKeysWithDelay(securityAnswer, SLEEP_TIMER);
-
-            Address1Control.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
-            Address2Control.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
-            CityControl.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
-
-            int stateRandomNumber = RegistrationUtilities.GenerateRandomNumberWithRange(1, 49);
-            Console.WriteLine("The state number is " + stateRandomNumber + " . And the State selected is " + StateControl);
-            SelectState(stateRandomNumber);
-
-            ScrollToButton();
-            string zipCodeNumbers = RegistrationUtilities.GenerateSeriesNumbers();
-            ZipCodeControl.SendKeysWithDelay(zipCodeNumbers, SLEEP_TIMER);
-
-            string TelephoneNumbers = RegistrationUtilities.GenerateSeriesNumbers();
-            TelephoneControl.SendKeysWithDelay(TelephoneNumbers, SLEEP_TIMER);
-           
-            ClickSubmitButton();
-          
+        
+          //string password = RegistrationUtilities.GenerateRandomString();
+          string password = RegistrationUtilities.GenerateQualifiedPassword();
+          PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
+          ConfirmPasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
+        
+          int securityRandomNumber = RegistrationUtilities.GenerateRandomNumberWithRange(1, 5);
+          SelectSecurityQuestion(securityRandomNumber);
+        
+          string securityAnswer = RegistrationUtilities.GenerateRandomString();
+          SecurityAnswerControl.SendKeysWithDelay(securityAnswer, SLEEP_TIMER);
+        
+          Address1Control.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
+          Address2Control.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
+          CityControl.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
+        
+          int stateRandomNumber = RegistrationUtilities.GenerateRandomNumberWithRange(1, 49);
+          Console.WriteLine("The state number is " + stateRandomNumber + " . And the State selected is " + StateControl);
+          SelectState(stateRandomNumber);
+        
+          ScrollToButton();
+          string zipCodeNumbers = RegistrationUtilities.GenerateRandomString();
+          ZipCodeControl.SendKeysWithDelay(zipCodeNumbers, SLEEP_TIMER);
+        
+          string TelephoneNumbers = RegistrationUtilities.GenerateRandomString();
+          TelephoneControl.SendKeysWithDelay(TelephoneNumbers, SLEEP_TIMER);
+         
+          ClickSubmitButton();
 
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(20));
             wait.Until(d =>
@@ -97,14 +97,14 @@ namespace IdlingComplaints.Tests.Register
             });
         }
 
-        [Test, Category("Scenario Registration functionality test#2: registered user")]
-        public void FailedRegistrationDupEmail()
+        [Test, Category("Scenario test#2: Registration with a exiting account")]
+        public void FailedRegistrationDrtupEmail()
         {
             FirstNameControl.SendKeysWithDelay("Registered", SLEEP_TIMER);
             LastNameControl.SendKeysWithDelay("User", SLEEP_TIMER);
             EmailControl.SendKeysWithDelay("TTseng@dep.nyc.gov", SLEEP_TIMER);
-            PasswordControl.SendKeysWithDelay("T3sting@1234", SLEEP_TIMER);
-            ConfirmPasswordControl.SendKeysWithDelay("T3sting@1234", SLEEP_TIMER);
+            PasswordControl.SendKeysWithDelay("Testing@1234", SLEEP_TIMER);
+            ConfirmPasswordControl.SendKeysWithDelay("Testing@1234", SLEEP_TIMER);
             SelectSecurityQuestion(1);
             SecurityAnswerControl.SendKeysWithDelay("Testing", SLEEP_TIMER);
             Address1Control.SendKeysWithDelay("59-17 Junction Blvd", SLEEP_TIMER);
@@ -115,7 +115,7 @@ namespace IdlingComplaints.Tests.Register
             TelephoneControl.SendKeysWithDelay("631-632-9800", SLEEP_TIMER);
             ScrollToButton();
             ClickSubmitButton();
-
+            Thread.Sleep(3000);
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
             wait.Until(d =>
             {
@@ -126,7 +126,7 @@ namespace IdlingComplaints.Tests.Register
             });
         }
 
-        [Test, Category("Scenario Cancel Registration functionality test#3: cancel register")]
+        [Test, Category("Scenario test#3: Cancel register")]
         public void CancelRegistrationRedirectsToLogin()
         {
             ScrollToButton();
@@ -136,7 +136,7 @@ namespace IdlingComplaints.Tests.Register
         }
 
 
-        [Test, Category("Scenario Cancel Registration functionality test#4: cancel register after fill in all the input field")]
+        [Test, Category("Scenario test#4: Cancel register after fill in all the input fields")]
         public void CancelRegistrationFullFormRedirectsToLogin()
         {
             FirstNameControl.SendKeysWithDelay("Jane", SLEEP_TIMER);

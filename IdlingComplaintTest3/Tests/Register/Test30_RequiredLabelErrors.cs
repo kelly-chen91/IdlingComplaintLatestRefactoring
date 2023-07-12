@@ -15,19 +15,6 @@ namespace IdlingComplaints.Tests.Register
     //[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
     internal class Test30_RequiredLabelErrors : RegisterModel
     {
-
-        //[LoginModelSetUp]
-        //public new void LoginModelSetUp()
-        //{
-        //    base.LoginModelSetUp();
-        //}
-
-        //[LoginModelTearDown]
-        //public new void LoginModelTearDown()
-        //{
-        //    base.LoginModelTearDown();
-        //}
-
         private readonly int SLEEP_TIMER = 1000;
 
         [OneTimeSetUp]
@@ -37,7 +24,7 @@ namespace IdlingComplaints.Tests.Register
             //Driver = CreateStandardDriver("chrome");
             //Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/profile");
             //Driver.Manage().Window.Size = new Size(1920, 1200);
-            base.RegisterModelSetUp(false);
+            base.RegisterModelSetUp(true);
             Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
         }
 

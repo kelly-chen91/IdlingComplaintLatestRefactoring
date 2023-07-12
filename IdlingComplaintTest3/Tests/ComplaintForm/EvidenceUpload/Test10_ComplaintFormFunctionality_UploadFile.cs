@@ -106,7 +106,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
         }
 
         [Test, Category("Scenario #4: Verify a delete button")]
-        public void EvidenceUpload_VerifyDeleteButton()
+        public void EvidenceUpload_VerifyOneDeleteButton()
         {
             EvidenceUpload_UploadOneFile();
 
