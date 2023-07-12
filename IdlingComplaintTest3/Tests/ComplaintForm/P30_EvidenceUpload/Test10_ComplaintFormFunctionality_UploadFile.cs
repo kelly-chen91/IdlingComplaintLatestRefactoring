@@ -106,7 +106,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         }
 
         [Test, Category("Scenario #4: Verify a delete button")]
-        public void EvidenceUpload_VerifyDeleteButton()
+        public void EvidenceUpload_VerifyOneDeleteButton()
         {
             EvidenceUpload_UploadOneFile();
 
@@ -143,7 +143,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
                 EvidenceUpload_ConfirmDelete();
                 
                 Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-dialog-container"), 62);
-               // Thread.Sleep(2000);
+                Thread.Sleep(2000);
             }
             Driver.WaitUntilElementFound(By.TagName("mat-error"), 63);
             Assert.IsNotNull(EvidenceUpload_UploadErrorControl);
@@ -205,7 +205,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         }
 
         [Test, Category("Scenario #9: Verify the Previous button")]
-        public void Evidence_PreviousButton()
+        public void EvidenceUpload_PreviousButton()
         {
             EvidenceUpload_ClickPrevious();
             var title = Driver.WaitUntilElementFound(By.CssSelector("mat-icon[mattooltipposition='right']"), 65);
@@ -226,7 +226,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         }
 
         [Test, Category("Scenario #11: Verify the Next button")]
-        public void Evidence_CancelEvidenceFileUploadButton()
+        public void EvidenceUpload_CancelEvidenceFileUploadButton()
         {
             EvidenceUpload_ClickCancel();
             var selectYear = Driver.WaitUntilElementFound(By.TagName("mat-select"), 65);

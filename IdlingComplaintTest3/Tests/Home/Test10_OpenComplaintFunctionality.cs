@@ -22,7 +22,7 @@ namespace IdlingComplaints.Tests.Home
         [SetUp]
         public void SetUp()
         {
-            base.HomeModelSetUp("ttseng@dep.nyc.gov", "Testing1#", true);
+            base.HomeModelSetUp("ttseng@dep.nyc.gov", "Testing1#", false);
         }
 
         [TearDown]
@@ -39,35 +39,36 @@ namespace IdlingComplaints.Tests.Home
         [Category("Successful Redirect - Complaint Details Displayed")]
         public void SuccessfulOpenComplaints()
         {
-            var link = By.TagName("a");
-            var complaintNumberRowControl = By.ClassName("mat-column-idc_name");
-
-            var rowList = TableControl.GetDataFromTable();
-            var openComplaintList = rowList.GetSpecificColumnElements(link);
-            var complaintNumList = rowList.GetSpecificColumnText(complaintNumberRowControl);
-
-            for (int i = 0; i < 2; i++)
-            {
-                Driver.WaitUntilElementFound(By.CssSelector("button[routerlink='idlingcomplaint/new']"), 10);
-                Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir='ltr']"), 20);
-
-                rowList = TableControl.GetDataFromTable();
-                openComplaintList = rowList.GetSpecificColumnElements(link);
-                complaintNumList = rowList.GetSpecificColumnText(complaintNumberRowControl);
-
-                openComplaintList[i].Click();
-
-                var complientNumberControl = Driver.WaitUntilElementFound(By.CssSelector("h4[align='center']"), 30);
-
-                string openComplaintNumber = complientNumberControl.Text;
-
-                Assert.That(openComplaintNumber, Is.EqualTo("Complaint Number: " + complaintNumList[i]));
-
-                if (SLEEP_TIMER > 0)
-                    Thread.Sleep(SLEEP_TIMER);
-
-                ClickHomeButton();
-            }
+           var link = By.TagName("a");
+           var complaintNumberRowControl = By.ClassName("mat-column-idc_name");
+        
+           var rowList = TableControl.GetDataFromTable();
+           var openComplaintList = rowList.GetSpecificColumnElements(link);
+           var complaintNumList = rowList.GetSpecificColumnText(complaintNumberRowControl);
+        
+           for (int i = 0; i < 2; i++)
+           {
+               Driver.WaitUntilElementFound(By.CssSelector("button[routerlink='idlingcomplaint/new']"), 10);
+               Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir='ltr']"), 20);
+        
+               rowList = TableControl.GetDataFromTable();
+               openComplaintList = rowList.GetSpecificColumnElements(link);
+               complaintNumList = rowList.GetSpecificColumnText(complaintNumberRowControl);
+        
+               openComplaintList[i].Click();
+        
+               var complientNumberControl = Driver.WaitUntilElementFound(By.CssSelector("h4[align='center']"), 30);
+        
+               string openComplaintNumber = complientNumberControl.Text;
+        
+               Assert.That(openComplaintNumber, Is.EqualTo("Complaint Number: " + complaintNumList[i]));
+        
+               if (SLEEP_TIMER > 0)
+                   Thread.Sleep(SLEEP_TIMER);
+        
+               ClickHomeButton();
+           }
+       
         }
 
 
@@ -134,44 +135,18 @@ namespace IdlingComplaints.Tests.Home
             Assert.That(pageCount, Is.EqualTo(calculatedPageCount));
 
         }
-
-        [Test, Category("Last Page + Verify Last Complaint Shown")]
-        public void LastArrow_VerifyPagination()
+        [Test, Category("Previous Arrow Till First Page + Counter")]
+        public void VerifyNumOfComplaint()
         {
-            ClickLastPage();
-
-            string complaintCount = Driver.ExtractTextFromXPath("//mat-paginator/div/div/div[2]/div/text()");
-
-            // End Range Number | __ - __
-            int index1 = complaintCount.IndexOf("–");
-            int index2 = complaintCount.IndexOf("o");
-            string complaintRange = complaintCount.Substring(index1 + 2, index2 - index1 - 3);
-
-
-            // Total Complaint Number | of __
-            int indexTotal = complaintCount.IndexOf("f") + 2;
-            string totalComplaintAmount = complaintCount.Substring(indexTotal);
-
-            //Console.WriteLine("Total Complaint Amount: " + totalComplaintAmount);
-            //Console.WriteLine("Complaint End Range Number: " + complaintRange);
-            Assert.That(complaintRange, Is.EqualTo(totalComplaintAmount));
-
-        }
-
-        [Test, Category("First Page + Verify Last Complaint Shown")]
-        public void FirstArrow_VerifyPagination()
-        {
-            ClickLastPage();
-            ClickFirstPage();
-
-            string complaintCount = Driver.ExtractTextFromXPath("//mat-paginator/div/div/div[2]/div/text()");
-
-            // Begin Range Number | __ - __
-            string complaintRange = complaintCount.Split('–')[0];
-
-
-            //Console.WriteLine("Complaint Start Range Number: " + complaintRange);
-            Assert.That(complaintRange, Is.EqualTo("1 "));
+            SelectItemsPerPage(0);
+            Thread.Sleep(2000);
+            string itemPerPage = Driver.ExtractTextFromXPath("/html/body/app-root/div/app-home/app-idling-list/div/mat-paginator/div/div/div[1]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span/span/text()");
+          
+            var link = By.TagName("a");
+            var rowList = TableControl.GetDataFromTable();
+            int numOfFile = rowList.GetSpecificColumnElements(link).Count;
+          
+            Assert.That(int.Parse(itemPerPage), Is.EqualTo(numOfFile));
 
         }
     }

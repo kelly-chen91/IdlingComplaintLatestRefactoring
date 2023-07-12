@@ -10,13 +10,15 @@ using SeleniumUtilities.Base;
 using OpenQA.Selenium.Internal;
 using OpenQA.Selenium.DevTools.V112.Network;
 using System.Collections.ObjectModel;
+using System.Xml.Linq;
+using System.Linq.Expressions;
 
 namespace SeleniumUtilities.Utils
 {
     public static class RegistrationUtilities
     {
         public static readonly Random random = new Random();
-      //  private static readonly int SLEEPTIMER = 1000;
+        //  private static readonly int SLEEPTIMER = 1000;
 
 
         //This method will generate random Email address
@@ -30,7 +32,7 @@ namespace SeleniumUtilities.Utils
         public static string GenerateRandomString()
         {
             const string acceptedChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-          //  var random = new Random(Guid.NewGuid().GetHashCode());
+            //  var random = new Random(Guid.NewGuid().GetHashCode());
             string str = string.Empty;
             int length = random.Next(1, 20);
             for (int i = 0; i < length; i++)
@@ -49,15 +51,15 @@ namespace SeleniumUtilities.Utils
 
         //This method will generate a series random numbers
         public static string GenerateSeriesNumbers()
-        { 
+        {
             int length = random.Next(1, 20);
 
-            string seriesRandomNumbers="";
+            string seriesRandomNumbers = "";
 
             for (int i = 0; i < length; i++)
             {
-                int pickedNumber = random.Next(0,9);
-                seriesRandomNumbers+=pickedNumber.ToString();
+                int pickedNumber = random.Next(0, 9);
+                seriesRandomNumbers += pickedNumber.ToString();
             }
 
             return seriesRandomNumbers;
@@ -94,22 +96,41 @@ namespace SeleniumUtilities.Utils
             The targetRowIndex and targetColumnIndex are starting from 0;*/
         public static string RetrieveRecordValue(this string filePath, int targetRowIndex, int targetColumnIndex)
         {
-            string[] lines = File.ReadAllLines(filePath);
+            try {
+                string[] lines = File.ReadAllLines(filePath);
 
-            if (targetRowIndex >= 0 && targetRowIndex <= lines.Length - 1)
-            {
-                string row = lines[targetRowIndex];
-
-                string[] columns = row.Split(' ');
-
-                if (targetColumnIndex >= 0 && targetColumnIndex <= columns.Length - 1)
+                if (targetRowIndex >= 0 && targetRowIndex < lines.Length)
                 {
-                    string targetValue = columns[targetColumnIndex];
-                   
-                    return targetValue;
+                    string row = lines[targetRowIndex];
 
+                    string[] columns = row.Split(' ');
+
+                    if (targetColumnIndex >= 0 && targetColumnIndex <= columns.Length - 1)
+                    {
+                        string targetValue = columns[targetColumnIndex];
+
+                        return targetValue;
+
+                    }
+                    else
+                    {
+                        throw new IndexOutOfRangeException("Target column index is out of range.");
+                    }
+                }
+                else
+                {
+                    throw new IndexOutOfRangeException("Target row index is out of range.");
                 }
             }
+            catch (IndexOutOfRangeException ex)
+            {
+                Console.WriteLine("An index out of range error occurred " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred " + ex.Message);
+            }
+
             return "";
         }
 
@@ -117,33 +138,36 @@ namespace SeleniumUtilities.Utils
 
         public static void ReplaceRecordValue(this string filePath, int targetRowIndex, int targetColumnIndex, string newValue)
         {
-                try
-                {
-                    string[] lines = File.ReadAllLines(filePath);
-                    string[] columns = lines[targetRowIndex].Split(' ');
-                    lines[targetRowIndex] = lines[targetRowIndex].Replace(columns[targetColumnIndex], newValue);
-                    File.WriteAllLines(filePath, lines);
-       
+            try
+            {
+                string[] lines = File.ReadAllLines(filePath);
+                string[] columns = lines[targetRowIndex].Split(' ');
+                lines[targetRowIndex] = lines[targetRowIndex].Replace(columns[targetColumnIndex], newValue);
+                File.WriteAllLines(filePath, lines);
             }
-                catch (Exception ex)
+            catch (Exception ex)
+            {
+                Console.WriteLine("Cannot replace into File");
+                Console.WriteLine(ex.ToString());
+            }
+        }
+
+        public static void WriteIntoFile(this string filePath, string email, string password, string securityAnswer)
+        {
+            try
+            {
+                using (StreamWriter writer = File.AppendText(filePath))
                 {
-                    Console.WriteLine("Cannot replace into File");
-                    Console.WriteLine(ex.ToString());
+                    writer.WriteLine(email + " " + password + " " + securityAnswer);
+                    Console.WriteLine("Accessed the file");
                 }
 
-
-        }
-       
-        public static List<IWebElement> GetCertainListControl(this ReadOnlyCollection<IWebElement> rowList, By locator)
-        {
-            List<IWebElement> classElementList = new List<IWebElement>();
-            for (int i = 0; i < rowList.Count; i++)
-            {
-                var classElement = rowList[i].FindElement(locator);
-
-                classElementList.Add(classElement);
             }
-            return classElementList;
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while appending the text to the file: {ex.Message}");
+                Console.WriteLine("Cannot Write into File");
+            }
         }
     }
 }

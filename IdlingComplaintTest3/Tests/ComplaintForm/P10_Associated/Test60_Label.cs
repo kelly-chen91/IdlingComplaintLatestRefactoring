@@ -17,7 +17,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P10_Associated
     internal class Test60_Label : ComplaintFormModel
     { 
 
-        private readonly int SLEEP_TIMER = 2000;
+        //private readonly int SLEEP_TIMER = 2000;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()

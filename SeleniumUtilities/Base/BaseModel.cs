@@ -22,7 +22,7 @@ namespace SeleniumUtilities.Base
             {
                 case "chrome":
                     var chromeOptions = new ChromeOptions();
-                    //chromeOptions.AddArguments(GetBrowserArguments());
+                      //chromeOptions.AddArguments(GetBrowserArguments());
                     return new ChromeDriver(chromeOptions);
                 case "firefox":
                     var firefoxOptions = new FirefoxOptions();

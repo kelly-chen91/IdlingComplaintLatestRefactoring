@@ -21,7 +21,7 @@ namespace IdlingComplaints.Models.Register
             if (isHeadless) Driver = CreateHeadlessDriver("chrome");
             else Driver = CreateStandardDriver("chrome");
             Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/profile");
-            //Driver.Manage().Window.Size = new Size(1920, 1200);
+            Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/profile");
             Driver.Manage().Window.Maximize();
         }
         

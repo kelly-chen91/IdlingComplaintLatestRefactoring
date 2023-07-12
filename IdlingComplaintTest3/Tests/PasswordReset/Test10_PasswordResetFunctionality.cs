@@ -29,7 +29,6 @@ namespace IdlingComplaints.Tests.PasswordReset
         {
             this.lines = File.ReadAllLines(registeredd_EmailAddress).Length;
             this.userIndex = random.Next(0, lines - 1);
-
         }
 
 
@@ -56,7 +55,7 @@ namespace IdlingComplaints.Tests.PasswordReset
             base.PasswordResetModelTearDown();
         }
 
-        [Test, Category("Scenario #1: the user password will be updated with the new password in the user txt file after user reset password successfully")]
+        [Test, Category("Scenario #1: The user data text file will be updatethe user password will be updated with the new password in the user txt file after user reset password successfully")]
         public void UpdatePasswordinFile()
         {
             string securityAnswer = RegistrationUtilities.RetrieveRecordValue(registeredd_EmailAddress, userIndex, 2);

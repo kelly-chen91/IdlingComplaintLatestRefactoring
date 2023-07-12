@@ -16,7 +16,6 @@ namespace IdlingComplaints.Models.Login
             Driver.Manage().Window.Maximize();
         }
 
-        
          public void LoginModelTearDown()
          {
              Driver.Quit();
@@ -64,6 +63,6 @@ namespace IdlingComplaints.Models.Login
             Driver.ScrollTo(LoginControl);
         }
 
-
+        public IWebElement tablecontrol => Driver.FindElement(By.TagName("table"));
     }
 }

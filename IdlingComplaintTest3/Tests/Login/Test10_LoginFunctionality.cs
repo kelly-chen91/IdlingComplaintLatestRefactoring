@@ -32,17 +32,15 @@ internal class Test10_LoginFunctionality : LoginModel
     private readonly int SLEEP_TIMER = 2000;
     private readonly string registered_EmailAddress = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Text\\Registered_EmailAddress.txt";
 
-
-    [Test, Category("Scenario login functionality test1: login with valid email and password")]
     
+    [Test, Category("Scenario test#1: Login with valid email and password")]
     public void RetriveFileDataVerification()
     {
-
         string[] lines = File.ReadAllLines(registered_EmailAddress);
-        int userIndex = random.Next(0, lines.Length - 1);
+        int userRowIndex = random.Next(0, lines.Length - 1);
 
-        string email = RegistrationUtilities.RetrieveRecordValue(registered_EmailAddress, userIndex, 0);
-        string password = RegistrationUtilities.RetrieveRecordValue(registered_EmailAddress, userIndex, 1);
+        string email = RegistrationUtilities.RetrieveRecordValue(registered_EmailAddress, userRowIndex, 0);
+        string password = RegistrationUtilities.RetrieveRecordValue(registered_EmailAddress, userRowIndex, 1);
 
         EmailControl.SendKeysWithDelay(email, SLEEP_TIMER);
         PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
@@ -54,7 +52,7 @@ internal class Test10_LoginFunctionality : LoginModel
     }
 
 
-    [Test, Category("Scenario login functionality test2: login with valid email, but wrong password")]
+    [Test, Category("Scenario test#2: The registered user login with wrong password")]
     public void LoginValidEmailAndPassword()
     {
         //locate login field
@@ -71,10 +69,9 @@ internal class Test10_LoginFunctionality : LoginModel
 
 
 
-    [Test, Category("Scenario login functionality test3: login with unregistered email address")]
+    [Test, Category("Scenario test#3: Login with unregistered email address")]
     public void LoginInvalidPassword()
     {
-        //locate login field
         EmailControl.SendKeysWithDelay(RegistrationUtilities.GenerateEmail("unregistered", "emailAddress", "dep.nyc.gov"), SLEEP_TIMER);
         PasswordControl.SendKeysWithDelay("Testing1", SLEEP_TIMER);
         ClickLoginButton();
@@ -92,7 +89,7 @@ internal class Test10_LoginFunctionality : LoginModel
         );
     }
 
-    [Test, Category("Scenario login functionality test4: login with unregistered email address, but a qulified password")]
+    [Test, Category("Scenario test4: Login with unregistered email address, but with a qulified password")]
     public void LoginEmailNotFound()
     {
         //locate login field
