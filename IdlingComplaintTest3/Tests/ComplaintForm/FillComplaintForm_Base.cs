@@ -43,26 +43,6 @@ namespace IdlingComplaints.Tests.ComplaintForm
             Associated_ZipCodeControl.SendKeysWithDelay("10013", timer);
         }
 
-        //    public void Fill_Associated(bool isPOBox, bool invalidAddress, int timer)
-        //   {
-        //        Associated_CompanyNameControl.SendKeysWithDelay("Testing INC", timer);
-        //        Associated_SelectState(1);
-        //        if (isPOBox)
-        //         {
-        //          Associated_POBoxControl.SendKeysWithDelay(" ", timer);
-        //          }
-        //          else
-        //          {
-        //         Associated_HouseNumberControl.SendKeysWithDelay("123", timer);
-        //         Associated_AptFloorControl.SendKeysWithDelay("4th Fl", timer);
-        //         }
-        //          string street = "Mott Street";
-        //          if (invalidAddress) street = "WhoCares Street";
-        //          Associated_StreetNameControl.SendKeysWithDelay(street, timer);
-        //        Associated_AptFloorControl.SendKeysWithDelay("4th Fl", timer);
-        //        Associated_CityControl.SendKeysWithDelay("New York", timer);
-        //        Associated_ZipCodeControl.SendKeysWithDelay("10013", timer);
-        //    }
 
 
         public void Fill_OccurrenceAddress(int location, int borough, bool invalidAddress, int timer)
