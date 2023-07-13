@@ -153,8 +153,8 @@ namespace IdlingComplaints.Tests.Home
             int indexTotal = complaintCount.IndexOf("f") + 2;
             string totalComplaintAmount = complaintCount.Substring(indexTotal);
 
-            Console.WriteLine("Total Complaint Amount: " + totalComplaintAmount);
-            Console.WriteLine("Complaint End Range Number: " + complaintRange);
+            //Console.WriteLine("Total Complaint Amount: " + totalComplaintAmount);
+            //Console.WriteLine("Complaint End Range Number: " + complaintRange);
             Assert.That(complaintRange, Is.EqualTo(totalComplaintAmount));
 
         }
@@ -171,7 +171,7 @@ namespace IdlingComplaints.Tests.Home
             string complaintRange = complaintCount.Split('–')[0];
 
 
-            Console.WriteLine("Complaint End Range Number: " + complaintRange);
+            //Console.WriteLine("Complaint End Range Number: " + complaintRange);
             Assert.That(complaintRange, Is.EqualTo("1 "));
 
         }
