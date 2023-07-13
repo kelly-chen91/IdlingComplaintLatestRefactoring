@@ -58,7 +58,13 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 
             Fill_Associated(false, false, SLEEP_TIMER);
 
-            Occurrence_ValidDate();
+            /*OCCURRENCE*/
+
+            Occurrence_FromControl.SendKeysWithDelay(
+                StringUtilities.SelectDate(6, 28, 2023, 16, 20, 0), SLEEP_TIMER); // Current Time (3 minutes ago)
+
+            Occurrence_ToControl.SendKeysWithDelay(
+                                StringUtilities.SelectDate(6, 28, 2023, 16, 23, 0), SLEEP_TIMER); // Current Time
 
             Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 

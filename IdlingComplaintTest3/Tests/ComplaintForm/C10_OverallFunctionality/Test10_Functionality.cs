@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 {
-    internal partial class Test10_ComplaintFormFunctionality : FillComplaintForm_Base
+    internal partial class Test10_Functionality : FillComplaintForm_Base
     {
         [SetUp]
         public void SetUp()
@@ -321,7 +321,12 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 
             Fill_Associated(false, false, SLEEP_TIMER);
 
-            Occurrence_ValidDate();
+            /*OCCURRENCE*/
+            Occurrence_FromControl.SendKeysWithDelay(
+                StringUtilities.SelectDate(6, 28, 2023, 16, 20, 0), SLEEP_TIMER); // Current Time (3 minutes ago)
+
+            Occurrence_ToControl.SendKeysWithDelay(
+                                StringUtilities.SelectDate(6, 28, 2023, 16, 23, 0), SLEEP_TIMER); // Current Time
 
             Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 
@@ -353,7 +358,9 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60);
 
             var failSubmit = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span"));
-            if (failSubmit != null && !failSubmit.Text.Contains("submitted before")) Assert.True(failSubmit.Text.Trim().Contains("This Idling Complaint has been submitted before: ")
+            Assert.IsNotNull(failSubmit);
+            
+            if (!failSubmit.Text.Contains("submitted before")) Assert.True(failSubmit.Text.Trim().Contains("This Idling Complaint has been submitted before: ")
                 , "Flagged inconsistency on purpose.");
 
         }
