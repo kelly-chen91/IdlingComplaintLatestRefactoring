@@ -323,10 +323,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 
             /*OCCURRENCE*/
             Occurrence_FromControl.SendKeysWithDelay(
-                StringUtilities.SelectDate(6, 28, 2023, 16, 20, 0), SLEEP_TIMER); // Current Time (3 minutes ago)
+                StringUtilities.SelectDate(6, 28, 2023, 16, 20, 0), SLEEP_TIMER); // 6/28/2023, 4:20:00 PM
 
             Occurrence_ToControl.SendKeysWithDelay(
-                                StringUtilities.SelectDate(6, 28, 2023, 16, 23, 0), SLEEP_TIMER); // Current Time
+                                StringUtilities.SelectDate(6, 28, 2023, 16, 23, 0), SLEEP_TIMER); // 6/28/2023, 4:23:00 PM
 
             Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 
@@ -357,11 +357,18 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60);
 
-            var failSubmit = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span"));
-            Assert.IsNotNull(failSubmit);
-            
-            if (!failSubmit.Text.Contains("submitted before")) Assert.True(failSubmit.Text.Trim().Contains("This Idling Complaint has been submitted before: ")
-                , "Flagged inconsistency on purpose.");
+            var duplicateMessage = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span"));
+            Assert.IsNotNull(duplicateMessage);
+
+            //if (!duplicateMessage.Text.Contains("submitted before")) Assert.True(duplicateMessage.Text.Trim().Contains("This Idling Complaint has been submitted before: ")
+            //    , "Flagged inconsistency on purpose.");
+
+            string expected = "This idling complaint has been submitted before: ";
+            if (!duplicateMessage.Text.Trim().Contains(expected))
+            {
+                Assert.That(duplicateMessage.Text.Trim().Substring(0, expected.Length),
+                    Is.EqualTo(expected), "Flagged inconsistency on purpose.");
+            }
 
         }
 

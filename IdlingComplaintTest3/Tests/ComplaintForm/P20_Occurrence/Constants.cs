@@ -63,5 +63,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         public static readonly int OCCURRENCE_LICENSE_PLATE_MAXLENGTH = 50;
         public static readonly int OCCURRENCE_PAST_OFFENSE_MAXLENGTH = 100;
         public static readonly int OCCURRENCE_SCHOOL_NAME_MAXLENGTH = 100;
+
+
     }
 }
