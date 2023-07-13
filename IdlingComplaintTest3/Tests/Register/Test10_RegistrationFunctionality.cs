@@ -18,10 +18,6 @@ namespace IdlingComplaints.Tests.Register
         [SetUp]
         public void SetUp()
         {
-            //Driver.Quit();
-            //Driver = CreateStandardDriver("chrome");
-            //Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/profile");
-            
             base.RegisterModelSetUp(false);
             Driver.Manage().Window.Size = new Size(1920, 1080);
         }
@@ -39,11 +35,9 @@ namespace IdlingComplaints.Tests.Register
           FirstNameControl.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
           LastNameControl.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
 
-            // string generatedEmail = RegistrationUtilities.GenerateEmail(RegistrationUtilities.GenerateRandomString(), RegistrationUtilities.GenerateRandomString(), RegistrationUtilities.GenerateRandomString());
-            string generatedEmail = RegistrationUtilities.GenerateRandomString();
-            EmailControl.SendKeysWithDelay(generatedEmail, SLEEP_TIMER);
+          string generatedEmail = RegistrationUtilities.GenerateRandomString();
+          EmailControl.SendKeysWithDelay(generatedEmail, SLEEP_TIMER);
         
-          //string password = RegistrationUtilities.GenerateRandomString();
           string password = RegistrationUtilities.GenerateQualifiedPassword();
           PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
           ConfirmPasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
@@ -71,33 +65,40 @@ namespace IdlingComplaints.Tests.Register
          
           ClickSubmitButton();
             
-            var snackBarError =Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 30);
-            RegistrationUtilities.WriteIntoFile(Registered_EmailAddress, generatedEmail, password, securityAnswer);
+            //var snackBarError =Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 30);
+            //RegistrationUtilities.WriteIntoFile(Registered_EmailAddress, generatedEmail, password, securityAnswer);
+            //
+            //var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(20));
+            //wait.Until(d =>
+            //{
+            //    var snackBarError = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
+            //    Assert.IsNotNull(snackBarError);
+            //    if (snackBarError.Text.Trim().Contains("successful"))
+            //    {
+            //        using (StreamWriter sw = File.AppendText(Registered_EmailAddress))
+            //        {
+            //            try
+            //            {
+            //                sw.WriteLine(generatedEmail+" " +password+" "+securityAnswer);
+            //                Console.WriteLine("Accessed the file");
+            //            }
+            //            catch (Exception ex)
+            //            {
+            //                Console.WriteLine("Cannot Write into File");
+            //                Console.WriteLine(ex.ToString());
+            //            }
+            //        }
+            //    }
+            //    Assert.That(snackBarError.Text.Trim(), Is.EqualTo("Registration has been completed successfully"), "Flagged for inconsistency on purpose."); //Added period for consistency with other error messaging
+            //    return snackBarError;
+            //});
 
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(20));
-            wait.Until(d =>
-            {
-                var snackBarError = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
-                Assert.IsNotNull(snackBarError);
-                if (snackBarError.Text.Trim().Contains("successful"))
-                {
-                    using (StreamWriter sw = File.AppendText(Registered_EmailAddress))
-                    {
-                        try
-                        {
-                            sw.WriteLine(generatedEmail+" " +password+" "+securityAnswer);
-                            Console.WriteLine("Accessed the file");
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine("Cannot Write into File");
-                            Console.WriteLine(ex.ToString());
-                        }
-                    }
-                }
-                Assert.That(snackBarError.Text.Trim(), Is.EqualTo("Registration has been completed successfully"), "Flagged for inconsistency on purpose."); //Added period for consistency with other error messaging
-                return snackBarError;
-            });
+            var snackBarError = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 30).FindElement(By.TagName("span"));
+            RegistrationUtilities.WriteIntoFile(Registered_EmailAddress, generatedEmail, password, securityAnswer);
+            Assert.IsNotNull(snackBarError);
+            Assert.That(snackBarError.Text.Trim(), Is.EqualTo(Constants.SUCCESSFUL_REGISTRATION), "Flagged for inconsistency on purpose."); //Added period for consistency with other error messaging
+
+
         }
 
         [Test, Category("Scenario test#2: Registration with a exiting account")]

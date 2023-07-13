@@ -45,6 +45,8 @@ namespace IdlingComplaints.Tests.Register
         //  public static readonly string CONFIRM_PASSWORD_REQUIRED = "Password does not match. Please try again.";
         public static readonly string CONFIRM_PASSWORD_REQUIRED = "Password does not match.";
 
+        public static readonly string SUCCESSFUL_REGISTRATION = "Registration has been completed successfully."; //Added period for consistency with other error messaging
+
         public static readonly string SEC_QUESTION_1 = "What was the name of your first pet?";
         public static readonly string SEC_QUESTION_2 = "What is the name of the street that you lived on in 2010?";
         public static readonly string SEC_QUESTION_3 = "What is the first name of the person who was your first kiss?";
