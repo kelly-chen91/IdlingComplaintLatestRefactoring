@@ -1,5 +1,5 @@
 ﻿using IdlingComplaints.Models.ComplaintForm;
-using IdlingComplaints.Tests.ComplaintForm.Functionality;
+using IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumUtilities.Utils;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
+namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 {
     internal class Test10_ComplaintFormFunctionality : FillComplaintForm_Base
     {

@@ -1,5 +1,4 @@
 ﻿using IdlingComplaints.Models.ComplaintForm;
-using IdlingComplaints.Tests.ComplaintForm.Functionality;
 using OpenQA.Selenium;
 using OpenQA.Selenium.DevTools.V112.Input;
 using OpenQA.Selenium.Support.UI;
@@ -10,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IdlingComplaints.Tests.ComplaintForm
+namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 {
     internal partial class Test10_ComplaintFormFunctionality : FillComplaintForm_Base
     {

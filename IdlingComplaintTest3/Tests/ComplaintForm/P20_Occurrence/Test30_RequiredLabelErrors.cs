@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IdlingComplaints.Tests.ComplaintForm.Occurrence
+namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 {
     internal class Test30_RequiredLabelErrors : ComplaintFormModel
     {

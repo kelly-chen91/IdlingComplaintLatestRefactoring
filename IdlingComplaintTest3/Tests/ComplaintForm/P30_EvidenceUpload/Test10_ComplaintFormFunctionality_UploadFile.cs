@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IdlingComplaints.Models.ComplaintForm;
-using IdlingComplaints.Tests.ComplaintForm.Functionality;
+using IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality;
 using OpenQA.Selenium;
 using OpenQA.Selenium.DevTools.V112.Network;
 using SeleniumUtilities.Utils;
 
-namespace IdlingComplaints.Tests.ComplaintForm.EvidenceUpload
+namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 {
    [Parallelizable(ParallelScope.Children)]
    [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
