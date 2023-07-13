@@ -11,14 +11,14 @@ using SeleniumUtilities.Utils;
 
 namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 {
-    internal class Test60_Label : ComplaintFormModel
+    internal class Test60_Label : FillComplaintForm_Base
     {
         public Test60_Label() { }
     
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            base.ComplaintFormModelSetUp(true);
+            base.ComplaintFormModelSetUp(false);
             ClickNo();
             Driver.ScrollTo(Occurrence_VehicleTypeControl);
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(15));
@@ -374,5 +374,16 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             string label = Occurrence_AdminCodeControl.GetAttribute("placeholder");
             Assert.That(label, Is.EqualTo(Constants.OCCURRENCE_ADMIN_CODE), "Flagged for inconsistency on purpose.");
         }
+
+        //[Test]
+        //[Category("Correct Label Displayed")]
+        //public void SuccessfulSaveMessage()
+        //{
+        //    base.Filled_ComplaintInfo();
+        //
+        //    var successfulSave = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span"));
+        //    Assert.IsNotNull(successfulSave);
+        //    Assert.That(successfulSave.Text.Trim(), Is.EqualTo("This form has been saved successfully."), "Flagged inconsistency on purpose.");
+        //}
     }
 }

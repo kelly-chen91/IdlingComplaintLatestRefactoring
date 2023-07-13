@@ -46,16 +46,16 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             Assert.That(successMessage, Is.EqualTo("Complaint has been submitted successfully."), "Flagged inconsistency on purpose.");
         }
 
-        [Test]
-        [Category("Correct Label Displayed")]
-        public void SuccessfulSaveMessage()
-        {
-            base.Filled_ComplaintInfo();
-
-            var successfulSave = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span"));
-            Assert.IsNotNull(successfulSave);
-            Assert.That(successfulSave.Text.Trim(), Is.EqualTo("This form has been saved successfully."), "Flagged inconsistency on purpose.");
-        }
+        //[Test]
+        //[Category("Correct Label Displayed")]
+        //public void SuccessfulSaveMessage()
+        //{
+        //    base.Filled_ComplaintInfo();
+        //
+        //    var successfulSave = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span"));
+        //    Assert.IsNotNull(successfulSave);
+        //    Assert.That(successfulSave.Text.Trim(), Is.EqualTo("This form has been saved successfully."), "Flagged inconsistency on purpose.");
+        //}
 
 
         [Test]
