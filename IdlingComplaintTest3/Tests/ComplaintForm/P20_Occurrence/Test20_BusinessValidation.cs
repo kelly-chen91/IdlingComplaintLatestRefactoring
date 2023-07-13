@@ -656,7 +656,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         [Test]
         [Category("Required Field Provided Invalid Input - Error Label Displayed")]
 
-        public void FailedSubmission_InFrontOf_NoSchool_TimeInFutureAndShorterThan3Minutes_InvalidOccurrenceAddr()
+        public void FailedSubmission_InFrontOf_NoSchool_TimeIntFutureAndShorterThan3Minutes_InvalidOccurrenceAddr()
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
@@ -747,7 +747,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             //if (!error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS))
             //    Assert.That(error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
             //        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length) + "]");
-
 
         }
 

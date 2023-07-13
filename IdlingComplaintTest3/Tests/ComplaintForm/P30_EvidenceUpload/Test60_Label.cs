@@ -11,7 +11,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 {
     internal class Test60_Label : FillComplaintForm_Base
     {
-        private readonly new int SLEEPTIMER = 1000;
+        private readonly int SLEEPTIMER = 1000;
         private new static string FILE_IMAGE_PATH = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_truck.jpeg";
 
         [SetUp]

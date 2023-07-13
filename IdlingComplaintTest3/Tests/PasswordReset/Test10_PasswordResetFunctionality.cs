@@ -15,19 +15,16 @@ namespace IdlingComplaints.Tests.PasswordReset
 {
     internal class Test10_PasswordResetFunctionality : PasswordResetModel
     {
-        private readonly int SLEEP_TIMER = 2000;
-
-
-       private readonly string registeredd_EmailAddress = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Text\\Registered_EmailAddress.txt";
-
-        Random random = new Random();
-
         public int lines;
         public int userIndex;
+        private readonly int SLEEP_TIMER = 2000;
+        private readonly string registered_EmailAddress = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Text\\Registered_EmailAddress.txt";
+        Random random = new Random();
 
+       
         public Test10_PasswordResetFunctionality()
         {
-            this.lines = File.ReadAllLines(registeredd_EmailAddress).Length;
+            this.lines = File.ReadAllLines(registered_EmailAddress).Length;
             this.userIndex = random.Next(0, lines - 1);
         }
 
@@ -37,7 +34,7 @@ namespace IdlingComplaints.Tests.PasswordReset
         {
             base.PasswordResetModelSetUp(false);
 
-            string emailAddress = RegistrationUtilities.RetrieveRecordValue(registeredd_EmailAddress, userIndex, 0);
+            string emailAddress = RegistrationUtilities.RetrieveRecordValue(registered_EmailAddress, userIndex, 0);
             EmailControl.SendKeysWithDelay(emailAddress, SLEEP_TIMER);
             
             ClickResetButton();
@@ -58,8 +55,8 @@ namespace IdlingComplaints.Tests.PasswordReset
         [Test, Category("Scenario #1: The user data text file will be updatethe user password will be updated with the new password in the user txt file after user reset password successfully")]
         public void UpdatePasswordinFile()
         {
-            string securityAnswer = RegistrationUtilities.RetrieveRecordValue(registeredd_EmailAddress, userIndex, 2);
-            Console.WriteLine("The old password is " + RegistrationUtilities.RetrieveRecordValue(registeredd_EmailAddress, userIndex, 1));
+            string securityAnswer = RegistrationUtilities.RetrieveRecordValue(registered_EmailAddress, userIndex, 2);
+            Console.WriteLine("The old password is " + RegistrationUtilities.RetrieveRecordValue(registered_EmailAddress, userIndex, 1));
             SecurityAnswerControl.SendKeysWithDelay(securityAnswer, SLEEP_TIMER);
 
             string password = RegistrationUtilities.GenerateQualifiedPassword();
@@ -69,15 +66,10 @@ namespace IdlingComplaints.Tests.PasswordReset
             
             ClickSubmitButton();
 
-            var resetControl = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"),30).FindElement(By.TagName("span"));
-            //var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(30));
-            //wait.Until(d =>
-            //{
-            //    var resetControl = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
-            //    
-            //    return resetControl;
-            //});
-            RegistrationUtilities.ReplaceRecordValue(registeredd_EmailAddress, userIndex, 1, password);
+            var resetControl = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 60).FindElement(By.TagName("span"));
+           // Assert.IsNotNull(resetControl);
+            Assert.That(resetControl.Text.Trim(), Is.EqualTo("Password has been reset successfully"));
+            RegistrationUtilities.ReplaceRecordValue(registered_EmailAddress, userIndex, 1, password);
         }
 
 
@@ -95,17 +87,6 @@ namespace IdlingComplaints.Tests.PasswordReset
             var resetControl = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 30).FindElement(By.TagName("span"));
             Assert.IsNotNull(resetControl);
             Assert.That(resetControl.Text.Trim(), Is.EqualTo("Security answer is not correct."));
-
-            //var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(30));
-            //wait.Until(d =>
-            //{
-            //    var resetControl = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
-            //
-            //    Assert.IsNotNull(resetControl);
-            //    Assert.That(resetControl.Text.Trim(), Is.EqualTo("Security answer is not correct."));
-            //
-            //    return resetControl;
-            //});
         }
 
         [Test, Category("Scenario #1: cancel password update")]
@@ -130,25 +111,7 @@ namespace IdlingComplaints.Tests.PasswordReset
         }
 
 
-        //   [Test, Category("Valid Reset")]
-        //   public void SuccessfulPasswordReset()
-        //   {
-        //       SecurityAnswerControl.SendKeysWithDelay("pet", SLEEP_TIMER);
-        //       PasswordControl.SendKeysWithDelay("Testing1#", SLEEP_TIMER);
-        //       ConfirmPasswordControl.SendKeysWithDelay("Testing1#", SLEEP_TIMER);
-        //       ClickSubmitButton();
-        //
-        //       var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(30));
-        //       wait.Until(d =>
-        //       {
-        //           var resetControl = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
-        //
-        //           Assert.IsNotNull(resetControl);
-        //           Assert.That(resetControl.Text.Trim(), Is.EqualTo("Password has been reset successfully."));
-        //
-        //           return resetControl;
-        //       });
-        //   }
+        
 
     }
 }

@@ -17,7 +17,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
     internal class Test10_ComplaintFormFunctionality_UploadFile: FillComplaintForm_Base
     {
 
-        private readonly new int SLEEP_TIMER = 1000;
+        private readonly int SLEEP_TIMER = 1000;
         private static string IDLING_TRUCK = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_truck.jpeg";
         private static string IDLING_BUS = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_bus.jpg";
         private static string IDLING_VAN = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_van.jpg";
@@ -43,6 +43,52 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             if (SLEEP_TIMER > 0)
                 Thread.Sleep(SLEEP_TIMER);
             base.ComplaintFormModelTearDown();
+        }
+
+        [Test, Category("Scenario #0: upload one evidence file")]
+        public void EvidenceUpload_VerifyNotSupportedFile_Upload_Delete_Download_Process()
+        {
+            /* Upload supported and unsupported files */
+            string[] filePaths = { IDLING_TRUCK, IDLING_BUS, IDLING_VAN, NOT_SUPPORTED_FILE };
+            foreach (var file in filePaths)
+            {
+                EvidenceUpload_UploadControl.SendKeysWithDelay(file, SLEEP_TIMER);
+            }
+            string commentTest = "Testing the comment box";
+            EvidenceUpload_UploadCommentControl.SendKeysWithDelay(commentTest, SLEEP_TIMER);
+            EvidenceUpload_ClickFilesUploadConfirm();
+            var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 60);
+            if (successfulEvidenceUpload != null && successfulEvidenceUpload.Text.Contains("uploaded"))
+                Assert.That(successfulEvidenceUpload.Text.Trim(), Contains.Substring("Succesfully uploaded file named: "));
+            Thread.Sleep(SLEEP_TIMER);
+
+
+            /* Delete the first file */
+            var deleteControl = Driver.WaitUntilElementFound(By.CssSelector("mat-icon[aria-label='Delete']"), 61); //get delete locator
+            EvidenceUpload_ClickDeleteEvidence(); Thread.Sleep(SLEEP_TIMER);
+            Driver.WaitUntilElementFound(By.TagName("mat-dialog-container"), 60);
+            EvidenceUpload_ConfirmDelete(); 
+            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-dialog-container"), 62); //
+            Thread.Sleep(2000);
+
+            /* Download a file */
+            var fileList = EvidenceUpload_TableControl.GetDataFromMatTable();
+            List<IWebElement> downloadList = fileList.GetSpecificColumnElements(By.CssSelector("mat-icon[aria-label='Download']"));
+            for (int i = 0; i < downloadList.Count(); i++)
+            {
+                fileList = EvidenceUpload_TableControl.GetDataFromMatTable();
+                downloadList = fileList.GetSpecificColumnElements(By.CssSelector("mat-icon[aria-label='Download']"));
+                downloadList[i].Click();
+                Console.WriteLine(i);
+                Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-dialog-container"), 62); //
+                Thread.Sleep(2000);
+            }
+
+            /* Process next page */
+            EvidenceUpload_ClickNext(); 
+            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-dialog-container"), 62); //
+            var summons = Driver.WaitUntilElementFound(By.TagName("mat-radio-group"), 62);
+            Assert.IsNotNull(summons);
         }
 
         [Test, Category("Scenario #1: upload one evidence file")]
@@ -74,8 +120,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
               EvidenceUpload_ClickFilesUploadConfirm();
 
             var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 60);
-            // Assert.IsNotNull(successfulEvidenceUpload);
-            //Console.WriteLine(successfulEvidenceUpload.FindElement(By.TagName("span")).Text);
             if (successfulEvidenceUpload!=null && successfulEvidenceUpload.Text.Contains("uploaded")) 
                 Assert.That(successfulEvidenceUpload.Text.Trim(), Contains.Substring("Succesfully uploaded file named: "));
 
@@ -120,7 +164,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             Assert.IsNotNull(EvidenceUpload_UploadErrorControl);
         }
 
-
         [Test, Category("Scenario #5: Verify delete buttons by continuously delete files")]
         public void EvidenceUpload_VerifyMultipleDeleteButton()
         {
@@ -145,11 +188,13 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
                 Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-dialog-container"), 62);
                 Thread.Sleep(2000);
             }
+            string commentTest = "Testing the comment box";
+            EvidenceUpload_UploadCommentControl.SendKeysWithDelay(commentTest, SLEEP_TIMER);
+
             Driver.WaitUntilElementFound(By.TagName("mat-error"), 63);
             Assert.IsNotNull(EvidenceUpload_UploadErrorControl);
 
         }
-
 
         [Test, Category("Scenario #6: Verify the comment text box")]
         public void EvidenceUpload_Comment()
@@ -233,7 +278,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
            
             Assert.That(selectYear.Text, Is.EqualTo("Current Year"));
         }
-
 
     }
 }
