@@ -18,6 +18,8 @@ namespace IdlingComplaints.Tests.Login
 
         public static readonly string EMAIL = "Email";
         public static readonly string PASSWORD = "Password";
+        public static readonly string USER_NOT_FOUND = "User is not found."; //Added a period for consistency
+        public static readonly string INVALID_PASSWORD = "Email and password do not match."; 
 
         public static readonly int MAX_NAME_LENGTH = 50;
         public static readonly int MAX_PASSWORD_LENGTH = 50;
@@ -26,5 +28,7 @@ namespace IdlingComplaints.Tests.Login
         public static readonly string REQUIRED = "Required";
         public static readonly string PASSWORD_REQUIRED = "Password is invalid. See password policy above. ";
         public static readonly string CONFIRM_PASSWORD_REQUIRED = " Password does not match.";
+
+
     }
 }

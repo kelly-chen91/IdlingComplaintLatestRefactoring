@@ -12,12 +12,12 @@ using SeleniumUtilities.Utils;
 
 namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 {
-   [Parallelizable(ParallelScope.Children)]
-   [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
+   //[Parallelizable(ParallelScope.Children)]
+   //[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
     internal class Test10_ComplaintFormFunctionality_UploadFile: FillComplaintForm_Base
     {
 
-        private readonly new int SLEEPTIMER = 1000;
+        private readonly new int SLEEP_TIMER = 1000;
         private static string IDLING_TRUCK = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_truck.jpeg";
         private static string IDLING_BUS = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_bus.jpg";
         private static string IDLING_VAN = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_van.jpg";
@@ -40,8 +40,8 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         [TearDown]
         public void Teardown()
         {
-            if (SLEEPTIMER > 0)
-                Thread.Sleep(SLEEPTIMER);
+            if (SLEEP_TIMER > 0)
+                Thread.Sleep(SLEEP_TIMER);
             base.ComplaintFormModelTearDown();
         }
 
@@ -50,7 +50,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         {
             string fileName = Path.GetFileName(filePaths[0]);
 
-            EvidenceUpload_UploadControl.SendKeysWithDelay(filePaths[0], SLEEPTIMER);
+            EvidenceUpload_UploadControl.SendKeysWithDelay(filePaths[0], SLEEP_TIMER);
 
             EvidenceUpload_ClickFilesUploadConfirm();
 
@@ -69,7 +69,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
           
             foreach (var file in filePaths)
             {
-                EvidenceUpload_UploadControl.SendKeysWithDelay(file, SLEEPTIMER);
+                EvidenceUpload_UploadControl.SendKeysWithDelay(file, SLEEP_TIMER);
             }
               EvidenceUpload_ClickFilesUploadConfirm();
 
@@ -89,7 +89,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             int i = 0;
             foreach (var file in filePaths)
             {
-                EvidenceUpload_UploadControl.SendKeysWithDelay(file, SLEEPTIMER);
+                EvidenceUpload_UploadControl.SendKeysWithDelay(file, SLEEP_TIMER);
                 i++;
             }
             EvidenceUpload_ClickFilesUploadConfirm();
@@ -156,11 +156,11 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         {
             foreach (var file in filePaths)
             {
-                EvidenceUpload_UploadControl.SendKeysWithDelay(file, SLEEPTIMER);
+                EvidenceUpload_UploadControl.SendKeysWithDelay(file, SLEEP_TIMER);
             }
             
             string commentTest = "Testing the comment box";
-            EvidenceUpload_UploadCommentControl.SendKeysWithDelay(commentTest, SLEEPTIMER);
+            EvidenceUpload_UploadCommentControl.SendKeysWithDelay(commentTest, SLEEP_TIMER);
             EvidenceUpload_ClickFilesUploadConfirm();
 
             Driver.WaitUntilElementFound(By.XPath("//mat-card/mat-card-content/div/mat-table/mat-row[1]/mat-cell[3]"), 61);
@@ -174,10 +174,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         {
             foreach (var file in filePaths)
             {
-                EvidenceUpload_UploadControl.SendKeysWithDelay(file, SLEEPTIMER);
+                EvidenceUpload_UploadControl.SendKeysWithDelay(file, SLEEP_TIMER);
             }
             string commentTest = "Testing the comment box";
-            EvidenceUpload_UploadCommentControl.SendKeysWithDelay(commentTest, SLEEPTIMER);
+            EvidenceUpload_UploadCommentControl.SendKeysWithDelay(commentTest, SLEEP_TIMER);
             
             EvidenceUpload_UploadCancelControl.Click();
 

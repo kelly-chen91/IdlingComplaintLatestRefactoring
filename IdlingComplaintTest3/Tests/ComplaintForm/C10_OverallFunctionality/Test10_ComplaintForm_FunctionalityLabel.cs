@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 {
-    [Parallelizable(ParallelScope.Children)]
-    [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
+    //[Parallelizable(ParallelScope.Children)]
+    //[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
     internal class Test10_ComplaintForm_FunctionalityLabel : FillComplaintForm_Base
     {
 
@@ -44,60 +44,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             string successMessage = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"),60).FindElement(By.TagName("span")).Text;
 
             Assert.That(successMessage, Is.EqualTo("Complaint has been submitted successfully."), "Flagged inconsistency on purpose.");
-        }
-
-        //[Test]
-        //[Category("Correct Label Displayed")]
-        //public void SuccessfulSaveMessage()
-        //{
-        //    base.Filled_ComplaintInfo();
-        //
-        //    var successfulSave = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span"));
-        //    Assert.IsNotNull(successfulSave);
-        //    Assert.That(successfulSave.Text.Trim(), Is.EqualTo("This form has been saved successfully."), "Flagged inconsistency on purpose.");
-        //}
-
-
-        [Test]
-        [Category("Correct Label Displayed")]
-        public void SuccessfulUploadEvidenceMessage()
-        {
-            base.Filled_ComplaintInfo();
-
-            var successfulSave = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span"));
-            Assert.IsNotNull(successfulSave);
-            if (!successfulSave.Text.Contains("saved success")) Assert.That(successfulSave.Text.Trim(), Is.EqualTo("This form has been saved successfully."), "Flagged inconsistency on purpose.");
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 20); //message says form is saved
-
-            EvidenceUpload_UploadInput = FILE_IMAGE_PATH;
-            string fileName = Path.GetFileName(FILE_IMAGE_PATH);
-            EvidenceUpload_ClickFilesUploadConfirm();
-            //Thread.Sleep(SLEEP_TIMER);
-
-            var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span")); // message says evidence have successfully uploaded
-            Assert.IsNotNull(successfulEvidenceUpload);
-            Assert.That(successfulEvidenceUpload.Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
-            
-        }
-
-        [Test]
-        [Category("Correct Label Displayed")]
-        public void SuccessfulUploadDocumentMessage()
-        {
-            base.Filled_ComplaintInfo();
-            base.Filled_EvidenceUpload();
-
-            AppearOATH_ClickNo();
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 30);
-            AppearOATH_UploadFormInput = FILE_IMAGE_PATH;
-            string fileName = Path.GetFileName(FILE_IMAGE_PATH);
-            AppearOATH_ClickConfirmUpload();
-
-
-            var successfulDocumentUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span")); // message says evidence have successfully uploaded
-            Assert.IsNotNull(successfulDocumentUpload);
-            Assert.That(successfulDocumentUpload.Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
-
         }
 
         [Test]
@@ -144,25 +90,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
                 Assert.That(duplicateMessage.Trim().Substring(0, expected.Length),
                     Is.EqualTo(expected), "Flagged inconsistency on purpose.");
             }
-        }
-
-        [Test]
-        [Category("Correct Label Displayed")]
-        public void EvidenceUpload_FailedUploadFile_NotSupportedFileType()
-        {
-
-            // RegistrationUtilities.UploadFiles(EvidenceUpload_UploadControl, EvidenceUpload_UploadConfirmControl, filePaths);
-            Filled_ComplaintInfo();
-            string[] filePaths = { NOT_SUPPORTED_FILE, IDLING_TRUCK, IDLING_BUS };
-            EvidenceUpload_UploadControl.SendKeysWithDelay(filePaths[0], SLEEP_TIMER);
-
-
-            var failedEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span"));
-            Assert.IsNotNull(failedEvidenceUpload);
-
-            if (failedEvidenceUpload.Text.Contains("Please try a different file type."))
-                Assert.That(failedEvidenceUpload.Text.Trim(), Contains.Substring("Please try a different file type. Only the following are allowed: Images, Documents, PDFs, and Videos."));
-
         }
     }
 }

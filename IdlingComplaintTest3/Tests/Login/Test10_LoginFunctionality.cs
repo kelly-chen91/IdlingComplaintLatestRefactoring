@@ -33,8 +33,8 @@ internal class Test10_LoginFunctionality : LoginModel
     private readonly string registered_EmailAddress = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Text\\Registered_EmailAddress.txt";
 
     
-    [Test, Category("Scenario test#1: Login with valid email and password")]
-    public void RetriveFileDataVerification()
+    [Test, Category("Successful Login - Error Label Hidden")]
+    public void LoginValidEmailAndPassword()
     {
         string[] lines = File.ReadAllLines(registered_EmailAddress);
         int userRowIndex = random.Next(0, lines.Length - 1);
@@ -52,8 +52,8 @@ internal class Test10_LoginFunctionality : LoginModel
     }
 
 
-    [Test, Category("Scenario test#2: The registered user login with wrong password")]
-    public void LoginValidEmailAndPassword()
+    [Test, Category("Failed Login - Error Label Displayed")]
+    public void LoginValidEmailAndInvalidPassword()
     {
         //locate login field
         EmailControl.SendKeysWithDelay("ttseng@dep.nyc.gov", SLEEP_TIMER);
@@ -62,50 +62,34 @@ internal class Test10_LoginFunctionality : LoginModel
 
         Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
         var resultControl = Driver.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
-        Assert.That(resultControl.Text.Trim(), Is.EqualTo("Email and password do not match."));
+        Assert.That(resultControl.Text.Trim(), Is.EqualTo(Constants.INVALID_PASSWORD));
         Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
     }
 
 
 
 
-    [Test, Category("Scenario test#3: Login with unregistered email address")]
-    public void LoginInvalidPassword()
+    [Test, Category("Failed Login - Error Label Displayed")]
+    public void LoginInvalidEmailAndPassword()
     {
         EmailControl.SendKeysWithDelay(RegistrationUtilities.GenerateEmail("unregistered", "emailAddress", "dep.nyc.gov"), SLEEP_TIMER);
         PasswordControl.SendKeysWithDelay("Testing1", SLEEP_TIMER);
         ClickLoginButton();
-
-        var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10)); 
-        wait.Until(d =>
-        {
-            var resultControl = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
-      
-            Assert.IsNotNull(resultControl);
-            Assert.That(resultControl.Text.Trim(), Is.EqualTo("User is not found"));
-      
-            return resultControl;
-        }
-        );
+        var resultControl = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10).FindElement(By.TagName("span"));
+        Assert.IsNotNull(resultControl);
+        Assert.That(resultControl.Text.Trim(), Is.EqualTo(Constants.USER_NOT_FOUND), "Flagged for inconsistency on purpose."); 
     }
 
-    [Test, Category("Scenario test4: Login with unregistered email address, but with a qulified password")]
-    public void LoginEmailNotFound()
+    [Test, Category("Failed Login - Error Label Displayed")]
+    public void LoginInvalidEmailAndValidPassword()
     {
         //locate login field
         EmailControl.SendKeysWithDelay(RegistrationUtilities.GenerateEmail("unregistered", "emailAddress", "dep.nyc.gov"), SLEEP_TIMER);
         PasswordControl.SendKeysWithDelay(RegistrationUtilities.GenerateQualifiedPassword(), SLEEP_TIMER);
         ClickLoginButton();
         var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10)); //1 - too short
-        wait.Until(d =>
-        {
-            var resultControl = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
-
-            Assert.IsNotNull(resultControl);
-            Assert.That(resultControl.Text.Trim(), Is.EqualTo("User is not found")); //Added a period for consistency in error messaging
-
-            return resultControl;
-        }
-        );
+        var resultControl = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10).FindElement(By.TagName("span"));
+        Assert.IsNotNull(resultControl);
+        Assert.That(resultControl.Text.Trim(), Is.EqualTo(Constants.USER_NOT_FOUND), "Flagged for inconsistency on purpose.");
     }
 }

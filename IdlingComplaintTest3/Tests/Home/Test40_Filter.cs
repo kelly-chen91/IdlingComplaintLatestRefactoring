@@ -9,29 +9,29 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.Home
 {
-    [Parallelizable(ParallelScope.Children)]
-    [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
+    //[Parallelizable(ParallelScope.Children)]
+    //[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
     internal class Test40_Filter : HomeModel
     {
         private readonly int SLEEP_TIMER = 0;
 
         public Test40_Filter() { }
 
-        [SetUp]
+        [OneTimeSetUp]
         public void SetUp()
         {
             base.HomeModelSetUp("ttseng@dep.nyc.gov", "Testing1#", true);
         }
 
-        //[TearDown]
-        //public void TearDown()
-        //{
-        //    if (SLEEP_TIMER > 0)
-        //        Thread.Sleep(SLEEP_TIMER);
-        //}
-
         [TearDown]
         public void TearDown()
+        {
+            if (SLEEP_TIMER > 0)
+                Thread.Sleep(SLEEP_TIMER);
+        }
+
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
         {
             if (SLEEP_TIMER > 0)
                 Thread.Sleep(SLEEP_TIMER);

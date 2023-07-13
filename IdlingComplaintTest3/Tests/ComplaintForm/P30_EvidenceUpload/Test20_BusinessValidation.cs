@@ -41,7 +41,8 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             base.ComplaintFormModelTearDown();
         }
 
-        [Test, Category("Test PDF file type")]
+
+        [Test, Category("Required Field Provided Valid Input - Error Label Hidden")]
         public void Verify_PDF_FileType()
         {
 
@@ -61,7 +62,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
                 Assert.That(successfulEvidenceUpload.Text.Trim(), Contains.Substring("Succesfully uploaded file named: " + fileName));
 
         }
-        [Test, Category("Test MP4 file type")]
+        [Test, Category("Required Field Provided Valid Input - Error Label Hidden")]
         public void Verify_MP4_FileType()
         {
 
@@ -83,7 +84,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         }
 
 
-        [Test, Category("Not supported evidence file")]
+        [Test, Category("Required Field Provided Invalid Input - Error Label Displayed")]
         public void EvidenceUpload_FailedUploadFile_NotSupportedFileType()
         {
 
@@ -97,7 +98,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             Assert.IsNotNull(failedEvidenceUpload);
 
             if (failedEvidenceUpload.Text.Contains("Please try a different file type."))
-                Assert.That(failedEvidenceUpload.Text.Trim(), Contains.Substring("Please try a different file type. Only the following are allow: Images, Documents, PDFs, Videos"));
+                Assert.That(failedEvidenceUpload.Text.Trim(), Contains.Substring("Please try a different file type. Only the following are allowed: Images, Documents, PDFs, Videos."));
 
         }
 
