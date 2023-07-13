@@ -12,7 +12,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
     internal class FillComplaintForm_Base : ComplaintFormModel
     {
         
-        public readonly int SLEEP_TIMER = 0;
+        public readonly int SLEEP_TIMER = 2000;
         public readonly string FILE_IMAGE_PATH = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_truck.jpeg";
         public readonly string ERROR_BASE = "An error occurred while saving form: ";
         public readonly string ERROR_SHORTER_THAN_3_MINUTES = " Idling duration should be more than three minutes.";
