@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.ComplaintForm.P40_AppearOATH
 {
-    [Parallelizable(ParallelScope.Children)]
-    [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
+    //[Parallelizable(ParallelScope.Children)]
+    //[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
     internal class Test60_Label : FillComplaintForm_Base
     {
         [SetUp]
@@ -33,6 +33,25 @@ namespace IdlingComplaints.Tests.ComplaintForm.P40_AppearOATH
             base.Filled_EvidenceUpload();
         }
 
+        [Test]
+        [Category("Correct Label Displayed")]
+        public void SuccessfulUploadDocumentMessage()
+        {
+            base.Filled_ComplaintInfo();
+            base.Filled_EvidenceUpload();
+
+            AppearOATH_ClickNo();
+            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 30);
+            AppearOATH_UploadFormInput = FILE_IMAGE_PATH;
+            string fileName = Path.GetFileName(FILE_IMAGE_PATH);
+            AppearOATH_ClickConfirmUpload();
+
+
+            var successfulDocumentUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span")); // message says evidence have successfully uploaded
+            Assert.IsNotNull(successfulDocumentUpload);
+            Assert.That(successfulDocumentUpload.Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
+
+        }
 
         [Test]
         [Category("Correct Label Displayed")]

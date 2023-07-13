@@ -10,8 +10,8 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.Home
 {
-    [Parallelizable(ParallelScope.Children)]
-    [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
+    //[Parallelizable(ParallelScope.Children)]
+    //[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
     internal class Test60_Label : HomeModel
     { 
     
@@ -237,10 +237,10 @@ namespace IdlingComplaints.Tests.Home
 
         }
 
-        public void DisplayedPageRange()
-        {
-            /*Page Range is weird with this "1-2 of 2", it should be something like "1 of 2" as it is supposed to tell what page it is*/
-        }
+        //public void DisplayedPageRange()
+        //{
+        //    /*Page Range is weird with this "1-2 of 2", it should be something like "1 of 2" as it is supposed to tell what page it is*/
+        //}
 
     }
 }

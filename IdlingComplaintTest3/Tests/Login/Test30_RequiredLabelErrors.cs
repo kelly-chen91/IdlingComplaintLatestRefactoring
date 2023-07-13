@@ -32,6 +32,7 @@ namespace IdlingComplaints.Tests.Login
         [Category("Required Field Missing - Error Label Displayed")]
         public void MissingEmail()
         {
+            
             EmailControl.SendTextDeleteTabWithDelay("xxx", SLEEP_TIMER);
             string error = Driver.ExtractTextFromXPath("//mat-card-content/form/div[1]/mat-form-field/div/div[3]/div/mat-error/text()");
             Assert.That(error, Is.EqualTo("Email is required"));

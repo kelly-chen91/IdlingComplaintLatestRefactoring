@@ -18,10 +18,6 @@ namespace IdlingComplaints.Tests.Register
         [SetUp]
         public void SetUp()
         {
-            //Driver.Quit();
-            //Driver = CreateStandardDriver("chrome");
-            //Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/profile");
-            
             base.RegisterModelSetUp(false);
             Driver.Manage().Window.Size = new Size(1920, 1080);
         }
@@ -36,35 +32,33 @@ namespace IdlingComplaints.Tests.Register
         [Test, Category("Scenario test#1: New user with all random text input")]
         public void RandomtextRegistRtration()
         {
-          FirstNameControl.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
-          LastNameControl.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
+            FirstNameControl.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
+            LastNameControl.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
 
-            // string generatedEmail = RegistrationUtilities.GenerateEmail(RegistrationUtilities.GenerateRandomString(), RegistrationUtilities.GenerateRandomString(), RegistrationUtilities.GenerateRandomString());
             string generatedEmail = RegistrationUtilities.GenerateRandomString();
             EmailControl.SendKeysWithDelay(generatedEmail, SLEEP_TIMER);
-        
-          //string password = RegistrationUtilities.GenerateRandomString();
-          string password = RegistrationUtilities.GenerateQualifiedPassword();
-          PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
-          ConfirmPasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
-        
-          int securityRandomNumber = RegistrationUtilities.GenerateRandomNumberWithRange(1, 5);
-          SelectSecurityQuestion(securityRandomNumber);
-        
-          string securityAnswer = RegistrationUtilities.GenerateRandomString();
-          SecurityAnswerControl.SendKeysWithDelay(securityAnswer, SLEEP_TIMER);
-        
-          Address1Control.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
-          Address2Control.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
-          CityControl.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
-        
-          int stateRandomNumber = RegistrationUtilities.GenerateRandomNumberWithRange(1, 49);
-          Console.WriteLine("The state number is " + stateRandomNumber + " . And the State selected is " + StateControl);
-          SelectState(stateRandomNumber);
-        
-          ScrollToButton();
-          string zipCodeNumbers = RegistrationUtilities.GenerateRandomString();
-          ZipCodeControl.SendKeysWithDelay(zipCodeNumbers, SLEEP_TIMER);
+            
+            string password = RegistrationUtilities.GenerateQualifiedPassword();
+            PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
+            ConfirmPasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
+            
+            int securityRandomNumber = RegistrationUtilities.GenerateRandomNumberWithRange(1, 5);
+            SelectSecurityQuestion(securityRandomNumber);
+            
+            string securityAnswer = RegistrationUtilities.GenerateRandomString();
+            SecurityAnswerControl.SendKeysWithDelay(securityAnswer, SLEEP_TIMER);
+            
+            Address1Control.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
+            Address2Control.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
+            CityControl.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
+            
+            int stateRandomNumber = RegistrationUtilities.GenerateRandomNumberWithRange(1, 49);
+            Console.WriteLine("The state number is " + stateRandomNumber + " . And the State selected is " + StateControl);
+            SelectState(stateRandomNumber);
+            
+            ScrollToButton();
+            string zipCodeNumbers = RegistrationUtilities.GenerateRandomString();
+            ZipCodeControl.SendKeysWithDelay(zipCodeNumbers, SLEEP_TIMER);
         
           string TelephoneNumbers = RegistrationUtilities.GenerateRandomString();
           TelephoneControl.SendKeysWithDelay(TelephoneNumbers, SLEEP_TIMER);

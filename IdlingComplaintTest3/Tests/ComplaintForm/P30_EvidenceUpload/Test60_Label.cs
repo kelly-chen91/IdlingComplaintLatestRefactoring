@@ -35,7 +35,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             base.ComplaintFormModelTearDown();
         }
 
-        [Test, Category("Incorrect Label Displayed")]
+        [Test, Category("Correct Label Displayed")]
         public void EvidenceUpload_VerifyChooseFilesButton()
         {
             EvidenceUpload_UploadInput = FILE_IMAGE_PATH;
@@ -50,6 +50,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             if (successfulEvidenceUpload.Text.Contains("uploaded")) Assert.That(successfulEvidenceUpload.Text.Trim(),
             Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
         }
+
         [Test]
         [Category("Label Displayed - goes to correct link.")]
         public void VerifyWebLink()

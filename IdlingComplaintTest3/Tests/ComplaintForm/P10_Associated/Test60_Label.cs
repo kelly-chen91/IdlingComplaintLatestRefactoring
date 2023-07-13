@@ -45,39 +45,39 @@ namespace IdlingComplaints.Tests.ComplaintForm.P10_Associated
             Assert.That(text, Is.EqualTo(Constants.COMPLAINT_TITLE));
         }
 
-        [Test, Category("Correct Label Displayed")]
-        public void DisplayedCompanyName()
+        [Test, Category("Placeholder is present.")]
+        public void PlaceholderCompanyName()
         {
             var text = Associated_CompanyNameControl.GetAttribute("placeholder");
 
             Assert.That(text, Is.EqualTo(Constants.COMPANY_NAME));
         }
 
-        [Test, Category("Correct Label Displayed")]
-        public void DisplayedState()
+        [Test, Category("Placeholder is present.")]
+        public void PlaceholderState()
         {
             var text = Associated_StateControl.GetAttribute("placeholder");
 
             Assert.That(text, Is.EqualTo(Constants.STATE));
         }
-        [Test, Category("Correct Label Displayed")]
-        public void DisplayedHouseNumber()
+        [Test, Category("Placeholder is present.")]
+        public void PlaceholderHouseNumber()
         {
             var text = Associated_HouseNumberControl.GetAttribute("placeholder");
 
             Assert.That(text, Is.EqualTo(Constants.HOUSENUMBER));
         }
 
-        [Test, Category("Correct Label Displayed")]
-        public void DisplayedStreet()
+        [Test, Category("Placeholder is present.")]
+        public void PlaceholderStreet()
         {
             var text = Associated_StreetNameControl.GetAttribute("placeholder");
 
             Assert.That(text, Is.EqualTo(Constants.STREET_NAME));
         }
 
-        [Test, Category("Correct Label Displayed")]
-        public void DisplayedCity()
+        [Test, Category("Placeholder is present.")]
+        public void PlaceholderCity()
         {
 
             var text = Associated_CityControl.GetAttribute("placeholder");
@@ -85,8 +85,8 @@ namespace IdlingComplaints.Tests.ComplaintForm.P10_Associated
             Assert.That(text, Is.EqualTo(Constants.CITY));
         }
 
-        [Test, Category("Incorrect Label Displayed")]
-        public void DisplayedZipCode()
+        [Test, Category("Placeholder is present.")]
+        public void PlaceholderZipCode()
         {
             //  ScrollToZipCode();
             //ZipCodeControl.SendTextDeleteTabWithDelay("XX", SLEEP_TIMER);
@@ -105,8 +105,8 @@ namespace IdlingComplaints.Tests.ComplaintForm.P10_Associated
             Assert.That(title, Is.EqualTo(Constants.DESCRIBE_TITLE), "Flagged for inconsistency on purpose.");
         }
 
-        [Test, Category("Correct Label Displayed")]
-        public void DisplayedDescribeContent()
+        [Test, Category("Placeholder is present.")]
+        public void PlaceholderDescribeContent()
         {
             string describeContent = Describe_ContentControl.GetAttribute("placeholder");
             Assert.That(describeContent, Is.EqualTo(Constants.DESCRIBE_CONTENT_INPUT), "Flagged for inconsistency on purpose.");

@@ -29,6 +29,165 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         }
 
         [Test]
+        [Category("Required Field Provided Valid Input - Error Label Hidden")]
+        public void SuccessfulSaveMessage()
+        {
+            base.Filled_ComplaintInfo();
+
+            var successfulSave = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span"));
+            Assert.IsNotNull(successfulSave);
+            Assert.That(successfulSave.Text.Trim(), Is.EqualTo("This form has been saved successfully."), "Flagged inconsistency on purpose.");
+        }
+
+        [Test]
+        [Category("Required Field Provided Invalid Input - Error Label Displayed")]
+
+        public void FailedSubmission_InFrontOf_NoSchool_InvalidAssociatedAddress()
+        {
+            /*QUALIFYING CRITERIA*/
+            ClickNo();
+            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+
+            /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
+            ScrollToZipCode();
+
+            Fill_Associated(false, true, SLEEP_TIMER);
+
+            /*OCCURRENCE*/
+
+            Occurrence_FromControl.SendKeysWithDelay(
+                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-3).Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time (1 minutes ago)
+
+            Occurrence_ToControl.SendKeysWithDelay(
+                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+
+
+            Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
+
+            Occurrence_VehicleInformation();
+
+            Fill_InFrontOfSchool(false, SLEEP_TIMER);
+
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+
+            ClickWitnessCheckbox();
+            ClickSubmitNoCorrectionCheckbox();
+            ComplaintInfo_ClickNext();
+
+            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10);
+            Assert.IsNotNull(invalidTime);
+
+            string error = invalidTime.Text.Trim();
+            Console.WriteLine(error);
+
+            if (!error.Contains(ERROR_BASE))
+                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
+                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
+
+            if (!error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS))
+                Assert.That(error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
+                    "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length) + "]");
+        }
+
+        public void FailedSubmission_InFrontOf_NoSchool_InvalidOccurrenceAddress()
+        {
+            /*QUALIFYING CRITERIA*/
+            ClickNo();
+            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+
+            /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
+            ScrollToZipCode();
+
+            Fill_Associated(false, false, SLEEP_TIMER);
+
+            /*OCCURRENCE*/
+
+            Occurrence_FromControl.SendKeysWithDelay(
+                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-3).Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time (1 minutes ago)
+
+            Occurrence_ToControl.SendKeysWithDelay(
+                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+
+
+            Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
+
+            Occurrence_VehicleInformation();
+
+            Fill_InFrontOfSchool(false, SLEEP_TIMER);
+
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+
+            ClickWitnessCheckbox();
+            ClickSubmitNoCorrectionCheckbox();
+            ComplaintInfo_ClickNext();
+
+            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10);
+            Assert.IsNotNull(invalidTime);
+
+            string error = invalidTime.Text.Trim();
+            Console.WriteLine(error);
+
+            if (!error.Contains(ERROR_BASE))
+                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
+                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
+
+            if (!error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS))
+                Assert.That(error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
+                    "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length) + "]");
+        }
+
+        public void FailedSubmission_InFrontOf_NoSchool_InvalidOccurrenceAndAssociatedAddr()
+        {
+            /*QUALIFYING CRITERIA*/
+            ClickNo();
+            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+
+            /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
+            ScrollToZipCode();
+
+            Fill_Associated(false, true, SLEEP_TIMER);
+
+            /*OCCURRENCE*/
+
+            Occurrence_FromControl.SendKeysWithDelay(
+                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-3).Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time (1 minutes ago)
+
+            Occurrence_ToControl.SendKeysWithDelay(
+                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+
+
+            Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
+
+            Occurrence_VehicleInformation();
+
+            Fill_InFrontOfSchool(false, SLEEP_TIMER);
+
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+
+            ClickWitnessCheckbox();
+            ClickSubmitNoCorrectionCheckbox();
+            ComplaintInfo_ClickNext();
+
+            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10);
+            Assert.IsNotNull(invalidTime);
+
+            string error = invalidTime.Text.Trim();
+            Console.WriteLine(error);
+
+            if (!error.Contains(ERROR_BASE))
+                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
+                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
+
+            if (!error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS))
+                Assert.That(error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
+                    "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length) + "]");
+
+            if (!error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS))
+                Assert.That(error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
+                    "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length) + "]");
+        }
+
+        [Test]
         [Category("Required Field Provided Invalid Input - Error Label Displayed")]
 
         public void FailedSubmission_InFrontOf_NoSchool_TimeShorterThan3Minutes()
@@ -53,11 +212,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 
-            Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
-            Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_VehicleInformation();
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
@@ -107,11 +262,8 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
 
-            Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
-            Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_VehicleInformation();
+
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
@@ -166,11 +318,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
 
-            Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
-            Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_VehicleInformation();
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
@@ -227,11 +375,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
 
-            Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
-            Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_VehicleInformation();
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
@@ -291,11 +435,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 
-            Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
-            Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_VehicleInformation();
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
@@ -351,11 +491,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
 
-            Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
-            Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_VehicleInformation();
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
@@ -418,11 +554,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 
-            Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
-            Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_VehicleInformation();
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
@@ -482,11 +614,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
 
-            Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
-            Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_VehicleInformation();
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
@@ -551,11 +679,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 
-            Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
-            Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_VehicleInformation();
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
@@ -607,11 +731,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
 
-            Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
-            Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_VehicleInformation();
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
@@ -668,11 +788,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 
-            Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
-            Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_VehicleInformation();
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
@@ -729,11 +845,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
 
-            Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
-            Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_VehicleInformation();
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
@@ -792,11 +904,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 
-            Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
-            Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_VehicleInformation();
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
@@ -851,11 +959,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
 
-            Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
-            Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_VehicleInformation();
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
@@ -915,11 +1019,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 
-            Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
-            Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_VehicleInformation();
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
@@ -978,11 +1078,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
 
-            Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
-            Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_VehicleInformation();
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
@@ -1044,11 +1140,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 
-            Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
-            Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_VehicleInformation();
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
@@ -1108,11 +1200,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
 
-            Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
-            Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_VehicleInformation();
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
@@ -1174,11 +1262,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 
-            Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
-            Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_VehicleInformation();
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
@@ -1241,11 +1325,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
 
-            Occurrence_SelectVehicleType(2);
-            Occurrence_LicensePlateControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(7), SLEEP_TIMER);
-            Occurrence_SelectLicenseState(1);
-            Occurrence_PastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-            Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            Occurrence_VehicleInformation();
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
