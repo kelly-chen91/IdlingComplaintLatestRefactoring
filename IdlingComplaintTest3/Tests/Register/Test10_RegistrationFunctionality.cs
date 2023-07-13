@@ -30,7 +30,7 @@ namespace IdlingComplaints.Tests.Register
         }
 
         [Test, Category("Scenario test#1: New user with all random text input")]
-        public void RandomtextRegistration()
+        public void RandomtextRegistRtration()
         {
             FirstNameControl.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
             LastNameControl.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
@@ -60,17 +60,40 @@ namespace IdlingComplaints.Tests.Register
             string zipCodeNumbers = RegistrationUtilities.GenerateRandomString();
             ZipCodeControl.SendKeysWithDelay(zipCodeNumbers, SLEEP_TIMER);
         
-            string TelephoneNumbers = RegistrationUtilities.GenerateRandomString();
-            TelephoneControl.SendKeysWithDelay(TelephoneNumbers, SLEEP_TIMER);
-          
-            ClickSubmitButton();
+          string TelephoneNumbers = RegistrationUtilities.GenerateRandomString();
+          TelephoneControl.SendKeysWithDelay(TelephoneNumbers, SLEEP_TIMER);
+         
+          ClickSubmitButton();
+            
+            var snackBarError =Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 30);
 
-            var snackBarError = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 30).FindElement(By.TagName("span"));
-            RegistrationUtilities.WriteIntoFile(Registered_EmailAddress, generatedEmail, password, securityAnswer);
-            Assert.IsNotNull(snackBarError);
-            Assert.That(snackBarError.Text.Trim(), Is.EqualTo(Constants.SUCCESSFUL_REGISTRATION), "Flagged for inconsistency on purpose."); //Added period for consistency with other error messaging
+           RegistrationUtilities.WriteIntoFile(Registered_EmailAddress, generatedEmail, password, securityAnswer);
+           Assert.That(snackBarError.Text.Trim(), Is.EqualTo("Registration has been completed successfully"), "Flagged for inconsistency on purpose."); //Added period for consistency with other error messaging
 
-
+            // var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(20));
+            // wait.Until(d =>
+            // {
+            //     var snackBarError = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
+            //     Assert.IsNotNull(snackBarError);
+            //     if (snackBarError.Text.Trim().Contains("successful"))
+            //     {
+            //         using (StreamWriter sw = File.AppendText(Registered_EmailAddress))
+            //         {
+            //             try
+            //             {
+            //                 sw.WriteLine(generatedEmail+" " +password+" "+securityAnswer);
+            //                 Console.WriteLine("Accessed the file");
+            //             }
+            //             catch (Exception ex)
+            //             {
+            //                 Console.WriteLine("Cannot Write into File");
+            //                 Console.WriteLine(ex.ToString());
+            //             }
+            //         }
+            //     }
+            //     Assert.That(snackBarError.Text.Trim(), Is.EqualTo("Registration has been completed successfully"), "Flagged for inconsistency on purpose."); //Added period for consistency with other error messaging
+            //     return snackBarError;
+            // });
         }
 
         [Test, Category("Scenario test#2: Registration with a exiting account")]

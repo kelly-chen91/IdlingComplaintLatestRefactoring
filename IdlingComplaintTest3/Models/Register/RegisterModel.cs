@@ -18,8 +18,8 @@ namespace IdlingComplaints.Models.Register
 
         public void RegisterModelSetUp(bool isHeadless)
         {
-            if (isHeadless) Driver = CreateHeadlessDriver("chrome");
-            else Driver = CreateStandardDriver("chrome");
+            if (isHeadless) Driver = CreateHeadlessDriver("firefox");
+            else Driver = CreateStandardDriver("firefox");
             Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/profile");
             Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/profile");
             Driver.Manage().Window.Maximize();
