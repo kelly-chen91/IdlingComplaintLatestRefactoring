@@ -67,8 +67,6 @@ internal class Test10_LoginFunctionality : LoginModel
     }
 
 
-
-
     [Test, Category("Failed Login - Error Label Displayed")]
     public void LoginInvalidEmailAndPassword()
     {
