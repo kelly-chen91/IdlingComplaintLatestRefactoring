@@ -10,7 +10,7 @@ namespace IdlingComplaints.Tests.PasswordReset
     {
         public static readonly string RESET_PASSWORD_TITLE = "Reset Password";
         public static readonly string EMAIL = "Email";
-        public static readonly string EMAIL_REQUIRE = "Email is required";
+        public static readonly string EMAIL_REQUIRE = "Email is required.";
 
 
         public static readonly string RESET_PASSWORD = "Reset Password";
@@ -27,7 +27,7 @@ namespace IdlingComplaints.Tests.PasswordReset
         public static readonly string PASSWORD_REQUIRED = "Password is invalid. See password policy above.";
         public static readonly string CONFIRM_PASSWORD_REQUIRED = "Password does not match.";
 
-        public static readonly string USER_NOT_FOUND = "User is not found";
+        public static readonly string USER_NOT_FOUND = "User is not found.";
 
     }
 }

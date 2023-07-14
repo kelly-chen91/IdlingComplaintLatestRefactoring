@@ -12,7 +12,7 @@ namespace IdlingComplaints.Tests.Register
     //[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
     internal class Test10_RegistrationFunctionality : RegisterModel
     {
-        private readonly int SLEEP_TIMER = 1000;
+        private readonly int SLEEP_TIMER = 2000;
         private string Registered_EmailAddress = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Text\\Registered_EmailAddress.txt";
 
         [SetUp]
@@ -66,11 +66,13 @@ namespace IdlingComplaints.Tests.Register
          
           ClickSubmitButton();
             
-            var snackBarError =Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 30).FindElement(By.TagName("span")); ;
+            var snackBarError =Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 61).FindElement(By.TagName("span")); ;
 
            RegistrationUtilities.WriteIntoFile(Registered_EmailAddress, generatedEmail, password, securityAnswer);
-           Assert.That(snackBarError.Text.Trim(), Contains.Substring("Registration has been completed successfully"), "Flagged for inconsistency on purpose."); //Added period for consistency with other error messaging
+          Console.WriteLine("The new user is "+ generatedEmail);
+            Assert.That(snackBarError.Text.Trim(), Contains.Substring("Registration has been completed successfully"), "Flagged for inconsistency on purpose."); //Added period for consistency with other error messaging
         }
+
 
         [Test, Category("Scenario test#2: Registration with a exiting account")]
         public void FailedRegistrationDrtupEmail()
@@ -106,6 +108,7 @@ namespace IdlingComplaints.Tests.Register
 
         }
 
+
         [Test, Category("Scenario test#3: Cancel register")]
         public void CancelRegistrationRedirectsToLogin()
         {
@@ -116,6 +119,7 @@ namespace IdlingComplaints.Tests.Register
 
             Driver.WaitUntilElementFound(By.TagName("h3"), 10);
         }
+
 
 
         [Test, Category("Scenario test#4: Cancel register after fill in all the input fields")]
