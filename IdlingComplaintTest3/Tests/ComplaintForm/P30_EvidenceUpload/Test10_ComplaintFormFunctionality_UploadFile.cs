@@ -17,14 +17,14 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
     internal class Test10_ComplaintFormFunctionality_UploadFile: FillComplaintForm_Base
     {
 
-        private readonly int SLEEP_TIMER = 1000;
+        private readonly new int SLEEP_TIMER = 2000;
         private static string IDLING_TRUCK = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_truck.jpeg";
         private static string IDLING_BUS = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_bus.jpg";
         private static string IDLING_VAN = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_van.jpg";
         private static string NOT_SUPPORTED_FILE = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\not_supported_idling_WEBPfile.webp";
         private static string PDF_FILE = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\WebDoc.pdf";
         private static string MP4_FILE = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\MP4_How_To_Get_Rich_Reporting_On_Idling_Vehicles_In_NYC.mp4";
-        string[] filePaths = { IDLING_TRUCK, IDLING_BUS, IDLING_VAN };
+        string[] filePaths = { PDF_FILE, IDLING_BUS, MP4_FILE, NOT_SUPPORTED_FILE };
 
         [SetUp]
         public void Setup()
@@ -49,7 +49,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         public void EvidenceUpload_VerifyNotSupportedFile_Upload_Delete_Download_Process()
         {
             /* Upload supported and unsupported files */
-            string[] filePaths = { IDLING_TRUCK, IDLING_BUS, IDLING_VAN, NOT_SUPPORTED_FILE };
+           
             foreach (var file in filePaths)
             {
                 EvidenceUpload_UploadControl.SendKeysWithDelay(file, SLEEP_TIMER);
@@ -69,7 +69,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             Driver.WaitUntilElementFound(By.TagName("mat-dialog-container"), 60);
             EvidenceUpload_ConfirmDelete(); 
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-dialog-container"), 62); //
-            Thread.Sleep(2000);
+            Thread.Sleep(SLEEP_TIMER);
 
             /* Download a file */
             var fileList = EvidenceUpload_TableControl.GetDataFromMatTable();
@@ -81,7 +81,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
                 downloadList[i].Click();
                 Console.WriteLine(i);
                 Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-dialog-container"), 62); //
-                Thread.Sleep(2000);
+                Thread.Sleep(SLEEP_TIMER);
             }
 
             /* Process next page */
@@ -90,6 +90,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             var summons = Driver.WaitUntilElementFound(By.TagName("mat-radio-group"), 62);
             Assert.IsNotNull(summons);
         }
+
 
         [Test, Category("Scenario #1: upload one evidence file")]
         public void EvidenceUpload_UploadOneFile()
@@ -109,6 +110,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 
         }
 
+
         [Test, Category("Scenario #2: Upload multiple evidence files at once")]
         public void EvidenceUpload_MultipleFileUpload()
         {
@@ -124,6 +126,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
                 Assert.That(successfulEvidenceUpload.Text.Trim(), Contains.Substring("Succesfully uploaded file named: "));
 
         }
+
 
         [Test, Category("Scenario #4: Table display data after files uploaded and Upload Amount Equals Table Rows")]
         public void EvidenceUpload_TableApptearanceCheck()
@@ -149,6 +152,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 
         }
 
+
         [Test, Category("Scenario #4: Verify a delete button")]
         public void EvidenceUpload_VerifyOneDeleteButton()
         {
@@ -163,6 +167,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             Driver.WaitUntilElementFound(By.TagName("mat-error"), 61);
             Assert.IsNotNull(EvidenceUpload_UploadErrorControl);
         }
+
 
         [Test, Category("Scenario #5: Verify delete buttons by continuously delete files")]
         public void EvidenceUpload_VerifyMultipleDeleteButton()
@@ -196,6 +201,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 
         }
 
+
         [Test, Category("Scenario #6: Verify the comment text box")]
         public void EvidenceUpload_Comment()
         {
@@ -214,6 +220,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             Assert.That(commentTest, Is.EqualTo(commentUploadedFiles));
         }
 
+
         [Test, Category("Scenario #7: Verify the Cancel file upload button")]
         public void EvidenceUpload_CancelFileUploadButton()
         {
@@ -229,6 +236,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             Driver.WaitUntilElementFound(By.TagName("mat-header-cell"), 61);
             Assert.IsNotNull(EvidenceUpload_UploadErrorControl);
         }
+
 
         [Test, Category("Scenario #8: Verify the download button")]
         public void EvidenceUpload_DownloadFileButton()
@@ -249,6 +257,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             }
         }
 
+
         [Test, Category("Scenario #9: Verify the Previous button")]
         public void EvidenceUpload_PreviousButton()
         {
@@ -257,6 +266,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             Assert.That(title.Text, Is.EqualTo("help"));
 
         }
+
 
         [Test, Category("Scenario #10: Verify the Next button")]
         public void Evidence_NextButton()
@@ -269,6 +279,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             Assert.IsNotNull(summons);
        
         }
+
 
         [Test, Category("Scenario #11: Verify the Next button")]
         public void EvidenceUpload_CancelEvidenceFileUploadButton()

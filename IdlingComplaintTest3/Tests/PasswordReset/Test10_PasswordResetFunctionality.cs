@@ -52,7 +52,7 @@ namespace IdlingComplaints.Tests.PasswordReset
             base.PasswordResetModelTearDown();
         }
 
-        [Test, Category("Scenario #1: The user data text file will be updatethe user password will be updated with the new password in the user txt file after user reset password successfully")]
+        [Test, Category("Scenario #1: successful password reset")]
         public void UpdatePasswordinFile()
         {
             string securityAnswer = RegistrationUtilities.RetrieveRecordValue(registered_EmailAddress, userIndex, 2);
@@ -67,9 +67,10 @@ namespace IdlingComplaints.Tests.PasswordReset
             ClickSubmitButton();
 
             var resetControl = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 60).FindElement(By.TagName("span"));
-           // Assert.IsNotNull(resetControl);
-            Assert.That(resetControl.Text.Trim(), Is.EqualTo("Password has been reset successfully"));
+            Assert.IsNotNull(resetControl);
             RegistrationUtilities.ReplaceRecordValue(registered_EmailAddress, userIndex, 1, password);
+
+            Assert.That(resetControl.Text.Trim(), Is.EqualTo("Password has been reset successfully."));
         }
 
 
@@ -89,11 +90,11 @@ namespace IdlingComplaints.Tests.PasswordReset
             Assert.That(resetControl.Text.Trim(), Is.EqualTo("Security answer is not correct."));
         }
 
-        [Test, Category("Scenario #1: cancel password update")]
+        [Test, Category("Scenario #3: cancel password update")]
         public void CancelPasswordReset()
         {
             ClickCancelButton();
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
+           // var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
             //wait.Until(d =>
             //{
             //    var TitleControl = d.FindElement(By.TagName("h3"));
