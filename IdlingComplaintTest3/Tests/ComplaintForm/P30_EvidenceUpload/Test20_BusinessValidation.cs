@@ -42,7 +42,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         }
 
 
-        [Test, Category("Required Field Provided Valid Input - Error Label Hidden")]
+        [Test, Category("Testing PDF file type")]
         public void Verify_PDF_FileType()
         {
 
@@ -54,15 +54,14 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 
             EvidenceUpload_ClickFilesUploadConfirm();
 
-            var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
-            Assert.IsNotNull(successfulEvidenceUpload);
+            var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span"));
 
             Console.WriteLine(successfulEvidenceUpload.Text);
             if (successfulEvidenceUpload.Text.Contains("uploaded"))
-                Assert.That(successfulEvidenceUpload.Text.Trim(), Contains.Substring("Succesfully uploaded file named: " + fileName));
+                Assert.That(successfulEvidenceUpload.Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName));
 
         }
-        [Test, Category("Required Field Provided Valid Input - Error Label Hidden")]
+        [Test, Category("Testing video file type")]
         public void Verify_MP4_FileType()
         {
 
@@ -74,31 +73,27 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 
             EvidenceUpload_ClickFilesUploadConfirm();
 
-            var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
+            var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span"));
             Assert.IsNotNull(successfulEvidenceUpload);
 
             Console.WriteLine(successfulEvidenceUpload.Text);
             if (successfulEvidenceUpload.Text.Contains("uploaded"))
-                Assert.That(successfulEvidenceUpload.Text.Trim(), Contains.Substring("Succesfully uploaded file named: " + fileName));
+                Assert.That(successfulEvidenceUpload.Text.Trim(), Is.EqualTo("Succesfully uploaded file named: " + fileName));
 
         }
 
 
-        [Test, Category("Required Field Provided Invalid Input - Error Label Displayed")]
-        public void EvidenceUpload_FailedUploadFile_NotSupportedFileType()
+        [Test, Category("Testing the non suppported file type")]
+        public void EvidenceUpload_NotSupportedFileType()
         {
-
-            // RegistrationUtilities.UploadFiles(EvidenceUpload_UploadControl, EvidenceUpload_UploadConfirmControl, filePaths);
-
             string[] filePaths = { NOT_SUPPORTED_FILE, IDLING_TRUCK, IDLING_BUS };
             EvidenceUpload_UploadControl.SendKeysWithDelay(filePaths[0], SLEEPTIMER);
 
-
-            var failedEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
+            var failedEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span"));
             Assert.IsNotNull(failedEvidenceUpload);
 
             if (failedEvidenceUpload.Text.Contains("Please try a different file type."))
-                Assert.That(failedEvidenceUpload.Text.Trim(), Contains.Substring("Please try a different file type. Only the following are allowed: Images, Documents, PDFs, Videos."));
+                Assert.That(failedEvidenceUpload.Text.Trim(), Is.EqualTo("Please try a different file type. Only the following are allowed: Images, Documents, PDFs, Videos."));
 
         }
 
