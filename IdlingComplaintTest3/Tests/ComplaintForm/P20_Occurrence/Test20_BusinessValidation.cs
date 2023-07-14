@@ -18,14 +18,26 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         public void SetUp()
         {
             ComplaintFormModelSetUp(false);
-
+            CreateMessageDetailDictionary();
         }
 
         [TearDown]
         public void TearDown()
         {
             if (SLEEP_TIMER > 0) { Thread.Sleep(SLEEP_TIMER); }
-            //ComplaintFormModelTearDown();
+            ComplaintFormModelTearDown();
+        }
+
+        private Dictionary<string,string> messageDetailDictionary;
+        public void CreateMessageDetailDictionary()
+        {
+            messageDetailDictionary = new Dictionary<string, string>();
+            //messageDetailDictionary.Add("while saving form:", Constants.ERROR_BASE);
+            messageDetailDictionary.Add(Constants.ERROR_3_MINUTES_CONTAINS, Constants.ERROR_3_MINUTES);
+            messageDetailDictionary.Add(Constants.ERROR_TO_IN_FUTURE_THAN_FROM_CONTAINS, Constants.ERROR_TO_IN_FUTURE_THAN_FROM);
+            messageDetailDictionary.Add(Constants.ERROR_TO_AND_FROM_IN_FUTURE_CONTAINS, Constants.ERROR_TO_AND_FROM_IN_FUTURE);
+            messageDetailDictionary.Add(Constants.ERROR_INVALID_ASSOCIATED_ADDRESS_CONTAINS, Constants.ERROR_INVALID_ASSOCIATED_ADDRESS);
+            messageDetailDictionary.Add(Constants.ERROR_INVALID_OCCURRENCE_ADDRESS_CONTAINS, Constants.ERROR_INVALID_OCCURRENCE_ADDRESS);
         }
 
         [Test]
@@ -79,28 +91,8 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
-
-            string errorDetail = error.Substring(ERROR_BASE.Length);
-            string[] errorDetailList = errorDetail.Split(". ", StringSplitOptions.None);
-            for(int i = 0; i < errorDetailList.Length; i++)
-            {
-                Console.WriteLine(errorDetailList[i]);
-                if (errorDetailList[i].Contains("associated"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS + "."),
-                        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
-                        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + errorDetailList[i] + "]");
-                }
-            }
-            if (!error.Contains(ERROR_BASE))
-                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
-                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
-            
-            //if (!error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS))
-            //    Assert.That(error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
-            //        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length) + "]");
+            string[] containErrorList = { Constants.ERROR_INVALID_ASSOCIATED_ADDRESS_CONTAINS };
+            error.ValidateErrorDetail(Constants.ERROR_BASE, containErrorList, messageDetailDictionary);
         }
 
         [Test]
@@ -142,29 +134,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
+            string[] containErrorList = {Constants.ERROR_INVALID_OCCURRENCE_ADDRESS_CONTAINS};
 
-            string errorDetail = error.Substring(ERROR_BASE.Length);
-            string[] errorDetailList = errorDetail.Split(". ", StringSplitOptions.None);
-            for(int i = 0; i < errorDetailList.Length; i++)
-            {
-                Console.WriteLine(errorDetailList[i]);
-                if (errorDetailList[i].Contains("occurrence address"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS + "."),
-                        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
-                        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + errorDetailList[i] + "]");
-                }
-            }
-            
-            if (!error.Contains(ERROR_BASE))
-                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
-                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
-
-            //if (!error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS))
-            //    Assert.That(error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
-            //        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length) + "]");
+            error.ValidateErrorDetail(Constants.ERROR_BASE, containErrorList, messageDetailDictionary);
+          
         }
 
         [Test]
@@ -207,41 +180,11 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
-            string errorDetail = error.Substring(ERROR_BASE.Length);
-            string[] errorDetailList = errorDetail.Split(". ", StringSplitOptions.None);
-            for(int i = 0; i < errorDetailList.Length; i++)
-            {
-                Console.WriteLine(errorDetailList[i]);
-                if (errorDetailList[i].Contains("occurrence address"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS + "."),
-                        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
-                        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + errorDetailList[i] + "]");
-                }
+            string[] containErrorList = { Constants.ERROR_INVALID_ASSOCIATED_ADDRESS_CONTAINS,
+                                            Constants.ERROR_INVALID_OCCURRENCE_ADDRESS_CONTAINS};
 
-                else if (errorDetailList[i].Contains("associated"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS + "."),
-                        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
-                        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + errorDetailList[i] + "]");
-                }
-            }
+            error.ValidateErrorDetail(Constants.ERROR_BASE, containErrorList, messageDetailDictionary);
 
-            if (!error.Contains(ERROR_BASE))
-                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
-                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
-
-            //if (!error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS))
-            //    Assert.That(error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
-            //        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length) + "]");
-            //
-            //if (!error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS))
-            //    Assert.That(error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
-            //        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length) + "]");
         }
 
         [Test]
@@ -285,31 +228,9 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
-            string errorDetail = error.Substring(ERROR_BASE.Length);
-            string[] errorDetailList = errorDetail.Split(". ", StringSplitOptions.None);
-            for(int i = 0; i < errorDetailList.Length; i++)
-            {
-                Console.WriteLine(errorDetailList[i]);
-                if (errorDetailList[i].Contains("three minutes"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES + "."),
-                        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
-                        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + errorDetailList[i] + "]");
-                }
-                else
-                    Assert.True(errorDetailList[i].Contains("three minutes"), "The text does not contain the expected errors.");
+            string[] containErrorList = {Constants.ERROR_3_MINUTES_CONTAINS};
 
-            }
-
-            if (!error.Contains(ERROR_BASE))
-                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
-                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
-
-            //if (!error.Contains(ERROR_SHORTER_THAN_3_MINUTES))
-            //    Assert.That(error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length), Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
-            //        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length) + "]");
+            error.ValidateErrorDetail(Constants.ERROR_BASE, containErrorList, messageDetailDictionary);
         }
 
 
@@ -354,42 +275,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
-            string errorDetail = error.Substring(ERROR_BASE.Length);
-            string[] errorDetailList = errorDetail.Split(". ", StringSplitOptions.None);
-            for(int i = 0; i < errorDetailList.Length; i++)
-            {
-                Console.WriteLine(errorDetailList[i]);
-                if (errorDetailList[i].Contains("three minutes"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES + "."),
-                        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
-                        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + errorDetailList[i] + "]");
-                }
-                else if (errorDetailList[i].Contains("associated"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS + "."),
-                        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
-                        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + errorDetailList[i] + "]");
-                }
-                else
-                    Assert.True(errorDetailList[i].Contains("three minutes") || errorDetailList[i].Contains("associated"), "The text does not contain the expected errors.");
+            string[] containErrorList = { Constants.ERROR_INVALID_OCCURRENCE_ADDRESS_CONTAINS,
+                                          Constants.ERROR_3_MINUTES_CONTAINS};
 
-            }
-            if (!error.Contains(ERROR_BASE))
-                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
-                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
-
-            //if (!error.Contains(ERROR_SHORTER_THAN_3_MINUTES))
-            //    Assert.That(error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length), Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
-            //        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length) + "]");
-            //
-            //if (!error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS))
-            //    Assert.That(error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
-            //        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length) + "]");
+            error.ValidateErrorDetail(Constants.ERROR_BASE, containErrorList, messageDetailDictionary);
 
         }
 
@@ -434,45 +323,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
-            string errorDetail = error.Substring(ERROR_BASE.Length);
-            string[] errorDetailList = errorDetail.Split(". ", StringSplitOptions.None);
-            for(int i = 0; i < errorDetailList.Length; i++)
-            {
-                Console.WriteLine(errorDetailList[i]);
-                if (errorDetailList[i].Contains("three minutes"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES + "."),
-                        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
-                        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + errorDetailList[i] + "]");
-                }
-                else if (errorDetailList[i].Contains("occurrence address"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS + "."),
-                        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
-                        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + errorDetailList[i] + "]");
-                }
-                else
-                    Assert.True(errorDetailList[i].Contains("three minutes") || errorDetailList[i].Contains("occurrence address"), "The text does not contain the expected errors.");
+            string[] containErrorList = { Constants.ERROR_INVALID_OCCURRENCE_ADDRESS_CONTAINS,
+                                            Constants.ERROR_3_MINUTES_CONTAINS};
 
-            }
-
-            if (!error.Contains(ERROR_BASE))
-                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
-                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
-
-            //if (!error.Contains(ERROR_SHORTER_THAN_3_MINUTES))
-            //    Assert.That(error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length), Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
-            //        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length) + "]");
-            //
-            //if (!error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS))
-            //    Assert.That(error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
-            //        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length) + "]");
-
-
+            error.ValidateErrorDetail(Constants.ERROR_BASE, containErrorList, messageDetailDictionary);
         }
 
         [Test]
@@ -516,56 +370,11 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
+            string[] containErrorList = { Constants.ERROR_INVALID_ASSOCIATED_ADDRESS_CONTAINS,
+                                            Constants.ERROR_INVALID_OCCURRENCE_ADDRESS_CONTAINS,
+                                            Constants.ERROR_3_MINUTES_CONTAINS};
 
-            string errorDetail = error.Substring(ERROR_BASE.Length);
-            string[] errorDetailList = errorDetail.Split(". ", StringSplitOptions.None);
-            for(int i = 0; i < errorDetailList.Length; i++)
-            {
-                Console.WriteLine(errorDetailList[i]);
-                if (errorDetailList[i].Contains("three minutes"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES + "."),
-                        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
-                        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + errorDetailList[i] + "]");
-                }
-                else if (errorDetailList[i].Contains("occurrence address"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS + "."),
-                        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
-                        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + errorDetailList[i] + "]");
-                }
-                else if (errorDetailList[i].Contains("associated"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS + "."),
-                        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
-                        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + errorDetailList[i] + "]");
-                }
-                else
-                    Assert.True(errorDetailList[i].Contains("three minutes") || errorDetailList[i].Contains("occurrence address") || errorDetailList[i].Contains("associated"), "The text does not contain the expected errors.");
-
-            }
-
-            if (!error.Contains(ERROR_BASE))
-                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
-                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
-
-            //if (!error.Contains(ERROR_SHORTER_THAN_3_MINUTES))
-            //    Assert.That(error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length), Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
-            //        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length) + "]");
-            //
-            //if (!error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS))
-            //    Assert.That(error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
-            //        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length) + "]");
-            //
-            //if (!error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS))
-            //    Assert.That(error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
-            //        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length) + "]");
+            error.ValidateErrorDetail(Constants.ERROR_BASE, containErrorList, messageDetailDictionary);
 
         }
 
@@ -611,46 +420,12 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
+            string[] containErrorList = { Constants.ERROR_3_MINUTES_CONTAINS,
+                                            Constants.ERROR_TO_AND_FROM_IN_FUTURE_CONTAINS};
+                            
 
-            string errorDetail = error.Substring(ERROR_BASE.Length);
-            string[] errorDetailList = errorDetail.Split(". ", StringSplitOptions.None);
-            for(int i = 0; i < errorDetailList.Length; i++)
-            {
-                Console.WriteLine(errorDetailList[i]);
-                if (errorDetailList[i].Contains("three minutes"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES + "."),
-                        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
-                        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + errorDetailList[i] + "]");
-                }
-
-                else if (errorDetailList[i].Contains("cannot be later than"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE + "."),
-                        "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
-                        "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + errorDetailList[i] + "]");
-                }
-                else
-                    Assert.True(errorDetailList[i].Contains("three minutes") || errorDetailList[i].Contains("cannot be later than the current"), "The text does not contain the expected errors.");
-            }
-
-
-            if (!error.Contains(ERROR_BASE))
-                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
-                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
-
-            //if (!error.Contains(ERROR_SHORTER_THAN_3_MINUTES))
-            //    Assert.That(error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length), Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
-            //        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length) + "]");
-            //
-            //if (!error.Contains(ERROR_TO_AND_FROM_IN_FUTURE))
-            //    Assert.That(error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length), Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
-            //        "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length) + "]");
-
+            error.ValidateErrorDetail(Constants.ERROR_BASE, containErrorList, messageDetailDictionary);
+            
         }
 
         [Test]
@@ -695,59 +470,13 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
+            string[] containErrorList = { Constants.ERROR_INVALID_OCCURRENCE_ADDRESS_CONTAINS,
+                                            Constants.ERROR_3_MINUTES_CONTAINS,
+                                            Constants.ERROR_TO_AND_FROM_IN_FUTURE_CONTAINS};
 
-            string errorDetail = error.Substring(ERROR_BASE.Length);
-            string[] errorDetailList = errorDetail.Split(". ", StringSplitOptions.None);
-            for(int i = 0; i < errorDetailList.Length; i++)
-            {
-                Console.WriteLine(errorDetailList[i]);
-                if (errorDetailList[i].Contains("three minutes"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES + "."),
-                        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
-                        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + errorDetailList[i] + "]");
-                }
 
-                else if (errorDetailList[i].Contains("cannot be later than"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE + "."),
-                        "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
-                        "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + errorDetailList[i] + "]");
-                }
-
-                else if (errorDetailList[i].Contains("occurrence address"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS + "."),
-                        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
-                        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + errorDetailList[i] + "]");
-                }
-                else
-                    Assert.True(errorDetailList[i].Contains("three minutes") || errorDetailList[i].Contains("cannot be later than the current") || errorDetailList[i].Contains("occurrence address"), "The text does not contain the expected errors.");
-
-            }
-
-            if (!error.Contains(ERROR_BASE))
-                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
-                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
-
-            //if (!error.Contains(ERROR_SHORTER_THAN_3_MINUTES))
-            //    Assert.That(error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length), Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
-            //        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length) + "]");
-            //
-            //if (!error.Contains(ERROR_TO_AND_FROM_IN_FUTURE))
-            //    Assert.That(error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length), Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
-            //        "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length) + "]");
-            //
-            //if (!error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS))
-            //    Assert.That(error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
-            //        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length) + "]");
-
+            error.ValidateErrorDetail(Constants.ERROR_BASE, containErrorList, messageDetailDictionary);
+            
         }
 
         [Test]
@@ -793,61 +522,14 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
-
-            string errorDetail = error.Substring(ERROR_BASE.Length);
-            string[] errorDetailList = errorDetail.Split(". ", StringSplitOptions.None);
-            for(int i = 0; i < errorDetailList.Length; i++)
-            {
-                Console.WriteLine(errorDetailList[i]);
-                if (errorDetailList[i].Contains("three minutes"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES + "."),
-                        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
-                        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + errorDetailList[i] + "]");
-                }
-
-                else if (errorDetailList[i].Contains("cannot be later than"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE + "."),
-                        "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
-                        "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + errorDetailList[i] + "]");
-                }
-
-                else if (errorDetailList[i].Contains("associated"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS + "."),
-                        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
-                        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + errorDetailList[i] + "]");
-                }
-                else
-                    Assert.True(errorDetailList[i].Contains("three minutes") || errorDetailList[i].Contains("cannot be later than the current") || errorDetailList[i].Contains("associated"), "The text does not contain the expected errors.");
-
-            }
-
-            if (!error.Contains(ERROR_BASE))
-                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
-                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
-
-            //if (!error.Contains(ERROR_SHORTER_THAN_3_MINUTES))
-            //    Assert.That(error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length), Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
-            //        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length) + "]");
-            //
-            //if (!error.Contains(ERROR_TO_AND_FROM_IN_FUTURE))
-            //    Assert.That(error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length), Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
-            //        "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length) + "]");
-            //
-            //if (!error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS))
-            //    Assert.That(error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
-            //        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length) + "]");
+            string[] containErrorList = { Constants.ERROR_INVALID_ASSOCIATED_ADDRESS_CONTAINS,
+                                            Constants.ERROR_3_MINUTES_CONTAINS,
+                                            Constants.ERROR_TO_AND_FROM_IN_FUTURE_CONTAINS};
 
 
+            error.ValidateErrorDetail(Constants.ERROR_BASE, containErrorList, messageDetailDictionary);
 
+            
         }
 
         [Test]
@@ -890,72 +572,13 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
-
-            string errorDetail = error.Substring(ERROR_BASE.Length);
-            string[] errorDetailList = errorDetail.Split(". ", StringSplitOptions.None);
-            for(int i = 0; i < errorDetailList.Length; i++)
-            {
-                Console.WriteLine(errorDetailList[i]);
-                if (errorDetailList[i].Contains("three minutes"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES + "."),
-                        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
-                        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + errorDetailList[i] + "]");
-                }
-
-                else if (errorDetailList[i].Contains("cannot be later than"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE + "."),
-                        "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
-                        "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + errorDetailList[i] + "]");
-                }
-
-                else if (errorDetailList[i].Contains("occurrence address"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS + "."),
-                        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
-                        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + errorDetailList[i] + "]");
-                }
-                else if (errorDetailList[i].Contains("associated"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS + "."),
-                        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
-                        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + errorDetailList[i] + "]");
-                }
-                else
-                    Assert.True(errorDetailList[i].Contains("three minutes") || errorDetailList[i].Contains("cannot be later than the current") || errorDetailList[i].Contains("occurrence address") || errorDetailList[i].Contains("associated"), "The text does not contain the expected errors.");
-
-            }
-
-            if (!error.Contains(ERROR_BASE))
-                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
-                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
-
-            //if (!error.Contains(ERROR_SHORTER_THAN_3_MINUTES))
-            //    Assert.That(error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length), Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
-            //        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length) + "]");
-            //
-            //if (!error.Contains(ERROR_TO_AND_FROM_IN_FUTURE))
-            //    Assert.That(error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length), Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
-            //        "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length) + "]");
-            //
-            //if (!error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS))
-            //    Assert.That(error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
-            //        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length) + "]");
-            //
-            //if (!error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS))
-            //    Assert.That(error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
-            //        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length) + "]");
+            string[] containErrorList = { Constants.ERROR_INVALID_ASSOCIATED_ADDRESS_CONTAINS,
+                                            Constants.ERROR_INVALID_OCCURRENCE_ADDRESS_CONTAINS,
+                                            Constants.ERROR_3_MINUTES_CONTAINS,
+                                            Constants.ERROR_TO_AND_FROM_IN_FUTURE_CONTAINS};
 
 
+            error.ValidateErrorDetail(Constants.ERROR_BASE, containErrorList, messageDetailDictionary);
         }
 
         [Test]
@@ -1000,41 +623,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
-            string errorDetail = error.Substring(ERROR_BASE.Length);
-            string[] errorDetailList = errorDetail.Split(". ", StringSplitOptions.None);
-            Console.WriteLine(errorDetailList.Length);
-            for(int i = 0; i < errorDetailList.Length; i++)
-            {
-                Console.WriteLine(errorDetailList[i]);
-                Console.WriteLine(errorDetailList[i].Contains("cannot be later than the current"));
-                if (errorDetailList[i].Contains("cannot be later than the current")) 
-                {
-                    //if (errorDetailList[i].Contains(".") s += ".";
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE + "."),
-                        "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "." + "], but found [" + errorDetailList[i] + "]");
-                    else if (errorDetailList[i].Contains("cannot be later than"))
-                    {
-                        if (errorDetailList[i].Contains("."))
-                            Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE + "."),
-                            "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "." + "], but found [" + errorDetailList[i] + "]");
-                        else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
-                            "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + errorDetailList[i] + "]");
-                    }
-                }
+            string[] containErrorList = { Constants.ERROR_TO_AND_FROM_IN_FUTURE_CONTAINS};
 
-                else
-                    Assert.True(errorDetailList[i].Contains("cannot be later than the current"), "The text does not contain the expected errors.");
 
-            }
-
-            if (!error.Contains(ERROR_BASE))
-                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
-                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
-
-            //if (!error.Contains(ERROR_TO_AND_FROM_IN_FUTURE))
-            //    Assert.That(error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length), Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
-            //        "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length) + "]");
+            error.ValidateErrorDetail(Constants.ERROR_BASE, containErrorList, messageDetailDictionary);
 
         }
 
@@ -1079,54 +671,11 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
-            string errorDetail = error.Substring(ERROR_BASE.Length);
-            string[] errorDetailList = errorDetail.Split(". ", StringSplitOptions.None);
-            for(int i = 0; i < errorDetailList.Length; i++)
-            {
-                Console.WriteLine(errorDetailList[i]);
-
-                if (errorDetailList[i].Contains("cannot be later than the current"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE + "."),
-                        "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "." + "], but found [" + errorDetailList[i] + "]");
-                    else if (errorDetailList[i].Contains("cannot be later than"))
-                    {
-                        if (errorDetailList[i].Contains("."))
-                            Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE + "."),
-                            "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "." + "], but found [" + errorDetailList[i] + "]");
-                        else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
-                            "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + errorDetailList[i] + "]");
-                    }
-                }
+            string[] containErrorList = { Constants.ERROR_INVALID_OCCURRENCE_ADDRESS_CONTAINS,
+                                            Constants.ERROR_TO_AND_FROM_IN_FUTURE_CONTAINS};
 
 
-                else if (errorDetailList[i].Contains("occurrence address"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS + "."),
-                        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
-                        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + errorDetailList[i] + "]");
-                }
-                    
-                else
-                    Assert.True(errorDetailList[i].Contains("cannot be later than the current") || errorDetailList[i].Contains("occurrence address"), "The text does not contain the expected errors.");
-
-            }
-
-            if (!error.Contains(ERROR_BASE))
-                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
-                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
-
-            //if (!error.Contains(ERROR_TO_AND_FROM_IN_FUTURE))
-            //    Assert.That(error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length), Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
-            //        "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length) + "]");
-            //
-            //if (!error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS))
-            //    Assert.That(error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
-            //        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length) + "]");
-
+            error.ValidateErrorDetail(Constants.ERROR_BASE, containErrorList, messageDetailDictionary);
 
         }
 
@@ -1172,39 +721,12 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
+            string[] containErrorList = { Constants.ERROR_INVALID_ASSOCIATED_ADDRESS_CONTAINS,
+                                            Constants.ERROR_TO_AND_FROM_IN_FUTURE_CONTAINS};
 
-            string errorDetail = error.Substring(ERROR_BASE.Length);
-            string[] errorDetailList = errorDetail.Split(". ", StringSplitOptions.None);
-            for(int i = 0; i < errorDetailList.Length; i++)
-            {
-                Console.WriteLine(i + ": " + errorDetailList[i]);
 
-                if (errorDetailList[i].Contains("cannot be later than"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE + "."),
-                        "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
-                        "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + errorDetailList[i] + "]");
-                }
+            error.ValidateErrorDetail(Constants.ERROR_BASE, containErrorList, messageDetailDictionary);
 
-                else if (errorDetailList[i].Contains("associated"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS + "."),
-                        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
-                        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + errorDetailList[i] + "]");
-                }
-                else
-                    Assert.True(errorDetailList[i].Contains("cannot be later than the current") || errorDetailList[i].Contains("associated"), "The text does not contain the expected errors.");
-
-            }
-
-            if (!error.Contains(ERROR_BASE))
-                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
-                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
-            
         }
 
         [Test]
@@ -1249,45 +771,12 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
-            string errorDetail = error.Substring(ERROR_BASE.Length);
-            string[] errorDetailList = errorDetail.Split(". ", StringSplitOptions.None);
-            for(int i = 0; i < errorDetailList.Length; i++)
-            {
-                Console.WriteLine(errorDetailList[i]);
+            string[] containErrorList = { Constants.ERROR_INVALID_ASSOCIATED_ADDRESS_CONTAINS,
+                                            Constants.ERROR_INVALID_OCCURRENCE_ADDRESS_CONTAINS,
+                                            Constants.ERROR_TO_AND_FROM_IN_FUTURE_CONTAINS};
 
-                if (errorDetailList[i].Contains("cannot be later than"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE + "."),
-                        "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
-                        "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + errorDetailList[i] + "]");
-                }
 
-                else if (errorDetailList[i].Contains("occurrence address"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS + "."),
-                        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
-                        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + errorDetailList[i] + "]");
-                }
-                else if (errorDetailList[i].Contains("associated"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS + "."),
-                        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
-                        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + errorDetailList[i] + "]");
-                }
-                else
-                    Assert.True(errorDetailList[i].Contains("cannot be later than the current") || errorDetailList[i].Contains("occurrence address") || errorDetailList[i].Contains("associated"), "The text does not contain the expected errors.");
-
-            }
-
-            if (!error.Contains(ERROR_BASE))
-                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
-                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
+            error.ValidateErrorDetail(Constants.ERROR_BASE, containErrorList, messageDetailDictionary);
 
         }
 
@@ -1332,56 +821,12 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
+            string[] containErrorList = { Constants.ERROR_TO_IN_FUTURE_THAN_FROM_CONTAINS,
+                                            Constants.ERROR_3_MINUTES_CONTAINS};
 
-            string errorDetail = error.Substring(ERROR_BASE.Length);
-            string[] errorDetailList = errorDetail.Split(". ", StringSplitOptions.None);
-            for(int i = 0; i < errorDetailList.Length; i++)
-            {
-                Console.WriteLine(errorDetailList[i]);
 
-                if (errorDetailList[i].Contains("should be later than"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_IN_FUTURE_THAN_FROM + "."),
-                        "Expecting [" + ERROR_TO_IN_FUTURE_THAN_FROM + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_IN_FUTURE_THAN_FROM),
-                        "Expecting [" + ERROR_TO_IN_FUTURE_THAN_FROM + "], but found [" + errorDetailList[i] + "]");
-                }
-                else if (errorDetailList[i].Contains("three minutes"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES + "."),
-                        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
-                        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + errorDetailList[i] + "]");
-                }
 
-                else if (errorDetailList[i].Contains("occurrence address"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS + "."),
-                        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
-                        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + errorDetailList[i] + "]");
-                }
-                else if (errorDetailList[i].Contains("associated"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS + "."),
-                        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
-                        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + errorDetailList[i] + "]");
-                }
-                else
-                    Assert.True(errorDetailList[i].Contains("should be later than") || errorDetailList[i].Contains("three minutes") || errorDetailList[i].Contains("occurrence address")
-                        || errorDetailList[i].Contains("associated"), "The text does not contain the expected errors.");
-
-            }
-
-            if (!error.Contains(ERROR_BASE))
-                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
-                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
-
+            error.ValidateErrorDetail(Constants.ERROR_BASE, containErrorList, messageDetailDictionary);
         }
 
         [Test]
@@ -1424,49 +869,13 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
-
-            string errorDetail = error.Substring(ERROR_BASE.Length);
-            string[] errorDetailList = errorDetail.Split(". ", StringSplitOptions.None);
-            for(int i = 0; i < errorDetailList.Length; i++)
-            {
-                Console.WriteLine(errorDetailList[i]);
-
-                if (errorDetailList[i].Contains("should be later than"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_IN_FUTURE_THAN_FROM + "."),
-                        "Expecting [" + ERROR_TO_IN_FUTURE_THAN_FROM + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_IN_FUTURE_THAN_FROM),
-                        "Expecting [" + ERROR_TO_IN_FUTURE_THAN_FROM + "], but found [" + errorDetailList[i] + "]");
-                }
-                else if (errorDetailList[i].Contains("three minutes"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES + "."),
-                        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
-                        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + errorDetailList[i] + "]");
-                }
-
-                else if (errorDetailList[i].Contains("occurrence address"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS + "."),
-                        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
-                        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + errorDetailList[i] + "]");
-                }
-                else
-                    Assert.True(errorDetailList[i].Contains("should be later than") || errorDetailList[i].Contains("three minutes") || errorDetailList[i].Contains("occurrence address")
-                        , "The text does not contain the expected errors.");
-
-            }
-
-            if (!error.Contains(ERROR_BASE))
-                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
-                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
+            string[] containErrorList = { Constants.ERROR_INVALID_OCCURRENCE_ADDRESS_CONTAINS,
+                                            Constants.ERROR_TO_IN_FUTURE_THAN_FROM_CONTAINS,
+                                            Constants.ERROR_3_MINUTES_CONTAINS};
 
 
+
+            error.ValidateErrorDetail(Constants.ERROR_BASE, containErrorList, messageDetailDictionary);
         }
 
 
@@ -1510,48 +919,14 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
+            string[] containErrorList = { Constants.ERROR_INVALID_ASSOCIATED_ADDRESS_CONTAINS,
+                                            Constants.ERROR_TO_IN_FUTURE_THAN_FROM_CONTAINS,
+                                            Constants.ERROR_3_MINUTES_CONTAINS};
 
-            string errorDetail = error.Substring(ERROR_BASE.Length);
-            string[] errorDetailList = errorDetail.Split(". ", StringSplitOptions.None);
-            for(int i = 0; i < errorDetailList.Length; i++)
-            {
-                Console.WriteLine(errorDetailList[i]);
 
-                if (errorDetailList[i].Contains("should be later than"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_IN_FUTURE_THAN_FROM + "."),
-                        "Expecting [" + ERROR_TO_IN_FUTURE_THAN_FROM + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_IN_FUTURE_THAN_FROM),
-                        "Expecting [" + ERROR_TO_IN_FUTURE_THAN_FROM + "], but found [" + errorDetailList[i] + "]");
-                }
-                else if (errorDetailList[i].Contains("three minutes"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES + "."),
-                        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
-                        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + errorDetailList[i] + "]");
-                }
 
-                else if (errorDetailList[i].Contains("associated"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS + "."),
-                        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
-                        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + errorDetailList[i] + "]");
-                }
-                else
-                    Assert.True(errorDetailList[i].Contains("should be later than") || errorDetailList[i].Contains("three minutes")
-                        || errorDetailList[i].Contains("associated"), "The text does not contain the expected errors.");
+            error.ValidateErrorDetail(Constants.ERROR_BASE, containErrorList, messageDetailDictionary);
 
-            }
-
-            if (!error.Contains(ERROR_BASE))
-                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
-                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
-            
         }
 
 
@@ -1595,55 +970,14 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
+            string[] containErrorList = { Constants.ERROR_INVALID_ASSOCIATED_ADDRESS_CONTAINS,
+                                            Constants.ERROR_INVALID_OCCURRENCE_ADDRESS_CONTAINS,
+                                            Constants.ERROR_TO_IN_FUTURE_THAN_FROM_CONTAINS,
+                                            Constants.ERROR_3_MINUTES_CONTAINS};
 
-            string errorDetail = error.Substring(ERROR_BASE.Length);
-            string[] errorDetailList = errorDetail.Split(". ", StringSplitOptions.None);
-            for(int i = 0; i < errorDetailList.Length; i++)
-            {
-                Console.WriteLine(errorDetailList[i]);
 
-                if (errorDetailList[i].Contains("should be later than"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_IN_FUTURE_THAN_FROM + "."),
-                        "Expecting [" + ERROR_TO_IN_FUTURE_THAN_FROM + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_IN_FUTURE_THAN_FROM),
-                        "Expecting [" + ERROR_TO_IN_FUTURE_THAN_FROM + "], but found [" + errorDetailList[i] + "]");
-                }
-                else if (errorDetailList[i].Contains("three minutes"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES + "."),
-                        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
-                        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + errorDetailList[i] + "]");
-                }
 
-                else if (errorDetailList[i].Contains("occurrence address"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS + "."),
-                        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
-                        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + errorDetailList[i] + "]");
-                }
-                else if (errorDetailList[i].Contains("associated"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS + "."),
-                        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
-                        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + errorDetailList[i] + "]");
-                }
-                else
-                    Assert.True(errorDetailList[i].Contains("should be later than") || errorDetailList[i].Contains("three minutes") || errorDetailList[i].Contains("occurrence address")
-                        || errorDetailList[i].Contains("associated"), "The text does not contain the expected errors.");
-
-            }
-
-            if (!error.Contains(ERROR_BASE))
-                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
-                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
+            error.ValidateErrorDetail(Constants.ERROR_BASE, containErrorList, messageDetailDictionary);
 
         }
 
@@ -1687,46 +1021,13 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
-            string errorDetail = error.Substring(ERROR_BASE.Length);
-            string[] errorDetailList = errorDetail.Split(". ", StringSplitOptions.None);
-            for(int i = 0; i < errorDetailList.Length; i++)
-            {
-                Console.WriteLine(errorDetailList[i]);
+            string[] containErrorList = { Constants.ERROR_TO_IN_FUTURE_THAN_FROM_CONTAINS,
+                                            Constants.ERROR_TO_AND_FROM_IN_FUTURE_CONTAINS,
+                                            Constants.ERROR_3_MINUTES_CONTAINS};
 
-                if (errorDetailList[i].Contains("should be later than"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_IN_FUTURE_THAN_FROM + "."),
-                        "Expecting [" + ERROR_TO_IN_FUTURE_THAN_FROM + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_IN_FUTURE_THAN_FROM),
-                        "Expecting [" + ERROR_TO_IN_FUTURE_THAN_FROM + "], but found [" + errorDetailList[i] + "]");
-                }
-                else if (errorDetailList[i].Contains("cannot be later than"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE + "."),
-                        "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
-                        "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + errorDetailList[i] + "]");
-                }
-                else if (errorDetailList[i].Contains("three minutes"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES + "."),
-                        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
-                        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + errorDetailList[i] + "]");
-                }
-                else
-                    Assert.True(errorDetailList[i].Contains("should be later than") || errorDetailList[i].Contains("cannot be later than") 
-                        || errorDetailList[i].Contains("three minutes")
-                        , "The text does not contain the expected errors.");
 
-            }
 
-            if (!error.Contains(ERROR_BASE))
-                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
-                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
+            error.ValidateErrorDetail(Constants.ERROR_BASE, containErrorList, messageDetailDictionary);
         }
 
         [Test]
@@ -1769,56 +1070,14 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
-            string errorDetail = error.Substring(ERROR_BASE.Length);
-            string[] errorDetailList = errorDetail.Split(". ", StringSplitOptions.None);
-            for(int i = 0; i < errorDetailList.Length; i++)
-            {
-                Console.WriteLine(errorDetailList[i]);
+            string[] containErrorList = { Constants.ERROR_INVALID_OCCURRENCE_ADDRESS_CONTAINS,
+                                            Constants.ERROR_TO_IN_FUTURE_THAN_FROM_CONTAINS,
+                                            Constants.ERROR_TO_AND_FROM_IN_FUTURE_CONTAINS,
+                                            Constants.ERROR_3_MINUTES_CONTAINS};
 
-                if (errorDetailList[i].Contains("should be later than"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_IN_FUTURE_THAN_FROM + "."),
-                        "Expecting [" + ERROR_TO_IN_FUTURE_THAN_FROM + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_IN_FUTURE_THAN_FROM),
-                        "Expecting [" + ERROR_TO_IN_FUTURE_THAN_FROM + "], but found [" + errorDetailList[i] + "]");
-                }
-                else if (errorDetailList[i].Contains("cannot be later than"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE + "."),
-                        "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
-                        "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + errorDetailList[i] + "]");
-                }
-                else if (errorDetailList[i].Contains("three minutes"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES + "."),
-                        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
-                        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + errorDetailList[i] + "]");
-                }
 
-                else if (errorDetailList[i].Contains("occurrence address"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS + "."),
-                        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
-                        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + errorDetailList[i] + "]");
-                }
 
-                else
-                    Assert.True(errorDetailList[i].Contains("should be later than") || errorDetailList[i].Contains("cannot be later than")
-                        || errorDetailList[i].Contains("three minutes") || errorDetailList[i].Contains("occurrence address")
-                        , "The text does not contain the expected errors.");
-
-            }
-
-            if (!error.Contains(ERROR_BASE))
-                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
-                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
+            error.ValidateErrorDetail(Constants.ERROR_BASE, containErrorList, messageDetailDictionary);
 
         }
 
@@ -1862,54 +1121,14 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
-            string errorDetail = error.Substring(ERROR_BASE.Length);
-            string[] errorDetailList = errorDetail.Split(". ", StringSplitOptions.None);
-            for(int i = 0; i < errorDetailList.Length; i++)
-            {
-                Console.WriteLine(errorDetailList[i]);
+            string[] containErrorList = { Constants.ERROR_INVALID_ASSOCIATED_ADDRESS_CONTAINS,
+                                            Constants.ERROR_TO_IN_FUTURE_THAN_FROM_CONTAINS,
+                                            Constants.ERROR_TO_AND_FROM_IN_FUTURE_CONTAINS,
+                                            Constants.ERROR_3_MINUTES_CONTAINS};
 
-                if (errorDetailList[i].Contains("should be later than"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_IN_FUTURE_THAN_FROM + "."),
-                        "Expecting [" + ERROR_TO_IN_FUTURE_THAN_FROM + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_IN_FUTURE_THAN_FROM),
-                        "Expecting [" + ERROR_TO_IN_FUTURE_THAN_FROM + "], but found [" + errorDetailList[i] + "]");
-                }
-                else if (errorDetailList[i].Contains("cannot be later than"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE + "."),
-                        "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
-                        "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + errorDetailList[i] + "]");
-                }
-                else if (errorDetailList[i].Contains("three minutes"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES + "."),
-                        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
-                        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + errorDetailList[i] + "]");
-                }
-                else if (errorDetailList[i].Contains("associated"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS + "."),
-                        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
-                        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + errorDetailList[i] + "]");
-                }
-                else
-                    Assert.True(errorDetailList[i].Contains("should be later than") || errorDetailList[i].Contains("cannot be later than")
-                        || errorDetailList[i].Contains("three minutes") || errorDetailList[i].Contains("associated")
-                        , "The text does not contain the expected errors.");
 
-            }
 
-            if (!error.Contains(ERROR_BASE))
-                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
-                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
+            error.ValidateErrorDetail(Constants.ERROR_BASE, containErrorList, messageDetailDictionary);
 
         }
 
@@ -1953,64 +1172,15 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
-            string errorDetail = error.Substring(ERROR_BASE.Length);
-            string[] errorDetailList = errorDetail.Split(". ", StringSplitOptions.None);
-            for(int i = 0; i < errorDetailList.Length; i++)
-            {
-                Console.WriteLine(errorDetailList[i]);
-
-                if (errorDetailList[i].Contains("should be later than"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_IN_FUTURE_THAN_FROM + "."),
-                        "Expecting [" + ERROR_TO_IN_FUTURE_THAN_FROM + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_IN_FUTURE_THAN_FROM),
-                        "Expecting [" + ERROR_TO_IN_FUTURE_THAN_FROM + "], but found [" + errorDetailList[i] + "]");
-                }
-                else if (errorDetailList[i].Contains("cannot be later than"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE + "."),
-                        "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
-                        "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + errorDetailList[i] + "]");
-                }
-                else if (errorDetailList[i].Contains("three minutes"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES + "."),
-                        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
-                        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + errorDetailList[i] + "]");
-                }
-
-                else if (errorDetailList[i].Contains("occurrence address"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS + "."),
-                        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
-                        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + errorDetailList[i] + "]");
-                }
-                else if (errorDetailList[i].Contains("associated"))
-                {
-                    if (errorDetailList[i].Contains("."))
-                        Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS + "."),
-                        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "." + "], but found [" + errorDetailList[i] + "]");
-                    else Assert.That(errorDetailList[i], Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
-                        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + errorDetailList[i] + "]");
-                }
-                else
-                    Assert.True(errorDetailList[i].Contains("should be later than") || errorDetailList[i].Contains("cannot be later than")
-                        || errorDetailList[i].Contains("three minutes") || errorDetailList[i].Contains("occurrence address") || errorDetailList[i].Contains("associated")
-                        , "The text does not contain the expected errors.");
-
-            }
+            string[] containErrorList = { Constants.ERROR_INVALID_ASSOCIATED_ADDRESS_CONTAINS,
+                                            Constants.ERROR_INVALID_OCCURRENCE_ADDRESS_CONTAINS,
+                                            Constants.ERROR_TO_IN_FUTURE_THAN_FROM_CONTAINS,
+                                            Constants.ERROR_TO_AND_FROM_IN_FUTURE_CONTAINS,
+                                            Constants.ERROR_3_MINUTES_CONTAINS};
 
 
-            if (!error.Contains(ERROR_BASE))
-                Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
-                    "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
+
+            error.ValidateErrorDetail(Constants.ERROR_BASE, containErrorList, messageDetailDictionary);
         }
 
         [Test]
