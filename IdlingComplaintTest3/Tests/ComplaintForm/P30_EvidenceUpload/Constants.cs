@@ -9,7 +9,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
     internal class Constants
     {
         
-        public static readonly string FORM_SAVE = "This form has been saved successfully";
+        public static readonly string FORM_SAVE = "This form has been saved successfully.";
         public static readonly string SUCCESSFUL_UPLOAD= "Succesfully uploaded file";
 
         //label: Evidence section/ title
