@@ -8,6 +8,7 @@ using IdlingComplaints.Models.ComplaintForm;
 using IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality;
 using OpenQA.Selenium;
 using OpenQA.Selenium.DevTools.V112.Network;
+using OpenQA.Selenium.Support.UI;
 using SeleniumUtilities.Utils;
 
 namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
@@ -289,5 +290,13 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             Assert.That(selectYear.Text, Is.EqualTo("Current Year"));
         }
 
+        [Test, Category("Verify Button")]
+        public void EvidenceUpload_MissingUpload_VerifyRefreshButton()
+        {
+            EvidenceUpload_ClickRefresh();
+
+            var appearOath = Driver.WaitUntilElementFound(By.CssSelector("mat-radio-button[value='753720001']"), 60);
+            Assert.IsNull(appearOath, "Flagged inconsistency on purpose.");
+        }
     }
 }
