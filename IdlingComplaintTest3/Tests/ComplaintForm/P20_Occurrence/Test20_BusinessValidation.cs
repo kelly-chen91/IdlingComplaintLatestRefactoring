@@ -25,7 +25,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         public void TearDown()
         {
             if (SLEEP_TIMER > 0) { Thread.Sleep(SLEEP_TIMER); }
-            //ComplaintFormModelTearDown();
+            ComplaintFormModelTearDown();
         }
 
         [Test]
@@ -97,10 +97,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             if (!error.Contains(ERROR_BASE))
                 Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
                     "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
-            
-            //if (!error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS))
-            //    Assert.That(error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
-            //        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length) + "]");
         }
 
         [Test]
@@ -161,10 +157,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             if (!error.Contains(ERROR_BASE))
                 Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
                     "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
-
-            //if (!error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS))
-            //    Assert.That(error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
-            //        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length) + "]");
         }
 
         [Test]
@@ -211,7 +203,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             string[] errorDetailList = errorDetail.Split(". ", StringSplitOptions.None);
             for(int i = 0; i < errorDetailList.Length; i++)
             {
-                Console.WriteLine(errorDetailList[i]);
+                Console.WriteLine("Current error message detail: " + errorDetailList[i]);
                 if (errorDetailList[i].Contains("occurrence address"))
                 {
                     if (errorDetailList[i].Contains("."))
@@ -235,13 +227,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
                 Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
                     "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
 
-            //if (!error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS))
-            //    Assert.That(error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
-            //        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length) + "]");
-            //
-            //if (!error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS))
-            //    Assert.That(error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
-            //        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length) + "]");
         }
 
         [Test]
@@ -307,9 +292,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
                 Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
                     "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
 
-            //if (!error.Contains(ERROR_SHORTER_THAN_3_MINUTES))
-            //    Assert.That(error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length), Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
-            //        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length) + "]");
         }
 
 
@@ -383,14 +365,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
                 Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
                     "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
 
-            //if (!error.Contains(ERROR_SHORTER_THAN_3_MINUTES))
-            //    Assert.That(error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length), Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
-            //        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length) + "]");
-            //
-            //if (!error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS))
-            //    Assert.That(error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
-            //        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length) + "]");
-
         }
 
 
@@ -463,15 +437,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             if (!error.Contains(ERROR_BASE))
                 Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
                     "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
-
-            //if (!error.Contains(ERROR_SHORTER_THAN_3_MINUTES))
-            //    Assert.That(error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length), Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
-            //        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length) + "]");
-            //
-            //if (!error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS))
-            //    Assert.That(error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
-            //        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length) + "]");
-
 
         }
 
@@ -554,19 +519,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             if (!error.Contains(ERROR_BASE))
                 Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
                     "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
-
-            //if (!error.Contains(ERROR_SHORTER_THAN_3_MINUTES))
-            //    Assert.That(error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length), Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
-            //        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length) + "]");
-            //
-            //if (!error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS))
-            //    Assert.That(error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
-            //        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length) + "]");
-            //
-            //if (!error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS))
-            //    Assert.That(error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
-            //        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length) + "]");
-
         }
 
         [Test]
@@ -642,15 +594,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             if (!error.Contains(ERROR_BASE))
                 Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
                     "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
-
-            //if (!error.Contains(ERROR_SHORTER_THAN_3_MINUTES))
-            //    Assert.That(error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length), Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
-            //        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length) + "]");
-            //
-            //if (!error.Contains(ERROR_TO_AND_FROM_IN_FUTURE))
-            //    Assert.That(error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length), Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
-            //        "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length) + "]");
-
         }
 
         [Test]
@@ -735,19 +678,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             if (!error.Contains(ERROR_BASE))
                 Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
                     "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
-
-            //if (!error.Contains(ERROR_SHORTER_THAN_3_MINUTES))
-            //    Assert.That(error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length), Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
-            //        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length) + "]");
-            //
-            //if (!error.Contains(ERROR_TO_AND_FROM_IN_FUTURE))
-            //    Assert.That(error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length), Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
-            //        "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length) + "]");
-            //
-            //if (!error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS))
-            //    Assert.That(error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
-            //        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length) + "]");
-
         }
 
         [Test]
@@ -834,20 +764,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
                 Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
                     "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
 
-            //if (!error.Contains(ERROR_SHORTER_THAN_3_MINUTES))
-            //    Assert.That(error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length), Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
-            //        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length) + "]");
-            //
-            //if (!error.Contains(ERROR_TO_AND_FROM_IN_FUTURE))
-            //    Assert.That(error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length), Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
-            //        "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length) + "]");
-            //
-            //if (!error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS))
-            //    Assert.That(error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
-            //        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length) + "]");
-
-
-
         }
 
         [Test]
@@ -892,10 +808,11 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
 
             string errorDetail = error.Substring(ERROR_BASE.Length);
+
             string[] errorDetailList = errorDetail.Split(". ", StringSplitOptions.None);
             for(int i = 0; i < errorDetailList.Length; i++)
             {
-                Console.WriteLine(errorDetailList[i]);
+                Console.WriteLine("Current error message detail: " + errorDetailList[i]);
                 if (errorDetailList[i].Contains("three minutes"))
                 {
                     if (errorDetailList[i].Contains("."))
@@ -938,23 +855,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             if (!error.Contains(ERROR_BASE))
                 Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
                     "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
-
-            //if (!error.Contains(ERROR_SHORTER_THAN_3_MINUTES))
-            //    Assert.That(error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length), Is.EqualTo(ERROR_SHORTER_THAN_3_MINUTES),
-            //        "Expecting [" + ERROR_SHORTER_THAN_3_MINUTES + "], but found [" + error.Substring(0, ERROR_SHORTER_THAN_3_MINUTES.Length) + "]");
-            //
-            //if (!error.Contains(ERROR_TO_AND_FROM_IN_FUTURE))
-            //    Assert.That(error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length), Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
-            //        "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length) + "]");
-            //
-            //if (!error.Contains(ERROR_INVALID_ASSOCIATED_ADDRESS))
-            //    Assert.That(error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_ASSOCIATED_ADDRESS),
-            //        "Expecting [" + ERROR_INVALID_ASSOCIATED_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_ASSOCIATED_ADDRESS.Length) + "]");
-            //
-            //if (!error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS))
-            //    Assert.That(error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
-            //        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length) + "]");
-
 
         }
 
@@ -1005,8 +905,8 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             Console.WriteLine(errorDetailList.Length);
             for(int i = 0; i < errorDetailList.Length; i++)
             {
-                Console.WriteLine(errorDetailList[i]);
-                Console.WriteLine(errorDetailList[i].Contains("cannot be later than the current"));
+                Console.WriteLine("Current error message detail: " + errorDetailList[i]);
+                //Console.WriteLine(errorDetailList[i].Contains("cannot be later than the current"));
                 if (errorDetailList[i].Contains("cannot be later than the current")) 
                 {
                     //if (errorDetailList[i].Contains(".") s += ".";
@@ -1031,10 +931,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             if (!error.Contains(ERROR_BASE))
                 Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
                     "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
-
-            //if (!error.Contains(ERROR_TO_AND_FROM_IN_FUTURE))
-            //    Assert.That(error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length), Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
-            //        "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length) + "]");
 
         }
 
@@ -1118,16 +1014,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             if (!error.Contains(ERROR_BASE))
                 Assert.That(error.Substring(0, ERROR_BASE.Length), Is.EqualTo(ERROR_BASE),
                     "Expecting [" + ERROR_BASE + "], but found [" + error.Substring(0, ERROR_BASE.Length) + "]");
-
-            //if (!error.Contains(ERROR_TO_AND_FROM_IN_FUTURE))
-            //    Assert.That(error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length), Is.EqualTo(ERROR_TO_AND_FROM_IN_FUTURE),
-            //        "Expecting [" + ERROR_TO_AND_FROM_IN_FUTURE + "], but found [" + error.Substring(0, ERROR_TO_AND_FROM_IN_FUTURE.Length) + "]");
-            //
-            //if (!error.Contains(ERROR_INVALID_OCCURRENCE_ADDRESS))
-            //    Assert.That(error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length), Is.EqualTo(ERROR_INVALID_OCCURRENCE_ADDRESS),
-            //        "Expecting [" + ERROR_INVALID_OCCURRENCE_ADDRESS + "], but found [" + error.Substring(0, ERROR_INVALID_OCCURRENCE_ADDRESS.Length) + "]");
-
-
         }
 
         [Test]
