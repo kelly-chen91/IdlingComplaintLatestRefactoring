@@ -64,6 +64,18 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         public static readonly int OCCURRENCE_PAST_OFFENSE_MAXLENGTH = 100;
         public static readonly int OCCURRENCE_SCHOOL_NAME_MAXLENGTH = 100;
 
+        public static readonly string ERROR_BASE = "An error occurred while saving form: ";
+        public static readonly string ERROR_3_MINUTES = " Idling duration should be more than three minutes";
+        public static readonly string ERROR_TO_IN_FUTURE_THAN_FROM = " Occurrence Date To should be later than Occurrence Date From";
+        public static readonly string ERROR_TO_AND_FROM_IN_FUTURE = " Occurrence Date From and Occurrence Date To cannot be later than the current date and time";
+        public static readonly string ERROR_INVALID_ASSOCIATED_ADDRESS = " The address of the respondent associated with the complaint is invalid";
+        public static readonly string ERROR_INVALID_OCCURRENCE_ADDRESS = " The occurrence address is invalid";
 
+        public static readonly string ERROR_BASE_CONTAINS = "while saving form:";
+        public static readonly string ERROR_3_MINUTES_CONTAINS = "three minutes";
+        public static readonly string ERROR_TO_IN_FUTURE_THAN_FROM_CONTAINS = "should be later than";
+        public static readonly string ERROR_TO_AND_FROM_IN_FUTURE_CONTAINS = "cannot be later than the current";
+        public static readonly string ERROR_INVALID_ASSOCIATED_ADDRESS_CONTAINS = "associated";
+        public static readonly string ERROR_INVALID_OCCURRENCE_ADDRESS_CONTAINS = "occurrence address";
     }
 }

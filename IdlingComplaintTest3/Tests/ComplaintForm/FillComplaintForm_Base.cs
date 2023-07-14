@@ -14,12 +14,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         
         public readonly int SLEEP_TIMER = 2000;
         public readonly string FILE_IMAGE_PATH = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_truck.jpeg";
-        public readonly string ERROR_BASE = "An error occurred while saving form: ";
-        public readonly string ERROR_SHORTER_THAN_3_MINUTES = " Idling duration should be more than three minutes";
-        public readonly string ERROR_TO_IN_FUTURE_THAN_FROM = " Occurrence Date To should be later than Occurrence Date From";
-        public readonly string ERROR_TO_AND_FROM_IN_FUTURE = " Occurrence Date From and Occurrence Date To cannot be later than the current date and time";
-        public readonly string ERROR_INVALID_ASSOCIATED_ADDRESS = " The address of the respondent associated with the complaint is invalid";
-        public readonly string ERROR_INVALID_OCCURRENCE_ADDRESS = " The occurrence address is invalid";
+
         public static readonly string YES_LABEL = "We are sorry. Your submission can not be accepted by DEP. This idling complaint " +
             "is not consistent with the requirements listed in Section 24-163 of the New York City Administrative Code. " +
             "Thank you for participating in this effort to improve NYC’s air quality.";
