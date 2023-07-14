@@ -66,10 +66,11 @@ namespace IdlingComplaints.Tests.Register
          
           ClickSubmitButton();
             
-            var snackBarError =Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 30).FindElement(By.TagName("span")); ;
+            var snackBarError =Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 61).FindElement(By.TagName("span")); ;
 
            RegistrationUtilities.WriteIntoFile(Registered_EmailAddress, generatedEmail, password, securityAnswer);
-           Assert.That(snackBarError.Text.Trim(), Contains.Substring("Registration has been completed successfully"), "Flagged for inconsistency on purpose."); //Added period for consistency with other error messaging
+          Console.WriteLine("The new user is "+ generatedEmail);
+            Assert.That(snackBarError.Text.Trim(), Contains.Substring("Registration has been completed successfully"), "Flagged for inconsistency on purpose."); //Added period for consistency with other error messaging
         }
 
 

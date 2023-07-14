@@ -49,7 +49,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         public void EvidenceUpload_VerifyNotSupportedFile_Upload_Delete_Download_Process()
         {
             /* Upload supported and unsupported files */
-           
             foreach (var file in filePaths)
             {
                 EvidenceUpload_UploadControl.SendKeysWithDelay(file, SLEEP_TIMER);
