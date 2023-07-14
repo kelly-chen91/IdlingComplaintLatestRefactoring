@@ -74,7 +74,7 @@ namespace IdlingComplaints.Tests.PasswordReset
         }
 
 
-        [Test, Category("Scenario #2: failed password update due to the wrong security key")]
+        [Test, Category("Scenario #2: Wrong security key answer")]
         public void FailedPasswordReset()
         {
             SecurityAnswerControl.SendKeysWithDelay("This is not an actual security key", SLEEP_TIMER);
@@ -90,21 +90,11 @@ namespace IdlingComplaints.Tests.PasswordReset
             Assert.That(resetControl.Text.Trim(), Is.EqualTo("Security answer is not correct."));
         }
 
+
         [Test, Category("Scenario #3: cancel password update")]
         public void CancelPasswordReset()
         {
             ClickCancelButton();
-           // var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
-            //wait.Until(d =>
-            //{
-            //    var TitleControl = d.FindElement(By.TagName("h3"));
-            //
-            //    Assert.IsNotNull(TitleControl);
-            //    Assert.That(TitleControl.Text.Trim(), Is.EqualTo("NYC Idling Complaint"));
-            //
-            //    return TitleControl;
-            //});
-
             var titleControl = Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='password']"), 10);
             Assert.IsNotNull(titleControl);
             Assert.That(titleControl.GetAttribute("placeholder").Trim(), Is.EqualTo("Password"));

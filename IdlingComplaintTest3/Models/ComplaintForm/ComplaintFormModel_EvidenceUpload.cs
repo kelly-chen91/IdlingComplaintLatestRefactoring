@@ -33,6 +33,8 @@ namespace IdlingComplaints.Models.ComplaintForm
         
         public IWebElement EvidenceUpload_TableControl => Driver.FindElement(By.TagName("mat-table"));
         public IWebElement EvidenceUpload_RefreshControl => EvidenceUpload_TableControl.FindElement(By.CssSelector("button[mattooltip='Click to download']"));
+        public IWebElement EvidenceUpload_SnapBar => Driver.FindElement(By.TagName("simple-snack-bar"));
+        public IWebElement EvidenceUpload_SummonsAffidavit => Driver.FindElement(By.XPath("//form/div/mat-card/mat-card-header/div/mat-card-title/h4"));
 
         public string EvidenceUpload_UploadInput
         {
