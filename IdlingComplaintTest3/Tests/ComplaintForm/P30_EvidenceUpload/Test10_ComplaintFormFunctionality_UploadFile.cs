@@ -280,7 +280,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             Assert.That(selectYear.Text, Is.EqualTo("Current Year"));
         }
 
-        [Test]
+        [Test, Category("Verify Button")]
         public void EvidenceUpload_MissingUpload_VerifyRefreshButton()
         {
             EvidenceUpload_ClickRefresh();
