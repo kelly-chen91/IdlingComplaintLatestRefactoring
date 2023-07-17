@@ -19,8 +19,8 @@ namespace IdlingComplaints.Models.PasswordReset
         
         public void PasswordResetModelSetUp(bool isHeadless)
         {
-            if (isHeadless) Driver = CreateHeadlessDriver("edge");
-            else Driver = CreateStandardDriver("edge");
+            if (isHeadless) Driver = CreateHeadlessDriver("chrome");
+            else Driver = CreateStandardDriver("chrome");
             Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/password-reset");
             //Driver.Manage().Window.Size = new Size(1920, 1200);
             Driver.Manage().Window.Maximize();

@@ -26,7 +26,7 @@ namespace IdlingComplaints.Tests.Register
         public void TearDown()
         {
             if(SLEEP_TIMER>0) Thread.Sleep(SLEEP_TIMER);
-            //base.RegisterModelTearDown();
+            base.RegisterModelTearDown();
         }
 
         [Test, Category("Scenario test#1: New user with all random text input")]
