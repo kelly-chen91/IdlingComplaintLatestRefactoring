@@ -18,7 +18,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
     internal class Test10_ComplaintFormFunctionality_UploadFile: FillComplaintForm_Base
     {
 
-        private readonly new int SLEEP_TIMER = 2000;
+        private readonly new int SLEEP_TIMER = 0;
         private static string IDLING_TRUCK = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_truck.jpeg";
         private static string IDLING_BUS = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_bus.jpg";
         private static string IDLING_VAN = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_van.jpg";

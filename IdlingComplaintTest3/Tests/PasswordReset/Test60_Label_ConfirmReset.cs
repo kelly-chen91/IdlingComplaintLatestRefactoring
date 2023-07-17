@@ -14,7 +14,7 @@ namespace IdlingComplaints.Tests.PasswordReset
 {
     internal class Test60_Label_ConfirmReset : PasswordResetModel
     {
-        private readonly int SLEEP_TIMER = 2;
+        private readonly int SLEEP_TIMER = 0;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()

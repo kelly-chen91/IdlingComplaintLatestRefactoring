@@ -15,7 +15,7 @@ namespace IdlingComplaints.Tests.Register
     //[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
     internal class Test30_RequiredLabelErrors : RegisterModel
     {
-        private readonly int SLEEP_TIMER = 1000;
+        private readonly int SLEEP_TIMER = 0;
 
         [OneTimeSetUp]
         public void SetUp()

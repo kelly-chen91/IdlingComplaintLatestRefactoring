@@ -17,7 +17,7 @@ namespace IdlingComplaints.Tests.PasswordReset
     {
         public int lines;
         public int userIndex;
-        private readonly int SLEEP_TIMER = 2000;
+        private readonly int SLEEP_TIMER = 0;
         private readonly string registered_EmailAddress = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Text\\Registered_EmailAddress.txt";
         Random random = new Random();
 

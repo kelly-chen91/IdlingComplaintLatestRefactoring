@@ -24,9 +24,11 @@ namespace IdlingComplaints.Tests.Home
         [TearDown]
         public void TearDown()
         {
-            Thread.Sleep(2000);
+            Thread.Sleep(SLEEP_TIMER);
             base.HomeModelTearDown();
         }
+
+        private readonly int SLEEP_TIMER = 0;
 
         [Test]
         [Category("Correct Label Displayed")]

@@ -12,7 +12,7 @@ namespace IdlingComplaints.Tests.Register
     //[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
     internal class Test10_RegistrationFunctionality : RegisterModel
     {
-        private readonly int SLEEP_TIMER = 2000;
+        private readonly int SLEEP_TIMER = 0;
         private string Registered_EmailAddress = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Text\\Registered_EmailAddress.txt";
 
         [SetUp]

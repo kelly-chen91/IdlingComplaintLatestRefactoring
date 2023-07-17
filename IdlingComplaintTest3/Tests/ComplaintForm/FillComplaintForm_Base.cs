@@ -12,7 +12,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
     internal class FillComplaintForm_Base : ComplaintFormModel
     {
         
-        public readonly int SLEEP_TIMER = 2000;
+        public readonly int SLEEP_TIMER = 0;
         public readonly string FILE_IMAGE_PATH = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_truck.jpeg";
 
         public static readonly string YES_LABEL = "We are sorry. Your submission can not be accepted by DEP. This idling complaint " +
