@@ -13,8 +13,8 @@ using SeleniumUtilities.Utils;
 
 namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 {
-   //[Parallelizable(ParallelScope.Children)]
-   //[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
+  // [Parallelizable(ParallelScope.Children)]
+  // [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
     internal class Test10_ComplaintFormFunctionality_UploadFile: FillComplaintForm_Base
     {
 
@@ -46,7 +46,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             base.ComplaintFormModelTearDown();
         }
 
-        [Test, Category("Scenario #0: upload one evidence file")]
+        [Test, Category("Scenario #0: Verify multiple functionalities at once for demo")]
         public void EvidenceUpload_VerifyNotSupportedFile_Upload_Delete_Download_Process()
         {
             /* Upload supported and unsupported files */
@@ -84,7 +84,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
                 Thread.Sleep(SLEEP_TIMER);
             }
 
-            /* Process next page */
+            /* Proceed to next page */
             EvidenceUpload_ClickNext(); 
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-dialog-container"), 62); //
             var summons = Driver.WaitUntilElementFound(By.TagName("mat-radio-group"), 62);
@@ -122,22 +122,20 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
               EvidenceUpload_ClickFilesUploadConfirm();
 
             var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 60);
+            
             if (successfulEvidenceUpload!=null && successfulEvidenceUpload.Text.Contains("uploaded")) 
                 Assert.That(successfulEvidenceUpload.Text.Trim(), Contains.Substring("Succesfully uploaded file named: "));
 
         }
 
 
-        [Test, Category("Scenario #4: Table display data after files uploaded and Upload Amount Equals Table Rows")]
+        [Test, Category("Scenario #4: After files uploaded, The number of table rows displayed should correspond to the total number of files that have been uploaded.")]
         public void EvidenceUpload_TableApptearanceCheck()
         {
-         //   string fileName = Path.GetFileName(filePaths[0]);
-
-            int i = 0;
+         
             foreach (var file in filePaths)
             {
                 EvidenceUpload_UploadControl.SendKeysWithDelay(file, SLEEP_TIMER);
-                i++;
             }
             EvidenceUpload_ClickFilesUploadConfirm();
 
@@ -147,7 +145,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 
 
             var rowList = MatTableControl.GetDataFromMatTable(); //Needed to make new version of this because it's a different type of table
-             Assert.That(rowList.Count, Is.EqualTo(i));
+            Assert.That(rowList.Count, Is.EqualTo(filePaths.Length-1)); // one file is not supplorted
           
 
         }
@@ -174,13 +172,13 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         {
             EvidenceUpload_MultipleFileUpload();
 
-            Thread.Sleep(1000);
+            Thread.Sleep(SLEEP_TIMER);
             var fileList = EvidenceUpload_TableControl.GetDataFromMatTable();
-            Console.WriteLine("start" + fileList.Count);
+            Console.WriteLine("Total uploaded files:  " + (fileList.Count-1));
 
             List<IWebElement> deleteFileList = fileList.GetSpecificColumnElements(By.CssSelector("mat-icon[aria-label='Delete']")); //Gets the Delete button for each row
            
-            while(fileList.Count > 1)
+            while(fileList.Count> 1) 
             {
                 fileList = EvidenceUpload_TableControl.GetDataFromMatTable();           //Divide into rows from table
                 Console.WriteLine(fileList.Count);
@@ -191,11 +189,9 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
                 EvidenceUpload_ConfirmDelete();
                 
                 Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-dialog-container"), 62);
-                Thread.Sleep(2000);
+                Thread.Sleep(SLEEP_TIMER);
             }
-            string commentTest = "Testing the comment box";
-            EvidenceUpload_UploadCommentControl.SendKeysWithDelay(commentTest, SLEEP_TIMER);
-
+        
             Driver.WaitUntilElementFound(By.TagName("mat-error"), 63);
             Assert.IsNotNull(EvidenceUpload_UploadErrorControl);
 
@@ -269,14 +265,16 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 
 
         [Test, Category("Scenario #10: Verify the Next button")]
-        public void Evidence_NextButton()
+        public void EvidenceUpload_NextButton()
         {
             EvidenceUpload_MultipleFileUpload();
-            Driver.WaitUntilElementFound(By.CssSelector("button[type='submit']"), 61);
+            //Driver.WaitUntilElementFound(By.CssSelector("button[type='submit']"), 61);'
+            Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 60); //wait for the narrow bar to dispare, then click the next page
             EvidenceUpload_ClickNext();
        
-            var summons = Driver.WaitUntilElementFound(By.TagName("mat-radio-group"), 62);
-            Assert.IsNotNull(summons);
+            
+            var NextPate_summonsAffidavit = Driver.WaitUntilElementFound(By.XPath("//form/div/mat-card/mat-card-header/div/mat-card-title/h4"), 63);
+            Assert.IsNotNull(NextPate_summonsAffidavit);
        
         }
 

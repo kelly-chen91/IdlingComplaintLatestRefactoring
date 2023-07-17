@@ -43,7 +43,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 
 
         [Test, Category("Testing PDF file type")]
-        public void Verify_PDF_FileType()
+        public void EvidenceUpload_Verify_PDF_FileType()
         {
 
             // RegistrationUtilities.UploadFiles(EvidenceUpload_UploadControl, EvidenceUpload_UploadConfirmControl, filePaths);
@@ -62,7 +62,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 
         }
         [Test, Category("Testing video file type")]
-        public void Verify_MP4_FileType()
+        public void EvidenceUpload_Verify_MP4_FileType()
         {
 
             // RegistrationUtilities.UploadFiles(EvidenceUpload_UploadControl, EvidenceUpload_UploadConfirmControl, filePaths);

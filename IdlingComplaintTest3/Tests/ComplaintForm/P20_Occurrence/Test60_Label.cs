@@ -18,7 +18,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            base.ComplaintFormModelSetUp(false);
+            base.ComplaintFormModelSetUp(true);
             ClickNo();
             Driver.ScrollTo(Occurrence_VehicleTypeControl);
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(15));
