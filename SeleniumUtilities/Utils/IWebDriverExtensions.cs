@@ -37,5 +37,18 @@ namespace SeleniumUtilities.Utils
             var wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(timeout));
             return wait.Until<IWebElement>(d => d.FindElement(locator));
         }
+
+        //public static void WaitUntilElementIsNoLongerFound(this IWebDriver webDriver, IWebElement element, double timeout)
+        //{
+        //    var wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(timeout));
+        //    wait.IgnoreExceptionTypes(typeof(StaleElementReferenceException), typeof(NoSuchElementException));
+        //    wait.Until(driver => webDriver.FindElements(element).Count == 0);
+        //}
+
+        public static IWebElement WaitUntilElementFound(this IWebDriver webDriver, IWebElement element, double timeout)
+        {
+            var wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(timeout));
+            return wait.Until<IWebElement>(ExpectedConditions.ElementIsVisible(element));
+        }
     }
 }
