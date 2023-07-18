@@ -13,7 +13,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
     {
         
         public readonly int SLEEP_TIMER = 0;
-        public readonly string FILE_IMAGE_PATH = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_truck.jpeg";
+        public readonly string FILE_IMAGE_PATH = P30_EvidenceUpload.Constants.IDLING_TRUCK;
 
         public static readonly string YES_LABEL = "We are sorry. Your submission can not be accepted by DEP. This idling complaint " +
             "is not consistent with the requirements listed in Section 24-163 of the New York City Administrative Code. " +

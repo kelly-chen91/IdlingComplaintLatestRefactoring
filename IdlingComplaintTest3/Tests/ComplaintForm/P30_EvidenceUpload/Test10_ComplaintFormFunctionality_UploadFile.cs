@@ -19,13 +19,8 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
     {
 
         private readonly new int SLEEP_TIMER = 0;
-        private static string IDLING_TRUCK = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_truck.jpeg";
-        private static string IDLING_BUS = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_bus.jpg";
-        private static string IDLING_VAN = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_van.jpg";
-        private static string NOT_SUPPORTED_FILE = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\not_supported_idling_WEBPfile.webp";
-        private static string PDF_FILE = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\WebDoc.pdf";
-        private static string MP4_FILE = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\MP4_How_To_Get_Rich_Reporting_On_Idling_Vehicles_In_NYC.mp4";
-        string[] filePaths = { PDF_FILE, IDLING_BUS, MP4_FILE, NOT_SUPPORTED_FILE };
+        
+        string[] filePaths = { Constants.PDF_FILE, Constants.IDLING_BUS, Constants.MP4_FILE, Constants.NOT_SUPPORTED_FILE };
 
         [SetUp]
         public void Setup()

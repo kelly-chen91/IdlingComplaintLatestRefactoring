@@ -105,5 +105,11 @@ namespace SeleniumUtilities.Utils
                 Assert.That(error.Substring(0, errorBase.Length), Is.EqualTo(errorBase),
                     "Expecting [" + errorBase + "], but found [" + error.Substring(0, errorBase.Length) + "]");
         }
+
+        public static string GetProjectRootDirectory()
+        {
+            string currentDirectory = Directory.GetCurrentDirectory();
+            return currentDirectory.Split("bin")[0];
+        }
     }
 }

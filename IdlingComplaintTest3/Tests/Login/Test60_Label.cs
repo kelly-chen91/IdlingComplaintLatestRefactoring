@@ -1,4 +1,7 @@
-﻿using IdlingComplaints.Models.Login;
+﻿using AventStack.ExtentReports;
+using AventStack.ExtentReports.Reporter;
+using IdlingComplaints.Models.Login;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using SeleniumUtilities.Base;
 using SeleniumUtilities.Utils;
 
@@ -11,16 +14,20 @@ namespace IdlingComplaints.Tests.Login
 
     internal class Test60_Label : LoginModel
     {
-        
+        //ExtentReports extent = null;
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
             base.LoginModelSetUp(true);
+            //extent = new ExtentReports();
+            //var htmlReporter = new ExtentHtmlReporter(@"C:\Users\kchen\source\repos\IdlingComplaintLatestRefactoring\IdlingComplaintTest3\ExtentReports\LoginTestResults.html");
+            //extent.AttachReporter(htmlReporter);
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
+            //extent.Flush();  
             base.LoginModelTearDown();
         }
 

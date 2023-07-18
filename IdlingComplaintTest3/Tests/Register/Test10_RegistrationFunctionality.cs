@@ -13,7 +13,8 @@ namespace IdlingComplaints.Tests.Register
     internal class Test10_RegistrationFunctionality : RegisterModel
     {
         private readonly int SLEEP_TIMER = 0;
-        private string Registered_EmailAddress = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Text\\Registered_EmailAddress.txt";
+        //private string Registered_EmailAddress = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Text\\Registered_EmailAddress.txt";
+        private string Registered_EmailAddress = StringUtilities.GetProjectRootDirectory() + "\\Files\\Text\\Registered_EmailAddress.txt";
 
         [SetUp]
         public void SetUp()

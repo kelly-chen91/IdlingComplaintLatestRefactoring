@@ -12,12 +12,12 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
     internal class Test20_BusinessValidation: FillComplaintForm_Base
     {
         private readonly int SLEEPTIMER = 0;
-        private static string IDLING_TRUCK = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_truck.jpeg";
-        private static string IDLING_BUS = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_bus.jpg";
-        private static string IDLING_VAN = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_van.jpg";
-        private static string NOT_SUPPORTED_FILE = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\not_supported_idling_WEBPfile.webp";
-        private static string PDF_FILE = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\WebDoc.pdf";
-        private static string MP4_FILE = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\MP4_How_To_Get_Rich_Reporting_On_Idling_Vehicles_In_NYC.mp4";
+        //private static string IDLING_TRUCK = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_truck.jpeg";
+        //private static string IDLING_BUS = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_bus.jpg";
+        //private static string IDLING_VAN = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_van.jpg";
+        //private static string NOT_SUPPORTED_FILE = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\not_supported_idling_WEBPfile.webp";
+        //private static string PDF_FILE = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\WebDoc.pdf";
+        //private static string MP4_FILE = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\MP4_How_To_Get_Rich_Reporting_On_Idling_Vehicles_In_NYC.mp4";
 
 
         [SetUp]
@@ -48,7 +48,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 
             // RegistrationUtilities.UploadFiles(EvidenceUpload_UploadControl, EvidenceUpload_UploadConfirmControl, filePaths);
 
-            string[] filePaths = { PDF_FILE };
+            string[] filePaths = { Constants.PDF_FILE };
             EvidenceUpload_UploadControl.SendKeysWithDelay(filePaths[0], SLEEPTIMER);
             string fileName = Path.GetFileName(filePaths[0]);
 
@@ -67,7 +67,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 
             // RegistrationUtilities.UploadFiles(EvidenceUpload_UploadControl, EvidenceUpload_UploadConfirmControl, filePaths);
 
-            string[] filePaths = { MP4_FILE };
+            string[] filePaths = { Constants.MP4_FILE };
             EvidenceUpload_UploadControl.SendKeysWithDelay(filePaths[0], SLEEPTIMER);
             string fileName = Path.GetFileName(filePaths[0]);
 
@@ -86,7 +86,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         [Test, Category("Testing the non suppported file type")]
         public void EvidenceUpload_NotSupportedFileType()
         {
-            string[] filePaths = { NOT_SUPPORTED_FILE, IDLING_TRUCK, IDLING_BUS };
+            string[] filePaths = { Constants.NOT_SUPPORTED_FILE, Constants.IDLING_TRUCK, Constants.IDLING_BUS };
             EvidenceUpload_UploadControl.SendKeysWithDelay(filePaths[0], SLEEPTIMER);
 
             var failedEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span"));
