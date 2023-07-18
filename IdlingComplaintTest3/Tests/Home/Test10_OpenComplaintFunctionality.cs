@@ -48,8 +48,10 @@ namespace IdlingComplaints.Tests.Home
         
            for (int i = 0; i < 2; i++)
            {
-               Driver.WaitUntilElementFound(By.CssSelector("button[routerlink='idlingcomplaint/new']"), 10);
-               Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir='ltr']"), 20);
+                //Driver.WaitUntilElementFound(By.CssSelector("button[routerlink='idlingcomplaint/new']"), 10);
+                Driver.WaitUntilElementFound(NewComplaintControl, 10);
+
+                Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir='ltr']"), 20);
         
                rowList = TableControl.GetDataFromTable();
                openComplaintList = rowList.GetSpecificColumnElements(link);
