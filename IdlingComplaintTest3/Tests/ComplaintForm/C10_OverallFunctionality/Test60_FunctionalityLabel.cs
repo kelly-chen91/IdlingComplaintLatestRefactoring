@@ -10,27 +10,51 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 {
     //[Parallelizable(ParallelScope.Children)]
     //[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
-    internal class Test10_FunctionalityLabel : FillComplaintForm_Base
+    internal class Test60_FunctionalityLabel : FillComplaintForm_Base
     {
+
+        BaseExtent extent;
+
+        public Test60_FunctionalityLabel()
+        {
+            extent = new BaseExtent();
+        }
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+            extent.SetUp(false, GetType().Name);
+        }
+
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
+        {
+            extent.TearDown(false);
+        }
 
         [SetUp]
         public void SetUp()
         {
-            ComplaintFormModelSetUp(true);
+            base.ComplaintFormModelSetUp(true);
+
+            extent.SetUp(true);
         }
 
         [TearDown]
         public void TearDown()
         {
-            ComplaintFormModelTearDown();
+            try
+            {
+                extent.TearDown(true);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception: " + ex);
+            }
+            finally
+            {
+                base.ComplaintFormModelTearDown();
+            }
         }
-
-        //private static string IDLING_TRUCK = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_truck.jpeg";
-        //private static string IDLING_BUS = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_bus.jpg";
-        //private static string IDLING_VAN = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_van.jpg";
-        //private static string NOT_SUPPORTED_FILE = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\not_supported_idling_WEBPfile.webp";
-        //private static string PDF_FILE = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\WebDoc.pdf";
-        //private static string MP4_FILE = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\MP4_How_To_Get_Rich_Reporting_On_Idling_Vehicles_In_NYC.mp4";
 
 
         [Test]

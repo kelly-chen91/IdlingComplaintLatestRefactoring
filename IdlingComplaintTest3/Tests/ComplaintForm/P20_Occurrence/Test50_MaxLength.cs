@@ -12,20 +12,52 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 {
     internal class Test50_MaxLength : ComplaintFormModel
     {
+
+        BaseExtent extent;
+
+        public Test50_MaxLength()
+        {
+            extent = new BaseExtent();
+        }
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            ComplaintFormModelSetUp(true);
-            ClickNo();
-            Driver.ScrollTo(Occurrence_VehicleTypeControl);
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(15));
-            wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname='idc_associatedlastname']")));
+            extent.SetUp(false, GetType().Name);
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
-            ComplaintFormModelTearDown();
+            extent.TearDown(false);
+        }
+
+        [SetUp]
+        public void SetUp()
+        {
+            base.ComplaintFormModelSetUp(false);
+            ClickNo();
+            Driver.ScrollTo(Occurrence_VehicleTypeControl);
+            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(15));
+            wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname='idc_associatedlastname']")));
+
+            extent.SetUp(true);
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            try
+            {
+                extent.TearDown(true);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception: " + ex);
+            }
+            finally
+            {
+                base.ComplaintFormModelTearDown();
+            }
         }
 
         [Test]

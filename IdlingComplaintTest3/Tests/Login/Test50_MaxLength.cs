@@ -9,16 +9,48 @@ namespace IdlingComplaints.Tests.Login
     {
         private const int MAXLENGTH = 50;
 
+        BaseExtent extent;
+
+        public Test50_MaxLength()
+        {
+            extent = new BaseExtent();
+        }
+
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            base.LoginModelSetUp(true);
+            extent.SetUp(false, GetType().Name);
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
-            base.LoginModelTearDown();
+            extent.TearDown(false);
+        }
+
+        [SetUp]
+        public void SetUp()
+        {
+            base.LoginModelSetUp(true);
+            extent.SetUp(true);
+
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            try
+            {
+                extent.TearDown(true);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception: " + ex);
+            }
+            finally
+            {
+                base.LoginModelTearDown();
+            }
         }
 
         [Test]

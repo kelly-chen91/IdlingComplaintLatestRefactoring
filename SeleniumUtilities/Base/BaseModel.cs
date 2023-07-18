@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using AventStack.ExtentReports;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
@@ -57,6 +58,12 @@ namespace SeleniumUtilities.Base
                 default:
                     throw new Exception("Provided browser is not supported.");
             }
+        }
+
+        public MediaEntityModelProvider CaptureScreenshot(string name)
+        {
+            var screenshot = ((ITakesScreenshot)Driver).GetScreenshot().AsBase64EncodedString;
+            return MediaEntityBuilder.CreateScreenCaptureFromBase64String(screenshot,name).Build(); 
         }
 
 

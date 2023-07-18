@@ -7,6 +7,7 @@ using OpenQA.Selenium.Firefox;
 using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Text.RegularExpressions;
+using IdlingComplaints.Tests;
 
 namespace IdlingComplaints.Models.Register
 {
@@ -16,12 +17,13 @@ namespace IdlingComplaints.Models.Register
         {
         }
 
+
         public void RegisterModelSetUp(bool isHeadless)
         {
             if (isHeadless) Driver = CreateHeadlessDriver("chrome");
             else Driver = CreateStandardDriver("chrome");
+
             Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/profile");
-    
             Driver.Manage().Window.Maximize();
         }
         

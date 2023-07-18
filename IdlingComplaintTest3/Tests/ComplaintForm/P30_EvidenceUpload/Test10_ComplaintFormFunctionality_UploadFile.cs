@@ -22,25 +22,53 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         
         string[] filePaths = { Constants.PDF_FILE, Constants.IDLING_BUS, Constants.MP4_FILE, Constants.NOT_SUPPORTED_FILE };
 
-        [SetUp]
-        public void Setup()
+        BaseExtent extent;
+
+        public Test10_ComplaintFormFunctionality_UploadFile()
         {
-            
+            extent = new BaseExtent();
+        }
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+            extent.SetUp(false, GetType().Name);
+        }
+
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
+        {
+            extent.TearDown(false);
+        }
+
+        [SetUp]
+        public void SetUp()
+        {
             base.ComplaintFormModelSetUp(false);
             ClickNo();
             Driver.WaitUntilElementFound(By.CssSelector("input[placeholder='Company Name']"), 15);
             Filled_ComplaintInfo();
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 21);
+            extent.SetUp(true);
 
         }
+
         [TearDown]
-        public void Teardown()
+        public void TearDown()
         {
-            if (SLEEP_TIMER > 0)
-                Thread.Sleep(SLEEP_TIMER);
-            base.ComplaintFormModelTearDown();
+            try
+            {
+                extent.TearDown(true);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception: " + ex);
+            }
+            finally
+            {
+                if (SLEEP_TIMER > 0) { Thread.Sleep(SLEEP_TIMER); }
+                base.ComplaintFormModelTearDown();
+            }
         }
-
         [Test, Category("Scenario #0: Verify multiple functionalities at once for demo")]
         public void EvidenceUpload_VerifyNotSupportedFile_Upload_Delete_Download_Process()
         {

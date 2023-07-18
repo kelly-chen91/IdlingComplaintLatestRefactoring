@@ -16,19 +16,53 @@ namespace IdlingComplaints.Tests.Register
         //private string Registered_EmailAddress = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Text\\Registered_EmailAddress.txt";
         private string Registered_EmailAddress = StringUtilities.GetProjectRootDirectory() + "\\Files\\Text\\Registered_EmailAddress.txt";
 
+        BaseExtent extent;
+
+        public Test10_RegistrationFunctionality()
+        {
+            extent = new BaseExtent();
+        }
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+            extent.SetUp(false, GetType().Name);
+        }
+
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
+        {
+            extent.TearDown(false);
+        }
+
         [SetUp]
         public void SetUp()
         {
             base.RegisterModelSetUp(false);
             Driver.Manage().Window.Size = new Size(1920, 1080);
+
+            extent.SetUp(true);
+
         }
 
         [TearDown]
         public void TearDown()
         {
-            if(SLEEP_TIMER>0) Thread.Sleep(SLEEP_TIMER);
-            base.RegisterModelTearDown();
+            try
+            {
+                extent.TearDown(true);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception: " + ex);
+            }
+            finally
+            {
+                if (SLEEP_TIMER > 0)
+                    Thread.Sleep(SLEEP_TIMER);
+                base.RegisterModelTearDown();
+            }
         }
+
 
         [Test, Category("Scenario test#1: New user with all random text input")]
         public void RandomtextRegistrtration()

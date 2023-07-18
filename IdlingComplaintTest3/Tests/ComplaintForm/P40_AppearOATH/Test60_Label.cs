@@ -13,18 +13,49 @@ namespace IdlingComplaints.Tests.ComplaintForm.P40_AppearOATH
     //[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
     internal class Test60_Label : FillComplaintForm_Base
     {
+        BaseExtent extent;
+
+        public Test60_Label()
+        {
+            extent = new BaseExtent();
+        }
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+            extent.SetUp(false, GetType().Name);
+        }
+
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
+        {
+            extent.TearDown(false);
+        }
+
         [SetUp]
         public void SetUp()
         {
-            ComplaintFormModelSetUp(true);
+            base.ComplaintFormModelSetUp(true);
             AppearOATHSetUp();
+
+            extent.SetUp(true);
+
         }
-        
+
         [TearDown]
         public void TearDown()
         {
-            //if (SLEEP_TIMER > 0) { Thread.Sleep(SLEEP_TIMER); }
-           ComplaintFormModelTearDown();
+            try
+            {
+                extent.TearDown(true);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception: " + ex);
+            }
+            finally
+            {
+                base.ComplaintFormModelTearDown();
+            }
         }
 
         public void AppearOATHSetUp()

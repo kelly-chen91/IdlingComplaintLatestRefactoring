@@ -3,6 +3,8 @@ using OpenQA.Selenium;
 using System.Drawing;
 using SeleniumUtilities.Utils;
 using IdlingComplaints.Models.Login;
+using SeleniumUtilities.Utils.ExtentUtils;
+using NUnit.Framework.Interfaces;
 
 namespace IdlingComplaints.Tests.Login;
 
@@ -14,19 +16,50 @@ namespace IdlingComplaints.Tests.Login;
 internal class Test10_LoginFunctionality : LoginModel
 {
     Random random = new Random();
-   
+
+    BaseExtent extent;
+
+    public Test10_LoginFunctionality()
+    {
+        extent = new BaseExtent();
+    }
+    [OneTimeSetUp]
+    public void OneTimeSetUp()
+    {
+        extent.SetUp(false, GetType().Name);
+    }
+
+    [OneTimeTearDown]
+    public void OneTimeTearDown()
+    {
+        extent.TearDown(false);
+    }
+
     [SetUp]
     public void SetUp()
     {
         base.LoginModelSetUp(false);
+        extent.SetUp(true);
+
     }
 
     [TearDown]
     public void TearDown()
     {
-        if (SLEEP_TIMER > 0)
-            Thread.Sleep(SLEEP_TIMER);
-        base.LoginModelTearDown();
+        try
+        {
+            extent.TearDown(true);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Exception: " + ex);
+        }
+        finally
+        {
+            if (SLEEP_TIMER > 0)
+                Thread.Sleep(SLEEP_TIMER);
+            base.LoginModelTearDown();
+        }
     }
 
     private readonly int SLEEP_TIMER = 0;
@@ -46,7 +79,11 @@ internal class Test10_LoginFunctionality : LoginModel
         PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
         ClickLoginButton();
 
-        Driver.WaitUntilElementFound(By.CssSelector("button[routerlink='idlingcomplaint/new']"), 20);
+        var newComplaintButton = Driver.WaitUntilElementFound(By.CssSelector("button[routerlink='idlingcomplaint/new']"), 20);
+
+        Assert.IsNotNull(newComplaintButton);
+
+        ReportLog.Pass("Successful Login");
       
         Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
     }

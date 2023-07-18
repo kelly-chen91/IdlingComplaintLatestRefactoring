@@ -13,22 +13,51 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 {
     internal class Test60_Label : FillComplaintForm_Base
     {
-        public Test60_Label() { }
-    
+        BaseExtent extent;
+
+        public Test60_Label()
+        {
+            extent = new BaseExtent();
+        }
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            base.ComplaintFormModelSetUp(true);
-            ClickNo();
-            Driver.ScrollTo(Occurrence_VehicleTypeControl);
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(15));
-            wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname='idc_associatedlastname']")));
+            extent.SetUp(false, GetType().Name);
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
-            base.ComplaintFormModelTearDown();
+            extent.TearDown(false);
+        }
+
+        [SetUp]
+        public void SetUp()
+        {
+            base.ComplaintFormModelSetUp(false);
+            ClickNo();
+            Driver.ScrollTo(Occurrence_VehicleTypeControl);
+            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(15));
+            wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname='idc_associatedlastname']")));
+
+            extent.SetUp(true);
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            try
+            {
+                extent.TearDown(true);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception: " + ex);
+            }
+            finally
+            {
+                base.ComplaintFormModelTearDown();
+            }
         }
 
         [Test]

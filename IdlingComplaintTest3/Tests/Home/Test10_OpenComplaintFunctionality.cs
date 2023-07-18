@@ -18,21 +18,50 @@ namespace IdlingComplaints.Tests.Home
     {
         private readonly int SLEEP_TIMER = 0;
 
-        public Test10_OpenComplaintFunctionality() { }
+        BaseExtent extent;
+
+        public Test10_OpenComplaintFunctionality()
+        {
+            extent = new BaseExtent();
+        }
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+            extent.SetUp(false, GetType().Name);
+        }
+
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
+        {
+            extent.TearDown(false);
+        }
+
         [SetUp]
         public void SetUp()
         {
             base.HomeModelSetUp("ttseng@dep.nyc.gov", "Testing1#", false);
+
+            extent.SetUp(true);
+
         }
 
         [TearDown]
         public void TearDown()
         {
-            if (SLEEP_TIMER > 0)
-                Thread.Sleep(SLEEP_TIMER);
-
-            //Driver.Quit();
-            base.HomeModelTearDown();
+            try
+            {
+                extent.TearDown(true);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception: " + ex);
+            }
+            finally
+            {
+                if (SLEEP_TIMER > 0)
+                    Thread.Sleep(SLEEP_TIMER);
+                base.HomeModelTearDown();
+            }
         }
 
         [Test]

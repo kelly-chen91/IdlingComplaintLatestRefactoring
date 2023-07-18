@@ -14,21 +14,48 @@ namespace IdlingComplaints.Tests.Login
 
     internal class Test60_Label : LoginModel
     {
-        //ExtentReports extent = null;
+        BaseExtent extent;
+
+        public Test60_Label()
+        {
+            extent = new BaseExtent();
+        }
+
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            base.LoginModelSetUp(true);
-            //extent = new ExtentReports();
-            //var htmlReporter = new ExtentHtmlReporter(@"C:\Users\kchen\source\repos\IdlingComplaintLatestRefactoring\IdlingComplaintTest3\ExtentReports\LoginTestResults.html");
-            //extent.AttachReporter(htmlReporter);
+            extent.SetUp(false, GetType().Name);
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
-            //extent.Flush();  
-            base.LoginModelTearDown();
+            extent.TearDown(false);
+        }
+
+        [SetUp]
+        public void SetUp()
+        {
+            base.LoginModelSetUp(true);
+            extent.SetUp(true);
+
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            try
+            {
+                extent.TearDown(true);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception: " + ex);
+            }
+            finally
+            {
+                base.LoginModelTearDown();
+            }
         }
 
         [Test]

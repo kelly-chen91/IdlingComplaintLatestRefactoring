@@ -2,6 +2,7 @@
 using SeleniumUtilities.Utils;
 using OpenQA.Selenium;
 using System.Drawing;
+using IdlingComplaints.Tests;
 
 namespace IdlingComplaints.Models.Login
 {
@@ -17,7 +18,8 @@ namespace IdlingComplaints.Models.Login
 
          public void LoginModelTearDown()
          {
-             Driver.Quit();
+            Driver.Quit();
+            
          }
 
 

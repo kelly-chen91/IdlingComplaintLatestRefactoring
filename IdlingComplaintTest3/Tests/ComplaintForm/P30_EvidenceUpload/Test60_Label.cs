@@ -14,11 +14,29 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         private readonly int SLEEPTIMER = 0;
         private new static string FILE_IMAGE_PATH = P30_EvidenceUpload.Constants.IDLING_TRUCK;
 
-        [SetUp]
-        public void Setup()
-        {
 
-            base.ComplaintFormModelSetUp(false);
+        BaseExtent extent;
+
+        public Test60_Label()
+        {
+            extent = new BaseExtent();
+        }
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+            extent.SetUp(false, GetType().Name);
+        }
+
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
+        {
+            extent.TearDown(false);
+        }
+
+        [SetUp]
+        public void SetUp()
+        {
+            base.ComplaintFormModelSetUp(true);
             ClickNo();
             Driver.WaitUntilElementFound(By.CssSelector("input[placeholder='Company Name']"), 15);
             Filled_ComplaintInfo();
@@ -28,11 +46,25 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             if (!successfulSave.Text.Contains("saved success")) Assert.That(successfulSave.Text.Trim(), Is.EqualTo("This form has been saved successfully."), "Flagged inconsistency on purpose.");
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 20);
 
+            extent.SetUp(true);
+
         }
+
         [TearDown]
-        public void Teardown()
+        public void TearDown()
         {
-            base.ComplaintFormModelTearDown();
+            try
+            {
+                extent.TearDown(true);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception: " + ex);
+            }
+            finally
+            {
+                base.ComplaintFormModelTearDown();
+            }
         }
 
         [Test, Category("Correct Label Displayed")]

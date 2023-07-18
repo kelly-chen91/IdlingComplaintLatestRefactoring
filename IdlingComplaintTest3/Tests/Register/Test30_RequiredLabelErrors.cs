@@ -17,24 +17,55 @@ namespace IdlingComplaints.Tests.Register
     {
         private readonly int SLEEP_TIMER = 0;
 
-        [OneTimeSetUp]
-        public void SetUp()
+
+        BaseExtent extent;
+
+        public Test30_RequiredLabelErrors()
         {
-            //Driver.Quit();
-            //Driver = CreateStandardDriver("chrome");
-            //Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/profile");
-            //Driver.Manage().Window.Size = new Size(1920, 1200);
-            base.RegisterModelSetUp(true);
-            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
+            extent = new BaseExtent();
+        }
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+            extent.SetUp(false, GetType().Name);
         }
 
         [OneTimeTearDown]
+        public void OneTimeTearDown()
+        {
+            extent.TearDown(false);
+        }
+
+        [SetUp]
+        public void SetUp()
+        {
+            base.RegisterModelSetUp(false);
+            Driver.Manage().Window.Size = new Size(1920, 1080);
+            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
+
+            extent.SetUp(true);
+
+        }
+
+        [TearDown]
         public void TearDown()
         {
-            if (SLEEP_TIMER > 0)
-                Thread.Sleep(SLEEP_TIMER);
-            base.RegisterModelTearDown();
+            try
+            {
+                extent.TearDown(true);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception: " + ex);
+            }
+            finally
+            {
+                if (SLEEP_TIMER > 0)
+                    Thread.Sleep(SLEEP_TIMER);
+                base.RegisterModelTearDown();
+            }
         }
+
 
         /*Tests for error when first name field is empty*/
         [Test]

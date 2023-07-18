@@ -13,18 +13,50 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 {
     internal partial class Test10_Functionality : FillComplaintForm_Base
     {
+
+        BaseExtent extent;
+
+        public Test10_Functionality()
+        {
+            extent = new BaseExtent();
+        }
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+            extent.SetUp(false, GetType().Name);
+        }
+
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
+        {
+            extent.TearDown(false);
+        }
+
         [SetUp]
         public void SetUp()
         {
             base.ComplaintFormModelSetUp(false);
+
+            extent.SetUp(true);
 
         }
 
         [TearDown]
         public void TearDown()
         {
-            if (SLEEP_TIMER > 0) { Thread.Sleep(SLEEP_TIMER); }
-            base.ComplaintFormModelTearDown();
+            try
+            {
+                extent.TearDown(true);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception: " + ex);
+            }
+            finally
+            {
+                if (SLEEP_TIMER > 0) { Thread.Sleep(SLEEP_TIMER); }
+                base.ComplaintFormModelTearDown();
+            }
         }
 
         [Test]

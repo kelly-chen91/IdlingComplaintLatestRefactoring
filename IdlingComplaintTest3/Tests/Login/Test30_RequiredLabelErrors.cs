@@ -13,19 +13,50 @@ namespace IdlingComplaints.Tests.Login
     {
         private readonly int SLEEP_TIMER = 1000;
 
+        BaseExtent extent;
+
+        public Test30_RequiredLabelErrors()
+        {
+            extent = new BaseExtent();
+        }
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+            extent.SetUp(false, GetType().Name);
+        }
+
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
+        {
+            extent.TearDown(false);
+        }
+
         [SetUp]
         public void SetUp()
         {
             base.LoginModelSetUp(false);
+            extent.SetUp(true);
             Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
+
         }
 
         [TearDown]
         public void TearDown()
         {
-            if(SLEEP_TIMER > 0) { Thread.Sleep(SLEEP_TIMER); }
-            //Driver.Quit();
-            base.LoginModelTearDown();
+            try
+            {
+                extent.TearDown(true);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception: " + ex);
+            }
+            finally
+            {
+                if (SLEEP_TIMER > 0)
+                    Thread.Sleep(SLEEP_TIMER);
+                base.LoginModelTearDown();
+            }
         }
 
         [Test]

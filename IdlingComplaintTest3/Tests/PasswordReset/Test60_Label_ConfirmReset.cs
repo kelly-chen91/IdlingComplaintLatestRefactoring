@@ -16,22 +16,72 @@ namespace IdlingComplaints.Tests.PasswordReset
     {
         private readonly int SLEEP_TIMER = 0;
 
+        //[OneTimeSetUp]
+        //public void OneTimeSetUp()
+        //{
+        //
+        //    base.PasswordResetModelSetUp(true);
+        //
+        //    Driver.Manage().Window.Position = new Point(-2000, 0);
+        //    EmailInput = "TTseng@dep.nyc.gov";
+        //    ClickResetButton();
+        //    var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
+        //    wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname = 'securityanswer']")));
+        //}
+        //[OneTimeTearDown]
+        //public void OneTimeTearDown()
+        //{
+        //    base.PasswordResetModelTearDown();
+        //}
+
+        BaseExtent extent;
+
+        public Test60_Label_ConfirmReset()
+        {
+            extent = new BaseExtent();
+        }
+
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
+            extent.SetUp(false, GetType().Name);
+        }
 
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
+        {
+            extent.TearDown(false);
+        }
+
+        [SetUp]
+        public void SetUp()
+        {
             base.PasswordResetModelSetUp(true);
+            extent.SetUp(true);
 
             Driver.Manage().Window.Position = new Point(-2000, 0);
             EmailInput = "TTseng@dep.nyc.gov";
             ClickResetButton();
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
             wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname = 'securityanswer']")));
+
         }
-        [OneTimeTearDown]
-        public void OneTimeTearDown()
+
+        [TearDown]
+        public void TearDown()
         {
-            base.PasswordResetModelTearDown();
+            try
+            {
+                extent.TearDown(true);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception: " + ex);
+            }
+            finally
+            {
+                base.PasswordResetModelTearDown();
+            }
         }
 
 

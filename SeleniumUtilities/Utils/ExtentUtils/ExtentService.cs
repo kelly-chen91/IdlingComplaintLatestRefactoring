@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SeleniumUtilities.Utils.ExtentUtils
 {
-    public static class ExtentService
+    public class ExtentService
     {
         public static ExtentReports extent;
         public static ExtentReports GetExtent()
@@ -17,7 +17,7 @@ namespace SeleniumUtilities.Utils.ExtentUtils
             if(extent == null)
             {
                 extent = new ExtentReports();
-                string reportDir = StringUtilities.GetProjectRootDirectory() + "\\..\\IdlingComplaints\\ExtentReports\\";
+                string reportDir = StringUtilities.GetProjectRootDirectory() + "\\ExtentReports\\";
                 //"C:\\Users\\kchen\\source\\repos\\IdlingComplaintLatestRefactoring\\SeleniumUtilities\\Utils\\ExtentUtils\\"
                 if(!Directory.Exists(reportDir))
                     Directory.CreateDirectory(reportDir);

@@ -12,19 +12,31 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
     internal class Test20_BusinessValidation: FillComplaintForm_Base
     {
         private readonly int SLEEPTIMER = 0;
-        //private static string IDLING_TRUCK = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_truck.jpeg";
-        //private static string IDLING_BUS = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_bus.jpg";
-        //private static string IDLING_VAN = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\idling_van.jpg";
-        //private static string NOT_SUPPORTED_FILE = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\not_supported_idling_WEBPfile.webp";
-        //private static string PDF_FILE = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\WebDoc.pdf";
-        //private static string MP4_FILE = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Images\\MP4_How_To_Get_Rich_Reporting_On_Idling_Vehicles_In_NYC.mp4";
 
+
+        BaseExtent extent;
+
+        public Test20_BusinessValidation()
+        {
+            extent = new BaseExtent();
+        }
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+            extent.SetUp(false, GetType().Name);
+        }
+
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
+        {
+            extent.TearDown(false);
+        }
 
         [SetUp]
-        public void Setup()
+        public void SetUp()
         {
-
             base.ComplaintFormModelSetUp(false);
+
             ClickNo();
             Driver.WaitUntilElementFound(By.CssSelector("input[placeholder='Company Name']"), 15);
             Filled_ComplaintInfo();
@@ -34,13 +46,25 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             if (!successfulSave.Text.Contains("saved success")) Assert.That(successfulSave.Text.Trim(), Is.EqualTo("This form has been saved successfully."), "Flagged inconsistency on purpose.");
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 20);
 
-        }
-        [TearDown]
-        public void Teardown()
-        {
-            base.ComplaintFormModelTearDown();
+            extent.SetUp(true);
         }
 
+        [TearDown]
+        public void TearDown()
+        {
+            try
+            {
+                extent.TearDown(true);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception: " + ex);
+            }
+            finally
+            {
+                base.ComplaintFormModelTearDown();
+            }
+        }
 
         [Test, Category("Testing PDF file type")]
         public void EvidenceUpload_Verify_PDF_FileType()

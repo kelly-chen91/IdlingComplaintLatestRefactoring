@@ -11,20 +11,50 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 {
-    internal class Test10_ComplaintFormFunctionality : FillComplaintForm_Base
+    internal class Test30_RequiredLabelErrors : FillComplaintForm_Base
     {
+
+        BaseExtent extent;
+
+        public Test30_RequiredLabelErrors()
+        {
+            extent = new BaseExtent();
+        }
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+            extent.SetUp(false, GetType().Name);
+        }
+
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
+        {
+            extent.TearDown(false);
+        }
+
         [SetUp]
         public void SetUp()
         {
             base.ComplaintFormModelSetUp(false);
 
+            extent.SetUp(true);
         }
 
         [TearDown]
         public void TearDown()
         {
-            if (SLEEPTIMER > 0) { Thread.Sleep(SLEEPTIMER); }
-            base.ComplaintFormModelTearDown();
+            try
+            {
+                extent.TearDown(true);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception: " + ex);
+            }
+            finally
+            {
+                base.ComplaintFormModelTearDown();
+            }
         }
 
         public readonly int SLEEPTIMER = 0;

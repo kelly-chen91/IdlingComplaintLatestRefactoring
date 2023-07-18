@@ -17,16 +17,60 @@ namespace IdlingComplaints.Tests.PasswordReset
     internal class Test60_Label_BeforeReset : PasswordResetModel 
     { 
 
+        //[OneTimeSetUp]
+        //public void OneTimeSetUp()
+        //{
+        //    base.PasswordResetModelSetUp(true);
+        //}
+        //
+        //[OneTimeTearDown]
+        //public void OneTimeTearDown()
+        //{
+        //    base.PasswordResetModelTearDown();
+        //}
+
+        BaseExtent extent;
+
+        public Test60_Label_BeforeReset()
+        {
+            extent = new BaseExtent();
+        }
+
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            base.PasswordResetModelSetUp(true);
+            extent.SetUp(false, GetType().Name);
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
-            base.PasswordResetModelTearDown();
+            extent.TearDown(false);
+        }
+
+        [SetUp]
+        public void SetUp()
+        {
+            base.PasswordResetModelSetUp(true);
+            extent.SetUp(true);
+
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            try
+            {
+                extent.TearDown(true);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception: " + ex);
+            }
+            finally
+            {
+                base.PasswordResetModelTearDown();
+            }
         }
 
         [Test, Category("Correct Label Displayed")]

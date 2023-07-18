@@ -15,16 +15,48 @@ namespace IdlingComplaints.Tests.Register
     internal class Test60_Label : RegisterModel
     {
 
+        BaseExtent extent;
+
+        public Test60_Label()
+        {
+            extent = new BaseExtent();
+        }
+
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            base.RegisterModelSetUp(true);
+            extent.SetUp(false, GetType().Name);
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
-            base.RegisterModelTearDown();
+            extent.TearDown(false);
+        }
+
+        [SetUp]
+        public void SetUp()
+        {
+            base.RegisterModelSetUp(true);
+            extent.SetUp(true);
+
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            try
+            {
+                extent.TearDown(true);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception: " + ex);
+            }
+            finally
+            {
+                base.RegisterModelTearDown();
+            }
         }
 
         [Test]

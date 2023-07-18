@@ -15,17 +15,50 @@ namespace IdlingComplaints.Tests.Home
     internal class Test60_Label : HomeModel
     { 
     
+        BaseExtent extent;
+
+        public Test60_Label()
+        {
+            extent = new BaseExtent();
+        }
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+            extent.SetUp(false, GetType().Name);
+        }
+
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
+        {
+            extent.TearDown(false);
+        }
+
         [SetUp]
         public void SetUp()
         {
             base.HomeModelSetUp("ttseng@dep.nyc.gov", "Testing1#", true);
+
+            extent.SetUp(true);
+
         }
 
         [TearDown]
         public void TearDown()
         {
-            Thread.Sleep(SLEEP_TIMER);
-            base.HomeModelTearDown();
+            try
+            {
+                extent.TearDown(true);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception: " + ex);
+            }
+            finally
+            {
+                if (SLEEP_TIMER > 0)
+                    Thread.Sleep(SLEEP_TIMER);
+                base.HomeModelTearDown();
+            }
         }
 
         private readonly int SLEEP_TIMER = 0;

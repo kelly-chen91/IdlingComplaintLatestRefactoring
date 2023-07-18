@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using IdlingComplaints.Tests;
+using OpenQA.Selenium;
 using SeleniumUtilities.Base;
 using SeleniumUtilities.Utils;
 using System;
@@ -12,15 +13,12 @@ namespace IdlingComplaints.Models.PasswordReset
 {
     internal class PasswordResetModel : BaseModel
     {
-        public PasswordResetModel()
-        {
-
-        }
         
         public void PasswordResetModelSetUp(bool isHeadless)
         {
             if (isHeadless) Driver = CreateHeadlessDriver("chrome");
             else Driver = CreateStandardDriver("chrome");
+
             Driver.Navigate().GoToUrl("https://nycidling-dev.azurewebsites.net/password-reset");
             //Driver.Manage().Window.Size = new Size(1920, 1200);
             Driver.Manage().Window.Maximize();

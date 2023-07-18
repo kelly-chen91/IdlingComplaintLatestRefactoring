@@ -15,19 +15,16 @@ namespace IdlingComplaints.Tests.Home
     {
         private readonly int SLEEP_TIMER = 0;
 
-        public Test40_Filter() { }
+        BaseExtent extent;
 
-        [OneTimeSetUp]
-        public void SetUp()
+        public Test40_Filter()
         {
-            base.HomeModelSetUp("ttseng@dep.nyc.gov", "Testing1#", true);
+            extent = new BaseExtent();
         }
-
-        [TearDown]
-        public void TearDown()
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
         {
-            if (SLEEP_TIMER > 0)
-                Thread.Sleep(SLEEP_TIMER);
+            extent.SetUp(false, GetType().Name);
         }
 
         [OneTimeTearDown]
@@ -35,7 +32,35 @@ namespace IdlingComplaints.Tests.Home
         {
             if (SLEEP_TIMER > 0)
                 Thread.Sleep(SLEEP_TIMER);
-            base.HomeModelTearDown();
+            extent.TearDown(false);
+        }
+
+        [SetUp]
+        public void SetUp()
+        {
+            base.HomeModelSetUp("ttseng@dep.nyc.gov", "Testing1#", true);
+
+            extent.SetUp(true);
+
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            try
+            {
+                extent.TearDown(true);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception: " + ex);
+            }
+            finally
+            {
+                if (SLEEP_TIMER > 0)
+                    Thread.Sleep(SLEEP_TIMER);
+                base.HomeModelTearDown();
+            }
         }
 
         [Test]

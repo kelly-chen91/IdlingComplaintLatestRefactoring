@@ -21,18 +21,33 @@ namespace IdlingComplaints.Tests.PasswordReset
         private readonly string registered_EmailAddress = StringUtilities.GetProjectRootDirectory() + "\\Files\\Text\\Registered_EmailAddress.txt";
         Random random = new Random();
 
-       
+        BaseExtent extent;
+
         public Test10_PasswordResetFunctionality()
         {
             this.lines = File.ReadAllLines(registered_EmailAddress).Length;
             this.userIndex = random.Next(0, lines - 1);
+            extent = new BaseExtent();
+
         }
 
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+            extent.SetUp(false, GetType().Name);
+        }
+
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
+        {
+            extent.TearDown(false);
+        }
 
         [SetUp]
         public void Setup()
         {
             base.PasswordResetModelSetUp(false);
+            extent.SetUp(true);
 
             string emailAddress = RegistrationUtilities.RetrieveRecordValue(registered_EmailAddress, userIndex, 0);
             EmailControl.SendKeysWithDelay(emailAddress, SLEEP_TIMER);
@@ -44,13 +59,30 @@ namespace IdlingComplaints.Tests.PasswordReset
             //wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname = 'securityanswer']")));
             Console.WriteLine("This user's email is " + emailAddress + ". The line index is " + userIndex + ".");
         }
+
         [TearDown]
         public void TearDown()
         {
-            if (SLEEP_TIMER > 0)
-                Thread.Sleep(SLEEP_TIMER);
-            base.PasswordResetModelTearDown();
+            try
+            {
+                extent.TearDown(true);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception: " + ex);
+            }
+            finally
+            {
+                if (SLEEP_TIMER > 0)
+                    Thread.Sleep(SLEEP_TIMER);
+                base.PasswordResetModelTearDown();
+            }
         }
+
+
+        
+
+        
 
         [Test, Category("Scenario #1: successful password reset")]
         public void UpdatePasswordinFile()

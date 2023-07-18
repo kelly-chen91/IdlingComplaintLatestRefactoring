@@ -2,6 +2,7 @@
 using IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality;
 using OpenQA.Selenium;
 using OpenQA.Selenium.DevTools.V112.Database;
+using OpenQA.Selenium.Support.UI;
 using SeleniumUtilities.Utils;
 using System;
 using System.Collections.Generic;
@@ -14,18 +15,50 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 {
     internal class Test20_BusinessValidation : FillComplaintForm_Base
     {
+
+        BaseExtent extent;
+
+        public Test20_BusinessValidation()
+        {
+            extent = new BaseExtent();
+        }
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+            extent.SetUp(false, GetType().Name);
+        }
+
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
+        {
+            extent.TearDown(false);
+        }
+
         [SetUp]
         public void SetUp()
         {
-            ComplaintFormModelSetUp(false);
+            base.ComplaintFormModelSetUp(false);
             CreateMessageDetailDictionary();
+
+
+            extent.SetUp(true);
         }
 
         [TearDown]
         public void TearDown()
         {
-            if (SLEEP_TIMER > 0) { Thread.Sleep(SLEEP_TIMER); }
-            ComplaintFormModelTearDown();
+            try
+            {
+                extent.TearDown(true);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception: " + ex);
+            }
+            finally
+            {
+                base.ComplaintFormModelTearDown();
+            }
         }
 
         private Dictionary<string,string> messageDetailDictionary;

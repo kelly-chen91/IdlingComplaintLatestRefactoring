@@ -20,6 +20,18 @@ namespace IdlingComplaints.Tests.PasswordReset
             base.OneTimeTearDown();
         }
 
+        [SetUp]
+        public new void SetUp()
+        {
+            base.SetUp();
+        }
+
+        [TearDown]
+        public new void TearDown()
+        {
+            base.TearDown();
+        }
+        
 
         [Test, Category("Maxlength attribute is present")]
         public void MaxLength_SecurityAnswer()
