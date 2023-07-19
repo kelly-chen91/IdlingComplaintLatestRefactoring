@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 {
+    [Parallelizable(ParallelScope.Self)]
+    [FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test30_RequiredLabelErrors : ComplaintFormModel
     {
 
@@ -23,21 +25,31 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         public void OneTimeSetUp()
         {
             extent.SetUp(false, GetType().Name);
+
+            base.ComplaintFormModelSetUp(true);
+            NewComplaintSetUp();
+            ClickNo();
+            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(15));
+            wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname='idc_associatedlastname']")));
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
             extent.TearDown(false, Driver);
+            if (SLEEP_TIMER > 0)
+                Thread.Sleep(SLEEP_TIMER);
+            base.ComplaintFormModelTearDown();
         }
 
         [SetUp]
         public void SetUp()
         {
-            base.ComplaintFormModelSetUp(false);
-            ClickNo();
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(15));
-            wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname='idc_associatedlastname']")));
+            //base.ComplaintFormModelSetUp(true);
+            //NewComplaintSetUp();
+            //ClickNo();
+            //var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(15));
+            //wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname='idc_associatedlastname']")));
 
             extent.SetUp(true);
         }
@@ -53,12 +65,12 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             {
                 throw new Exception("Exception: " + ex);
             }
-            finally
-            {
-                if (SLEEP_TIMER > 0)
-                    Thread.Sleep(SLEEP_TIMER);
-                base.ComplaintFormModelTearDown();
-            }
+            //finally
+            //{
+            //    if (SLEEP_TIMER > 0)
+            //        Thread.Sleep(SLEEP_TIMER);
+            //    base.ComplaintFormModelTearDown();
+            //}
         }
 
 

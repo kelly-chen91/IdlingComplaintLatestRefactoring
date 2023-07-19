@@ -11,6 +11,8 @@ namespace IdlingComplaints.Tests.Home
 {
     //[Parallelizable(ParallelScope.Children)]
     //[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
+    [Parallelizable(ParallelScope.Self)]
+    [FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test40_Filter : HomeModel
     {
         private readonly int SLEEP_TIMER = 0;
@@ -25,20 +27,23 @@ namespace IdlingComplaints.Tests.Home
         public void OneTimeSetUp()
         {
             extent.SetUp(false, GetType().Name);
+            base.HomeModelSetUp("ttseng@dep.nyc.gov", "Testing1#", true);
+
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
+            extent.TearDown(false, Driver);
             if (SLEEP_TIMER > 0)
                 Thread.Sleep(SLEEP_TIMER);
-            extent.TearDown(false, Driver);
+            base.HomeModelTearDown();
         }
 
         [SetUp]
         public void SetUp()
         {
-            base.HomeModelSetUp("ttseng@dep.nyc.gov", "Testing1#", true);
+            //base.HomeModelSetUp("ttseng@dep.nyc.gov", "Testing1#", true);
 
             extent.SetUp(true);
 
@@ -55,12 +60,12 @@ namespace IdlingComplaints.Tests.Home
             {
                 throw new Exception("Exception: " + ex);
             }
-            finally
-            {
-                if (SLEEP_TIMER > 0)
-                    Thread.Sleep(SLEEP_TIMER);
-                base.HomeModelTearDown();
-            }
+            //finally
+            //{
+            //    if (SLEEP_TIMER > 0)
+            //        Thread.Sleep(SLEEP_TIMER);
+            //    base.HomeModelTearDown();
+            //}
         }
 
         [Test]

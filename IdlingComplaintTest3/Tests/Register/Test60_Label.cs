@@ -11,7 +11,9 @@ using IdlingComplaints.Models.Register;
 
 namespace IdlingComplaints.Tests.Register
 {
-
+    //[Parallelizable]
+    [Parallelizable(ParallelScope.Self)]
+    [FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test60_Label : RegisterModel
     {
 
@@ -26,18 +28,21 @@ namespace IdlingComplaints.Tests.Register
         public void OneTimeSetUp()
         {
             extent.SetUp(false, GetType().Name);
+            base.RegisterModelSetUp(true);
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
             extent.TearDown(false, Driver);
+            base.RegisterModelTearDown();
+
         }
 
         [SetUp]
         public void SetUp()
         {
-            base.RegisterModelSetUp(true);
+            //base.RegisterModelSetUp(true);
             extent.SetUp(true);
 
         }
@@ -53,10 +58,10 @@ namespace IdlingComplaints.Tests.Register
             {
                 throw new Exception("Exception: " + ex);
             }
-            finally
-            {
-                base.RegisterModelTearDown();
-            }
+            //finally
+            //{
+            //    base.RegisterModelTearDown();
+            //}
         }
 
         [Test]

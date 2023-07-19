@@ -14,6 +14,8 @@ namespace IdlingComplaints.Tests.PasswordReset
 {
     // [Parallelizable(ParallelScope.Children)]
     // [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
+    [Parallelizable(ParallelScope.Self)]
+    [FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test60_Label_BeforeReset : PasswordResetModel 
     { 
 
@@ -40,18 +42,22 @@ namespace IdlingComplaints.Tests.PasswordReset
         public void OneTimeSetUp()
         {
             extent.SetUp(false, GetType().Name);
+            base.PasswordResetModelSetUp(true);
+
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
             extent.TearDown(false, Driver);
+            base.PasswordResetModelTearDown();
+
         }
 
         [SetUp]
         public void SetUp()
         {
-            base.PasswordResetModelSetUp(true);
+            //base.PasswordResetModelSetUp(true);
             extent.SetUp(true);
 
         }
@@ -67,10 +73,10 @@ namespace IdlingComplaints.Tests.PasswordReset
             {
                 throw new Exception("Exception: " + ex);
             }
-            finally
-            {
-                base.PasswordResetModelTearDown();
-            }
+            //finally
+            //{
+            //    base.PasswordResetModelTearDown();
+            //}
         }
 
         [Test, Category("Correct Label Displayed")]

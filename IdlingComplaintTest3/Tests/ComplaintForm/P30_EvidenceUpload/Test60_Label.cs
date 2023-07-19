@@ -9,6 +9,8 @@ using IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality;
 
 namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 {
+    [Parallelizable(ParallelScope.Self)]
+    [FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test60_Label : FillComplaintForm_Base
     {
         private readonly int SLEEPTIMER = 0;
@@ -25,20 +27,22 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         public void OneTimeSetUp()
         {
             extent.SetUp(false, GetType().Name);
+            base.ComplaintFormModelSetUp(true);
+
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
             extent.TearDown(false, Driver);
+            base.ComplaintFormModelTearDown();
+
         }
 
         [SetUp]
         public void SetUp()
         {
-            base.ComplaintFormModelSetUp(true);
-            ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[placeholder='Company Name']"), 15);
+            NewComplaintSetUp();
             Filled_ComplaintInfo();
 
             var successfulSave = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
@@ -63,7 +67,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             }
             finally
             {
-                base.ComplaintFormModelTearDown();
+                //base.ComplaintFormModelTearDown();
+                EvidenceUpload_ClickCancel();
+                Driver.WaitUntilElementFound(By.CssSelector("button[routerlink='idlingcomplaint/new']"), 20);
+                Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 30);
             }
         }
 

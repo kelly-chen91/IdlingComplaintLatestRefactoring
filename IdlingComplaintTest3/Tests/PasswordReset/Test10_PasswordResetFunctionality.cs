@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.PasswordReset
 {
+    [Parallelizable(ParallelScope.Self)]
+    [FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test10_PasswordResetFunctionality : PasswordResetModel
     {
         public int lines;
@@ -46,7 +48,7 @@ namespace IdlingComplaints.Tests.PasswordReset
         [SetUp]
         public void Setup()
         {
-            base.PasswordResetModelSetUp(false);
+            base.PasswordResetModelSetUp(true);
             extent.SetUp(true);
 
             string emailAddress = RegistrationUtilities.RetrieveRecordValue(registered_EmailAddress, userIndex, 0);

@@ -13,8 +13,10 @@ using SeleniumUtilities.Utils;
 
 namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 {
-  // [Parallelizable(ParallelScope.Children)]
-  // [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
+    // [Parallelizable(ParallelScope.Children)]
+    // [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
+    [Parallelizable(ParallelScope.Self)]
+    [FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test10_ComplaintFormFunctionality_UploadFile: FillComplaintForm_Base
     {
 
@@ -32,20 +34,21 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         public void OneTimeSetUp()
         {
             extent.SetUp(false, GetType().Name);
+
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
             extent.TearDown(false, Driver);
+            
         }
 
         [SetUp]
         public void SetUp()
         {
-            base.ComplaintFormModelSetUp(false);
-            ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[placeholder='Company Name']"), 15);
+            base.ComplaintFormModelSetUp(true);
+            NewComplaintSetUp();
             Filled_ComplaintInfo();
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 21);
             extent.SetUp(true);

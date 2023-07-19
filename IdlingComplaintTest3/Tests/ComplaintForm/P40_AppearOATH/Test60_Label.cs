@@ -11,6 +11,8 @@ namespace IdlingComplaints.Tests.ComplaintForm.P40_AppearOATH
 {
     //[Parallelizable(ParallelScope.Children)]
     //[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
+    [Parallelizable(ParallelScope.Self)]
+    [FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test60_Label : FillComplaintForm_Base
     {
         BaseExtent extent;
@@ -23,19 +25,22 @@ namespace IdlingComplaints.Tests.ComplaintForm.P40_AppearOATH
         public void OneTimeSetUp()
         {
             extent.SetUp(false, GetType().Name);
+            base.ComplaintFormModelSetUp(true);
+            AppearOATHSetUp();
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
             extent.TearDown(false, Driver);
+            base.ComplaintFormModelTearDown();
         }
 
         [SetUp]
         public void SetUp()
         {
-            base.ComplaintFormModelSetUp(true);
-            AppearOATHSetUp();
+            //base.ComplaintFormModelSetUp(true);
+            //AppearOATHSetUp();
 
             extent.SetUp(true);
 
@@ -52,24 +57,25 @@ namespace IdlingComplaints.Tests.ComplaintForm.P40_AppearOATH
             {
                 throw new Exception("Exception: " + ex);
             }
-            finally
-            {
-                base.ComplaintFormModelTearDown();
-            }
+            //finally
+            //{
+            //    base.ComplaintFormModelTearDown();
+            //}
         }
 
         public void AppearOATHSetUp()
         {
+            NewComplaintSetUp();
             base.Filled_ComplaintInfo();
             base.Filled_EvidenceUpload();
         }
 
         [Test]
         [Category("Correct Label Displayed")]
-        public void SuccessfulUploadDocumentMessage()
+        public void VerifySuccessfulUploadDocumentMessage()
         {
-            base.Filled_ComplaintInfo();
-            base.Filled_EvidenceUpload();
+            //base.Filled_ComplaintInfo();
+            //base.Filled_EvidenceUpload();
 
             AppearOATH_ClickNo();
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 30);
@@ -79,9 +85,15 @@ namespace IdlingComplaints.Tests.ComplaintForm.P40_AppearOATH
 
 
             var successfulDocumentUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span")); // message says evidence have successfully uploaded
+            //Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 20);
             Assert.IsNotNull(successfulDocumentUpload);
             Assert.That(successfulDocumentUpload.Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
-
+            //AppearOATH_ClickCancel();
+            //Driver.WaitUntilElementFound(By.TagName("button[routerlink='idlingcomplaint/new']"),20);
+            //Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 30);
+            //ClickNewComplaintButton();
+            //base.Filled_ComplaintInfo();
+            //base.Filled_EvidenceUpload();
         }
 
         [Test]

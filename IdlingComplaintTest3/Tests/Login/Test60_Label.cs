@@ -11,6 +11,8 @@ using SeleniumUtilities.Utils;
 
 namespace IdlingComplaints.Tests.Login
 {
+    [Parallelizable(ParallelScope.Self)]
+    [FixtureLifeCycle(LifeCycle.SingleInstance)]
 
     internal class Test60_Label : LoginModel
     {
@@ -25,18 +27,22 @@ namespace IdlingComplaints.Tests.Login
         public void OneTimeSetUp()
         {
             extent.SetUp(false, GetType().Name);
+            base.LoginModelSetUp(true);
+
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
             extent.TearDown(false, Driver);
+            base.LoginModelTearDown();
+
         }
 
         [SetUp]
         public void SetUp()
         {
-            base.LoginModelSetUp(true);
+            //base.LoginModelSetUp(true);
             extent.SetUp(true);
 
         }
@@ -52,10 +58,10 @@ namespace IdlingComplaints.Tests.Login
             {
                 throw new Exception("Exception: " + ex);
             }
-            finally
-            {
-                base.LoginModelTearDown();
-            }
+            //finally
+            //{
+            //    base.LoginModelTearDown();
+            //}
         }
 
         [Test]

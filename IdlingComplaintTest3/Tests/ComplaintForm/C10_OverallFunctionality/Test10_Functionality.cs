@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 {
+    [Parallelizable(ParallelScope.Self)]
+    [FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal partial class Test10_Functionality : FillComplaintForm_Base
     {
 
@@ -35,8 +37,8 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
         [SetUp]
         public void SetUp()
         {
-            base.ComplaintFormModelSetUp(false);
-
+            base.ComplaintFormModelSetUp(true);
+            NewComplaintSetUp();
             extent.SetUp(true);
 
         }

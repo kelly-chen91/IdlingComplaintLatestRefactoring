@@ -13,6 +13,8 @@ namespace IdlingComplaints.Tests.Register
 {
     //[Parallelizable(ParallelScope.Children)]
     //[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
+    [Parallelizable(ParallelScope.Self)]
+    [FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test30_RequiredLabelErrors : RegisterModel
     {
         private readonly int SLEEP_TIMER = 0;
@@ -39,8 +41,8 @@ namespace IdlingComplaints.Tests.Register
         [SetUp]
         public void SetUp()
         {
-            base.RegisterModelSetUp(false);
-            Driver.Manage().Window.Size = new Size(1920, 1080);
+            base.RegisterModelSetUp(true);
+            Driver.Manage().Window.Maximize();
             Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
 
             extent.SetUp(true);

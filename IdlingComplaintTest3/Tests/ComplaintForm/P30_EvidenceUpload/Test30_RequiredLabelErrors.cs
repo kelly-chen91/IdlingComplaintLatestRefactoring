@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 {
+    [Parallelizable(ParallelScope.Self)]
+    [FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test30_RequiredLabelErrors : FillComplaintForm_Base
     {
 
@@ -24,6 +26,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         public void OneTimeSetUp()
         {
             extent.SetUp(false, GetType().Name);
+
         }
 
         [OneTimeTearDown]
@@ -35,8 +38,8 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         [SetUp]
         public void SetUp()
         {
-            base.ComplaintFormModelSetUp(false);
-
+            base.ComplaintFormModelSetUp(true);
+            NewComplaintSetUp();
             extent.SetUp(true);
         }
 

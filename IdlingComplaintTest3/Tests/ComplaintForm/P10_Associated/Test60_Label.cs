@@ -14,6 +14,8 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace IdlingComplaints.Tests.ComplaintForm.P10_Associated
 {
+    [Parallelizable(ParallelScope.Self)]
+    [FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test60_Label : ComplaintFormModel
     { 
 
@@ -29,21 +31,31 @@ namespace IdlingComplaints.Tests.ComplaintForm.P10_Associated
         public void OneTimeSetUp()
         {
             extent.SetUp(false, GetType().Name);
+
+            base.ComplaintFormModelSetUp(true);
+            NewComplaintSetUp();
+            ClickNo();
+            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(15));
+            wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname='idc_associatedlastname']")));
+
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
             extent.TearDown(false, Driver);
+            base.ComplaintFormModelTearDown();
+
         }
 
         [SetUp]
         public void SetUp()
         {
-            base.ComplaintFormModelSetUp(true);
-            ClickNo();
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(15));
-            wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname='idc_associatedlastname']")));
+            //base.ComplaintFormModelSetUp(true);
+            //NewComplaintSetUp();
+            //ClickNo();
+            //var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(15));
+            //wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname='idc_associatedlastname']")));
 
             extent.SetUp(true);
         }
@@ -59,10 +71,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P10_Associated
             {
                 throw new Exception("Exception: " + ex);
             }
-            finally
-            {
-                base.ComplaintFormModelTearDown();
-            }
+            //finally
+            //{
+            //    base.ComplaintFormModelTearDown();
+            //}
         }
 
 

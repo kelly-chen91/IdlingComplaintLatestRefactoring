@@ -13,7 +13,8 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.Home
 {
-    
+    [Parallelizable(ParallelScope.Self)]
+    [FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test10_OpenComplaintFunctionality : HomeModel
     {
         private readonly int SLEEP_TIMER = 0;
@@ -39,7 +40,7 @@ namespace IdlingComplaints.Tests.Home
         [SetUp]
         public void SetUp()
         {
-            base.HomeModelSetUp("ttseng@dep.nyc.gov", "Testing1#", false);
+            base.HomeModelSetUp("ttseng@dep.nyc.gov", "Testing1#", true);
 
             extent.SetUp(true);
 

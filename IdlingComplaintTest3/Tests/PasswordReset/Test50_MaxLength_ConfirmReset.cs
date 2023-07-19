@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.PasswordReset
 {
+    [Parallelizable(ParallelScope.Self)]
+    [FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test50_MaxLength_ConfirmReset : Test60_Label_ConfirmReset
     {
         [OneTimeSetUp]

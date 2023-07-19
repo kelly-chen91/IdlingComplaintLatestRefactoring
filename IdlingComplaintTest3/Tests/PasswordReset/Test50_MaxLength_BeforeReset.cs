@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.PasswordReset
 {
+    [Parallelizable(ParallelScope.Self)]
+    [FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test50_MaxLength_BeforeReset : PasswordResetModel
     {
         private const int MAXLENGTH = 50;
@@ -23,18 +25,22 @@ namespace IdlingComplaints.Tests.PasswordReset
         public void OneTimeSetUp()
         {
             extent.SetUp(false, GetType().Name);
+            base.PasswordResetModelSetUp(true);
+
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
             extent.TearDown(false, Driver);
+            base.PasswordResetModelTearDown();
+
         }
 
         [SetUp]
         public void SetUp()
         {
-            base.PasswordResetModelSetUp(true);
+            //base.PasswordResetModelSetUp(true);
             extent.SetUp(true);
 
         }
@@ -50,10 +56,10 @@ namespace IdlingComplaints.Tests.PasswordReset
             {
                 throw new Exception("Exception: " + ex);
             }
-            finally
-            {
-                base.PasswordResetModelTearDown();
-            }
+            //finally
+            //{
+            //    base.PasswordResetModelTearDown();
+            //}
         }
 
         [Test, Category("Maxlength attribute is present")]

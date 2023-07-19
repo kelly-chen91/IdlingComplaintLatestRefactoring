@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 {
+    [Parallelizable(ParallelScope.Self)]
+    [FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test20_BusinessValidation : FillComplaintForm_Base
     {
 
@@ -38,6 +40,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         public void SetUp()
         {
             base.ComplaintFormModelSetUp(false);
+            NewComplaintSetUp();
             CreateMessageDetailDictionary();
 
 

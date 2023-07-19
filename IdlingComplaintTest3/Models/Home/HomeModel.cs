@@ -19,6 +19,11 @@ namespace IdlingComplaints.Models.Home
         public void HomeModelSetUp(string email, string password, bool isHeadless)
         {
             base.LoginModelSetUp(isHeadless); 
+            Login(email, password);
+        }
+
+        public void Login(string email, string password)
+        {
             EmailControl.SendKeysWithDelay(email, 0);
             PasswordControl.SendKeysWithDelay(password, 0);
             ClickLoginButton();

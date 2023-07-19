@@ -12,6 +12,8 @@ namespace IdlingComplaints.Tests.Home
 {
     //[Parallelizable(ParallelScope.Children)]
     //[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
+    [Parallelizable(ParallelScope.Self)]
+    [FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test60_Label : HomeModel
     { 
     
@@ -25,21 +27,22 @@ namespace IdlingComplaints.Tests.Home
         public void OneTimeSetUp()
         {
             extent.SetUp(false, GetType().Name);
+            base.HomeModelSetUp("ttseng@dep.nyc.gov", "Testing1#", true);
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
             extent.TearDown(false, Driver);
+            if (SLEEP_TIMER > 0)
+                Thread.Sleep(SLEEP_TIMER);
+            base.HomeModelTearDown();
         }
 
         [SetUp]
         public void SetUp()
         {
-            base.HomeModelSetUp("ttseng@dep.nyc.gov", "Testing1#", true);
-
             extent.SetUp(true);
-
         }
 
         [TearDown]
@@ -53,12 +56,12 @@ namespace IdlingComplaints.Tests.Home
             {
                 throw new Exception("Exception: " + ex);
             }
-            finally
-            {
-                if (SLEEP_TIMER > 0)
-                    Thread.Sleep(SLEEP_TIMER);
-                base.HomeModelTearDown();
-            }
+            //finally
+            //{
+            //    if (SLEEP_TIMER > 0)
+            //        Thread.Sleep(SLEEP_TIMER);
+            //    base.HomeModelTearDown();
+            //}
         }
 
         private readonly int SLEEP_TIMER = 0;
@@ -245,6 +248,9 @@ namespace IdlingComplaints.Tests.Home
             ClickProfileButton();
             var profile = Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='firstname']"),15);
             Assert.IsNotNull(profile);
+            ClickHomeButton();
+            Driver.WaitUntilElementFound(By.CssSelector("button[routerlink = '/']"), 15);
+            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"),20);
 
         }
 
@@ -257,7 +263,9 @@ namespace IdlingComplaints.Tests.Home
             ClickNewComplaintButton();
             var newComplaint = Driver.WaitUntilElementFound(By.CssSelector("mat-radio-group[formcontrolname='qualicriteria']"), 15);
             Assert.IsNotNull(newComplaint);
-
+            ClickHomeButton();
+            Driver.WaitUntilElementFound(By.CssSelector("button[routerlink = '/']"), 15);
+            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 20);
         }
 
         [Test]
@@ -269,6 +277,7 @@ namespace IdlingComplaints.Tests.Home
             ClickLogoutButton();
             var logout = Driver.WaitUntilElementFound(By.CssSelector("a[href='/password-reset']"), 15);
             Assert.IsNotNull(logout);
+            Login("ttseng@dep.nyc.gov", "Testing1#");
 
         }
 

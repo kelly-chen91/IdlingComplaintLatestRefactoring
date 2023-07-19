@@ -9,10 +9,12 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.Register
 {
+    //[Parallelizable(ParallelScope.Children)]
+    //[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
+    [Parallelizable(ParallelScope.Self)]
+    [FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test50_MaxLength : RegisterModel
     {
-        // private readonly RegisterModel registerModel;
-
         BaseExtent extent;
 
         public Test50_MaxLength()
@@ -24,18 +26,22 @@ namespace IdlingComplaints.Tests.Register
         public void OneTimeSetUp()
         {
             extent.SetUp(false, GetType().Name);
+            base.RegisterModelSetUp(true);
+
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
             extent.TearDown(false, Driver);
+            base.RegisterModelTearDown();
+
         }
 
         [SetUp]
         public void SetUp()
         {
-            base.RegisterModelSetUp(true);
+            //base.RegisterModelSetUp(true);
             extent.SetUp(true);
 
         }
@@ -51,10 +57,10 @@ namespace IdlingComplaints.Tests.Register
             {
                 throw new Exception("Exception: " + ex);
             }
-            finally
-            {
-                base.RegisterModelTearDown();
-            }
+            //finally
+            //{
+            //    base.RegisterModelTearDown();
+            //}
         }
 
         [Test]

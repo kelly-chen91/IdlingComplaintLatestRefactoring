@@ -9,9 +9,12 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.Login
 {
+    [Parallelizable(ParallelScope.Self)]
+    [FixtureLifeCycle(LifeCycle.SingleInstance)]
+
     internal class Test30_RequiredLabelErrors : LoginModel
     {
-        private readonly int SLEEP_TIMER = 1000;
+        private readonly int SLEEP_TIMER = 0;
 
         BaseExtent extent;
 
@@ -34,7 +37,7 @@ namespace IdlingComplaints.Tests.Login
         [SetUp]
         public void SetUp()
         {
-            base.LoginModelSetUp(false);
+            base.LoginModelSetUp(true);
             extent.SetUp(true);
             Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
 

@@ -35,12 +35,11 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         [SetUp]
         public void SetUp()
         {
-            base.ComplaintFormModelSetUp(false);
-
+            base.ComplaintFormModelSetUp(true);
+            NewComplaintSetUp();
             ClickNo();
             Driver.WaitUntilElementFound(By.CssSelector("input[placeholder='Company Name']"), 15);
             Filled_ComplaintInfo();
-
             var successfulSave = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
             Assert.IsNotNull(successfulSave);
             if (!successfulSave.Text.Contains("saved success")) Assert.That(successfulSave.Text.Trim(), Is.EqualTo("This form has been saved successfully."), "Flagged inconsistency on purpose.");

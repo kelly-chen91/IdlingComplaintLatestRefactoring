@@ -9,7 +9,8 @@ using NUnit.Framework.Interfaces;
 namespace IdlingComplaints.Tests.Login;
 
 //[Parallelizable(ParallelScope.Children)]
-//[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
+[Parallelizable(ParallelScope.Self)]
+[FixtureLifeCycle(LifeCycle.SingleInstance)]
 
 /*This is user login verification test*/
 
@@ -38,7 +39,7 @@ internal class Test10_LoginFunctionality : LoginModel
     [SetUp]
     public void SetUp()
     {
-        base.LoginModelSetUp(false);
+        base.LoginModelSetUp(true);
         extent.SetUp(true);
 
     }
