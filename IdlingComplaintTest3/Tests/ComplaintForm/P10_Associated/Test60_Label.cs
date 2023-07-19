@@ -19,21 +19,50 @@ namespace IdlingComplaints.Tests.ComplaintForm.P10_Associated
 
         //private readonly int SLEEP_TIMER = 2000;
 
+        BaseExtent extent;
+
+        public Test60_Label()
+        {
+            extent = new BaseExtent();
+        }
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-           base.ComplaintFormModelSetUp(true);
-           
-           ClickNo();
-           var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(15));
-            wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname='idc_associatedlastname']")));
-           
-
+            extent.SetUp(false, GetType().Name);
         }
+
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
-            base.ComplaintFormModelTearDown();
+            extent.TearDown(false);
+        }
+
+        [SetUp]
+        public void SetUp()
+        {
+            base.ComplaintFormModelSetUp(true);
+            ClickNo();
+            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(15));
+            wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname='idc_associatedlastname']")));
+
+            extent.SetUp(true);
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            try
+            {
+                extent.TearDown(true);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception: " + ex);
+            }
+            finally
+            {
+                base.ComplaintFormModelTearDown();
+            }
         }
 
 

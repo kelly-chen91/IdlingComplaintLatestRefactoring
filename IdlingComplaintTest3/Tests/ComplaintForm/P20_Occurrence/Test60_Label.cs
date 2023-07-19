@@ -34,7 +34,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         [SetUp]
         public void SetUp()
         {
-            base.ComplaintFormModelSetUp(false);
+            base.ComplaintFormModelSetUp(true);
             ClickNo();
             Driver.ScrollTo(Occurrence_VehicleTypeControl);
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(15));

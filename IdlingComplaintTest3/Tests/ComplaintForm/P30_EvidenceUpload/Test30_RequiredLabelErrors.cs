@@ -53,11 +53,13 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             }
             finally
             {
+                if (SLEEP_TIMER > 0)
+                    Thread.Sleep(SLEEP_TIMER);
                 base.ComplaintFormModelTearDown();
             }
         }
 
-        public readonly int SLEEPTIMER = 0;
+        public new readonly int SLEEP_TIMER = 0;
         public new readonly string FILE_IMAGE_PATH = P30_EvidenceUpload.Constants.IDLING_TRUCK;
 
 
@@ -75,7 +77,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             EvidenceUpload_UploadInput = FILE_IMAGE_PATH;
             string fileName = Path.GetFileName(FILE_IMAGE_PATH);
             EvidenceUpload_ClickFilesUploadConfirm();
-            Thread.Sleep(SLEEPTIMER); //The image is uploaded
+            Thread.Sleep(SLEEP_TIMER); //The image is uploaded
 
             var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
 
@@ -96,10 +98,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             EvidenceUpload_UploadInput = FILE_IMAGE_PATH;
             string fileName = Path.GetFileName(FILE_IMAGE_PATH);
             EvidenceUpload_ClickFilesUploadConfirm();
-            Thread.Sleep(SLEEPTIMER); //The image is uploaded
+            Thread.Sleep(SLEEP_TIMER); //The image is uploaded
 
             var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
-            Thread.Sleep(SLEEPTIMER);
+            Thread.Sleep(SLEEP_TIMER);
             EvidenceUpload_ClickDeleteEvidence();
             EvidenceUpload_ConfirmDelete(); //Image is deleted
             var successfulEvidenceDelete = Driver.WaitUntilElementFound(By.XPath("//form/mat-card/mat-card-content/mat-error"), 20); //Wait for error message

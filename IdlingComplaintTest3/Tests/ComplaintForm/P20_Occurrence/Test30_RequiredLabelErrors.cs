@@ -55,12 +55,14 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             }
             finally
             {
+                if (SLEEP_TIMER > 0)
+                    Thread.Sleep(SLEEP_TIMER);
                 base.ComplaintFormModelTearDown();
             }
         }
 
 
-        private readonly int SLEEP_TIMER = 2000;
+        private readonly int SLEEP_TIMER = 0;
         
         [Test]
         [Category("Required Field Missing - Error Label Displayed")]

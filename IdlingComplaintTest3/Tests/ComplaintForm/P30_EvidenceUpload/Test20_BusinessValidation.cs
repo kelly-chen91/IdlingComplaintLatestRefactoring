@@ -11,7 +11,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 {
     internal class Test20_BusinessValidation: FillComplaintForm_Base
     {
-        private readonly int SLEEPTIMER = 0;
+        private new readonly int SLEEP_TIMER = 0;
 
 
         BaseExtent extent;
@@ -62,6 +62,8 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             }
             finally
             {
+                if (SLEEP_TIMER > 0)
+                    Thread.Sleep(SLEEP_TIMER);
                 base.ComplaintFormModelTearDown();
             }
         }
@@ -73,7 +75,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             // RegistrationUtilities.UploadFiles(EvidenceUpload_UploadControl, EvidenceUpload_UploadConfirmControl, filePaths);
 
             string[] filePaths = { Constants.PDF_FILE };
-            EvidenceUpload_UploadControl.SendKeysWithDelay(filePaths[0], SLEEPTIMER);
+            EvidenceUpload_UploadControl.SendKeysWithDelay(filePaths[0], SLEEP_TIMER);
             string fileName = Path.GetFileName(filePaths[0]);
 
             EvidenceUpload_ClickFilesUploadConfirm();
@@ -92,7 +94,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             // RegistrationUtilities.UploadFiles(EvidenceUpload_UploadControl, EvidenceUpload_UploadConfirmControl, filePaths);
 
             string[] filePaths = { Constants.MP4_FILE };
-            EvidenceUpload_UploadControl.SendKeysWithDelay(filePaths[0], SLEEPTIMER);
+            EvidenceUpload_UploadControl.SendKeysWithDelay(filePaths[0], SLEEP_TIMER);
             string fileName = Path.GetFileName(filePaths[0]);
 
             EvidenceUpload_ClickFilesUploadConfirm();
@@ -111,7 +113,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         public void EvidenceUpload_NotSupportedFileType()
         {
             string[] filePaths = { Constants.NOT_SUPPORTED_FILE, Constants.IDLING_TRUCK, Constants.IDLING_BUS };
-            EvidenceUpload_UploadControl.SendKeysWithDelay(filePaths[0], SLEEPTIMER);
+            EvidenceUpload_UploadControl.SendKeysWithDelay(filePaths[0], SLEEP_TIMER);
 
             var failedEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span"));
             Assert.IsNotNull(failedEvidenceUpload);
