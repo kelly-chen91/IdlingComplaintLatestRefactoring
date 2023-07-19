@@ -32,7 +32,7 @@ internal class Test10_LoginFunctionality : LoginModel
     [OneTimeTearDown]
     public void OneTimeTearDown()
     {
-        extent.TearDown(false);
+        extent.TearDown(false, Driver);
     }
 
     [SetUp]
@@ -48,7 +48,7 @@ internal class Test10_LoginFunctionality : LoginModel
     {
         try
         {
-            extent.TearDown(true);
+            extent.TearDown(true, Driver);
         }
         catch (Exception ex)
         {

@@ -33,7 +33,7 @@ namespace IdlingComplaints.Tests.Home
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
-            extent.TearDown(false);
+            extent.TearDown(false, Driver);
         }
 
         [SetUp]
@@ -50,7 +50,7 @@ namespace IdlingComplaints.Tests.Home
         {
             try
             {
-                extent.TearDown(true);
+                extent.TearDown(true, Driver);
             }
             catch (Exception ex)
             {
@@ -68,38 +68,38 @@ namespace IdlingComplaints.Tests.Home
         [Category("Successful Redirect - Complaint Details Displayed")]
         public void SuccessfulOpenComplaints()
         {
-           var link = By.TagName("a");
-           var complaintNumberRowControl = By.ClassName("mat-column-idc_name");
-        
-           var rowList = TableControl.GetDataFromTable();
-           var openComplaintList = rowList.GetSpecificColumnElements(link);
-           var complaintNumList = rowList.GetSpecificColumnText(complaintNumberRowControl);
-        
-           for (int i = 0; i < 2; i++)
-           {
-                //Driver.WaitUntilElementFound(By.CssSelector("button[routerlink='idlingcomplaint/new']"), 10);
-                Driver.WaitUntilElementFound(NewComplaintControl, 10);
+            var link = By.TagName("a");
+            var complaintNumberRowControl = By.ClassName("mat-column-idc_name");
 
+            var rowList = TableControl.GetDataFromTable();
+            var openComplaintList = rowList.GetSpecificColumnElements(link);
+            var complaintNumList = rowList.GetSpecificColumnText(complaintNumberRowControl);
+
+            for (int i = 0; i < 2; i++)
+            {
+                Driver.WaitUntilElementFound(By.CssSelector("button[routerlink='idlingcomplaint/new']"), 10);
                 Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir='ltr']"), 20);
-        
-               rowList = TableControl.GetDataFromTable();
-               openComplaintList = rowList.GetSpecificColumnElements(link);
-               complaintNumList = rowList.GetSpecificColumnText(complaintNumberRowControl);
-        
-               openComplaintList[i].Click();
-        
-               var complientNumberControl = Driver.WaitUntilElementFound(By.CssSelector("h4[align='center']"), 30);
-        
-               string openComplaintNumber = complientNumberControl.Text;
-        
-               Assert.That(openComplaintNumber, Is.EqualTo("Complaint Number: " + complaintNumList[i]));
-        
-               if (SLEEP_TIMER > 0)
-                   Thread.Sleep(SLEEP_TIMER);
-        
-               ClickHomeButton();
-           }
-       
+
+                //Driver.WaitUntilElementIsFound(NewComplaintControl, 20);
+                //Driver.WaitUntilElementIsNotFound(SpinnerControl, 20);
+
+                rowList = TableControl.GetDataFromTable();
+                openComplaintList = rowList.GetSpecificColumnElements(link);
+                complaintNumList = rowList.GetSpecificColumnText(complaintNumberRowControl);
+
+                openComplaintList[i].Click();
+
+                var complientNumberControl = Driver.WaitUntilElementFound(By.CssSelector("h4[align='center']"), 30);
+
+                string openComplaintNumber = complientNumberControl.Text;
+
+                Assert.That(openComplaintNumber, Is.EqualTo("Complaint Number: " + complaintNumList[i]));
+
+                if (SLEEP_TIMER > 0)
+                    Thread.Sleep(SLEEP_TIMER);
+
+                ClickHomeButton();
+            }
         }
 
 

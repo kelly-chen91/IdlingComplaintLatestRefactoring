@@ -54,7 +54,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ExtentReports\" />
+    <Folder Include="TestReports\ExtentReports\" />
   </ItemGroup>
 
 </Project>

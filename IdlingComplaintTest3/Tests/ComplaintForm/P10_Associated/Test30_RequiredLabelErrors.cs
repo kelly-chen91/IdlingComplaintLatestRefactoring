@@ -28,7 +28,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P10_Associated
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
-            extent.TearDown(false);
+            extent.TearDown(false, Driver);
         }
 
         [SetUp]
@@ -47,7 +47,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P10_Associated
         {
             try
             {
-                extent.TearDown(true);
+                extent.TearDown(true, Driver);
             }
             catch (Exception ex)
             {

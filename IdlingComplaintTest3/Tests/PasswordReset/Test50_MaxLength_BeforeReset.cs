@@ -28,7 +28,7 @@ namespace IdlingComplaints.Tests.PasswordReset
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
-            extent.TearDown(false);
+            extent.TearDown(false, Driver);
         }
 
         [SetUp]
@@ -44,7 +44,7 @@ namespace IdlingComplaints.Tests.PasswordReset
         {
             try
             {
-                extent.TearDown(true);
+                extent.TearDown(true, Driver);
             }
             catch (Exception ex)
             {

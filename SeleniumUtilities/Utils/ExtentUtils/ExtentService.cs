@@ -17,12 +17,13 @@ namespace SeleniumUtilities.Utils.ExtentUtils
             if(extent == null)
             {
                 extent = new ExtentReports();
-                string reportDir = StringUtilities.GetProjectRootDirectory() + "\\ExtentReports\\";
+                string reportDir = StringUtilities.GetProjectRootDirectory() + "\\TestReports\\ExtentReports\\";
                 //"C:\\Users\\kchen\\source\\repos\\IdlingComplaintLatestRefactoring\\SeleniumUtilities\\Utils\\ExtentUtils\\"
                 if(!Directory.Exists(reportDir))
                     Directory.CreateDirectory(reportDir);
-
                 string path = Path.Combine(reportDir, "index.html");
+                //string path = Path.Combine(reportDir, "report.html");
+                //Console.WriteLine(path);
                 var reporter = new ExtentHtmlReporter(path);
                 reporter.Config.DocumentTitle = "Framework Report";
                 reporter.Config.ReportName = "Test Automation Report";

@@ -89,7 +89,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             EvidenceUpload_ClickPrevious();
             var companyNameField = Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname = 'idc_associatedlastname']"), 60);
             Assert.IsNotNull(companyNameField);
-
+            Driver.ScrollTo(Occurrence_StateControl);
             Assert.That(Occurrence_StateControl.GetAttribute("aria-disabled"), Is.EqualTo("true"));
         }
 

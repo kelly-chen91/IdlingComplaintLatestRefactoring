@@ -28,7 +28,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P40_AppearOATH
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
-            extent.TearDown(false);
+            extent.TearDown(false, Driver);
         }
 
         [SetUp]
@@ -46,7 +46,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P40_AppearOATH
         {
             try
             {
-                extent.TearDown(true);
+                extent.TearDown(true, Driver);
             }
             catch (Exception ex)
             {

@@ -28,7 +28,7 @@ namespace IdlingComplaints.Tests.Login
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
-            extent.TearDown(false);
+            extent.TearDown(false, Driver);
         }
 
         [SetUp]
@@ -45,7 +45,7 @@ namespace IdlingComplaints.Tests.Login
         {
             try
             {
-                extent.TearDown(true);
+                extent.TearDown(true, Driver);
             }
             catch (Exception ex)
             {

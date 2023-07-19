@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using AventStack.ExtentReports;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,7 @@ namespace SeleniumUtilities.Utils
         {
             var wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(timeout));
             return wait.Until<IWebElement>(d => d.FindElement(locator));
+            //return wait.Until<IWebElement>((d) => { return d.FindElement(locator); });
         }
 
         //public static void WaitUntilElementIsNoLongerFound(this IWebDriver webDriver, IWebElement element, double timeout)
@@ -48,7 +50,30 @@ namespace SeleniumUtilities.Utils
         public static IWebElement WaitUntilElementFound(this IWebDriver webDriver, IWebElement element, double timeout)
         {
             var wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(timeout));
-            return wait.Until<IWebElement>(ExpectedConditions.ElementIsVisible(element));
+            return wait.Until<IWebElement>(ExpectedConditions.GetVisibleElement(element));
+        }
+
+        public static bool WaitUntilElementIsFound(this IWebDriver webDriver, IWebElement element, double timeout)
+        {
+            var wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(timeout));
+            wait.IgnoreExceptionTypes(typeof(StaleElementReferenceException), typeof(NoSuchElementException));
+            return wait.Until(ExpectedConditions.ElementIsVisible(element));
+        }
+
+        public static bool WaitUntilElementIsNotFound(this IWebDriver webDriver, IWebElement element, double timeout)
+        {
+            var wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(timeout));
+            wait.IgnoreExceptionTypes(typeof(StaleElementReferenceException), typeof(NoSuchElementException));
+            return wait.Until(ExpectedConditions.ElementIsNotVisible(element));
+        }
+
+        public static MediaEntityModelProvider CaptureScreenshot(this IWebDriver driver, string name)
+        {
+            var screenshot = ((ITakesScreenshot)driver).GetScreenshot().AsBase64EncodedString;
+            return MediaEntityBuilder.CreateScreenCaptureFromBase64String(screenshot, name).Build();
+            //var screenshot = ((ITakesScreenshot)driver).GetScreenshot();
+            //screenshot.SaveAsFile(StringUtilities.GetProjectRootDirectory() + "\\Screenshots\\" + name + ".png", ScreenshotImageFormat.Png);
+            //return MediaEntityBuilder.CreateScreenCaptureFromPath("\\Screenshots\\" + name + ".png").Build();
         }
     }
 }

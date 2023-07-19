@@ -7,11 +7,12 @@ using AventStack.ExtentReports;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using SeleniumUtilities.Base;
+using SeleniumUtilities.Utils;
 using SeleniumUtilities.Utils.ExtentUtils;
 
 namespace IdlingComplaints.Tests
 {
-    public class BaseExtent : BaseModel
+    public class BaseExtent
     {
         public void SetUp(bool isSetUp, string className = null)
         {
@@ -22,7 +23,7 @@ namespace IdlingComplaints.Tests
             }
         }
 
-        public void TearDown(bool isSetUp)
+        public void TearDown(bool isSetUp, IWebDriver driver)
         {
             if (!isSetUp) ExtentService.GetExtent().Flush();
             else
@@ -41,7 +42,7 @@ namespace IdlingComplaints.Tests
                         ReportLog.Fail("Test Failed");
                         ReportLog.Fail(errorMessage);
                         ReportLog.Fail(stackTrace);
-                        //ReportLog.Fail("Screenshot", CaptureScreenshot(TestContext.CurrentContext.Test.Name));
+                        ReportLog.Fail("Screenshot", driver.CaptureScreenshot(TestContext.CurrentContext.Test.Name));
                         break;
                     case TestStatus.Skipped:
                         ReportLog.Skip("Test Skipped");

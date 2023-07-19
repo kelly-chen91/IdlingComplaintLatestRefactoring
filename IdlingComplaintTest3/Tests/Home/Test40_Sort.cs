@@ -33,7 +33,7 @@ namespace IdlingComplaints.Tests.Home
         {
             if (SLEEP_TIMER > 0)
                 Thread.Sleep(SLEEP_TIMER);
-            extent.TearDown(false);
+            extent.TearDown(false, Driver);
         }
 
         [SetUp]
@@ -50,7 +50,7 @@ namespace IdlingComplaints.Tests.Home
         {
             try
             {
-                extent.TearDown(true);
+                extent.TearDown(true, Driver);
             }
             catch (Exception ex)
             {

@@ -35,6 +35,9 @@ namespace IdlingComplaints.Models.Home
        
 
         public IWebElement NewComplaintControl => Driver.FindElement(By.CssSelector("button[routerlink='idlingcomplaint/new']"));
+        public IWebElement SpinnerControl => Driver.FindElement(By.CssSelector("div[dir='ltr']"));
+        //public IWebElement SpinnerControl => Driver.FindElement(By.TagName("mat-spinner"));
+
         //public IWebElement NewComplaintControl => Driver.FindElement(NewComplaintByControl);
         //public By NewComplaintByControl => By.CssSelector("button[routerlink='idlingcomplaint/new']");
         public IWebElement CreatedYearControl => Driver.FindElement(By.CssSelector("mat-select[name = 'createdYear']"));

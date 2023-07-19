@@ -1,9 +1,11 @@
 ﻿using AventStack.ExtentReports;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
+using SeleniumUtilities.Utils;
 
 namespace SeleniumUtilities.Base
 {
@@ -60,11 +62,14 @@ namespace SeleniumUtilities.Base
             }
         }
 
-        public MediaEntityModelProvider CaptureScreenshot(string name)
-        {
-            var screenshot = ((ITakesScreenshot)Driver).GetScreenshot().AsBase64EncodedString;
-            return MediaEntityBuilder.CreateScreenCaptureFromBase64String(screenshot,name).Build(); 
-        }
+        //public MediaEntityModelProvider CaptureScreenshot(string name, IWebDriver driver)
+        //{
+        //    var screenshot = ((ITakesScreenshot)driver).GetScreenshot().AsBase64EncodedString;
+        //    return MediaEntityBuilder.CreateScreenCaptureFromBase64String(screenshot,name).Build(); 
+        //    //var screenshot = ((ITakesScreenshot)driver).GetScreenshot();
+        //    //screenshot.SaveAsFile(StringUtilities.GetProjectRootDirectory() + "\\Screenshots\\" + name + ".png", ScreenshotImageFormat.Png);
+        //    //return MediaEntityBuilder.CreateScreenCaptureFromPath("\\Screenshots\\" + name + ".png").Build();
+        //}
 
 
     }
