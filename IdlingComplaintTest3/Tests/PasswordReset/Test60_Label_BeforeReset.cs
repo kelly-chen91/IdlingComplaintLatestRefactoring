@@ -41,7 +41,7 @@ namespace IdlingComplaints.Tests.PasswordReset
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            extent.SetUp(false, GetType().Name);
+            extent.SetUp(false, GetType().Namespace + "." + GetType().Name);;
             base.PasswordResetModelSetUp(true);
 
         }

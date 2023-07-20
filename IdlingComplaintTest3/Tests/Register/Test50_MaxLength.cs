@@ -25,7 +25,7 @@ namespace IdlingComplaints.Tests.Register
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            extent.SetUp(false, GetType().Name);
+            extent.SetUp(false, GetType().Namespace + "." + GetType().Name);;
             base.RegisterModelSetUp(true);
 
         }

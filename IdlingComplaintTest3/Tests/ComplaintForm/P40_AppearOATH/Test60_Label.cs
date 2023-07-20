@@ -24,7 +24,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P40_AppearOATH
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            extent.SetUp(false, GetType().Name);
+            extent.SetUp(false, GetType().Namespace + "." + GetType().Name);;
             base.ComplaintFormModelSetUp(true);
             AppearOATHSetUp();
         }

@@ -20,7 +20,7 @@ namespace IdlingComplaints.Tests.Login
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            extent.SetUp(false, GetType().Name);
+            extent.SetUp(false, GetType().Namespace + "." + GetType().Name);;
             base.LoginModelSetUp(true);
 
         }

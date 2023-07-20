@@ -24,7 +24,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            extent.SetUp(false, GetType().Name);
+            extent.SetUp(false, GetType().Namespace + "." + GetType().Name);;
         }
 
         [OneTimeTearDown]

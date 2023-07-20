@@ -25,8 +25,8 @@ namespace SeleniumUtilities.Utils.ExtentUtils
                 //string path = Path.Combine(reportDir, "report.html");
                 //Console.WriteLine(path);
                 var reporter = new ExtentHtmlReporter(path);
-                reporter.Config.DocumentTitle = "Framework Report";
-                reporter.Config.ReportName = "Test Automation Report";
+                reporter.Config.DocumentTitle = "Idling Complaints Report";
+                reporter.Config.ReportName = "Idling Complaints Testing Report";
                 reporter.Config.Theme = Theme.Standard;
                 extent.AttachReporter(reporter);
             }

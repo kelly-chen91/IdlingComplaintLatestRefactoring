@@ -27,7 +27,7 @@ internal class Test10_LoginFunctionality : LoginModel
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
-        extent.SetUp(false, GetType().Name);
+        extent.SetUp(false, GetType().Namespace + "." + GetType().Name);;
     }
 
     [OneTimeTearDown]
