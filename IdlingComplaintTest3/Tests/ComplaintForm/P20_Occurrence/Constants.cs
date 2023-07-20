@@ -64,7 +64,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         public static readonly int OCCURRENCE_PAST_OFFENSE_MAXLENGTH = 100;
         public static readonly int OCCURRENCE_SCHOOL_NAME_MAXLENGTH = 100;
 
-        public static readonly string ERROR_BASE = "An error occurred while saving form: ";
+        public static readonly string ERROR_BASE = "An error occurred while saving form:";
         public static readonly string ERROR_3_MINUTES = " Idling duration should be more than three minutes";
         public static readonly string ERROR_TO_IN_FUTURE_THAN_FROM = " Occurrence Date To should be later than Occurrence Date From";
         public static readonly string ERROR_TO_AND_FROM_IN_FUTURE = " Occurrence Date From and Occurrence Date To cannot be later than the current date and time";
