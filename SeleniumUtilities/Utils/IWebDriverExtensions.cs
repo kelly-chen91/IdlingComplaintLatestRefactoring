@@ -71,9 +71,6 @@ namespace SeleniumUtilities.Utils
         {
             var screenshot = ((ITakesScreenshot)driver).GetScreenshot().AsBase64EncodedString;
             return MediaEntityBuilder.CreateScreenCaptureFromBase64String(screenshot, name).Build();
-            //var screenshot = ((ITakesScreenshot)driver).GetScreenshot();
-            //screenshot.SaveAsFile(StringUtilities.GetProjectRootDirectory() + "\\Screenshots\\" + name + ".png", ScreenshotImageFormat.Png);
-            //return MediaEntityBuilder.CreateScreenCaptureFromPath("\\Screenshots\\" + name + ".png").Build();
         }
     }
 }
