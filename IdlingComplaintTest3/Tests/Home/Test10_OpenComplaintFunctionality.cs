@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.Home
 {
-    [Parallelizable(ParallelScope.Self)]
+    [Parallelizable(ParallelScope.Fixtures)]
     [FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test10_OpenComplaintFunctionality : HomeModel
     {

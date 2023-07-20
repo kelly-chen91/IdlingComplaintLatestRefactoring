@@ -10,7 +10,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 {
     //[Parallelizable(ParallelScope.Children)]
     //[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
-    [Parallelizable(ParallelScope.Self)]
+    [Parallelizable(ParallelScope.Fixtures)]
     [FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test60_FunctionalityLabel : FillComplaintForm_Base
     {

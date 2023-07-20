@@ -14,7 +14,7 @@ namespace IdlingComplaints.Tests.PasswordReset
 {
     // [Parallelizable(ParallelScope.Children)]
     // [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
-    [Parallelizable(ParallelScope.Self)]
+    [Parallelizable(ParallelScope.Fixtures)]
     [FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test60_Label_BeforeReset : PasswordResetModel 
     { 

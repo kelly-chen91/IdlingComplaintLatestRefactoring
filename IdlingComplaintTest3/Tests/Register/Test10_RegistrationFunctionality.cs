@@ -10,7 +10,7 @@ namespace IdlingComplaints.Tests.Register
 {
     //[Parallelizable(ParallelScope.Children)]
     //[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
-    [Parallelizable(ParallelScope.Self)]
+    [Parallelizable(ParallelScope.Fixtures)]
     [FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test10_RegistrationFunctionality : RegisterModel
     {

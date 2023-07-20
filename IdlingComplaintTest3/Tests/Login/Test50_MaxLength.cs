@@ -4,7 +4,7 @@ using SeleniumUtilities.Utils;
 namespace IdlingComplaints.Tests.Login
 {
     //[Parallelizable(ParallelScope.Children)]
-    [Parallelizable(ParallelScope.Self)]
+    [Parallelizable(ParallelScope.Fixtures)]
     [FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test50_MaxLength : LoginModel
     {

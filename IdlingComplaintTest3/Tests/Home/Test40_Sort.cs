@@ -12,7 +12,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace IdlingComplaints.Tests.Home
 {
-    [Parallelizable(ParallelScope.Self)]
+    [Parallelizable(ParallelScope.Fixtures)]
     [FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test40_Sort : HomeModel
     {

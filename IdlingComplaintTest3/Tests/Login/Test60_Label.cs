@@ -11,7 +11,7 @@ using SeleniumUtilities.Utils;
 
 namespace IdlingComplaints.Tests.Login
 {
-    [Parallelizable(ParallelScope.Self)]
+    [Parallelizable(ParallelScope.Fixtures)]
     [FixtureLifeCycle(LifeCycle.SingleInstance)]
 
     internal class Test60_Label : LoginModel

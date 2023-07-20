@@ -12,7 +12,7 @@ using IdlingComplaints.Models.Register;
 namespace IdlingComplaints.Tests.Register
 {
     //[Parallelizable]
-    [Parallelizable(ParallelScope.Self)]
+    [Parallelizable(ParallelScope.Fixtures)]
     [FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test60_Label : RegisterModel
     {

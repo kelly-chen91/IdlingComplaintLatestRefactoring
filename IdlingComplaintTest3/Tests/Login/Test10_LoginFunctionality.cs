@@ -9,7 +9,7 @@ using NUnit.Framework.Interfaces;
 namespace IdlingComplaints.Tests.Login;
 
 //[Parallelizable(ParallelScope.Children)]
-[Parallelizable(ParallelScope.Self)]
+[Parallelizable(ParallelScope.Fixtures)]
 [FixtureLifeCycle(LifeCycle.SingleInstance)]
 
 /*This is user login verification test*/

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using IdlingComplaints.Models.ComplaintForm;
@@ -15,7 +16,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 {
     // [Parallelizable(ParallelScope.Children)]
     // [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
-    [Parallelizable(ParallelScope.Self)]
+    [Parallelizable(ParallelScope.Fixtures)]
     [FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test10_ComplaintFormFunctionality_UploadFile: FillComplaintForm_Base
     {
@@ -74,6 +75,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         }
 
         [Test, Category("Scenario #0: Verify multiple functionalities at once for demo")]
+        [Ignore("Test for demo")]
         public void EvidenceUpload_VerifyNotSupportedFile_Upload_Delete_Download_Process()
         {
             /* Upload supported and unsupported files */
@@ -84,10 +86,11 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             string commentTest = "Testing the comment box";
             EvidenceUpload_UploadCommentControl.SendKeysWithDelay(commentTest, SLEEP_TIMER);
             EvidenceUpload_ClickFilesUploadConfirm();
-            var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 60);
-            if (successfulEvidenceUpload != null && successfulEvidenceUpload.Text.Contains("uploaded"))
+            var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 180);
+            Assert.IsNotNull(successfulEvidenceUpload);
+            if (successfulEvidenceUpload.Text.Contains("uploaded"))
                 Assert.That(successfulEvidenceUpload.Text.Trim(), Contains.Substring("Succesfully uploaded file named: "));
-            Thread.Sleep(SLEEP_TIMER);
+            Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 20);
 
 
             /* Delete the first file */
@@ -96,7 +99,8 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             Driver.WaitUntilElementFound(By.TagName("mat-dialog-container"), 60);
             EvidenceUpload_ConfirmDelete(); 
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-dialog-container"), 62); //
-            Thread.Sleep(SLEEP_TIMER);
+            if (SLEEP_TIMER > 0)
+                Thread.Sleep(SLEEP_TIMER);
 
             /* Download a file */
             var fileList = EvidenceUpload_TableControl.GetDataFromMatTable();
@@ -108,7 +112,8 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
                 downloadList[i].Click();
                 Console.WriteLine(i);
                 Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-dialog-container"), 62); //
-                Thread.Sleep(SLEEP_TIMER);
+                if (SLEEP_TIMER > 0)
+                    Thread.Sleep(SLEEP_TIMER);
             }
 
             /* Proceed to next page */
