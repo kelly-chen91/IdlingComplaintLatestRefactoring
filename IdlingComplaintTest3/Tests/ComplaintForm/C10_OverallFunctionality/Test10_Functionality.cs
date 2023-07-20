@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+[assembly: LevelOfParallelism(3)]
+
 namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 {
     [Parallelizable(ParallelScope.Fixtures)]
@@ -447,26 +449,12 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 
             AppearOATH_ClickSubmit();
 
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60);
-
-            var successfulSubmit = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span"));
+            var successfulSubmit = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 60).FindElement(By.TagName("span"));
             if (successfulSubmit != null && !successfulSubmit.Text.Contains("submitted success")) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo("Complaint has been submitted successfully."), "Flagged inconsistency on purpose.");
+            
+            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60);
 
         }
 
-
-       // [Test]
-       // [Category("Successful Form Submission")]
-       // public void TestPOBox()
-       // {
-       //     ClickNo();
-       //     Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
-       //
-       //     /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
-       //     ScrollToZipCode();
-       //     Associated_POBoxControl.SendKeysWithDelay(" ", 5000);
-       //     Thread.Sleep(SLEEP_TIMER);
-       //     
-       // }
     }
 }
