@@ -28,7 +28,7 @@ namespace IdlingComplaints.Models.Home
             PasswordControl.SendKeysWithDelay(password, 0);
             ClickLoginButton();
 
-            Driver.WaitUntilElementFound(By.CssSelector("button[routerlink = 'idlingcomplaint/new']"), 20);
+            Driver.WaitUntilElementFound(By.CssSelector("button[routerlink = 'idlingcomplaint/new']"), 30);
             Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 60);
         }
 

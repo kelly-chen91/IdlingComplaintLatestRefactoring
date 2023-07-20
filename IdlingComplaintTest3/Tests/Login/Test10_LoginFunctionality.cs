@@ -8,7 +8,6 @@ using NUnit.Framework.Interfaces;
 
 namespace IdlingComplaints.Tests.Login;
 
-//[Parallelizable(ParallelScope.Children)]
 [Parallelizable(ParallelScope.Fixtures)]
 [FixtureLifeCycle(LifeCycle.SingleInstance)]
 

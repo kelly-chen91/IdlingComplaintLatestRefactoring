@@ -8,14 +8,12 @@ using IdlingComplaints.Models.Register;
 
 namespace IdlingComplaints.Tests.Register
 {
-    //[Parallelizable(ParallelScope.Children)]
-    //[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
+    
     [Parallelizable(ParallelScope.Fixtures)]
     [FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test10_RegistrationFunctionality : RegisterModel
     {
         private readonly int SLEEP_TIMER = 0;
-        //private string Registered_EmailAddress = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Files\\Text\\Registered_EmailAddress.txt";
         private string Registered_EmailAddress = StringUtilities.GetProjectRootDirectory() + "\\Files\\Text\\Registered_EmailAddress.txt";
 
         BaseExtent extent;
@@ -129,15 +127,6 @@ namespace IdlingComplaints.Tests.Register
             ScrollToButton();
             ClickSubmitButton();
 
-            //var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
-            //wait.Until(d =>
-            //{
-            //    var snackBarError = d.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
-            //    Assert.IsNotNull(snackBarError);
-            //    Assert.That(snackBarError.Text.Trim(), Is.EqualTo("Email " + EmailInput + " has already been registered. Please contact DEP hotline."));
-            //    return snackBarError;
-            //});
-
             var snackBarError = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"),10).FindElement(By.TagName("span"));
             Assert.IsNotNull(snackBarError);
             Assert.That(snackBarError.Text.Trim(), Is.EqualTo("Email " + EmailInput + " has already been registered. Please contact DEP hotline."));
@@ -173,10 +162,6 @@ namespace IdlingComplaints.Tests.Register
             TelephoneControl.SendKeysWithDelay("631-632-9800", SLEEP_TIMER);
             ScrollToButton();
             ClickCancelButton();
-
-            //Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            //var loginButton = Driver.FindElement(By.XPath("/html/body/app-root/div/app-login/mat-card/mat-card-content/form/div[3]/button"));
-            //Assert.IsNotNull(loginButton);
 
             var loginButton = Driver.WaitUntilElementFound(By.XPath("//app-login/mat-card/mat-card-content/form/div[3]/button"),10);
             Assert.IsNotNull(loginButton);

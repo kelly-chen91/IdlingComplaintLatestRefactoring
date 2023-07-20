@@ -44,8 +44,6 @@ namespace IdlingComplaints.Tests.Home
         [SetUp]
         public void SetUp()
         {
-            //base.HomeModelSetUp("ttseng@dep.nyc.gov", "Testing1#", true);
-
             extent.SetUp(true);
 
         }
@@ -61,12 +59,7 @@ namespace IdlingComplaints.Tests.Home
             {
                 throw new Exception("Exception: " + ex);
             }
-            //finally
-            //{
-            //    if (SLEEP_TIMER > 0)
-            //        Thread.Sleep(SLEEP_TIMER);
-            //    base.HomeModelTearDown();
-            //}
+            
         }
         [Test]
         [Category("Labels sort alphabetically or numerically.")]

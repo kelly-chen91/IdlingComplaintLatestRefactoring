@@ -9,8 +9,6 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.Home
 {
-    //[Parallelizable(ParallelScope.Children)]
-    //[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
     [Parallelizable(ParallelScope.Fixtures)]
     [FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test40_Filter : HomeModel
@@ -43,8 +41,6 @@ namespace IdlingComplaints.Tests.Home
         [SetUp]
         public void SetUp()
         {
-            //base.HomeModelSetUp("ttseng@dep.nyc.gov", "Testing1#", true);
-
             extent.SetUp(true);
 
         }
@@ -60,12 +56,6 @@ namespace IdlingComplaints.Tests.Home
             {
                 throw new Exception("Exception: " + ex);
             }
-            //finally
-            //{
-            //    if (SLEEP_TIMER > 0)
-            //        Thread.Sleep(SLEEP_TIMER);
-            //    base.HomeModelTearDown();
-            //}
         }
 
         [Test]

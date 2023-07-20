@@ -18,17 +18,15 @@ namespace SeleniumUtilities.Utils.ExtentUtils
             {
                 extent = new ExtentReports();
                 string reportDir = StringUtilities.GetProjectRootDirectory() + "\\TestReports\\ExtentReports\\";
-                //"C:\\Users\\kchen\\source\\repos\\IdlingComplaintLatestRefactoring\\SeleniumUtilities\\Utils\\ExtentUtils\\"
                 if(!Directory.Exists(reportDir))
                     Directory.CreateDirectory(reportDir);
                 string path = Path.Combine(reportDir, "index.html");
-                //string path = Path.Combine(reportDir, "report.html");
-                //Console.WriteLine(path);
                 var reporter = new ExtentHtmlReporter(path);
                 reporter.Config.DocumentTitle = "Idling Complaints Report";
                 reporter.Config.ReportName = "Idling Complaints Testing Report";
                 reporter.Config.Theme = Theme.Standard;
                 extent.AttachReporter(reporter);
+                
             }
             return extent;
         }

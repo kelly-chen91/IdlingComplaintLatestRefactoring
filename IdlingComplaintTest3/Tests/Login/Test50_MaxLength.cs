@@ -3,7 +3,6 @@ using SeleniumUtilities.Utils;
 
 namespace IdlingComplaints.Tests.Login
 {
-    //[Parallelizable(ParallelScope.Children)]
     [Parallelizable(ParallelScope.Fixtures)]
     [FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test50_MaxLength : LoginModel
@@ -36,7 +35,6 @@ namespace IdlingComplaints.Tests.Login
         [SetUp]
         public void SetUp()
         {
-            //base.LoginModelSetUp(true);
             extent.SetUp(true);
 
         }
@@ -52,10 +50,7 @@ namespace IdlingComplaints.Tests.Login
             {
                 throw new Exception("Exception: " + ex);
             }
-            //finally
-            //{
-            //    base.LoginModelTearDown();
-            //}
+            
         }
 
         [Test]

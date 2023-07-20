@@ -33,10 +33,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             EvidenceUpload_UploadInput = FILE_IMAGE_PATH;
             EvidenceUpload_ClickFilesUploadConfirm();
             EvidenceUpload_ClickCancel();
-            //Filled_EvidenceUpload();
-            //AppearOATH_ClickYes();
-            //Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60); // loads to next page 
-            //AppearOATH_ClickCancel();
 
             Driver.WaitUntilElementFound(By.CssSelector("button[routerlink = 'idlingcomplaint/new']"), 10);
         }

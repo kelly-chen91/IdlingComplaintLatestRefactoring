@@ -58,10 +58,7 @@ namespace IdlingComplaints.Tests.Login
             {
                 throw new Exception("Exception: " + ex);
             }
-            //finally
-            //{
-            //    base.LoginModelTearDown();
-            //}
+            
         }
 
         [Test]

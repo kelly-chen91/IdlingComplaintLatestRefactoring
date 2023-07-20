@@ -49,14 +49,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         [SetUp]
         public void SetUp()
         {
-            //NewComplaintSetUp();
-            //Filled_ComplaintInfo();
-            //
-            //var successfulSave = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
-            //Assert.IsNotNull(successfulSave);
-            //if (!successfulSave.Text.Contains("saved success")) Assert.That(successfulSave.Text.Trim(), Is.EqualTo("This form has been saved successfully."), "Flagged inconsistency on purpose.");
-            //Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 20);
-
             extent.SetUp(true);
 
         }
@@ -72,13 +64,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             {
                 throw new Exception("Exception: " + ex);
             }
-            //finally
-            //{
-            //    base.ComplaintFormModelTearDown();
-            //    //EvidenceUpload_ClickCancel();
-            //    //Driver.WaitUntilElementFound(By.CssSelector("button[routerlink='idlingcomplaint/new']"), 20);
-            //    //Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 30);
-            //}
         }
 
         [Test, Category("Correct Label Displayed")]

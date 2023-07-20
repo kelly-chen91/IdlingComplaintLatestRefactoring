@@ -14,8 +14,6 @@ using SeleniumUtilities.Utils;
 
 namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 {
-    // [Parallelizable(ParallelScope.Children)]
-    // [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
     [Parallelizable(ParallelScope.Fixtures)]
     [FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test10_ComplaintFormFunctionality_UploadFile: FillComplaintForm_Base

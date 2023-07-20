@@ -9,8 +9,7 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.Register
 {
-    //[Parallelizable(ParallelScope.Children)]
-    //[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
+    
     [Parallelizable(ParallelScope.Fixtures)]
     [FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test50_MaxLength : RegisterModel
@@ -41,7 +40,6 @@ namespace IdlingComplaints.Tests.Register
         [SetUp]
         public void SetUp()
         {
-            //base.RegisterModelSetUp(true);
             extent.SetUp(true);
 
         }
@@ -57,10 +55,7 @@ namespace IdlingComplaints.Tests.Register
             {
                 throw new Exception("Exception: " + ex);
             }
-            //finally
-            //{
-            //    base.RegisterModelTearDown();
-            //}
+            
         }
 
         [Test]

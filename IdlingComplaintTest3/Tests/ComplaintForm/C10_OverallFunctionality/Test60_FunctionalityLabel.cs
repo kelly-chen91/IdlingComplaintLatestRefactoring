@@ -9,8 +9,6 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 {
-    //[Parallelizable(ParallelScope.Children)]
-    //[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
     [Parallelizable(ParallelScope.Fixtures)]
     [FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test60_FunctionalityLabel : FillComplaintForm_Base
@@ -117,7 +115,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             string duplicateMessage = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 60).FindElement(By.TagName("span")).Text;
             Console.WriteLine(duplicateMessage);
 
-            string expected = "This idling complaint has been submitted before: ";
+            string expected = "This idling complaint has been submitted before:";
             if (!duplicateMessage.Trim().Contains(expected))
             {
                 Assert.That(duplicateMessage.Trim().Substring(0, expected.Length),

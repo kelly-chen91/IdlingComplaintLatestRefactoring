@@ -56,10 +56,6 @@ namespace IdlingComplaints.Tests.PasswordReset
             {
                 throw new Exception("Exception: " + ex);
             }
-            //finally
-            //{
-            //    base.PasswordResetModelTearDown();
-            //}
         }
 
         [Test, Category("Maxlength attribute is present")]

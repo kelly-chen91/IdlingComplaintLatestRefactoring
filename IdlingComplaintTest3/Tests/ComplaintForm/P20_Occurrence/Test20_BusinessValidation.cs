@@ -28,6 +28,8 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         public void OneTimeSetUp()
         {
             extent.SetUp(false, GetType().Namespace + "." + GetType().Name);;
+            CreateMessageDetailDictionary();
+
         }
 
         [OneTimeTearDown]
@@ -41,7 +43,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             base.ComplaintFormModelSetUp(true);
             NewComplaintSetUp();
-            CreateMessageDetailDictionary();
+            //CreateMessageDetailDictionary();
 
 
             extent.SetUp(true);
@@ -68,7 +70,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         public void CreateMessageDetailDictionary()
         {
             messageDetailDictionary = new Dictionary<string, string>();
-            //messageDetailDictionary.Add("while saving form:", Constants.ERROR_BASE);
             messageDetailDictionary.Add(Constants.ERROR_3_MINUTES_CONTAINS, Constants.ERROR_3_MINUTES);
             messageDetailDictionary.Add(Constants.ERROR_TO_IN_FUTURE_THAN_FROM_CONTAINS, Constants.ERROR_TO_IN_FUTURE_THAN_FROM);
             messageDetailDictionary.Add(Constants.ERROR_TO_AND_FROM_IN_FUTURE_CONTAINS, Constants.ERROR_TO_AND_FROM_IN_FUTURE);

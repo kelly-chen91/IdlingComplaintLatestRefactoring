@@ -51,13 +51,7 @@ namespace IdlingComplaints.Tests.PasswordReset
         [SetUp]
         public void SetUp()
         {
-            //base.PasswordResetModelSetUp(true);
-            //
-            //Driver.Manage().Window.Maximize();
-            //EmailInput = "TTseng@dep.nyc.gov";
-            //ClickResetButton();
-            //var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
-            //wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname = 'securityanswer']")));
+            
             extent.SetUp(true); 
 
         }
@@ -73,10 +67,7 @@ namespace IdlingComplaints.Tests.PasswordReset
             {
                 throw new Exception("Exception: " + ex);
             }
-            //finally
-            //{
-            //    base.PasswordResetModelTearDown();
-            //}
+            
         }
 
 

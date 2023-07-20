@@ -45,12 +45,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         [SetUp]
         public void SetUp()
         {
-            //base.ComplaintFormModelSetUp(true);
-            //NewComplaintSetUp();
-            //ClickNo();
-            //var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(15));
-            //wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname='idc_associatedlastname']")));
-
             extent.SetUp(true);
         }
 
@@ -65,12 +59,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             {
                 throw new Exception("Exception: " + ex);
             }
-            //finally
-            //{
-            //    if (SLEEP_TIMER > 0)
-            //        Thread.Sleep(SLEEP_TIMER);
-            //    base.ComplaintFormModelTearDown();
-            //}
         }
 
 

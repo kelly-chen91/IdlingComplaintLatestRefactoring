@@ -9,8 +9,6 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.ComplaintForm.P40_AppearOATH
 {
-    //[Parallelizable(ParallelScope.Children)]
-    //[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
     [Parallelizable(ParallelScope.Fixtures)]
     [FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test60_Label : FillComplaintForm_Base
@@ -39,11 +37,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P40_AppearOATH
         [SetUp]
         public void SetUp()
         {
-            //base.ComplaintFormModelSetUp(true);
-            //AppearOATHSetUp();
-
             extent.SetUp(true);
-
         }
 
         [TearDown]
@@ -57,10 +51,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.P40_AppearOATH
             {
                 throw new Exception("Exception: " + ex);
             }
-            //finally
-            //{
-            //    base.ComplaintFormModelTearDown();
-            //}
         }
 
         public void AppearOATHSetUp()

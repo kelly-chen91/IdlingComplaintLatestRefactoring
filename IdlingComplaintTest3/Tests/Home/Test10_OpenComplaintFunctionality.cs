@@ -81,9 +81,6 @@ namespace IdlingComplaints.Tests.Home
                 Driver.WaitUntilElementFound(By.CssSelector("button[routerlink='idlingcomplaint/new']"), 10);
                 Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir='ltr']"), 20);
 
-                //Driver.WaitUntilElementIsFound(NewComplaintControl, 20);
-                //Driver.WaitUntilElementIsNotFound(SpinnerControl, 20);
-
                 rowList = TableControl.GetDataFromTable();
                 openComplaintList = rowList.GetSpecificColumnElements(link);
                 complaintNumList = rowList.GetSpecificColumnText(complaintNumberRowControl);
