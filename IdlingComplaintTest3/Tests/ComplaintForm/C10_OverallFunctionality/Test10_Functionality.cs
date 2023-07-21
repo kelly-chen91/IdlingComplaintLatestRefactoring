@@ -89,7 +89,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60); // loads to next page 
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60); // loads to next page 
 
             /*EVIDENCE UPLOAD*/
 
@@ -99,14 +99,15 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             
             AppearOATH_ClickYes();
             
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 30);
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 30);
             
             AppearOATH_ClickSubmit();
 
-            var successfulSubmit = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 60).FindElement(By.TagName("span"));
-            if (successfulSubmit != null && !successfulSubmit.Text.Contains("submitted success")) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo("Complaint has been submitted successfully."), "Flagged inconsistency on purpose.");
+            var successfulSubmit = Driver.WaitUntilElementFound(SnackBarByControl, 60).FindElement(By.TagName("span"));
+            Assert.IsNotNull(successfulSubmit);
+            if (!successfulSubmit.Text.Contains("submitted success")) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo(Constants.SUCCESSFUL_FORM_SUBMISSION), "Flagged inconsistency on purpose.");
 
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60);
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60);
         }
 
         [Test]
@@ -116,7 +117,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+            Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
@@ -138,7 +139,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60); // loads to next page 
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60); // loads to next page 
 
             /*EVIDENCE UPLOAD*/
 
@@ -147,10 +148,11 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 
             Filled_AppearOATH();
 
-            var successfulSubmit = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 60).FindElement(By.TagName("span"));
-            if (successfulSubmit != null && !successfulSubmit.Text.Contains("submitted success")) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo("Complaint has been submitted successfully."), "Flagged inconsistency on purpose.");
+            var successfulSubmit = Driver.WaitUntilElementFound(SnackBarByControl, 60).FindElement(By.TagName("span"));
+            Assert.IsNotNull(successfulSubmit);
+            if (!successfulSubmit.Text.Contains("submitted success")) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo(Constants.SUCCESSFUL_FORM_SUBMISSION), "Flagged inconsistency on purpose.");
 
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60);
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60);
         }
         
         [Test]
@@ -160,7 +162,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+            Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
@@ -181,7 +183,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60); // loads to next page 
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60); // loads to next page 
 
             /*EVIDENCE UPLOAD*/
 
@@ -191,27 +193,28 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 
             AppearOATH_ClickNo();
 
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60);
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60);
 
             AppearOATH_UploadFormInput = FILE_IMAGE_PATH;
             AppearOATH_ClickConfirmUpload();
 
-            var successfulAffidavitUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10).FindElement(By.TagName("span")); // message says evidence have successfully uploaded
+            var successfulAffidavitUpload = Driver.WaitUntilElementFound(SnackBarByControl, 10).FindElement(By.TagName("span")); // message says evidence have successfully uploaded
 
             Assert.IsNotNull(successfulAffidavitUpload);
             string fileName = Path.GetFileName(FILE_IMAGE_PATH);
 
             if (!successfulAffidavitUpload.Text.Contains("upload")) Assert.That(successfulAffidavitUpload.Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
 
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 15);
+            Driver.WaitUntilElementIsNoLongerFound(SnackBarByControl, 15);
 
 
             AppearOATH_ClickSubmit();
 
-            var successfulSubmit = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 60).FindElement(By.TagName("span"));
-            if (successfulSubmit != null && !successfulSubmit.Text.Contains("submitted success")) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo("Complaint has been submitted successfully."), "Flagged inconsistency on purpose.");
+            var successfulSubmit = Driver.WaitUntilElementFound(SnackBarByControl, 60).FindElement(By.TagName("span"));
+            Assert.IsNotNull(successfulSubmit);
+            if (!successfulSubmit.Text.Contains("submitted success")) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo(Constants.SUCCESSFUL_FORM_SUBMISSION), "Flagged inconsistency on purpose.");
 
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60);
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60);
         }
 
         [Test]
@@ -221,7 +224,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+            Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
@@ -242,7 +245,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60); // loads to next page 
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60); // loads to next page 
 
             /*EVIDENCE UPLOAD*/
 
@@ -251,10 +254,11 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 
             Filled_AppearOATH();
 
-            var successfulSubmit = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 60).FindElement(By.TagName("span"));
-            if (successfulSubmit != null && !successfulSubmit.Text.Contains("submitted success")) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo("Complaint has been submitted successfully."), "Flagged inconsistency on purpose.");
+            var successfulSubmit = Driver.WaitUntilElementFound(SnackBarByControl, 60).FindElement(By.TagName("span"));
+            Assert.IsNotNull(successfulSubmit);
+            if (!successfulSubmit.Text.Contains("submitted success")) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo(Constants.SUCCESSFUL_FORM_SUBMISSION), "Flagged inconsistency on purpose.");
 
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60);
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60);
         }
 
         [Test]
@@ -264,7 +268,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+            Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
@@ -285,7 +289,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60); // loads to next page 
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60); // loads to next page 
 
             /*EVIDENCE UPLOAD*/
 
@@ -294,10 +298,11 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 
             Filled_AppearOATH();
 
-            var successfulSubmit = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 60).FindElement(By.TagName("span"));
-            if (successfulSubmit != null && !successfulSubmit.Text.Contains("submitted success")) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo("Complaint has been submitted successfully."), "Flagged inconsistency on purpose.");
+            var successfulSubmit = Driver.WaitUntilElementFound(SnackBarByControl, 60).FindElement(By.TagName("span"));
+            Assert.IsNotNull(successfulSubmit);
+            if (!successfulSubmit.Text.Contains("submitted success")) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo(Constants.SUCCESSFUL_FORM_SUBMISSION), "Flagged inconsistency on purpose.");
 
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60);
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60);
         }
 
         [Test]
@@ -307,7 +312,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+            Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
@@ -327,7 +332,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60); // loads to next page 
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60); // loads to next page 
 
             Filled_EvidenceUpload();
 
@@ -335,10 +340,11 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 
             Filled_AppearOATH();
 
-            var successfulSubmit = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 60).FindElement(By.TagName("span"));
-            if (successfulSubmit != null && !successfulSubmit.Text.Contains("submitted success")) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo("Complaint has been submitted successfully."), "Flagged inconsistency on purpose.");
+            var successfulSubmit = Driver.WaitUntilElementFound(SnackBarByControl, 60).FindElement(By.TagName("span"));
+            Assert.IsNotNull(successfulSubmit);
+            if (!successfulSubmit.Text.Contains("submitted success")) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo(Constants.SUCCESSFUL_FORM_SUBMISSION), "Flagged inconsistency on purpose.");
 
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60);
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60);
 
            
         }
@@ -350,7 +356,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+            Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
@@ -380,25 +386,23 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60); // loads to next page 
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60); // loads to next page 
 
             Filled_EvidenceUpload();
             /*OATH AFFIDAVIT*/
 
             AppearOATH_ClickYes();
 
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 30);
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 30);
 
             AppearOATH_ClickSubmit();
 
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60);
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60);
 
-            var duplicateMessage = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span"));
+            var duplicateMessage = Driver.WaitUntilElementFound(SnackBarByControl, 20).FindElement(By.TagName("span"));
             Assert.IsNotNull(duplicateMessage);
 
-            //if (!duplicateMessage.Text.Contains("submitted before")) Assert.True(duplicateMessage.Text.Trim().Contains("This Idling Complaint has been submitted before: ")
-            //    , "Flagged inconsistency on purpose.");
-
+            
             string expected = "This idling complaint has been submitted before: ";
             if (!duplicateMessage.Text.Trim().Contains(expected))
             {
@@ -417,7 +421,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+            Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
@@ -438,21 +442,22 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60); // loads to next page 
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60); // loads to next page 
             
             Filled_EvidenceUpload();
             /*OATH AFFIDAVIT*/
 
             AppearOATH_ClickYes();
 
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 30);
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 30);
 
             AppearOATH_ClickSubmit();
 
-            var successfulSubmit = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 60).FindElement(By.TagName("span"));
-            if (successfulSubmit != null && !successfulSubmit.Text.Contains("submitted success")) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo("Complaint has been submitted successfully."), "Flagged inconsistency on purpose.");
-            
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60);
+            var successfulSubmit = Driver.WaitUntilElementFound(SnackBarByControl, 60).FindElement(By.TagName("span"));
+            Assert.IsNotNull(successfulSubmit);
+            if (!successfulSubmit.Text.Contains("submitted success")) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo(Constants.SUCCESSFUL_FORM_SUBMISSION), "Flagged inconsistency on purpose.");
+
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60);
 
         }
 

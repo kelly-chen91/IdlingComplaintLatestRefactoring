@@ -30,7 +30,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickNo();
             Driver.ScrollTo(Occurrence_VehicleTypeControl);
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(15));
-            wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname='idc_associatedlastname']")));
+            wait.Until(d => d.FindElement(Associated_CompanyNameByControl));
         }
 
         [OneTimeTearDown]

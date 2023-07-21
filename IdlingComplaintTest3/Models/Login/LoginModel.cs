@@ -22,12 +22,16 @@ namespace IdlingComplaints.Models.Login
             
          }
 
+        public By SpinnerByControl => By.TagName("mat-spinner");
+        public By SnackBarByControl => By.TagName("simple-snack-bar");
+        public By NewComplaintByControl => By.CssSelector("button[routerlink='idlingcomplaint/new']");
+        public By ForgotPasswordByControl => By.PartialLinkText("Forgot");
 
         public IWebElement TitleControl => Driver.FindElement(By.TagName("h3"));
         public IWebElement EmailControl => Driver.FindElement(By.Name("email"));
         public IWebElement PasswordControl => Driver.FindElement(By.Name("password"));
         public IWebElement LoginControl => Driver.FindElement(By.ClassName("mat-button-wrapper"));
-        public IWebElement ForgotPasswordControl => Driver.FindElement(By.PartialLinkText("Forgot"));
+        public IWebElement ForgotPasswordControl => Driver.FindElement(ForgotPasswordByControl);
         public IWebElement CreateAccountControl => Driver.FindElement(By.PartialLinkText("Create"));
 
         public string EmailInput

@@ -32,6 +32,8 @@ namespace IdlingComplaints.Models.Register
             Driver.Quit();
         }
 
+        public By SpinnerByControl => By.TagName("mat-spinner");
+        public By SnackBarByControl => By.TagName("simple-snack-bar");
 
         public IWebElement TitleControl => Driver.FindElement(By.TagName("h4"));                                                                       //Title
         public IWebElement FirstNameControl => Driver.FindElement(By.CssSelector("input[formcontrolname = 'firstname']"));                            //First Name

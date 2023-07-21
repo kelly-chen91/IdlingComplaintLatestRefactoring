@@ -101,7 +101,7 @@ namespace IdlingComplaints.Tests.Register
          
           ClickSubmitButton();
             
-            var snackBarError =Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 61).FindElement(By.TagName("span")); ;
+            var snackBarError =Driver.WaitUntilElementFound(SnackBarByControl, 61).FindElement(By.TagName("span")); ;
 
            RegistrationUtilities.WriteIntoFile(Registered_EmailAddress, generatedEmail, password, securityAnswer);
           Console.WriteLine("The new user is "+ generatedEmail);
@@ -127,7 +127,7 @@ namespace IdlingComplaints.Tests.Register
             ScrollToButton();
             ClickSubmitButton();
 
-            var snackBarError = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"),10).FindElement(By.TagName("span"));
+            var snackBarError = Driver.WaitUntilElementFound(SnackBarByControl,10).FindElement(By.TagName("span"));
             Assert.IsNotNull(snackBarError);
             Assert.That(snackBarError.Text.Trim(), Is.EqualTo("Email " + EmailInput + " has already been registered. Please contact DEP hotline."));
 
@@ -138,8 +138,6 @@ namespace IdlingComplaints.Tests.Register
         {
             ScrollToButton();
             ClickCancelButton();
-            //var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10)); //1 - too short
-            //wait.Until(d => d.FindElement(By.TagName("h3")));
 
             Driver.WaitUntilElementFound(By.TagName("h3"), 10);
         }

@@ -49,7 +49,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             base.ComplaintFormModelSetUp(true);
             NewComplaintSetUp();
             Filled_ComplaintInfo();
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 21);
+            Driver.WaitUntilElementIsNoLongerFound(SnackBarByControl, 21);
             extent.SetUp(true);
 
         }
@@ -84,11 +84,11 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             string commentTest = "Testing the comment box";
             EvidenceUpload_UploadCommentControl.SendKeysWithDelay(commentTest, SLEEP_TIMER);
             EvidenceUpload_ClickFilesUploadConfirm();
-            var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 180);
+            var successfulEvidenceUpload = Driver.WaitUntilElementFound(SnackBarByControl, 180);
             Assert.IsNotNull(successfulEvidenceUpload);
             if (successfulEvidenceUpload.Text.Contains("uploaded"))
                 Assert.That(successfulEvidenceUpload.Text.Trim(), Contains.Substring("Succesfully uploaded file named: "));
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 20);
+            Driver.WaitUntilElementIsNoLongerFound(SnackBarByControl, 20);
 
 
             /* Delete the first file */
@@ -131,7 +131,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 
             EvidenceUpload_ClickFilesUploadConfirm();
 
-            var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 60);
+            var successfulEvidenceUpload = Driver.WaitUntilElementFound(SnackBarByControl, 60);
             Assert.IsNotNull(successfulEvidenceUpload);
 
             Console.WriteLine(successfulEvidenceUpload.Text);
@@ -151,7 +151,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             }
               EvidenceUpload_ClickFilesUploadConfirm();
 
-            var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 60);
+            var successfulEvidenceUpload = Driver.WaitUntilElementFound(SnackBarByControl, 60);
             
             if (successfulEvidenceUpload!=null && successfulEvidenceUpload.Text.Contains("uploaded")) 
                 Assert.That(successfulEvidenceUpload.Text.Trim(), Contains.Substring("Succesfully uploaded file named: "));
@@ -170,8 +170,8 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             EvidenceUpload_ClickFilesUploadConfirm();
 
 
-            var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 61);
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 60);
+            var successfulEvidenceUpload = Driver.WaitUntilElementFound(SnackBarByControl, 61);
+            Driver.WaitUntilElementIsNoLongerFound(SnackBarByControl, 60);
 
 
             var rowList = MatTableControl.GetDataFromMatTable(); //Needed to make new version of this because it's a different type of table
@@ -299,7 +299,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         {
             EvidenceUpload_MultipleFileUpload();
             //Driver.WaitUntilElementFound(By.CssSelector("button[type='submit']"), 61);'
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 60); //wait for the narrow bar to dispare, then click the next page
+            Driver.WaitUntilElementIsNoLongerFound(SnackBarByControl, 60); //wait for the narrow bar to dispare, then click the next page
             EvidenceUpload_ClickNext();
        
             
@@ -323,7 +323,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         {
             EvidenceUpload_ClickRefresh();
 
-            var appearOath = Driver.WaitUntilElementFound(By.CssSelector("mat-radio-button[value='753720001']"), 60);
+            var appearOath = Driver.WaitUntilElementFound(AppearOATH_YesByControl, 60);
             Assert.IsNull(appearOath, "Flagged inconsistency on purpose.");
         }
     }

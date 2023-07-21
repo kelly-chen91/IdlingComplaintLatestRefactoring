@@ -54,12 +54,7 @@ namespace IdlingComplaints.Tests.Home
             {
                 throw new Exception("Exception: " + ex);
             }
-            //finally
-            //{
-            //    if (SLEEP_TIMER > 0)
-            //        Thread.Sleep(SLEEP_TIMER);
-            //    base.HomeModelTearDown();
-            //}
+            
         }
 
         private readonly int SLEEP_TIMER = 0;
@@ -76,7 +71,7 @@ namespace IdlingComplaints.Tests.Home
         [Category("Correct Label Displayed")]
         public void DisplayedHome()
         {
-            string home = Driver.ExtractTextFromXPath("/html/body/app-root/app-nav-bar/mat-toolbar/mat-toolbar-row/button[1]/span/text()");
+            string home = Driver.ExtractTextFromXPath("//app-nav-bar/mat-toolbar/mat-toolbar-row/button[1]/span/text()");
             Assert.That(home, Is.EqualTo(Constants.HOME));
         }
 
@@ -84,7 +79,7 @@ namespace IdlingComplaints.Tests.Home
         [Category("Correct Label Displayed")]
         public void DisplayedProfile()
         {
-            string profile = Driver.ExtractTextFromXPath("/html/body/app-root/app-nav-bar/mat-toolbar/mat-toolbar-row/button[2]/span/text()");
+            string profile = Driver.ExtractTextFromXPath("//app-nav-bar/mat-toolbar/mat-toolbar-row/button[2]/span/text()");
             Assert.That(profile, Is.EqualTo(Constants.PROFILE));
         }
 
@@ -92,7 +87,7 @@ namespace IdlingComplaints.Tests.Home
         [Category("Correct Label Displayed")]
         public void DisplayedLogout()
         {
-            string logout = Driver.ExtractTextFromXPath("/html/body/app-root/app-nav-bar/mat-toolbar/mat-toolbar-row/button[3]/span/text()");
+            string logout = Driver.ExtractTextFromXPath("//app-nav-bar/mat-toolbar/mat-toolbar-row/button[3]/span/text()");
             Assert.That(logout, Is.EqualTo(Constants.LOGOUT));
         }
 
@@ -100,7 +95,7 @@ namespace IdlingComplaints.Tests.Home
         [Category("Correct Label Displayed")]
         public void DisplayedNewComplaint()
         {
-            string newComplaint = Driver.ExtractTextFromXPath("/html/body/app-root/div/app-home/div/button/span/text()");
+            string newComplaint = Driver.ExtractTextFromXPath("//app-home/div/button/span/text()");
             Assert.That(newComplaint.Trim(), Is.EqualTo(Constants.NEW_COMPLAINT));
         }
 
@@ -158,7 +153,7 @@ namespace IdlingComplaints.Tests.Home
         [Category("Correct Label Displayed")]
         public void DisplayedCreatedYearCurrentOption()
         {
-            Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 30);
             SelectCreatedYear(0);
             Assert.That(selectedCreatedYearControl, Is.EqualTo(Constants.CURRENT_YEAR));
 
@@ -168,7 +163,7 @@ namespace IdlingComplaints.Tests.Home
         [Category("Correct Label Displayed")]
         public void DisplayedCreatedYearLastOption()
         {
-            Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 30);
             SelectCreatedYear(1);
             Assert.That(selectedCreatedYearControl, Is.EqualTo(Constants.LAST_YEAR));
         }
@@ -177,7 +172,7 @@ namespace IdlingComplaints.Tests.Home
         [Category("Correct Label Displayed")]
         public void DisplayedCreatedYearAllOption()
         {
-            Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 30);
             SelectCreatedYear(2);
             Assert.That(selectedCreatedYearControl, Is.EqualTo(Constants.ALL));
 
@@ -188,7 +183,7 @@ namespace IdlingComplaints.Tests.Home
         [Category("Correct Label Displayed")]
         public void DisplayedItemsPerPageFiveOption()
         {
-            Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 30);
             SelectItemsPerPage(0);
             Assert.That(selectedItemsPerPageControl, Is.EqualTo(Constants.FIVE_ITEMS));
         }
@@ -197,7 +192,7 @@ namespace IdlingComplaints.Tests.Home
         [Category("Correct Label Displayed")]
         public void DisplayedItemsPerPageTenOption()
         {
-            Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 30);
             SelectItemsPerPage(1);
             Assert.That(selectedItemsPerPageControl, Is.EqualTo(Constants.TEN_ITEMS));
         }
@@ -206,7 +201,7 @@ namespace IdlingComplaints.Tests.Home
         [Category("Correct Label Displayed")]
         public void DisplayedItemsPerPageFifthteenOption()
         {
-            Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 30);
             SelectItemsPerPage(2);
             Assert.That(selectedItemsPerPageControl, Is.EqualTo(Constants.TWENTY_ITEMS));
 
@@ -226,7 +221,7 @@ namespace IdlingComplaints.Tests.Home
         public void PlaceholderItemsPerPage()
         {
             /*Cannot locate element*/
-            string itemsPerPagePlaceholder = Driver.ExtractTextFromXPath("/html/body/app-root/div/app-home/app-idling-list/div/mat-paginator/div/div/div[1]/div/text()");
+            string itemsPerPagePlaceholder = Driver.ExtractTextFromXPath("//app-home/app-idling-list/div/mat-paginator/div/div/div[1]/div/text()");
             Assert.That(itemsPerPagePlaceholder, Is.EqualTo(Constants.ITEMS_PER_PAGE), "Flagged for inconsistency on purpose.");
         }
 
@@ -244,11 +239,11 @@ namespace IdlingComplaints.Tests.Home
             Assert.That(ProfileControl.GetAttribute("routerlink"), Is.EqualTo(Constants.PROFILE_LINK));
 
             ClickProfileButton();
-            var profile = Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='firstname']"),15);
+            var profile = Driver.WaitUntilElementFound(Profile_FirstNameByControl, 15);
             Assert.IsNotNull(profile);
             ClickHomeButton();
-            Driver.WaitUntilElementFound(By.CssSelector("button[routerlink = '/']"), 15);
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"),20);
+            Driver.WaitUntilElementFound(HomeByControl, 15);
+            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"),30);
 
         }
 
@@ -262,8 +257,8 @@ namespace IdlingComplaints.Tests.Home
             var newComplaint = Driver.WaitUntilElementFound(By.CssSelector("mat-radio-group[formcontrolname='qualicriteria']"), 15);
             Assert.IsNotNull(newComplaint);
             ClickHomeButton();
-            Driver.WaitUntilElementFound(By.CssSelector("button[routerlink = '/']"), 15);
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 20);
+            Driver.WaitUntilElementFound(HomeByControl, 15);
+            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 30);
         }
 
         [Test]
@@ -273,7 +268,7 @@ namespace IdlingComplaints.Tests.Home
             //Assert.That(NewComplaintControl.GetAttribute("routerlink"), Is.EqualTo(Constants.NEW_COMPLAINT_LINK));
 
             ClickLogoutButton();
-            var logout = Driver.WaitUntilElementFound(By.CssSelector("a[href='/password-reset']"), 15);
+            var logout = Driver.WaitUntilElementFound(ForgotPasswordByControl, 15);
             Assert.IsNotNull(logout);
             Login("ttseng@dep.nyc.gov", "Testing1#");
 

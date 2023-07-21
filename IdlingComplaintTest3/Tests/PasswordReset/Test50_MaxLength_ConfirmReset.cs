@@ -49,7 +49,7 @@ namespace IdlingComplaints.Tests.PasswordReset
             Assert.True(MaxLength != null, "Flagged for inconsistency on purpose.");
         }
 
-        [Test, Category("maxlength attribute is missing")]
+        [Test, Category("Maxlength attribute is present")]
         public void MaxLength_ConfirmPassword()
         {
             var MaxLength = ConfirmPasswordControl.GetAttribute("maxlength");

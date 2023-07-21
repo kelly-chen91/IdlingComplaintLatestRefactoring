@@ -91,7 +91,7 @@ namespace IdlingComplaints.Tests.Login
         [Category("Correct Label Displayed")]
         public void DisplayedLogin()
         {
-            string text = Driver.ExtractTextFromXPath("/html/body/app-root/div/app-login/mat-card/mat-card-header/div/mat-card-title/h4/text()");
+            string text = Driver.ExtractTextFromXPath("//app-login/mat-card/mat-card-header/div/mat-card-title/h4/text()");
             Assert.That(text, Is.EqualTo(Constants.LOGIN), "Login label does not match \"" + Constants.LOGIN + "\"");
         }
 
@@ -99,7 +99,7 @@ namespace IdlingComplaints.Tests.Login
         [Category("Label Displayed - no spelling / grammar errors.")]
         public void DisplayedLoginButton()
         {
-            string loginButtonText = Driver.ExtractTextFromXPath("/html/body/app-root/div/app-login/mat-card/mat-card-content/form/div[3]/button/span/text()");
+            string loginButtonText = Driver.ExtractTextFromXPath("//app-login/mat-card/mat-card-content/form/div[3]/button/span/text()");
             Assert.That(loginButtonText, Is.EqualTo(Constants.LOGIN), "Login button does not match \"" + Constants.LOGIN + "\"");
         }
 
@@ -121,7 +121,7 @@ namespace IdlingComplaints.Tests.Login
         [Category("Correct Label Displayed")]
         public void DisplayedNotRegistered()
         {
-            string notRegisteredText = Driver.ExtractTextFromXPath("/html/body/app-root/div/app-login/mat-card/mat-card-content/form/div[4]/p/text()");
+            string notRegisteredText = Driver.ExtractTextFromXPath("//app-login/mat-card/mat-card-content/form/div[4]/p/text()");
             Assert.That(notRegisteredText, Is.EqualTo(Constants.NOT_REGISTERED), "Not registered text does not match \"" + Constants.NOT_REGISTERED + "\"");
         }
 

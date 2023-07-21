@@ -28,8 +28,8 @@ namespace IdlingComplaints.Models.Home
             PasswordControl.SendKeysWithDelay(password, 0);
             ClickLoginButton();
 
-            Driver.WaitUntilElementFound(By.CssSelector("button[routerlink = 'idlingcomplaint/new']"), 30);
-            Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 60);
+            Driver.WaitUntilElementFound(NewComplaintByControl, 30);
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60);
         }
 
         public void HomeModelTearDown()
@@ -37,16 +37,15 @@ namespace IdlingComplaints.Models.Home
             base.LoginModelTearDown();
         }
 
-       
 
-        public IWebElement NewComplaintControl => Driver.FindElement(By.CssSelector("button[routerlink='idlingcomplaint/new']"));
-        public IWebElement SpinnerControl => Driver.FindElement(By.CssSelector("div[dir='ltr']"));
-        //public IWebElement SpinnerControl => Driver.FindElement(By.TagName("mat-spinner"));
-
-        //public IWebElement NewComplaintControl => Driver.FindElement(NewComplaintByControl);
         //public By NewComplaintByControl => By.CssSelector("button[routerlink='idlingcomplaint/new']");
+        public By Profile_FirstNameByControl => By.CssSelector("input[formcontrolname='firstname']");
+        public By HomeByControl => By.CssSelector("button[routerlink = '/']");
+        public By DateSubmittedByControl => By.ClassName("mat-column-idc_datesubmitted");
+        public IWebElement NewComplaintControl => Driver.FindElement(NewComplaintByControl);
+        
         public IWebElement CreatedYearControl => Driver.FindElement(By.CssSelector("mat-select[name = 'createdYear']"));
-        public IWebElement HomeControl => Driver.FindElement(By.CssSelector("button[routerlink = '/']"));
+        public IWebElement HomeControl => Driver.FindElement(HomeByControl);
         public IWebElement ProfileControl => Driver.FindElement(By.CssSelector("button[routerlink = 'profile']"));
         public IWebElement LogoutControl => Driver.FindElement(By.XPath("//mat-toolbar-row/button[3]"));
         public IWebElement SortComplaintNumControl => Driver.FindElement(By.CssSelector("button[aria-label = 'Change sorting for idc_name']"));
@@ -147,6 +146,8 @@ namespace IdlingComplaints.Models.Home
 
         public void SelectCreatedYear(int yearIndex)
         {
+            Thread.Sleep(1000);
+
             CreatedYearControl.Click();
             var createdYear = Driver.FindElement(By.Id("mat-select-0-panel"));
             var optionElementList = createdYear.FindElements(By.TagName("span")); //gathers all choices to a list
@@ -155,7 +156,6 @@ namespace IdlingComplaints.Models.Home
             if (yearIndex < 0 || yearIndex >= createdYearList.Count) { return; }
             selectedCreatedYearControl = createdYearList[yearIndex];
             optionElementList[yearIndex].Click();
-            Thread.Sleep(1000);
 
         }
 

@@ -35,9 +35,8 @@ namespace IdlingComplaints.Tests.PasswordReset
             Driver.Manage().Window.Maximize();
             EmailInput = "TTseng@dep.nyc.gov";
             ClickResetButton();
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
-            wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname = 'securityanswer']")));
-
+            
+            Driver.WaitUntilElementFound(SecurityAnswerByControl, 10);
         }
 
         [OneTimeTearDown]

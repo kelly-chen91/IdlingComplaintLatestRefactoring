@@ -78,8 +78,8 @@ namespace IdlingComplaints.Tests.Home
 
             for (int i = 0; i < 2; i++)
             {
-                Driver.WaitUntilElementFound(By.CssSelector("button[routerlink='idlingcomplaint/new']"), 10);
-                Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir='ltr']"), 20);
+                Driver.WaitUntilElementFound(NewComplaintByControl, 10);
+                Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 30);
 
                 rowList = TableControl.GetDataFromTable();
                 openComplaintList = rowList.GetSpecificColumnElements(link);
@@ -118,15 +118,12 @@ namespace IdlingComplaints.Tests.Home
             int index = complaintCount.IndexOf("f") + 2;
             string outOfComplaintAmount = complaintCount.Substring(index);
             int totalComplaintAmount = int.Parse(outOfComplaintAmount); //Taking the listed total amount of complaints and turning into int
-            //Console.WriteLine(totalComplaintAmount);
 
             string itemsPerPage = Driver.ExtractTextFromXPath("//div[1]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span/span/text()");
             int divideItemsPerPage = int.Parse(itemsPerPage); //Taking the items per page and turning into int
 
             int calculatedPageCount = totalComplaintAmount % divideItemsPerPage == 0 ? totalComplaintAmount / divideItemsPerPage : (totalComplaintAmount / divideItemsPerPage) + 1;
 
-            //Console.WriteLine("Manual page count is: " + pageCount);
-            //Console.WriteLine("Calculated page count is: " + calculatedPageCount);
             Assert.That(pageCount, Is.EqualTo(calculatedPageCount));
 
  
@@ -151,16 +148,12 @@ namespace IdlingComplaints.Tests.Home
             int index = complaintCount.IndexOf("f") + 2;
             string outOfComplaintAmount = complaintCount.Substring(index);
             int totalComplaintAmount = int.Parse(outOfComplaintAmount); //Taking the listed total amount of complaints and turning into int
-            //Console.WriteLine(totalComplaintAmount);
 
             string itemsPerPage = Driver.ExtractTextFromXPath("//div[1]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span/span/text()");
             int divideItemsPerPage = int.Parse(itemsPerPage); //Taking the items per page and turning into int
 
-
             int calculatedPageCount = totalComplaintAmount % divideItemsPerPage == 0 ? totalComplaintAmount / divideItemsPerPage : (totalComplaintAmount / divideItemsPerPage) + 1;
 
-            //Console.WriteLine("Manual page count is: " + pageCount);
-            //Console.WriteLine("Calculated page count is: " + calculatedPageCount);
             Assert.That(pageCount, Is.EqualTo(calculatedPageCount));
 
         }
@@ -182,8 +175,6 @@ namespace IdlingComplaints.Tests.Home
             int indexTotal = complaintCount.IndexOf("f") + 2;
             string totalComplaintAmount = complaintCount.Substring(indexTotal);
 
-            //Console.WriteLine("Total Complaint Amount: " + totalComplaintAmount);
-            //Console.WriteLine("Complaint End Range Number: " + complaintRange);
             Assert.That(complaintRange, Is.EqualTo(totalComplaintAmount));
 
         }
@@ -199,8 +190,6 @@ namespace IdlingComplaints.Tests.Home
             // Begin Range Number | __ - __
             string complaintRange = complaintCount.Split('–')[0];
 
-
-            //Console.WriteLine("Complaint End Range Number: " + complaintRange);
             Assert.That(complaintRange, Is.EqualTo("1 "));
 
         }
@@ -209,7 +198,7 @@ namespace IdlingComplaints.Tests.Home
         public void VerifyNumOfComplaint()
         {
             SelectItemsPerPage(0);
-            Thread.Sleep(2000);
+            Thread.Sleep(3000);
             string itemPerPage = Driver.ExtractTextFromXPath("/html/body/app-root/div/app-home/app-idling-list/div/mat-paginator/div/div/div[1]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span/span/text()");
           
             var link = By.TagName("a");

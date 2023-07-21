@@ -25,7 +25,7 @@ namespace IdlingComplaints.Tests.Home
         public void OneTimeSetUp()
         {
             extent.SetUp(false, GetType().Namespace + "." + GetType().Name);;
-            base.HomeModelSetUp("ttseng@dep.nyc.gov", "Testing1#", true);
+            base.HomeModelSetUp("ttseng@dep.nyc.gov", "Testing1#", true) ;
 
         }
 
@@ -56,6 +56,7 @@ namespace IdlingComplaints.Tests.Home
             {
                 throw new Exception("Exception: " + ex);
             }
+            
         }
 
         [Test]
@@ -90,11 +91,11 @@ namespace IdlingComplaints.Tests.Home
         public void FilterCurrentYear()
         {
             SelectCreatedYear(0);
-            Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 30);
             SortStatus();
             SortStatus();
             var rowList = TableControl.GetDataFromTable();
-            var dateSubmittedList = rowList.GetSpecificColumnText(By.ClassName("mat-column-idc_datesubmitted"));
+            var dateSubmittedList = rowList.GetSpecificColumnText(DateSubmittedByControl);
             string currentYear = (DateTime.Now.Year).ToString();
             foreach (var dateSubmitted in dateSubmittedList)
             {
@@ -108,9 +109,9 @@ namespace IdlingComplaints.Tests.Home
         public void FilterLastYear()
         {
             SelectCreatedYear(1);
-            Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 30);
             var rowList = TableControl.GetDataFromTable();
-            var dateSubmittedList = rowList.GetSpecificColumnText(By.ClassName("mat-column-idc_datesubmitted"));
+            var dateSubmittedList = rowList.GetSpecificColumnText(DateSubmittedByControl);
             string lastYear = (DateTime.Now.Year - 1).ToString();
             foreach (var dateSubmitted in dateSubmittedList)
             {
@@ -124,17 +125,17 @@ namespace IdlingComplaints.Tests.Home
         public void FilterAllYear()
         {
             SelectCreatedYear(0);
-            Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 30);
             var rowList = TableControl.GetDataFromTable();
-            var currentYearList = rowList.GetSpecificColumnText(By.ClassName("mat-column-idc_datesubmitted"));
+            var currentYearList = rowList.GetSpecificColumnText(DateSubmittedByControl);
             SelectCreatedYear(1);
-            Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 30);
             rowList = TableControl.GetDataFromTable();
-            var lastYearList = rowList.GetSpecificColumnText(By.ClassName("mat-column-idc_datesubmitted"));
+            var lastYearList = rowList.GetSpecificColumnText(DateSubmittedByControl);
             SelectCreatedYear(2);
-            Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 30);
             rowList = TableControl.GetDataFromTable();
-            var allList = rowList.GetSpecificColumnText(By.ClassName("mat-column-idc_datesubmitted"));
+            var allList = rowList.GetSpecificColumnText(DateSubmittedByControl);
 
             Assert.That(allList.Count, Is.GreaterThanOrEqualTo(currentYearList.Count + lastYearList.Count));
         }

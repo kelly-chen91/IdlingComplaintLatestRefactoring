@@ -40,12 +40,12 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             base.ComplaintFormModelSetUp(true);
             NewComplaintSetUp();
             ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[placeholder='Company Name']"), 15);
+            Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 15);
             Filled_ComplaintInfo();
-            var successfulSave = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
+            var successfulSave = Driver.WaitUntilElementFound(SnackBarByControl, 20);
             Assert.IsNotNull(successfulSave);
             if (!successfulSave.Text.Contains("saved success")) Assert.That(successfulSave.Text.Trim(), Is.EqualTo("This form has been saved successfully."), "Flagged inconsistency on purpose.");
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 20);
+            Driver.WaitUntilElementIsNoLongerFound(SnackBarByControl, 20);
 
             extent.SetUp(true);
         }
@@ -81,7 +81,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 
             EvidenceUpload_ClickFilesUploadConfirm();
 
-            var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span"));
+            var successfulEvidenceUpload = Driver.WaitUntilElementFound(SnackBarByControl, 20).FindElement(By.TagName("span"));
 
             Console.WriteLine(successfulEvidenceUpload.Text);
             if (successfulEvidenceUpload.Text.Contains("uploaded"))
@@ -100,7 +100,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 
             EvidenceUpload_ClickFilesUploadConfirm();
 
-            var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span"));
+            var successfulEvidenceUpload = Driver.WaitUntilElementFound(SnackBarByControl, 20).FindElement(By.TagName("span"));
             Assert.IsNotNull(successfulEvidenceUpload);
 
             Console.WriteLine(successfulEvidenceUpload.Text);
@@ -116,7 +116,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             string[] filePaths = { Constants.NOT_SUPPORTED_FILE, Constants.IDLING_TRUCK, Constants.IDLING_BUS };
             EvidenceUpload_UploadControl.SendKeysWithDelay(filePaths[0], SLEEP_TIMER);
 
-            var failedEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span"));
+            var failedEvidenceUpload = Driver.WaitUntilElementFound(SnackBarByControl, 20).FindElement(By.TagName("span"));
             Assert.IsNotNull(failedEvidenceUpload);
 
             if (failedEvidenceUpload.Text.Contains("Please try a different file type."))

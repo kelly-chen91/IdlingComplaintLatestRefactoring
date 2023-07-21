@@ -30,8 +30,11 @@ namespace IdlingComplaints.Models.PasswordReset
             Driver.Quit();
         }
 
+        public By SpinnerByControl => By.TagName("mat-spinner");
+        public By SnackBarByControl => By.TagName("simple-snack-bar");
+        public By SecurityAnswerByControl => By.CssSelector("input[formcontrolname = 'securityanswer']");
 
-        public IWebElement TitleControl => Driver.FindElement(By.XPath("/html/body/app-root/div/password-reset/form/div/div/mat-card/mat-card-header/div/mat-card-title/h4"));
+        public IWebElement TitleControl => Driver.FindElement(By.XPath("//password-reset/form/div/div/mat-card/mat-card-header/div/mat-card-title/h4"));
         public IWebElement EmailControl => Driver.FindElement(By.Name("email"));
         public IWebElement ResetButtonControl => Driver.FindElement(By.CssSelector("button[color='primary']"));                                
         public IWebElement CancelButtonControl => Driver.FindElement(By.CssSelector("button[type='reset']"));

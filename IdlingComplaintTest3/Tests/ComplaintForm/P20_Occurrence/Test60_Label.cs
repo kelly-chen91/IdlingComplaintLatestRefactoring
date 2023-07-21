@@ -30,7 +30,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickNo();
             Driver.ScrollTo(Occurrence_VehicleTypeControl);
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(15));
-            wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname='idc_associatedlastname']")));
+            wait.Until(d => d.FindElement(Associated_CompanyNameByControl));
         }
 
         [OneTimeTearDown]
@@ -101,7 +101,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             Occurrence_SelectLocation(1);
 
-            int labelFound = Driver.FindElements(By.CssSelector("input[formcontrolname='idc_occurrencehouseno']")).Count;
+            int labelFound = Driver.FindElements(Occurrence_HouseNumByControl).Count;
             Assert.That(labelFound, Is.EqualTo(0));
         }
 
@@ -121,7 +121,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             Occurrence_SelectLocation(3);
 
-            int labelFound = Driver.FindElements(By.CssSelector("input[formcontrolname='idc_occurrencehouseno']")).Count;
+            int labelFound = Driver.FindElements(Occurrence_HouseNumByControl).Count;
             Assert.That(labelFound, Is.EqualTo(0));
         }
 
@@ -141,7 +141,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             Occurrence_SelectLocation(1);
 
-            int labelFound = Driver.FindElements(By.CssSelector("input[formcontrolname='idc_occurrencestreet']")).Count;
+            int labelFound = Driver.FindElements(Occurrence_StreetNameByControl).Count;
             Assert.That(labelFound, Is.EqualTo(0));
         }
 
@@ -161,7 +161,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             Occurrence_SelectLocation(3);
 
-            int labelFound = Driver.FindElements(By.CssSelector("input[formcontrolname='idc_occurrencestreet']")).Count;
+            int labelFound = Driver.FindElements(Occurrence_StreetNameByControl).Count;
             Assert.That(labelFound, Is.EqualTo(0));
         }
 
@@ -171,7 +171,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             Occurrence_SelectLocation(0);
 
-            int labelFound = Driver.FindElements(By.CssSelector("input[formcontrolname='idc_onstreet']")).Count;
+            int labelFound = Driver.FindElements(Occurrence_OnStreetByControl).Count;
             Assert.That(labelFound, Is.EqualTo(0));
         }
 
@@ -192,7 +192,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             Occurrence_SelectLocation(2);
 
-            int labelFound = Driver.FindElements(By.CssSelector("input[formcontrolname='idc_onstreet']")).Count;
+            int labelFound = Driver.FindElements(Occurrence_OnStreetByControl).Count;
             Assert.That(labelFound, Is.EqualTo(0));
         }
 
@@ -202,7 +202,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             Occurrence_SelectLocation(3);
 
-            int labelFound = Driver.FindElements(By.CssSelector("input[formcontrolname='idc_onstreet']")).Count;
+            int labelFound = Driver.FindElements(Occurrence_OnStreetByControl).Count;
             Assert.That(labelFound, Is.EqualTo(0));
         }
 
@@ -212,7 +212,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             Occurrence_SelectLocation(0);
 
-            int labelFound = Driver.FindElements(By.CssSelector("input[formcontrolname='idc_crossstreet1']")).Count;
+            int labelFound = Driver.FindElements(Occurrence_CrossStreet1ByControl).Count;
             Assert.That(labelFound, Is.EqualTo(0));
         }
 
@@ -233,7 +233,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             Occurrence_SelectLocation(2);
 
-            int labelFound = Driver.FindElements(By.CssSelector("input[formcontrolname='idc_crossstreet1']")).Count;
+            int labelFound = Driver.FindElements(Occurrence_CrossStreet1ByControl).Count;
             Assert.That(labelFound, Is.EqualTo(0));
         }
 
@@ -254,7 +254,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             Occurrence_SelectLocation(0);
 
-            int labelFound = Driver.FindElements(By.CssSelector("input[formcontrolname='idc_crossstreet2']")).Count;
+            int labelFound = Driver.FindElements(Occurrence_CrossStreet2ByControl).Count;
             Assert.That(labelFound, Is.EqualTo(0));
         }
 
@@ -275,7 +275,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             Occurrence_SelectLocation(2);
 
-            int labelFound = Driver.FindElements(By.CssSelector("input[formcontrolname='idc_crossstreet2']")).Count;
+            int labelFound = Driver.FindElements(Occurrence_CrossStreet2ByControl).Count;
             Assert.That(labelFound, Is.EqualTo(0));
         }
 
@@ -359,7 +359,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             Occurrence_SelectInFrontOfSchool(0);
 
-            int labelFound = Driver.FindElements(By.CssSelector("input[formcontrolname='idc_schoolname']")).Count;
+            int labelFound = Driver.FindElements(Occurrence_SchoolNameByControl).Count;
             Assert.That(labelFound, Is.EqualTo(0));
         }
 
@@ -379,7 +379,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             Occurrence_SelectInFrontOfSchool(2);
 
-            int labelFound = Driver.FindElements(By.CssSelector("input[formcontrolname='idc_schoolname']")).Count;
+            int labelFound = Driver.FindElements(Occurrence_SchoolNameByControl).Count;
             Assert.That(labelFound, Is.EqualTo(0));
         }
 

@@ -12,8 +12,6 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.PasswordReset
 {
-    // [Parallelizable(ParallelScope.Children)]
-    // [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
     [Parallelizable(ParallelScope.Fixtures)]
     [FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test60_Label_BeforeReset : PasswordResetModel 
@@ -78,14 +76,14 @@ namespace IdlingComplaints.Tests.PasswordReset
         [Test, Category("Placeholder is present.")]
         public void PlaceholderReset()
         {
-            string text = Driver.ExtractTextFromXPath("/html/body/app-root/div/password-reset/form/div/div/mat-card/mat-card-content/mat-dialog-actions/button[1]/span/text()");
+            string text = Driver.ExtractTextFromXPath("//password-reset/form/div/div/mat-card/mat-card-content/mat-dialog-actions/button[1]/span/text()");
             Assert.That(text, Is.EqualTo(Constants.RESET));
         }
 
         [Test, Category("Placeholder is present.")]
         public void PlaceholderCancel()
         {
-            string text = Driver.ExtractTextFromXPath("/html/body/app-root/div/password-reset/form/div/div/mat-card/mat-card-content/mat-dialog-actions/button[2]/span/text()");
+            string text = Driver.ExtractTextFromXPath("//password-reset/form/div/div/mat-card/mat-card-content/mat-dialog-actions/button[2]/span/text()");
             Assert.That(text, Is.EqualTo(Constants.CANCEL));
         }
 
@@ -93,7 +91,7 @@ namespace IdlingComplaints.Tests.PasswordReset
         public void RequiredEmail()
         {
             EmailControl.SendTextDeleteTabWithDelay("abc", 0);
-            string text = Driver.ExtractTextFromXPath("/html/body/app-root/div/password-reset/form/div/div/mat-card/mat-card-content/mat-form-field/div/div[3]/div/mat-error/text()");
+            string text = Driver.ExtractTextFromXPath("//password-reset/form/div/div/mat-card/mat-card-content/mat-form-field/div/div[3]/div/mat-error/text()");
             Assert.That(text, Is.EqualTo(Constants.EMAIL_REQUIRE));
         }
 
@@ -102,9 +100,7 @@ namespace IdlingComplaints.Tests.PasswordReset
         {
             EmailControl.SendKeysWithDelay("TTseng", 0);
             ClickResetButton();
-            //var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
-            //wait.Until(d => d.FindElement(By.TagName("simple-snack-bar")));
-            var error = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10).FindElement(By.TagName("span"));
+            var error = Driver.WaitUntilElementFound(SnackBarByControl, 10).FindElement(By.TagName("span"));
             Assert.That(error.Text, Is.EqualTo(Constants.USER_NOT_FOUND));
         }
     }

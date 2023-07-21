@@ -66,9 +66,9 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             base.Filled_EvidenceUpload();
             base.Filled_AppearOATH();
 
-            string successMessage = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"),60).FindElement(By.TagName("span")).Text;
+            string successMessage = Driver.WaitUntilElementFound(SnackBarByControl,60).FindElement(By.TagName("span")).Text;
 
-            Assert.That(successMessage, Is.EqualTo("Complaint has been submitted successfully."), "Flagged inconsistency on purpose.");
+            Assert.That(successMessage, Is.EqualTo(Constants.SUCCESSFUL_FORM_SUBMISSION), "Flagged inconsistency on purpose.");
         }
 
         [Test]
@@ -107,15 +107,15 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60); // loads to next page 
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60); // loads to next page 
 
             base.Filled_EvidenceUpload();
             base.Filled_AppearOATH();
 
-            string duplicateMessage = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 60).FindElement(By.TagName("span")).Text;
+            string duplicateMessage = Driver.WaitUntilElementFound(SnackBarByControl, 60).FindElement(By.TagName("span")).Text;
             Console.WriteLine(duplicateMessage);
 
-            string expected = "This idling complaint has been submitted before:";
+            string expected = Constants.DUPLICATE_FORM_SUBMISSION;
             if (!duplicateMessage.Trim().Contains(expected))
             {
                 Assert.That(duplicateMessage.Trim().Substring(0, expected.Length),

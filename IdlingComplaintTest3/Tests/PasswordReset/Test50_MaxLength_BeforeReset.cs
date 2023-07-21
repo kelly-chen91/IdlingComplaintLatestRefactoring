@@ -40,7 +40,6 @@ namespace IdlingComplaints.Tests.PasswordReset
         [SetUp]
         public void SetUp()
         {
-            //base.PasswordResetModelSetUp(true);
             extent.SetUp(true);
 
         }

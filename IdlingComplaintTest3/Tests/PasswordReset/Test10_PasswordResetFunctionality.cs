@@ -56,9 +56,8 @@ namespace IdlingComplaints.Tests.PasswordReset
             
             ClickResetButton();
 
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname = 'securityanswer']"), 20);
-            //var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(20));
-            //wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname = 'securityanswer']")));
+            Driver.WaitUntilElementFound(SecurityAnswerByControl, 20);
+            
             Console.WriteLine("This user's email is " + emailAddress + ". The line index is " + userIndex + ".");
         }
 
@@ -100,11 +99,11 @@ namespace IdlingComplaints.Tests.PasswordReset
             
             ClickSubmitButton();
 
-            var resetControl = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 60).FindElement(By.TagName("span"));
+            var resetControl = Driver.WaitUntilElementFound(SnackBarByControl, 60).FindElement(By.TagName("span"));
             Assert.IsNotNull(resetControl);
             RegistrationUtilities.ReplaceRecordValue(registered_EmailAddress, userIndex, 1, password);
 
-            Assert.That(resetControl.Text.Trim(), Is.EqualTo("Password has been reset successfully."));
+            Assert.That(resetControl.Text.Trim(), Is.EqualTo(Constants.SUCCESSFUL_PASSWORD_MESSAGE));
         }
 
 
@@ -119,9 +118,9 @@ namespace IdlingComplaints.Tests.PasswordReset
 
             ClickSubmitButton();
 
-            var resetControl = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 30).FindElement(By.TagName("span"));
+            var resetControl = Driver.WaitUntilElementFound(SnackBarByControl, 30).FindElement(By.TagName("span"));
             Assert.IsNotNull(resetControl);
-            Assert.That(resetControl.Text.Trim(), Is.EqualTo("Security answer is not correct."));
+            Assert.That(resetControl.Text.Trim(), Is.EqualTo(Constants.WRONG_SECURITY_ANSWER));
         }
 
 
@@ -129,9 +128,9 @@ namespace IdlingComplaints.Tests.PasswordReset
         public void CancelPasswordReset()
         {
             ClickCancelButton();
-            var titleControl = Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='password']"), 10);
-            Assert.IsNotNull(titleControl);
-            Assert.That(titleControl.GetAttribute("placeholder").Trim(), Is.EqualTo("Password"));
+            var loginControl = Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='password']"), 10);
+            Assert.IsNotNull(loginControl);
+            Assert.That(loginControl.GetAttribute("placeholder").Trim(), Is.EqualTo("Password"));
 
         }
 

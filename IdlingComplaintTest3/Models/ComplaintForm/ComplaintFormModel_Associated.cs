@@ -15,10 +15,10 @@ namespace IdlingComplaints.Models.ComplaintForm
     internal partial class ComplaintFormModel : HomeModel
     {
 
-       
 
+        public By Associated_CompanyNameByControl => By.CssSelector("input[formcontrolname='idc_associatedlastname']");
         /*Person or Company Associated to the Complaint*/
-        public IWebElement Associated_CompanyNameControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_associatedlastname']"));
+        public IWebElement Associated_CompanyNameControl => Driver.FindElement(Associated_CompanyNameByControl);
         public IWebElement Associated_StateControl => Driver.FindElement(By.CssSelector("mat-select[formcontrolname='idc_associatedstate']"));
      
 
@@ -42,12 +42,6 @@ namespace IdlingComplaints.Models.ComplaintForm
 
 
         public string associated_SelectedStateControl = "--";
-
-        //  Lable from Describe the complaint section
-       // public IWebElement Describe_TitleControl => Driver.FindElement(By.Extra("mat-error[id='mat-error-11']"));
-
-
-
 
         public string Associated_CompanyNameInput
         {

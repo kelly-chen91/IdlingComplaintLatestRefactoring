@@ -22,7 +22,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 
             ComplaintInfo_ClickCancel();
 
-            Driver.WaitUntilElementFound(By.CssSelector("button[routerlink = 'idlingcomplaint/new']"), 10);
+            Driver.WaitUntilElementFound(NewComplaintByControl, 10);
         }
 
         [Test]
@@ -34,7 +34,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             EvidenceUpload_ClickFilesUploadConfirm();
             EvidenceUpload_ClickCancel();
 
-            Driver.WaitUntilElementFound(By.CssSelector("button[routerlink = 'idlingcomplaint/new']"), 10);
+            Driver.WaitUntilElementFound(NewComplaintByControl, 10);
         }
 
         [Test]
@@ -44,10 +44,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             Filled_ComplaintInfo();
             Filled_EvidenceUpload();
             AppearOATH_ClickYes();
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60); // loads to next page 
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60); // loads to next page 
             AppearOATH_ClickCancel();
 
-            Driver.WaitUntilElementFound(By.CssSelector("button[routerlink = 'idlingcomplaint/new']"), 10);
+            Driver.WaitUntilElementFound(NewComplaintByControl, 10);
         }
 
         [Test]
@@ -58,7 +58,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             EvidenceUpload_UploadInput = FILE_IMAGE_PATH;
             EvidenceUpload_ClickFilesUploadCancel();
             EvidenceUpload_ClickPrevious();
-            var companyNameField = Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname = 'idc_associatedlastname']"), 60);
+            var companyNameField = Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 60);
             Assert.IsNotNull(companyNameField);
         }
 
@@ -69,7 +69,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             Filled_ComplaintInfo();
             Filled_EvidenceUpload();
             AppearOATH_ClickYes();
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60); // loads to next page 
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60); // loads to next page 
             AppearOATH_ClickPrevious();
             var header = Driver.WaitUntilElementFound(By.XPath("//app-blob-files-upload/form/mat-card/mat-card-header/div/mat-card-title/h4"), 10);
             Assert.IsNotNull(header);
@@ -84,7 +84,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             EvidenceUpload_UploadInput = FILE_IMAGE_PATH;
             EvidenceUpload_ClickFilesUploadCancel();
             EvidenceUpload_ClickPrevious();
-            var companyNameField = Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname = 'idc_associatedlastname']"), 60);
+            var companyNameField = Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 60);
             Assert.IsNotNull(companyNameField);
             Driver.ScrollTo(Occurrence_StateControl);
             Assert.That(Occurrence_StateControl.GetAttribute("aria-disabled"), Is.EqualTo("true"));

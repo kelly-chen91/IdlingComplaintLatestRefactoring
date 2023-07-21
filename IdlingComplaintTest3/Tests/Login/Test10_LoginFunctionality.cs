@@ -79,7 +79,7 @@ internal class Test10_LoginFunctionality : LoginModel
         PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
         ClickLoginButton();
 
-        var newComplaintButton = Driver.WaitUntilElementFound(By.CssSelector("button[routerlink='idlingcomplaint/new']"), 20);
+        var newComplaintButton = Driver.WaitUntilElementFound(NewComplaintByControl, 20);
 
         Assert.IsNotNull(newComplaintButton);
 
@@ -97,8 +97,8 @@ internal class Test10_LoginFunctionality : LoginModel
         PasswordControl.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
         ClickLoginButton();
 
-        Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
-        var resultControl = Driver.FindElement(By.TagName("simple-snack-bar")).FindElement(By.TagName("span"));
+        Driver.WaitUntilElementFound(SnackBarByControl, 20);
+        var resultControl = Driver.FindElement(SnackBarByControl).FindElement(By.TagName("span"));
         Assert.That(resultControl.Text.Trim(), Is.EqualTo(Constants.INVALID_PASSWORD));
         Driver.WaitUntilElementIsNoLongerFound(By.CssSelector("div[dir = 'ltr']"), 20);
     }
@@ -110,7 +110,7 @@ internal class Test10_LoginFunctionality : LoginModel
         EmailControl.SendKeysWithDelay(RegistrationUtilities.GenerateEmail("unregistered", "emailAddress", "dep.nyc.gov"), SLEEP_TIMER);
         PasswordControl.SendKeysWithDelay("Testing1", SLEEP_TIMER);
         ClickLoginButton();
-        var resultControl = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10).FindElement(By.TagName("span"));
+        var resultControl = Driver.WaitUntilElementFound(SnackBarByControl, 10).FindElement(By.TagName("span"));
         Assert.IsNotNull(resultControl);
         Assert.That(resultControl.Text.Trim(), Is.EqualTo(Constants.USER_NOT_FOUND), "Flagged for inconsistency on purpose."); 
     }
@@ -122,8 +122,7 @@ internal class Test10_LoginFunctionality : LoginModel
         EmailControl.SendKeysWithDelay(RegistrationUtilities.GenerateEmail("unregistered", "emailAddress", "dep.nyc.gov"), SLEEP_TIMER);
         PasswordControl.SendKeysWithDelay(RegistrationUtilities.GenerateQualifiedPassword(), SLEEP_TIMER);
         ClickLoginButton();
-        var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10)); //1 - too short
-        var resultControl = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10).FindElement(By.TagName("span"));
+        var resultControl = Driver.WaitUntilElementFound(SnackBarByControl, 10).FindElement(By.TagName("span"));
         Assert.IsNotNull(resultControl);
         Assert.That(resultControl.Text.Trim(), Is.EqualTo(Constants.USER_NOT_FOUND), "Flagged for inconsistency on purpose.");
     }

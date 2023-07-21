@@ -64,8 +64,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.P40_AppearOATH
         [Category("Correct Label Displayed")]
         public void VerifySuccessfulUploadDocumentMessage()
         {
-            //base.Filled_ComplaintInfo();
-            //base.Filled_EvidenceUpload();
 
             AppearOATH_ClickNo();
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 30);
@@ -74,16 +72,9 @@ namespace IdlingComplaints.Tests.ComplaintForm.P40_AppearOATH
             AppearOATH_ClickConfirmUpload();
 
 
-            var successfulDocumentUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span")); // message says evidence have successfully uploaded
-            //Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 20);
+            var successfulDocumentUpload = Driver.WaitUntilElementFound(SnackBarByControl, 20).FindElement(By.TagName("span")); // message says evidence have successfully uploaded
             Assert.IsNotNull(successfulDocumentUpload);
             Assert.That(successfulDocumentUpload.Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
-            //AppearOATH_ClickCancel();
-            //Driver.WaitUntilElementFound(By.TagName("button[routerlink='idlingcomplaint/new']"),20);
-            //Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 30);
-            //ClickNewComplaintButton();
-            //base.Filled_ComplaintInfo();
-            //base.Filled_EvidenceUpload();
         }
 
         [Test]

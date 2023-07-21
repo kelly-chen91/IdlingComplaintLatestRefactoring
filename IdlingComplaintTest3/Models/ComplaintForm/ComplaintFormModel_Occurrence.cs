@@ -11,11 +11,18 @@ namespace IdlingComplaints.Models.ComplaintForm
 {
     internal partial class ComplaintFormModel : HomeModel
     {
+        public By Occurrence_HouseNumByControl => By.CssSelector("input[formcontrolname='idc_occurrencehouseno']");
+        public By Occurrence_StreetNameByControl => By.CssSelector("input[formcontrolname='idc_occurrencestreet']");
+        public By Occurrence_OnStreetByControl => By.CssSelector("input[formcontrolname='idc_onstreet']");
+        public By Occurrence_CrossStreet1ByControl => By.CssSelector("input[formcontrolname='idc_crossstreet1']");
+        public By Occurrence_CrossStreet2ByControl => By.CssSelector("input[formcontrolname='idc_crossstreet2']");
+        public By Occurrence_SchoolNameByControl => By.CssSelector("input[formcontrolname='idc_schoolname']");
+
         /*Occurance Section*/
         public IWebElement Occurrence_FromControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_occurrencetimefrom']"));
         public IWebElement Occurrence_ToControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_occurrencetimeto']"));
         public IWebElement Occurrence_LocationControl => Driver.FindElement(By.CssSelector("mat-select[formcontrolname='idc_occurrencelocation']"));
-        public IWebElement Occurrence_HouseNumControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_occurrencehouseno']"));
+        public IWebElement Occurrence_HouseNumControl => Driver.FindElement(Occurrence_HouseNumByControl);
         public IWebElement Occurrence_StreetNameControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_occurrencestreet']"));
         public IWebElement Occurrence_OnStreetControl => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_onstreet']"));
         public IWebElement Occurrence_CrossStreet1Control => Driver.FindElement(By.CssSelector("input[formcontrolname='idc_crossstreet1']"));

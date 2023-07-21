@@ -72,17 +72,17 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         {
             Filled_ComplaintInfo();
 
-            var successfulSave = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
+            var successfulSave = Driver.WaitUntilElementFound(SnackBarByControl, 20);
             Assert.IsNotNull(successfulSave);
             if (!successfulSave.Text.Contains("saved success")) Assert.That(successfulSave.Text.Trim(), Is.EqualTo("This form has been saved successfully."), "Flagged inconsistency on purpose.");
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 20); //message says form is saved
+            Driver.WaitUntilElementIsNoLongerFound(SnackBarByControl, 20); //message says form is saved
 
             EvidenceUpload_UploadInput = FILE_IMAGE_PATH;
             string fileName = Path.GetFileName(FILE_IMAGE_PATH);
             EvidenceUpload_ClickFilesUploadConfirm();
             Thread.Sleep(SLEEP_TIMER); //The image is uploaded
 
-            var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
+            var successfulEvidenceUpload = Driver.WaitUntilElementFound(SnackBarByControl, 20);
 
             string requireContent = Driver.ExtractTextFromXPath("//form/mat-card/mat-card-content/mat-error/text()");
             Assert.That(requireContent, Is.EqualTo(string.Empty));
@@ -93,17 +93,17 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         {
             Filled_ComplaintInfo();
 
-            var successfulSave = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
+            var successfulSave = Driver.WaitUntilElementFound(SnackBarByControl, 20);
             Assert.IsNotNull(successfulSave);
             if (!successfulSave.Text.Contains("saved success")) Assert.That(successfulSave.Text.Trim(), Is.EqualTo("This form has been saved successfully."), "Flagged inconsistency on purpose.");
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 20); //message says form is saved
+            Driver.WaitUntilElementIsNoLongerFound(SnackBarByControl, 20); //message says form is saved
 
             EvidenceUpload_UploadInput = FILE_IMAGE_PATH;
             string fileName = Path.GetFileName(FILE_IMAGE_PATH);
             EvidenceUpload_ClickFilesUploadConfirm();
             Thread.Sleep(SLEEP_TIMER); //The image is uploaded
 
-            var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
+            var successfulEvidenceUpload = Driver.WaitUntilElementFound(SnackBarByControl, 20);
             Thread.Sleep(SLEEP_TIMER);
             EvidenceUpload_ClickDeleteEvidence();
             EvidenceUpload_ConfirmDelete(); //Image is deleted

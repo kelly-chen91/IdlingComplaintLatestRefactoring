@@ -31,10 +31,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             NewComplaintSetUp();
             Filled_ComplaintInfo();
 
-            var successfulSave = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20);
+            var successfulSave = Driver.WaitUntilElementFound(SnackBarByControl, 20);
             Assert.IsNotNull(successfulSave);
             if (!successfulSave.Text.Contains("saved success")) Assert.That(successfulSave.Text.Trim(), Is.EqualTo("This form has been saved successfully."), "Flagged inconsistency on purpose.");
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 20);
+            Driver.WaitUntilElementIsNoLongerFound(SnackBarByControl, 20);
 
         }
 
@@ -74,7 +74,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             EvidenceUpload_ClickFilesUploadConfirm();
             Thread.Sleep(SLEEPTIMER);
 
-            // var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20); // message says evidence have successfully uploaded
+            // var successfulEvidenceUpload = Driver.WaitUntilElementFound(SnackBarByControl, 20); // message says evidence have successfully uploaded
             var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.XPath("/html/body/div[2]/div/div/snack-bar-container/simple-snack-bar/span"), 20);
             Assert.IsNotNull(successfulEvidenceUpload);
 

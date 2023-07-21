@@ -10,13 +10,12 @@ namespace IdlingComplaints.Models.ComplaintForm
 {
     internal partial class ComplaintFormModel : HomeModel
     {
-        
+        public By AppearOATH_YesByControl = By.CssSelector("mat-radio-button[value='753720001']");
         public IWebElement AppearOATH_YesControl => Driver.FindElement(By.CssSelector("mat-radio-button[value='753720001']"));
         public IWebElement AppearOATH_NoControl => Driver.FindElement(By.CssSelector("mat-radio-button[value='753720000']"));
 
         public IWebElement AppearOATH_FileInstructionControl => Driver.FindElement(By.CssSelector("div[style='border: 1px solid silver; background: ivory; padding-left: 0.25cm; padding-top: 0.25cm; padding-right: 0.25cm;']"));
         public IWebElement AppearOATH_AffidavitLinkControl => Driver.FindElement(By.PartialLinkText("Download Summons Affidavit"));
-       // public IWebElement AppearOATH_AffidavitLinkControl1 => Driver.FindElement(By.CssSelector("u[href='assets/images/Idling_Summons_Affidavit.pdf']")); 
         public IWebElement AppearOATH_AffirmationLinkControl => Driver.FindElement(By.PartialLinkText("Download Citizen Complaint"));
 
         public IWebElement AppearOATH_PreviousControl => Driver.FindElement(By.XPath("//affidavit-upload/form/div/div/button[1]"));

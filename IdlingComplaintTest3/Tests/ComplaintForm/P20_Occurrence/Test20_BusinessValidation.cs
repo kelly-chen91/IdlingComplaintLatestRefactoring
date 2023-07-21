@@ -43,8 +43,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             base.ComplaintFormModelSetUp(true);
             NewComplaintSetUp();
-            //CreateMessageDetailDictionary();
-
 
             extent.SetUp(true);
         }
@@ -83,7 +81,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             base.Filled_ComplaintInfo();
 
-            var successfulSave = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span"));
+            var successfulSave = Driver.WaitUntilElementFound(SnackBarByControl, 20).FindElement(By.TagName("span"));
             Assert.IsNotNull(successfulSave);
             Assert.That(successfulSave.Text.Trim(), Is.EqualTo("This form has been saved successfully."), "Flagged inconsistency on purpose.");
         }
@@ -95,7 +93,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+            Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
@@ -123,7 +121,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10).FindElement(By.TagName("span"));
+            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidTime);
 
             string error = invalidTime.Text.Trim();
@@ -138,7 +136,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+            Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
@@ -166,7 +164,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10).FindElement(By.TagName("span"));
+            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidTime);
 
             string error = invalidTime.Text.Trim();
@@ -183,7 +181,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+            Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
@@ -211,7 +209,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10).FindElement(By.TagName("span"));
+            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidTime);
 
             string error = invalidTime.Text.Trim();
@@ -231,7 +229,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+            Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
@@ -259,7 +257,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10).FindElement(By.TagName("span"));
+            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidTime);
 
             string error = invalidTime.Text.Trim();
@@ -278,7 +276,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+            Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
@@ -306,7 +304,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10).FindElement(By.TagName("span"));
+            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidTime);
 
             string error = invalidTime.Text.Trim();
@@ -327,7 +325,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+            Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
@@ -354,7 +352,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10).FindElement(By.TagName("span"));
+            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidTime);
 
             string error = invalidTime.Text.Trim();
@@ -373,7 +371,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+            Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
@@ -401,7 +399,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10).FindElement(By.TagName("span"));
+            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidTime);
 
             string error = invalidTime.Text.Trim();
@@ -422,7 +420,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+            Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
@@ -451,7 +449,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10).FindElement(By.TagName("span"));
+            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidTime);
 
             string error = invalidTime.Text.Trim();
@@ -472,7 +470,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+            Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
@@ -501,7 +499,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10).FindElement(By.TagName("span"));
+            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidTime);
 
             string error = invalidTime.Text.Trim();
@@ -523,7 +521,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+            Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
@@ -553,7 +551,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10).FindElement(By.TagName("span"));
+            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidTime);
 
             string error = invalidTime.Text.Trim();
@@ -576,7 +574,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+            Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
@@ -603,7 +601,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10).FindElement(By.TagName("span"));
+            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidTime);
 
             string error = invalidTime.Text.Trim();
@@ -625,7 +623,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+            Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
@@ -654,7 +652,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10).FindElement(By.TagName("span"));
+            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidTime);
 
             string error = invalidTime.Text.Trim();
@@ -674,7 +672,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+            Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
@@ -702,7 +700,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10).FindElement(By.TagName("span"));
+            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidTime);
 
             string error = invalidTime.Text.Trim();
@@ -723,7 +721,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+            Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
@@ -752,7 +750,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10).FindElement(By.TagName("span"));
+            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidTime);
 
             string error = invalidTime.Text.Trim();
@@ -773,7 +771,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+            Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
@@ -802,7 +800,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10).FindElement(By.TagName("span"));
+            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidTime);
 
             string error = invalidTime.Text.Trim();
@@ -824,7 +822,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+            Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
@@ -852,7 +850,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10).FindElement(By.TagName("span"));
+            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidTime);
 
             string error = invalidTime.Text.Trim();
@@ -873,7 +871,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+            Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
@@ -900,7 +898,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10).FindElement(By.TagName("span"));
+            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidTime);
 
             string error = invalidTime.Text.Trim();
@@ -923,7 +921,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+            Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
@@ -950,7 +948,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10).FindElement(By.TagName("span"));
+            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidTime);
 
             string error = invalidTime.Text.Trim();
@@ -974,7 +972,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+            Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
@@ -1001,7 +999,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10).FindElement(By.TagName("span"));
+            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidTime);
 
             string error = invalidTime.Text.Trim();
@@ -1024,7 +1022,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+            Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
@@ -1052,7 +1050,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10).FindElement(By.TagName("span"));
+            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidTime);
 
             string error = invalidTime.Text.Trim();
@@ -1073,7 +1071,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+            Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
@@ -1101,7 +1099,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10).FindElement(By.TagName("span"));
+            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidTime);
 
             string error = invalidTime.Text.Trim();
@@ -1124,7 +1122,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+            Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
@@ -1152,7 +1150,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10).FindElement(By.TagName("span"));
+            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidTime);
 
             string error = invalidTime.Text.Trim();
@@ -1175,7 +1173,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             /*QUALIFYING CRITERIA*/
             ClickNo();
-            Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+            Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 20);
 
             /*PERSON OR COMPANY ASSOCIATED TO COMPLAINT*/
             ScrollToZipCode();
@@ -1203,7 +1201,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 10).FindElement(By.TagName("span"));
+            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidTime);
 
             string error = invalidTime.Text.Trim();

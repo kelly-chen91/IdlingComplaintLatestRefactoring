@@ -29,5 +29,8 @@ namespace IdlingComplaints.Tests.PasswordReset
 
         public static readonly string USER_NOT_FOUND = "User is not found.";
 
+        public static readonly string SUCCESSFUL_PASSWORD_MESSAGE = "Password has been reset successfully.";
+        public static readonly string WRONG_SECURITY_ANSWER = "Security answer is not correct.";
+
     }
 }
