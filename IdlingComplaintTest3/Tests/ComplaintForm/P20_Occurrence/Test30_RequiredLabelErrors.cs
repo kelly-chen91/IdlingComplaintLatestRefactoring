@@ -227,7 +227,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             Occurrence_FromControl.DeleteText(Occurrence_FromInput);
             
             Occurrence_FromControl.SendKeysWithDelay(
-                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-3).Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time (3 minutes ago)
+                StringUtilities.SelectDate(DateTime.Now.AddMinutes(-3)), SLEEP_TIMER); // Current Time (3 minutes ago)
             string error = Driver.ExtractTextFromXPath("//mat-card[3]/mat-card-content/div[1]/div[1]/div/text()");
             Assert.That(error, Is.EqualTo(string.Empty));
         }
@@ -238,7 +238,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             Occurrence_ToControl.DeleteText(Occurrence_FromInput);
             Occurrence_ToControl.SendKeysWithDelay(
-                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+                                StringUtilities.SelectDate(DateTime.Now), SLEEP_TIMER); // Current Time
 
             string error = Driver.ExtractTextFromXPath("//mat-card[3]/mat-card-content/div[1]/div[2]/div/text()");
             Assert.That(error, Is.EqualTo(string.Empty));

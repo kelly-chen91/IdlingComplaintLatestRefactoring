@@ -102,12 +102,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             /*OCCURRENCE*/
 
-            Occurrence_FromControl.SendKeysWithDelay(
-                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-3).Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time (1 minutes ago)
-
-            Occurrence_ToControl.SendKeysWithDelay(
-                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
-
+            Occurrence_ValidDate();
 
             Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 
@@ -145,12 +140,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             /*OCCURRENCE*/
 
-            Occurrence_FromControl.SendKeysWithDelay(
-                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-3).Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time (1 minutes ago)
-
-            Occurrence_ToControl.SendKeysWithDelay(
-                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
-
+            Occurrence_ValidDate();
 
             Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
 
@@ -190,12 +180,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             /*OCCURRENCE*/
 
-            Occurrence_FromControl.SendKeysWithDelay(
-                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-3).Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time (1 minutes ago)
-
-            Occurrence_ToControl.SendKeysWithDelay(
-                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
-
+            Occurrence_ValidDate();
 
             Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
 
@@ -239,10 +224,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             /*OCCURRENCE*/
             
             Occurrence_FromControl.SendKeysWithDelay(
-                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-1).Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time (1 minutes ago)
+                StringUtilities.SelectDate(DateTime.Now.AddMinutes(-1)), SLEEP_TIMER); // Current Time (1 minutes ago)
 
             Occurrence_ToControl.SendKeysWithDelay(
-                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+                                StringUtilities.SelectDate(DateTime.Now), SLEEP_TIMER); // Current Time
 
 
             Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
@@ -286,10 +271,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             /*OCCURRENCE*/
 
             Occurrence_FromControl.SendKeysWithDelay(
-                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-1).Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time (1 minutes ago)
+                StringUtilities.SelectDate(DateTime.Now.AddMinutes(-1)), SLEEP_TIMER); // Current Time (1 minutes ago)
 
             Occurrence_ToControl.SendKeysWithDelay(
-                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+                                StringUtilities.SelectDate(DateTime.Now), SLEEP_TIMER); // Current Time
 
             Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
 
@@ -335,10 +320,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             /*OCCURRENCE*/
 
             Occurrence_FromControl.SendKeysWithDelay(
-                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-1).Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time (3 minutes ago)
+                StringUtilities.SelectDate(DateTime.Now.AddMinutes(-1)), SLEEP_TIMER); // Current Time (3 minutes ago)
 
             Occurrence_ToControl.SendKeysWithDelay(
-                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+                                StringUtilities.SelectDate(DateTime.Now), SLEEP_TIMER); // Current Time
 
             Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
 
@@ -381,10 +366,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             /*OCCURRENCE*/
 
             Occurrence_FromControl.SendKeysWithDelay(
-                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-1).Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time (1 minutes ago)
+                StringUtilities.SelectDate(DateTime.Now.AddMinutes(-1)), SLEEP_TIMER); // Current Time (1 minutes ago)
 
             Occurrence_ToControl.SendKeysWithDelay(
-                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+                                StringUtilities.SelectDate(DateTime.Now), SLEEP_TIMER); // Current Time
 
 
             Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
@@ -432,10 +417,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             /*OCCURRENCE*/
 
             Occurrence_FromControl.SendKeysWithDelay(
-                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-1).Minute, DateTime.Now.Second), SLEEP_TIMER); //Time in a year (1 minutes ago)
+                StringUtilities.SelectDate(DateTime.Now.AddMinutes(-1).AddYears(1)), SLEEP_TIMER); //Time in a year (1 minutes ago)
 
             Occurrence_ToControl.SendKeysWithDelay(
-                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+                                StringUtilities.SelectDate(DateTime.Now.AddYears(1)), SLEEP_TIMER); // Current Time
 
             Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 
@@ -482,10 +467,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             /*OCCURRENCE*/
 
             Occurrence_FromControl.SendKeysWithDelay(
-                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-1).Minute, DateTime.Now.Second), SLEEP_TIMER); //Time in a year (1 minutes ago)
+                StringUtilities.SelectDate(DateTime.Now.AddMinutes(-1).AddYears(1)), SLEEP_TIMER); //Time in a year (1 minutes ago)
 
             Occurrence_ToControl.SendKeysWithDelay(
-                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+                                StringUtilities.SelectDate(DateTime.Now.AddYears(1)), SLEEP_TIMER); // Current Time
 
             Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
 
@@ -533,10 +518,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             /*OCCURRENCE*/
 
             Occurrence_FromControl.SendKeysWithDelay(
-                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-1).Minute, DateTime.Now.Second), SLEEP_TIMER); //Time in a year (1 minutes ago)
+                StringUtilities.SelectDate(DateTime.Now.AddMinutes(-1).AddYears(1)), SLEEP_TIMER); //Time in a year (1 minutes ago)
 
             Occurrence_ToControl.SendKeysWithDelay(
-                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+                                StringUtilities.SelectDate(DateTime.Now.AddYears(1)), SLEEP_TIMER); // Current Time
 
 
             Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
@@ -584,10 +569,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             /*OCCURRENCE*/
 
             Occurrence_FromControl.SendKeysWithDelay(
-                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-1).Minute, DateTime.Now.Second), SLEEP_TIMER); //Time in a year (1 minutes ago)
+                StringUtilities.SelectDate(DateTime.Now.AddMinutes(-1).AddYears(1)), SLEEP_TIMER); //Time in a year (1 minutes ago)
 
             Occurrence_ToControl.SendKeysWithDelay(
-                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+                                StringUtilities.SelectDate(DateTime.Now.AddYears(1)), SLEEP_TIMER); // Current Time
 
             Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
 
@@ -635,10 +620,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             /*OCCURRENCE*/
 
             Occurrence_FromControl.SendKeysWithDelay(
-                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.AddHours(-3).Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); //Time in a year (3 minutes ago)
+                StringUtilities.SelectDate(DateTime.Now.AddMinutes(-3).AddYears(1)), SLEEP_TIMER); //Time in a year (3 minutes ago)
 
             Occurrence_ToControl.SendKeysWithDelay(
-                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+                                StringUtilities.SelectDate(DateTime.Now.AddYears(1)), SLEEP_TIMER); // Current Time
 
             Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 
@@ -683,10 +668,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             /*OCCURRENCE*/
             Occurrence_FromControl.SendKeysWithDelay(
-                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Time in a year (3 minutes ago)
+                StringUtilities.SelectDate(DateTime.Now.AddMinutes(-3).AddYears(1)), SLEEP_TIMER); //Time in a year (3 minutes ago)
 
             Occurrence_ToControl.SendKeysWithDelay(
-                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+                                StringUtilities.SelectDate(DateTime.Now.AddYears(1)), SLEEP_TIMER); // Current Time
 
             Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
 
@@ -733,10 +718,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             /*OCCURRENCE*/
 
             Occurrence_FromControl.SendKeysWithDelay(
-                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Time in a year (3 minutes ago)
+                StringUtilities.SelectDate(DateTime.Now.AddMinutes(-3).AddYears(1)), SLEEP_TIMER); //Time in a year (3 minutes ago)
 
             Occurrence_ToControl.SendKeysWithDelay(
-                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+                                StringUtilities.SelectDate(DateTime.Now.AddYears(1)), SLEEP_TIMER); // Current Time
 
             Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 
@@ -783,10 +768,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             /*OCCURRENCE*/
 
             Occurrence_FromControl.SendKeysWithDelay(
-                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Time in a year (3 minutes ago)
+                StringUtilities.SelectDate(DateTime.Now.AddMinutes(-3).AddYears(1)), SLEEP_TIMER); //Time in a year (3 minutes ago)
 
             Occurrence_ToControl.SendKeysWithDelay(
-                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+                                StringUtilities.SelectDate(DateTime.Now.AddYears(1)), SLEEP_TIMER); // Current Time
 
             Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
 
@@ -833,10 +818,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             /*OCCURRENCE*/
 
             Occurrence_FromControl.SendKeysWithDelay(
-                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.AddDays(-1).Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Current Time (3 minutes over)
+                StringUtilities.SelectDate(DateTime.Now.AddMinutes(3).AddDays(-1)), SLEEP_TIMER); //Current Time (3 minutes over)
 
             Occurrence_ToControl.SendKeysWithDelay(
-                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.AddDays(-1).Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+                                StringUtilities.SelectDate(DateTime.Now.AddDays(-1)), SLEEP_TIMER); // Current Time
 
             Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 
@@ -881,10 +866,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             /*OCCURRENCE*/
            
             Occurrence_FromControl.SendKeysWithDelay(
-                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.AddDays(-1).Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Current Time (3 minutes over)
+                StringUtilities.SelectDate(DateTime.Now.AddMinutes(3).AddDays(-1)), SLEEP_TIMER); //Current Time (3 minutes over)
 
             Occurrence_ToControl.SendKeysWithDelay(
-                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.AddDays(-1).Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+                                StringUtilities.SelectDate(DateTime.Now.AddDays(-1)), SLEEP_TIMER); // Current Time
 
             Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
 
@@ -931,10 +916,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             /*OCCURRENCE*/
 
             Occurrence_FromControl.SendKeysWithDelay(
-                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.AddDays(-1).Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Current Time (3 minutes over)
+                StringUtilities.SelectDate(DateTime.Now.AddMinutes(3).AddDays(-1)), SLEEP_TIMER); //Current Time (3 minutes over)
 
             Occurrence_ToControl.SendKeysWithDelay(
-                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.AddDays(-1).Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+                                StringUtilities.SelectDate(DateTime.Now.AddDays(-1)), SLEEP_TIMER); // Current Time
 
             Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 
@@ -982,10 +967,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             /*OCCURRENCE*/
 
             Occurrence_FromControl.SendKeysWithDelay(
-                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.AddDays(-1).Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Current Time (3 minutes over)
+                StringUtilities.SelectDate(DateTime.Now.AddMinutes(3).AddDays(-1)), SLEEP_TIMER); //Current Time (3 minutes over)
 
             Occurrence_ToControl.SendKeysWithDelay(
-                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.AddDays(-1).Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+                                StringUtilities.SelectDate(DateTime.Now.AddDays(-1)), SLEEP_TIMER); // Current Time
 
             Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
 
@@ -1033,10 +1018,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             /*OCCURRENCE*/
 
             Occurrence_FromControl.SendKeysWithDelay(
-                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.AddHours(3).Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); //Current Time (3 minutes over)
+                StringUtilities.SelectDate(DateTime.Now.AddMinutes(3)), SLEEP_TIMER); //Current Time (3 minutes over)
 
             Occurrence_ToControl.SendKeysWithDelay(
-                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+                                StringUtilities.SelectDate(DateTime.Now), SLEEP_TIMER); // Current Time
 
             Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 
@@ -1082,10 +1067,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             /*OCCURRENCE*/
 
             Occurrence_FromControl.SendKeysWithDelay(
-                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Current Time (3 minutes over)
+                StringUtilities.SelectDate(DateTime.Now.AddMinutes(3)), SLEEP_TIMER); //Current Time (3 minutes over)
 
             Occurrence_ToControl.SendKeysWithDelay(
-                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+                                StringUtilities.SelectDate(DateTime.Now), SLEEP_TIMER); // Current Time
 
             Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
 
@@ -1133,10 +1118,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             /*OCCURRENCE*/
 
             Occurrence_FromControl.SendKeysWithDelay(
-                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Current Time (3 minutes over)
+                StringUtilities.SelectDate(DateTime.Now.AddMinutes(3)), SLEEP_TIMER); //Current Time (3 minutes over)
 
             Occurrence_ToControl.SendKeysWithDelay(
-                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+                                StringUtilities.SelectDate(DateTime.Now), SLEEP_TIMER); // Current Time
 
             Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 
@@ -1184,10 +1169,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             /*OCCURRENCE*/
 
             Occurrence_FromControl.SendKeysWithDelay(
-                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Current Time (3 minutes over)
+                StringUtilities.SelectDate(DateTime.Now.AddMinutes(3)), SLEEP_TIMER); //Current Time (3 minutes over)
 
             Occurrence_ToControl.SendKeysWithDelay(
-                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+                                StringUtilities.SelectDate(DateTime.Now), SLEEP_TIMER); // Current Time
 
             Fill_OccurrenceAddress(2, 3, true, SLEEP_TIMER);
 

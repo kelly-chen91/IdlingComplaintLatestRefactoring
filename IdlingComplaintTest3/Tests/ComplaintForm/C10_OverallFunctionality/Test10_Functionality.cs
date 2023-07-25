@@ -362,13 +362,13 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             ScrollToZipCode();
 
             Fill_Associated(false, false, SLEEP_TIMER);
-
+            DateTime date = new DateTime(2023, 06, 28, 16, 20, 00);
             /*OCCURRENCE*/
             Occurrence_FromControl.SendKeysWithDelay(
-                StringUtilities.SelectDate(6, 28, 2023, 16, 20, 0), SLEEP_TIMER); // 6/28/2023, 4:20:00 PM
+                StringUtilities.SelectDate(date), SLEEP_TIMER); // 6/28/2023, 4:20:00 PM
 
             Occurrence_ToControl.SendKeysWithDelay(
-                                StringUtilities.SelectDate(6, 28, 2023, 16, 23, 0), SLEEP_TIMER); // 6/28/2023, 4:23:00 PM
+                                StringUtilities.SelectDate(date.AddMinutes(3)), SLEEP_TIMER); // 6/28/2023, 4:23:00 PM
 
             Fill_OccurrenceAddress(2, 3, false, SLEEP_TIMER);
 

@@ -66,9 +66,9 @@ namespace SeleniumUtilities.Utils
             return Regex.IsMatch(phoneNumber, validPhoneRegex);
         }
 
-        public static string SelectDate(int month, int day, int year, int hour, int minutes, int seconds)
+        public static string SelectDate(DateTime date)
         {
-            DateTime date = new DateTime(year, month, day, hour, minutes, seconds);
+            //DateTime date = new DateTime(year, month, day, hour, minutes, seconds);
             return date.ToShortDateString() + ", " + date.ToLongTimeString();
 
         }

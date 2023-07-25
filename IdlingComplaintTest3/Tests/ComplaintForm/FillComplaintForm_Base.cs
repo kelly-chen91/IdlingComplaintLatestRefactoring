@@ -104,10 +104,10 @@ namespace IdlingComplaints.Tests.ComplaintForm
         {
             /*OCCURRENCE*/
             Occurrence_FromControl.SendKeysWithDelay(
-                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.AddHours(-1).Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time (3 minutes ago)
+                StringUtilities.SelectDate(DateTime.Now.AddMinutes(-3)), SLEEP_TIMER); // Current Time (3 minutes ago)
 
             Occurrence_ToControl.SendKeysWithDelay(
-                                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
+                                StringUtilities.SelectDate(DateTime.Now), SLEEP_TIMER); // Current Time
         }
 
         public void Occurrence_VehicleInformation()
