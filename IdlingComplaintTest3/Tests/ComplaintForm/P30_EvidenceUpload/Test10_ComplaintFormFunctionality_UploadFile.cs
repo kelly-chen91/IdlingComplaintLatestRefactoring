@@ -97,7 +97,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             EvidenceUpload_ClickDeleteEvidence(); Thread.Sleep(SLEEP_TIMER);
             Driver.WaitUntilElementFound(By.TagName("mat-dialog-container"), 60);
             EvidenceUpload_ConfirmDelete(); 
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-dialog-container"), 62); //
+            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-dialog-container"), 62);
             if (SLEEP_TIMER > 0)
                 Thread.Sleep(SLEEP_TIMER);
 
@@ -110,14 +110,14 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
                 downloadList = fileList.GetSpecificColumnElements(By.CssSelector("mat-icon[aria-label='Download']"));
                 downloadList[i].Click();
                 Console.WriteLine(i);
-                Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-dialog-container"), 62); //
+                Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-dialog-container"), 62);
                 if (SLEEP_TIMER > 0)
                     Thread.Sleep(SLEEP_TIMER);
             }
 
             /* Proceed to next page */
             EvidenceUpload_ClickNext(); 
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-dialog-container"), 62); //
+            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-dialog-container"), 62);
             var summons = Driver.WaitUntilElementFound(By.TagName("mat-radio-group"), 62);
             Assert.IsNotNull(summons);
         }

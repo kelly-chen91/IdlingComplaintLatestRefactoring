@@ -113,7 +113,7 @@ namespace IdlingComplaints.Tests.Home
             {
                 NextPageArrowControl.Click();
                 pageCount++;
-            } //Manually going through each page and counting
+            }
 
             string complaintCount = Driver.ExtractTextFromXPath("//mat-paginator/div/div/div[2]/div/text()");
             int index = complaintCount.IndexOf("f") + 2;
@@ -143,7 +143,7 @@ namespace IdlingComplaints.Tests.Home
             {
                 PreviousPageArrowControl.Click();
                 pageCount++;
-            } //Manually going through each page and counting
+            }
 
             string complaintCount = Driver.ExtractTextFromXPath("//mat-paginator/div/div/div[2]/div/text()");
             int index = complaintCount.IndexOf("f") + 2;
@@ -188,7 +188,7 @@ namespace IdlingComplaints.Tests.Home
 
             string complaintCount = Driver.ExtractTextFromXPath("//mat-paginator/div/div/div[2]/div/text()");
 
-            // Begin Range Number | __ - __
+            // Start Range Number | __ - __
             string complaintRange = complaintCount.Split('–')[0];
 
             Assert.That(complaintRange, Is.EqualTo("1 "));
