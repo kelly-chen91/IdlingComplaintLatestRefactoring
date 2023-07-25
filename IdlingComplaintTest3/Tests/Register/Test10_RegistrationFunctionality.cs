@@ -4,13 +4,13 @@ using OpenQA.Selenium;
 using System.Drawing;
 using OpenQA.Selenium.Support.UI;
 using IdlingComplaints.Models.Register;
-
+using SeleniumUtilities.Base;
 
 namespace IdlingComplaints.Tests.Register
 {
-    
-    [Parallelizable(ParallelScope.Fixtures)]
-    [FixtureLifeCycle(LifeCycle.SingleInstance)]
+
+    //[Parallelizable(ParallelScope.Fixtures)]
+    //[FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test10_RegistrationFunctionality : RegisterModel
     {
         private readonly int SLEEP_TIMER = 0;
@@ -70,7 +70,7 @@ namespace IdlingComplaints.Tests.Register
             FirstNameControl.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
             LastNameControl.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
 
-            string generatedEmail = RegistrationUtilities.GenerateRandomString();
+            string generatedEmail = RegistrationUtilities.GenerateEmail(FirstNameInput, LastNameInput, "dep.nyc.gov");
             EmailControl.SendKeysWithDelay(generatedEmail, SLEEP_TIMER);
             
             string password = RegistrationUtilities.GenerateQualifiedPassword();

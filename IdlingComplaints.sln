@@ -10,6 +10,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdlingComplaints", "IdlingC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeleniumUtilities", "SeleniumUtilities\SeleniumUtilities.csproj", "{DF517A84-6B28-4E1C-8BAD-525E29FF45D5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A4E39104-515B-4C8A-9E77-5EDFB425D94D}"
+	ProjectSection(SolutionItems) = preProject
+		IdlingComplaints.runsettings = IdlingComplaints.runsettings
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

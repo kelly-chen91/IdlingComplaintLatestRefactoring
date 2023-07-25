@@ -10,12 +10,13 @@ using IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality;
 using OpenQA.Selenium;
 using OpenQA.Selenium.DevTools.V112.Network;
 using OpenQA.Selenium.Support.UI;
+using SeleniumUtilities.Base;
 using SeleniumUtilities.Utils;
 
 namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 {
-    [Parallelizable(ParallelScope.Fixtures)]
-    [FixtureLifeCycle(LifeCycle.SingleInstance)]
+    //[Parallelizable(ParallelScope.Fixtures)]
+    //[FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test10_ComplaintFormFunctionality_UploadFile: FillComplaintForm_Base
     {
 

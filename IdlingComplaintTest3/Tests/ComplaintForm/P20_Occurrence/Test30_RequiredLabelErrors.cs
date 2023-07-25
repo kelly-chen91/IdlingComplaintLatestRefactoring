@@ -1,6 +1,7 @@
 ﻿using IdlingComplaints.Models.ComplaintForm;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SeleniumUtilities.Base;
 using SeleniumUtilities.Utils;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,8 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 {
-    [Parallelizable(ParallelScope.Fixtures)]
-    [FixtureLifeCycle(LifeCycle.SingleInstance)]
+    //[Parallelizable(ParallelScope.Fixtures)]
+    //[FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test30_RequiredLabelErrors : ComplaintFormModel
     {
 

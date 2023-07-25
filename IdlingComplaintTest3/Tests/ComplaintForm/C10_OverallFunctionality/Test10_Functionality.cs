@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.DevTools.V112.Input;
 using OpenQA.Selenium.Support.UI;
+using SeleniumUtilities.Base;
 using SeleniumUtilities.Utils;
 using System;
 using System.Collections.Generic;
@@ -9,12 +10,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-[assembly: LevelOfParallelism(3)]
+[assembly: Parallelizable(ParallelScope.Fixtures)]
+[assembly: FixtureLifeCycle(LifeCycle.SingleInstance)]
 
 namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 {
-    [Parallelizable(ParallelScope.Fixtures)]
-    [FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal partial class Test10_Functionality : FillComplaintForm_Base
     {
 

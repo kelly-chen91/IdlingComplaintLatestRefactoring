@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Internal;
 using OpenQA.Selenium.Support.UI;
+using SeleniumUtilities.Base;
 using SeleniumUtilities.Utils;
 using System;
 using System.Collections.Generic;
@@ -13,8 +14,8 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.PasswordReset
 {
-    [Parallelizable(ParallelScope.Fixtures)]
-    [FixtureLifeCycle(LifeCycle.SingleInstance)]
+    //[Parallelizable(ParallelScope.Fixtures)]
+    //[FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test10_PasswordResetFunctionality : PasswordResetModel
     {
         public int lines;

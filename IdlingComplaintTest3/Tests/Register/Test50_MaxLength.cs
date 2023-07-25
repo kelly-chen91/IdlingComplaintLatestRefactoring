@@ -1,5 +1,6 @@
 ﻿using IdlingComplaints.Models.Register;
 using IdlingComplaints.Tests.Login;
+using SeleniumUtilities.Base;
 using SeleniumUtilities.Utils;
 using System;
 using System.Collections.Generic;
@@ -9,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.Register
 {
-    
-    [Parallelizable(ParallelScope.Fixtures)]
-    [FixtureLifeCycle(LifeCycle.SingleInstance)]
+
+    //[Parallelizable(ParallelScope.Fixtures)]
+    //[FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test50_MaxLength : RegisterModel
     {
         BaseExtent extent;

@@ -2,6 +2,7 @@
 using IdlingComplaints.Tests.ComplaintForm.P10_Associated;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SeleniumUtilities.Base;
 using SeleniumUtilities.Utils;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,8 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.ComplaintForm.P10_Associated
 {
-    [Parallelizable(ParallelScope.Fixtures)]
-    [FixtureLifeCycle(LifeCycle.SingleInstance)]
+    //[Parallelizable(ParallelScope.Fixtures)]
+    //[FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test30_RequiredLabelErrors : ComplaintFormModel
     {
         BaseExtent extent;

@@ -22,7 +22,7 @@ namespace SeleniumUtilities.Utils
 
 
         //This method will generate random Email address
-        public static string GenerateEmail(this string firstName, string lastName, string domain)
+        public static string GenerateEmail(string firstName, string lastName, string domain)
         {
             string email = $"{firstName.ToLower()}.{lastName.ToLower()}@{domain}";
             return email;

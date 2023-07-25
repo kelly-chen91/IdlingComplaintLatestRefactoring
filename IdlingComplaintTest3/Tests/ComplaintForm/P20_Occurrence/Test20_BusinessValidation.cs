@@ -3,6 +3,7 @@ using IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality;
 using OpenQA.Selenium;
 using OpenQA.Selenium.DevTools.V112.Database;
 using OpenQA.Selenium.Support.UI;
+using SeleniumUtilities.Base;
 using SeleniumUtilities.Utils;
 using System;
 using System.Collections.Generic;
@@ -13,8 +14,8 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 {
-    [Parallelizable(ParallelScope.Fixtures)]
-    [FixtureLifeCycle(LifeCycle.SingleInstance)]
+    //[Parallelizable(ParallelScope.Fixtures)]
+    //[FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test20_BusinessValidation : FillComplaintForm_Base
     {
 
@@ -116,10 +117,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
-            Assert.IsNotNull(invalidTime);
+            var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
+            Assert.IsNotNull(invalidString);
 
-            string error = invalidTime.Text.Trim();
+            string error = invalidString.Text.Trim();
             Console.WriteLine(error);
             string[] containErrorList = { Constants.ERROR_INVALID_ASSOCIATED_ADDRESS_CONTAINS };
             error.ValidateErrorDetail(Constants.ERROR_BASE, containErrorList, messageDetailDictionary);
@@ -154,10 +155,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
-            Assert.IsNotNull(invalidTime);
+            var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
+            Assert.IsNotNull(invalidString);
 
-            string error = invalidTime.Text.Trim();
+            string error = invalidString.Text.Trim();
             Console.WriteLine(error);
             string[] containErrorList = {Constants.ERROR_INVALID_OCCURRENCE_ADDRESS_CONTAINS};
 
@@ -194,10 +195,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
-            Assert.IsNotNull(invalidTime);
+            var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
+            Assert.IsNotNull(invalidString);
 
-            string error = invalidTime.Text.Trim();
+            string error = invalidString.Text.Trim();
             Console.WriteLine(error);
 
             string[] containErrorList = { Constants.ERROR_INVALID_ASSOCIATED_ADDRESS_CONTAINS,
@@ -242,10 +243,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
-            Assert.IsNotNull(invalidTime);
+            var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
+            Assert.IsNotNull(invalidString);
 
-            string error = invalidTime.Text.Trim();
+            string error = invalidString.Text.Trim();
             Console.WriteLine(error);
 
             string[] containErrorList = {Constants.ERROR_3_MINUTES_CONTAINS};
@@ -289,10 +290,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
-            Assert.IsNotNull(invalidTime);
+            var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
+            Assert.IsNotNull(invalidString);
 
-            string error = invalidTime.Text.Trim();
+            string error = invalidString.Text.Trim();
             Console.WriteLine(error);
 
             string[] containErrorList = { Constants.ERROR_INVALID_OCCURRENCE_ADDRESS_CONTAINS,
@@ -337,10 +338,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
-            Assert.IsNotNull(invalidTime);
+            var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
+            Assert.IsNotNull(invalidString);
 
-            string error = invalidTime.Text.Trim();
+            string error = invalidString.Text.Trim();
             Console.WriteLine(error);
 
             string[] containErrorList = { Constants.ERROR_INVALID_ASSOCIATED_ADDRESS_CONTAINS,
@@ -384,10 +385,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
-            Assert.IsNotNull(invalidTime);
+            var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
+            Assert.IsNotNull(invalidString);
 
-            string error = invalidTime.Text.Trim();
+            string error = invalidString.Text.Trim();
             Console.WriteLine(error);
 
             string[] containErrorList = { Constants.ERROR_INVALID_ASSOCIATED_ADDRESS_CONTAINS,
@@ -434,10 +435,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
-            Assert.IsNotNull(invalidTime);
+            var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
+            Assert.IsNotNull(invalidString);
 
-            string error = invalidTime.Text.Trim();
+            string error = invalidString.Text.Trim();
             Console.WriteLine(error);
 
             string[] containErrorList = { Constants.ERROR_3_MINUTES_CONTAINS,
@@ -484,10 +485,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
-            Assert.IsNotNull(invalidTime);
+            var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
+            Assert.IsNotNull(invalidString);
 
-            string error = invalidTime.Text.Trim();
+            string error = invalidString.Text.Trim();
             Console.WriteLine(error);
 
             string[] containErrorList = { Constants.ERROR_INVALID_OCCURRENCE_ADDRESS_CONTAINS,
@@ -536,10 +537,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
-            Assert.IsNotNull(invalidTime);
+            var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
+            Assert.IsNotNull(invalidString);
 
-            string error = invalidTime.Text.Trim();
+            string error = invalidString.Text.Trim();
             Console.WriteLine(error);
 
             string[] containErrorList = { Constants.ERROR_INVALID_ASSOCIATED_ADDRESS_CONTAINS,
@@ -586,10 +587,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
-            Assert.IsNotNull(invalidTime);
+            var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
+            Assert.IsNotNull(invalidString);
 
-            string error = invalidTime.Text.Trim();
+            string error = invalidString.Text.Trim();
             Console.WriteLine(error);
 
             string[] containErrorList = { Constants.ERROR_INVALID_ASSOCIATED_ADDRESS_CONTAINS,
@@ -637,10 +638,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
-            Assert.IsNotNull(invalidTime);
+            var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
+            Assert.IsNotNull(invalidString);
 
-            string error = invalidTime.Text.Trim();
+            string error = invalidString.Text.Trim();
             Console.WriteLine(error);
 
             string[] containErrorList = { Constants.ERROR_TO_AND_FROM_IN_FUTURE_CONTAINS};
@@ -685,10 +686,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
-            Assert.IsNotNull(invalidTime);
+            var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
+            Assert.IsNotNull(invalidString);
 
-            string error = invalidTime.Text.Trim();
+            string error = invalidString.Text.Trim();
             Console.WriteLine(error);
 
             string[] containErrorList = { Constants.ERROR_INVALID_OCCURRENCE_ADDRESS_CONTAINS,
@@ -735,10 +736,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
-            Assert.IsNotNull(invalidTime);
+            var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
+            Assert.IsNotNull(invalidString);
 
-            string error = invalidTime.Text.Trim();
+            string error = invalidString.Text.Trim();
             Console.WriteLine(error);
 
             string[] containErrorList = { Constants.ERROR_INVALID_ASSOCIATED_ADDRESS_CONTAINS,
@@ -785,10 +786,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
-            Assert.IsNotNull(invalidTime);
+            var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
+            Assert.IsNotNull(invalidString);
 
-            string error = invalidTime.Text.Trim();
+            string error = invalidString.Text.Trim();
             Console.WriteLine(error);
 
             string[] containErrorList = { Constants.ERROR_INVALID_ASSOCIATED_ADDRESS_CONTAINS,
@@ -835,10 +836,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
-            Assert.IsNotNull(invalidTime);
+            var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
+            Assert.IsNotNull(invalidString);
 
-            string error = invalidTime.Text.Trim();
+            string error = invalidString.Text.Trim();
             Console.WriteLine(error);
 
             string[] containErrorList = { Constants.ERROR_TO_IN_FUTURE_THAN_FROM_CONTAINS,
@@ -883,10 +884,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
-            Assert.IsNotNull(invalidTime);
+            var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
+            Assert.IsNotNull(invalidString);
 
-            string error = invalidTime.Text.Trim();
+            string error = invalidString.Text.Trim();
             Console.WriteLine(error);
 
             string[] containErrorList = { Constants.ERROR_INVALID_OCCURRENCE_ADDRESS_CONTAINS,
@@ -933,10 +934,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
-            Assert.IsNotNull(invalidTime);
+            var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
+            Assert.IsNotNull(invalidString);
 
-            string error = invalidTime.Text.Trim();
+            string error = invalidString.Text.Trim();
             Console.WriteLine(error);
 
             string[] containErrorList = { Constants.ERROR_INVALID_ASSOCIATED_ADDRESS_CONTAINS,
@@ -984,10 +985,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
-            Assert.IsNotNull(invalidTime);
+            var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
+            Assert.IsNotNull(invalidString);
 
-            string error = invalidTime.Text.Trim();
+            string error = invalidString.Text.Trim();
             Console.WriteLine(error);
 
             string[] containErrorList = { Constants.ERROR_INVALID_ASSOCIATED_ADDRESS_CONTAINS,
@@ -1035,10 +1036,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
-            Assert.IsNotNull(invalidTime);
+            var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
+            Assert.IsNotNull(invalidString);
 
-            string error = invalidTime.Text.Trim();
+            string error = invalidString.Text.Trim();
             Console.WriteLine(error);
 
             string[] containErrorList = { Constants.ERROR_TO_IN_FUTURE_THAN_FROM_CONTAINS,
@@ -1084,10 +1085,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
-            Assert.IsNotNull(invalidTime);
+            var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
+            Assert.IsNotNull(invalidString);
 
-            string error = invalidTime.Text.Trim();
+            string error = invalidString.Text.Trim();
             Console.WriteLine(error);
 
             string[] containErrorList = { Constants.ERROR_INVALID_OCCURRENCE_ADDRESS_CONTAINS,
@@ -1135,10 +1136,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
-            Assert.IsNotNull(invalidTime);
+            var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
+            Assert.IsNotNull(invalidString);
 
-            string error = invalidTime.Text.Trim();
+            string error = invalidString.Text.Trim();
             Console.WriteLine(error);
 
             string[] containErrorList = { Constants.ERROR_INVALID_ASSOCIATED_ADDRESS_CONTAINS,
@@ -1186,10 +1187,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickSubmitNoCorrectionCheckbox();
             ComplaintInfo_ClickNext();
 
-            var invalidTime = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
-            Assert.IsNotNull(invalidTime);
+            var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
+            Assert.IsNotNull(invalidString);
 
-            string error = invalidTime.Text.Trim();
+            string error = invalidString.Text.Trim();
             Console.WriteLine(error);
 
             string[] containErrorList = { Constants.ERROR_INVALID_ASSOCIATED_ADDRESS_CONTAINS,

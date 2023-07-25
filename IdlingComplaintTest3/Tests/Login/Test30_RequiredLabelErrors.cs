@@ -1,4 +1,5 @@
 ﻿using IdlingComplaints.Models.Login;
+using SeleniumUtilities.Base;
 using SeleniumUtilities.Utils;
 using System;
 using System.Collections.Generic;
@@ -9,8 +10,8 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.Login
 {
-    [Parallelizable(ParallelScope.Fixtures)]
-    [FixtureLifeCycle(LifeCycle.SingleInstance)]
+    //[Parallelizable(ParallelScope.Fixtures)]
+    //[FixtureLifeCycle(LifeCycle.SingleInstance)]
 
     internal class Test30_RequiredLabelErrors : LoginModel
     {
@@ -39,7 +40,7 @@ namespace IdlingComplaints.Tests.Login
         {
             base.LoginModelSetUp(true);
             extent.SetUp(true);
-            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
+            //Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
 
         }
 

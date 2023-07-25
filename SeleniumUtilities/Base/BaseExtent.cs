@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 using AventStack.ExtentReports;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
-using SeleniumUtilities.Base;
 using SeleniumUtilities.Utils;
 using SeleniumUtilities.Utils.ExtentUtils;
 
-namespace IdlingComplaints.Tests
+namespace SeleniumUtilities.Base
 {
     public class BaseExtent
     {
@@ -31,7 +30,7 @@ namespace IdlingComplaints.Tests
             {
                 var status = TestContext.CurrentContext.Result.Outcome.Status;
                 var errorMessage = string.IsNullOrEmpty(TestContext.CurrentContext.Result.Message)
-                    ? "" 
+                    ? ""
                     : string.Format("<pre>{0}</pre>", TestContext.CurrentContext.Result.Message);
                 var stackTrace = string.IsNullOrEmpty(TestContext.CurrentContext.Result.StackTrace)
                     ? ""
@@ -55,9 +54,9 @@ namespace IdlingComplaints.Tests
                         break;
                 }
             }
-            
+
         }
 
-        
+
     }
 }

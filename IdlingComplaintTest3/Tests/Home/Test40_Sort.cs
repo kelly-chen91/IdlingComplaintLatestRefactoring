@@ -1,6 +1,7 @@
 ﻿using IdlingComplaints.Models.Home;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SeleniumUtilities.Base;
 using SeleniumUtilities.Utils;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,8 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace IdlingComplaints.Tests.Home
 {
-    [Parallelizable(ParallelScope.Fixtures)]
-    [FixtureLifeCycle(LifeCycle.SingleInstance)]
+    //[Parallelizable(ParallelScope.Fixtures)]
+    //[FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test40_Sort : HomeModel
     {
         private readonly int SLEEP_TIMER = 0;

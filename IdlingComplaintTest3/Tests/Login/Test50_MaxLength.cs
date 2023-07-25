@@ -1,10 +1,11 @@
 ﻿using IdlingComplaints.Models.Login;
+using SeleniumUtilities.Base;
 using SeleniumUtilities.Utils;
 
 namespace IdlingComplaints.Tests.Login
 {
-    [Parallelizable(ParallelScope.Fixtures)]
-    [FixtureLifeCycle(LifeCycle.SingleInstance)]
+    //[Parallelizable(ParallelScope.Fixtures)]
+    //[FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test50_MaxLength : LoginModel
     {
         private const int MAXLENGTH = 50;

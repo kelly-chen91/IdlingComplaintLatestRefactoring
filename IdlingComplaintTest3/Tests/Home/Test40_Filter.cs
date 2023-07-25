@@ -1,5 +1,6 @@
 ﻿using IdlingComplaints.Models.Home;
 using OpenQA.Selenium;
+using SeleniumUtilities.Base;
 using SeleniumUtilities.Utils;
 using System;
 using System.Collections.Generic;
@@ -9,8 +10,8 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.Home
 {
-    [Parallelizable(ParallelScope.Fixtures)]
-    [FixtureLifeCycle(LifeCycle.SingleInstance)]
+    //[Parallelizable(ParallelScope.Fixtures)]
+    //[FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test40_Filter : HomeModel
     {
         private readonly int SLEEP_TIMER = 0;

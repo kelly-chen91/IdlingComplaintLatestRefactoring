@@ -8,12 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IdlingComplaints.Models.Register;
+using SeleniumUtilities.Base;
 
 namespace IdlingComplaints.Tests.Register
 {
-    
-    [Parallelizable(ParallelScope.Fixtures)]
-    [FixtureLifeCycle(LifeCycle.SingleInstance)]
+
+    //[Parallelizable(ParallelScope.Fixtures)]
+    //[FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test30_RequiredLabelErrors : RegisterModel
     {
         private readonly int SLEEP_TIMER = 0;
@@ -42,7 +43,7 @@ namespace IdlingComplaints.Tests.Register
         {
             base.RegisterModelSetUp(true);
             Driver.Manage().Window.Maximize();
-            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
+            //Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
 
             extent.SetUp(true);
 

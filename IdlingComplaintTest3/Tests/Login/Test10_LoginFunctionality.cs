@@ -5,10 +5,11 @@ using SeleniumUtilities.Utils;
 using IdlingComplaints.Models.Login;
 using SeleniumUtilities.Utils.ExtentUtils;
 using NUnit.Framework.Interfaces;
+using SeleniumUtilities.Base;
 
 namespace IdlingComplaints.Tests.Login;
 
-[Parallelizable(ParallelScope.Fixtures)]
+//[Parallelizable(ParallelScope.Fixtures)]
 [FixtureLifeCycle(LifeCycle.SingleInstance)]
 
 /*This is user login verification test*/

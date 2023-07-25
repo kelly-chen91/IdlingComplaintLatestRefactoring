@@ -11,11 +11,12 @@ using System.Text;
 using System.Threading.Tasks;
 using IdlingComplaints.Tests.ComplaintForm.P10_Associated;
 using static System.Net.Mime.MediaTypeNames;
+using SeleniumUtilities.Base;
 
 namespace IdlingComplaints.Tests.ComplaintForm.P10_Associated
 {
-    [Parallelizable(ParallelScope.Fixtures)]
-    [FixtureLifeCycle(LifeCycle.SingleInstance)]
+    //[Parallelizable(ParallelScope.Fixtures)]
+    //[FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test60_Label : ComplaintFormModel
     { 
 
