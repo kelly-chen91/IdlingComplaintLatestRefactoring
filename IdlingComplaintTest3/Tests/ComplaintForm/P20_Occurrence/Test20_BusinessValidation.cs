@@ -358,7 +358,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             string error = invalidTime.Text.Trim();
             Console.WriteLine(error);
 
-            string[] containErrorList = { Constants.ERROR_INVALID_OCCURRENCE_ADDRESS_CONTAINS,
+            string[] containErrorList = { Constants.ERROR_INVALID_ASSOCIATED_ADDRESS_CONTAINS,
                                             Constants.ERROR_3_MINUTES_CONTAINS};
 
             error.ValidateErrorDetail(Constants.ERROR_BASE, containErrorList, messageDetailDictionary);
@@ -635,7 +635,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             /*OCCURRENCE*/
 
             Occurrence_FromControl.SendKeysWithDelay(
-                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(-3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Time in a year (3 minutes ago)
+                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.AddHours(-3).Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); //Time in a year (3 minutes ago)
 
             Occurrence_ToControl.SendKeysWithDelay(
                                 StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddYears(1).Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time
@@ -1033,7 +1033,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             /*OCCURRENCE*/
 
             Occurrence_FromControl.SendKeysWithDelay(
-                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.AddMinutes(3).Minute, DateTime.Now.Second), SLEEP_TIMER); //Current Time (3 minutes over)
+                StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.AddHours(3).Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); //Current Time (3 minutes over)
 
             Occurrence_ToControl.SendKeysWithDelay(
                                 StringUtilities.SelectDate(DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), SLEEP_TIMER); // Current Time

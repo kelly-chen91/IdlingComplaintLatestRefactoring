@@ -76,14 +76,18 @@ namespace SeleniumUtilities.Utils
         public static void ValidateErrorDetail(this 
             string error, string errorBase, string[] containErrorList, Dictionary<string, string> dictionary)
         {
-            string errorDetail = error.Substring(errorBase.Length);
+            //string errorDetail = error.Substring(errorBase.Length);
+            string errorDetail = error.Split(":", StringSplitOptions.None)[1];
             string[] errorDetailList = errorDetail.Split(". ", StringSplitOptions.None);
             int isExpectedErrorCount = 0;
+            Console.WriteLine("error detail list length: " +  errorDetailList.Length);
             for (int i = 0; i < errorDetailList.Length; i++)
             {
                 Console.WriteLine(errorDetailList[i]);
                 for (int j = 0; j < containErrorList.Length; j++)
                 {
+                    Console.WriteLine("expected error: "+errorDetailList[i].Contains(containErrorList[j]));
+
                     if (errorDetailList[i].Contains(containErrorList[j]))
                     {
                         if (dictionary.ContainsKey(containErrorList[j]))

@@ -34,8 +34,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P10_Associated
             base.ComplaintFormModelSetUp(true);
             NewComplaintSetUp();
             ClickNo();
-            //var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(15));
-            //wait.Until(d => d.FindElement(By.CssSelector("input[formcontrolname='idc_associatedlastname']")));
+            
             Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 15);
 
         }

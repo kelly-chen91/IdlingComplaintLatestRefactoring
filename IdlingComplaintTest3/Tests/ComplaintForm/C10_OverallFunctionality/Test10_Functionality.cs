@@ -105,7 +105,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 
             var successfulSubmit = Driver.WaitUntilElementFound(SnackBarByControl, 60).FindElement(By.TagName("span"));
             Assert.IsNotNull(successfulSubmit);
-            if (!successfulSubmit.Text.Contains("submitted success")) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo(Constants.SUCCESSFUL_FORM_SUBMISSION), "Flagged inconsistency on purpose.");
+            if (!successfulSubmit.Text.Contains(Constants.PARTIAL_SUCCESSFUL_FORM_SUBMISSION)) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo(Constants.SUCCESSFUL_FORM_SUBMISSION), "Flagged inconsistency on purpose.");
 
             Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60);
         }
@@ -150,7 +150,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 
             var successfulSubmit = Driver.WaitUntilElementFound(SnackBarByControl, 60).FindElement(By.TagName("span"));
             Assert.IsNotNull(successfulSubmit);
-            if (!successfulSubmit.Text.Contains("submitted success")) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo(Constants.SUCCESSFUL_FORM_SUBMISSION), "Flagged inconsistency on purpose.");
+            if (!successfulSubmit.Text.Contains(Constants.PARTIAL_SUCCESSFUL_FORM_SUBMISSION)) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo(Constants.SUCCESSFUL_FORM_SUBMISSION), "Flagged inconsistency on purpose.");
 
             Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60);
         }
@@ -212,7 +212,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 
             var successfulSubmit = Driver.WaitUntilElementFound(SnackBarByControl, 60).FindElement(By.TagName("span"));
             Assert.IsNotNull(successfulSubmit);
-            if (!successfulSubmit.Text.Contains("submitted success")) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo(Constants.SUCCESSFUL_FORM_SUBMISSION), "Flagged inconsistency on purpose.");
+            if (!successfulSubmit.Text.Contains(Constants.PARTIAL_SUCCESSFUL_FORM_SUBMISSION)) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo(Constants.SUCCESSFUL_FORM_SUBMISSION), "Flagged inconsistency on purpose.");
 
             Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60);
         }
@@ -256,7 +256,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 
             var successfulSubmit = Driver.WaitUntilElementFound(SnackBarByControl, 60).FindElement(By.TagName("span"));
             Assert.IsNotNull(successfulSubmit);
-            if (!successfulSubmit.Text.Contains("submitted success")) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo(Constants.SUCCESSFUL_FORM_SUBMISSION), "Flagged inconsistency on purpose.");
+            if (!successfulSubmit.Text.Contains(Constants.PARTIAL_SUCCESSFUL_FORM_SUBMISSION)) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo(Constants.SUCCESSFUL_FORM_SUBMISSION), "Flagged inconsistency on purpose.");
 
             Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60);
         }
@@ -300,7 +300,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 
             var successfulSubmit = Driver.WaitUntilElementFound(SnackBarByControl, 60).FindElement(By.TagName("span"));
             Assert.IsNotNull(successfulSubmit);
-            if (!successfulSubmit.Text.Contains("submitted success")) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo(Constants.SUCCESSFUL_FORM_SUBMISSION), "Flagged inconsistency on purpose.");
+            if (!successfulSubmit.Text.Contains(Constants.PARTIAL_SUCCESSFUL_FORM_SUBMISSION)) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo(Constants.SUCCESSFUL_FORM_SUBMISSION), "Flagged inconsistency on purpose.");
 
             Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60);
         }
@@ -342,7 +342,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 
             var successfulSubmit = Driver.WaitUntilElementFound(SnackBarByControl, 60).FindElement(By.TagName("span"));
             Assert.IsNotNull(successfulSubmit);
-            if (!successfulSubmit.Text.Contains("submitted success")) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo(Constants.SUCCESSFUL_FORM_SUBMISSION), "Flagged inconsistency on purpose.");
+            if (!successfulSubmit.Text.Contains(Constants.PARTIAL_SUCCESSFUL_FORM_SUBMISSION)) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo(Constants.SUCCESSFUL_FORM_SUBMISSION), "Flagged inconsistency on purpose.");
 
             Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60);
 
@@ -402,8 +402,8 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             var duplicateMessage = Driver.WaitUntilElementFound(SnackBarByControl, 20).FindElement(By.TagName("span"));
             Assert.IsNotNull(duplicateMessage);
 
-            
-            string expected = "This idling complaint has been submitted before: ";
+
+            string expected = Constants.DUPLICATE_FORM_SUBMISSION;
             if (!duplicateMessage.Text.Trim().Contains(expected))
             {
                 Assert.That(duplicateMessage.Text.Trim().Substring(0, expected.Length),
@@ -455,7 +455,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 
             var successfulSubmit = Driver.WaitUntilElementFound(SnackBarByControl, 60).FindElement(By.TagName("span"));
             Assert.IsNotNull(successfulSubmit);
-            if (!successfulSubmit.Text.Contains("submitted success")) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo(Constants.SUCCESSFUL_FORM_SUBMISSION), "Flagged inconsistency on purpose.");
+            if (!successfulSubmit.Text.Contains(Constants.PARTIAL_SUCCESSFUL_FORM_SUBMISSION)) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo(Constants.SUCCESSFUL_FORM_SUBMISSION), "Flagged inconsistency on purpose.");
 
             Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60);
 

@@ -29,8 +29,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             NewComplaintSetUp();
             ClickNo();
             Driver.ScrollTo(Occurrence_VehicleTypeControl);
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(15));
-            wait.Until(d => d.FindElement(Associated_CompanyNameByControl));
+            Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 15);
         }
 
         [OneTimeTearDown]

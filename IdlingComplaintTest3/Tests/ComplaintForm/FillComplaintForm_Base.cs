@@ -53,10 +53,15 @@ namespace IdlingComplaints.Tests.ComplaintForm
             string intersectCrossStreet1 = "57th Ave", intersectCrossStreet2 = "Junction Blvd";
             if (invalidAddress)
             {
-                streetName = "KLAJDFKLAJDF Street";
-                onStreet = "WhyDoYouCare Blvd";
+                streetName = StringUtilities.GenerateRandomString(10);
+                onStreet = StringUtilities.GenerateRandomString(10);
+
+                //streetName = "KLAJDFKLAJDF Street";
+                //onStreet = "WhyDoYouCare Blvd";
                 crossStreet1 = onStreet;
-                crossStreet2 = "DoesNotMakeSense Expy";
+                //crossStreet2 = "DoesNotMakeSense Expy";
+                crossStreet2 = StringUtilities.GenerateRandomString(10);
+
                 intersectCrossStreet1 = crossStreet1;
                 intersectCrossStreet2 = crossStreet2;
             }
