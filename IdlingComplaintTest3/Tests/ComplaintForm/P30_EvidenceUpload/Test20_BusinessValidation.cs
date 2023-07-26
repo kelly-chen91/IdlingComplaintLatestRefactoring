@@ -10,8 +10,7 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 {
-    //[Parallelizable(ParallelScope.Fixtures)]
-    //[FixtureLifeCycle(LifeCycle.SingleInstance)]
+
     internal class Test20_BusinessValidation: FillComplaintForm_Base
     {
         private new readonly int SLEEP_TIMER = 0;

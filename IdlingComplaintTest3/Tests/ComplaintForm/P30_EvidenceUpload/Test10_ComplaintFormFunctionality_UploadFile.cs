@@ -15,8 +15,7 @@ using SeleniumUtilities.Utils;
 
 namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 {
-    //[Parallelizable(ParallelScope.Fixtures)]
-    //[FixtureLifeCycle(LifeCycle.SingleInstance)]
+
     internal class Test10_ComplaintFormFunctionality_UploadFile: FillComplaintForm_Base
     {
 
@@ -74,7 +73,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         }
 
         [Test, Category("Scenario #0: Verify multiple functionalities at once for demo")]
-        [Ignore("Test for demo")]
+        //[Ignore("Test for demo")]
         public void EvidenceUpload_VerifyNotSupportedFile_Upload_Delete_Download_Process()
         {
             /* Upload supported and unsupported files */
@@ -85,6 +84,8 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             string commentTest = "Testing the comment box";
             EvidenceUpload_UploadCommentControl.SendKeysWithDelay(commentTest, SLEEP_TIMER);
             EvidenceUpload_ClickFilesUploadConfirm();
+            Driver.WaitUntilElementIsNoLongerFound(EvidenceUpload_UploadCommentByControl, 30);
+
             var successfulEvidenceUpload = Driver.WaitUntilElementFound(SnackBarByControl, 180);
             Assert.IsNotNull(successfulEvidenceUpload);
             if (successfulEvidenceUpload.Text.Contains("uploaded"))
@@ -131,6 +132,8 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             EvidenceUpload_UploadControl.SendKeysWithDelay(filePaths[0], SLEEP_TIMER);
 
             EvidenceUpload_ClickFilesUploadConfirm();
+            Driver.WaitUntilElementIsNoLongerFound(EvidenceUpload_UploadCommentByControl, 30);
+
 
             var successfulEvidenceUpload = Driver.WaitUntilElementFound(SnackBarByControl, 60);
             Assert.IsNotNull(successfulEvidenceUpload);
@@ -150,7 +153,9 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             {
                 EvidenceUpload_UploadControl.SendKeysWithDelay(file, SLEEP_TIMER);
             }
-              EvidenceUpload_ClickFilesUploadConfirm();
+            Driver.WaitUntilElementIsNoLongerFound(EvidenceUpload_UploadCommentByControl, 30);
+
+            EvidenceUpload_ClickFilesUploadConfirm();
 
             var successfulEvidenceUpload = Driver.WaitUntilElementFound(SnackBarByControl, 60);
             
@@ -170,13 +175,14 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             }
             EvidenceUpload_ClickFilesUploadConfirm();
 
+            Driver.WaitUntilElementIsNoLongerFound(EvidenceUpload_UploadCommentByControl, 30);
 
             var successfulEvidenceUpload = Driver.WaitUntilElementFound(SnackBarByControl, 61);
             Driver.WaitUntilElementIsNoLongerFound(SnackBarByControl, 60);
 
 
             var rowList = MatTableControl.GetDataFromMatTable(); //Needed to make new version of this because it's a different type of table
-            Assert.That(rowList.Count, Is.EqualTo(filePaths.Length-1)); // one file is not supplorted
+            Assert.That(rowList.Count, Is.EqualTo(filePaths.Length-1)); // one file is not supported
           
 
         }

@@ -14,8 +14,7 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.Home
 {
-    //[Parallelizable(ParallelScope.Fixtures)]
-    //[FixtureLifeCycle(LifeCycle.SingleInstance)]
+
     internal class Test10_OpenComplaintFunctionality : HomeModel
     {
         private readonly int SLEEP_TIMER = 0;

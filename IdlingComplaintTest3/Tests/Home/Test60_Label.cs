@@ -11,8 +11,7 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.Home
 {
-    //[Parallelizable(ParallelScope.Fixtures)]
-    //[FixtureLifeCycle(LifeCycle.SingleInstance)]
+
     internal class Test60_Label : HomeModel
     { 
     

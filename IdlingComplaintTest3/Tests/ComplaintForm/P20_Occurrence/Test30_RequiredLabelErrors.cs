@@ -11,8 +11,7 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 {
-    //[Parallelizable(ParallelScope.Fixtures)]
-    //[FixtureLifeCycle(LifeCycle.SingleInstance)]
+
     internal class Test30_RequiredLabelErrors : ComplaintFormModel
     {
 

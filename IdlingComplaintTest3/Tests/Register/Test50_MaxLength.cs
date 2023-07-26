@@ -11,8 +11,6 @@ using System.Threading.Tasks;
 namespace IdlingComplaints.Tests.Register
 {
 
-    //[Parallelizable(ParallelScope.Fixtures)]
-    //[FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test50_MaxLength : RegisterModel
     {
         BaseExtent extent;

@@ -10,8 +10,6 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.Login
 {
-    //[Parallelizable(ParallelScope.Fixtures)]
-    //[FixtureLifeCycle(LifeCycle.SingleInstance)]
 
     internal class Test30_RequiredLabelErrors : LoginModel
     {

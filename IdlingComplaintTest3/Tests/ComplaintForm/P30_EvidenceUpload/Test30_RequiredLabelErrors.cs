@@ -12,8 +12,7 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 {
-    //[Parallelizable(ParallelScope.Fixtures)]
-    //[FixtureLifeCycle(LifeCycle.SingleInstance)]
+
     internal class Test30_RequiredLabelErrors : FillComplaintForm_Base
     {
 

@@ -9,8 +9,7 @@ using SeleniumUtilities.Base;
 
 namespace IdlingComplaints.Tests.Login;
 
-//[Parallelizable(ParallelScope.Fixtures)]
-[FixtureLifeCycle(LifeCycle.SingleInstance)]
+
 
 /*This is user login verification test*/
 
@@ -121,7 +120,9 @@ internal class Test10_LoginFunctionality : LoginModel
     {
         //locate login field
         EmailControl.SendKeysWithDelay(RegistrationUtilities.GenerateEmail("unregistered", "emailAddress", "dep.nyc.gov"), SLEEP_TIMER);
-        PasswordControl.SendKeysWithDelay(RegistrationUtilities.GenerateQualifiedPassword(), SLEEP_TIMER);
+        string password = RegistrationUtilities.GenerateQualifiedPassword();
+        Console.WriteLine("password: " + password);
+        PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
         ClickLoginButton();
         var resultControl = Driver.WaitUntilElementFound(SnackBarByControl, 10).FindElement(By.TagName("span"));
         Assert.IsNotNull(resultControl);

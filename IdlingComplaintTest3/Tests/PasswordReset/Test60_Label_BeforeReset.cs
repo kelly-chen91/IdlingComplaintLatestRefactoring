@@ -13,8 +13,7 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.PasswordReset
 {
-    //[Parallelizable(ParallelScope.Fixtures)]
-    //[FixtureLifeCycle(LifeCycle.SingleInstance)]
+
     internal class Test60_Label_BeforeReset : PasswordResetModel 
     { 
 

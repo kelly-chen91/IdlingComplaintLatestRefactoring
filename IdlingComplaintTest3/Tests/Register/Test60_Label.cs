@@ -12,8 +12,7 @@ using SeleniumUtilities.Base;
 
 namespace IdlingComplaints.Tests.Register
 {
-    //[Parallelizable(ParallelScope.Fixtures)]
-    //[FixtureLifeCycle(LifeCycle.SingleInstance)]
+
     internal class Test60_Label : RegisterModel
     {
 

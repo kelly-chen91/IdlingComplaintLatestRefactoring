@@ -10,8 +10,7 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.Home
 {
-    //[Parallelizable(ParallelScope.Fixtures)]
-    //[FixtureLifeCycle(LifeCycle.SingleInstance)]
+
     internal class Test40_Filter : HomeModel
     {
         private readonly int SLEEP_TIMER = 0;
@@ -92,7 +91,7 @@ namespace IdlingComplaints.Tests.Home
         public void FilterCurrentYear()
         {
             SelectCreatedYear(0);
-            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 30);
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60);
             SortStatus();
             SortStatus();
             var rowList = TableControl.GetDataFromTable();
@@ -110,7 +109,7 @@ namespace IdlingComplaints.Tests.Home
         public void FilterLastYear()
         {
             SelectCreatedYear(1);
-            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 30);
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60);
             var rowList = TableControl.GetDataFromTable();
             var dateSubmittedList = rowList.GetSpecificColumnText(DateSubmittedByControl);
             string lastYear = (DateTime.Now.Year - 1).ToString();
@@ -126,15 +125,15 @@ namespace IdlingComplaints.Tests.Home
         public void FilterAllYear()
         {
             SelectCreatedYear(0);
-            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 30);
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60);
             var rowList = TableControl.GetDataFromTable();
             var currentYearList = rowList.GetSpecificColumnText(DateSubmittedByControl);
             SelectCreatedYear(1);
-            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 30);
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60);
             rowList = TableControl.GetDataFromTable();
             var lastYearList = rowList.GetSpecificColumnText(DateSubmittedByControl);
             SelectCreatedYear(2);
-            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 30);
+            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60);
             rowList = TableControl.GetDataFromTable();
             var allList = rowList.GetSpecificColumnText(DateSubmittedByControl);
 

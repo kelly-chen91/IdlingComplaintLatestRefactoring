@@ -13,8 +13,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace IdlingComplaints.Tests.Home
 {
-    //[Parallelizable(ParallelScope.Fixtures)]
-    //[FixtureLifeCycle(LifeCycle.SingleInstance)]
+
     internal class Test40_Sort : HomeModel
     {
         private readonly int SLEEP_TIMER = 0;

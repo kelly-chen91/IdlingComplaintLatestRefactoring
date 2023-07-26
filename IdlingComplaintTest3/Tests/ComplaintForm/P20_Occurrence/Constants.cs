@@ -77,5 +77,9 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         public static readonly string ERROR_TO_AND_FROM_IN_FUTURE_CONTAINS = "cannot be later than the current";
         public static readonly string ERROR_INVALID_ASSOCIATED_ADDRESS_CONTAINS = "associated";
         public static readonly string ERROR_INVALID_OCCURRENCE_ADDRESS_CONTAINS = "occurrence address";
+
+        public static readonly string YES_LABEL = "We are sorry. Your submission can not be accepted by DEP. This idling complaint " +
+            "is not consistent with the requirements listed in Section 24-163 of the New York City Administrative Code. " +
+            "Thank you for participating in this effort to improve NYC’s air quality.";
     }
 }

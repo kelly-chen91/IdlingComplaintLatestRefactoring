@@ -15,8 +15,7 @@ using SeleniumUtilities.Base;
 
 namespace IdlingComplaints.Tests.ComplaintForm.P10_Associated
 {
-    //[Parallelizable(ParallelScope.Fixtures)]
-    //[FixtureLifeCycle(LifeCycle.SingleInstance)]
+
     internal class Test60_Label : ComplaintFormModel
     { 
 

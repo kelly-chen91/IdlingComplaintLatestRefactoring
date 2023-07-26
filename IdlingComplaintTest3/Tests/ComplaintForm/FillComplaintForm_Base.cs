@@ -15,9 +15,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
         public readonly int SLEEP_TIMER = 0;
         public readonly string FILE_IMAGE_PATH = P30_EvidenceUpload.Constants.IDLING_TRUCK;
 
-        public static readonly string YES_LABEL = "We are sorry. Your submission can not be accepted by DEP. This idling complaint " +
-            "is not consistent with the requirements listed in Section 24-163 of the New York City Administrative Code. " +
-            "Thank you for participating in this effort to improve NYC’s air quality.";
+        
 
 
         public void Fill_Associated(bool isPOBox, bool invalidAddress, int timer)
@@ -119,6 +117,17 @@ namespace IdlingComplaints.Tests.ComplaintForm
             Occurrence_SecondPastOffenseControl.SendKeysWithDelay("Test", SLEEP_TIMER);
         }
 
+        public void SubmitAcknowledgementAndProceedToNextPage()
+        {
+            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+
+            ClickWitnessCheckbox();
+            ClickSubmitNoCorrectionCheckbox();
+            ComplaintInfo_ClickNext();
+
+            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60); // loads to next page 
+        }
+
         public void Filled_ComplaintInfo()
         {
             /*QUALIFYING CRITERIA*/
@@ -137,13 +146,9 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            SubmitAcknowledgementAndProceedToNextPage();
 
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
 
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60); // loads to next page 
         }
 
         public void Filled_EvidenceUpload()
@@ -159,6 +164,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
             string fileName = Path.GetFileName(FILE_IMAGE_PATH);
             EvidenceUpload_ClickFilesUploadConfirm();
             //Thread.Sleep(SLEEP_TIMER);
+            Driver.WaitUntilElementIsNoLongerFound(EvidenceUpload_UploadCommentByControl, 30);
 
             var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span")); // message says evidence have successfully uploaded
             Assert.IsNotNull(successfulEvidenceUpload);

@@ -9,8 +9,6 @@ using SeleniumUtilities.Base;
 namespace IdlingComplaints.Tests.Register
 {
 
-    //[Parallelizable(ParallelScope.Fixtures)]
-    //[FixtureLifeCycle(LifeCycle.SingleInstance)]
     internal class Test10_RegistrationFunctionality : RegisterModel
     {
         private readonly int SLEEP_TIMER = 0;

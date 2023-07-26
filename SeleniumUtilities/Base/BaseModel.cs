@@ -13,12 +13,6 @@ namespace SeleniumUtilities.Base
     {
         protected IWebDriver Driver;
         
-        //protected BaseModel(bool isHeadless)
-        //{
-        //    Driver = CreateHeadlessDriver("chrome");
-        //}
-
-
         protected IWebDriver CreateStandardDriver(string browserName)
         {
             switch (browserName.ToLowerInvariant())
@@ -61,16 +55,6 @@ namespace SeleniumUtilities.Base
                     throw new Exception("Provided browser is not supported.");
             }
         }
-
-        //public MediaEntityModelProvider CaptureScreenshot(string name, IWebDriver driver)
-        //{
-        //    var screenshot = ((ITakesScreenshot)driver).GetScreenshot().AsBase64EncodedString;
-        //    return MediaEntityBuilder.CreateScreenCaptureFromBase64String(screenshot,name).Build(); 
-        //    //var screenshot = ((ITakesScreenshot)driver).GetScreenshot();
-        //    //screenshot.SaveAsFile(StringUtilities.GetProjectRootDirectory() + "\\Screenshots\\" + name + ".png", ScreenshotImageFormat.Png);
-        //    //return MediaEntityBuilder.CreateScreenCaptureFromPath("\\Screenshots\\" + name + ".png").Build();
-        //}
-
 
     }
 }

@@ -10,8 +10,7 @@ using SeleniumUtilities.Base;
 
 namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 {
-    //[Parallelizable(ParallelScope.Fixtures)]
-    //[FixtureLifeCycle(LifeCycle.SingleInstance)]
+
     internal class Test60_Label : FillComplaintForm_Base
     {
         private readonly int SLEEPTIMER = 0;

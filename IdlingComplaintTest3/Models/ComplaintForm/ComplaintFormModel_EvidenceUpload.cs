@@ -11,6 +11,7 @@ namespace IdlingComplaints.Models.ComplaintForm
 {
     internal partial class ComplaintFormModel : HomeModel
     {
+        public By EvidenceUpload_UploadCommentByControl => By.TagName("textarea");
         public IWebElement EvidenceUpload_UploadControl => Driver.FindElement(By.CssSelector("input[type='file']"));
 
         public IWebElement EvidenceUpload_PreviousControl => Driver.FindElement(By.XPath("//app-blob-files-upload/form/div/button[1]"));
@@ -22,7 +23,7 @@ namespace IdlingComplaints.Models.ComplaintForm
         public IWebElement EvidenceUpload_AndroidLinkControl => Driver.FindElement(By.PartialLinkText("Android"));
         public IWebElement EvidenceUpload_iOSLinkControl => Driver.FindElement(By.PartialLinkText("iOS"));
         public IWebElement EvidenceUpload_UploadErrorControl => Driver.FindElement(By.TagName("mat-error"));
-        public IWebElement EvidenceUpload_UploadCommentControl => Driver.FindElement(By.TagName("textarea"));
+        public IWebElement EvidenceUpload_UploadCommentControl => Driver.FindElement(EvidenceUpload_UploadCommentByControl);
 
         public IWebElement EvidenceUpload_UploadCancelControl => Driver.FindElement(By.XPath("//app-upload/mat-card/mat-card-content/div/div[2]/div[2]/button[2]"));
        

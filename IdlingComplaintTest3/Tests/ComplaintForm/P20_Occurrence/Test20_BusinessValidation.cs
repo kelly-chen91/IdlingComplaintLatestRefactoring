@@ -14,8 +14,7 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 {
-    //[Parallelizable(ParallelScope.Fixtures)]
-    //[FixtureLifeCycle(LifeCycle.SingleInstance)]
+
     internal class Test20_BusinessValidation : FillComplaintForm_Base
     {
 
@@ -53,6 +52,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             try
             {
+                Driver.ScrollTo(Occurrence_FromControl);
                 extent.TearDown(true, Driver);
             }
             catch (Exception ex)
@@ -111,11 +111,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
+            SubmitAcknowledgementAndProceedToNextPage();
 
             var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidString);
@@ -149,11 +145,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
+            SubmitAcknowledgementAndProceedToNextPage();
 
             var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidString);
@@ -189,11 +181,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
+            SubmitAcknowledgementAndProceedToNextPage();
 
             var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidString);
@@ -237,11 +225,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
+            SubmitAcknowledgementAndProceedToNextPage();
 
             var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidString);
@@ -284,11 +268,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
+            SubmitAcknowledgementAndProceedToNextPage();
 
             var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidString);
@@ -332,11 +312,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
+            SubmitAcknowledgementAndProceedToNextPage();
 
             var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidString);
@@ -379,11 +355,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
+            SubmitAcknowledgementAndProceedToNextPage();
 
             var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidString);
@@ -429,11 +401,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
+            SubmitAcknowledgementAndProceedToNextPage();
 
             var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidString);
@@ -479,11 +447,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
+            SubmitAcknowledgementAndProceedToNextPage();
 
             var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidString);
@@ -533,9 +497,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
+            SubmitAcknowledgementAndProceedToNextPage();
 
             var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidString);
@@ -581,11 +543,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
+            SubmitAcknowledgementAndProceedToNextPage();
 
             var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidString);
@@ -632,11 +590,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
+            SubmitAcknowledgementAndProceedToNextPage();
 
             var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidString);
@@ -680,11 +634,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
+            SubmitAcknowledgementAndProceedToNextPage();
 
             var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidString);
@@ -730,11 +680,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
+            SubmitAcknowledgementAndProceedToNextPage();
 
             var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidString);
@@ -780,11 +726,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
+            SubmitAcknowledgementAndProceedToNextPage();
 
             var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidString);
@@ -830,11 +772,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
+            SubmitAcknowledgementAndProceedToNextPage();
 
             var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidString);
@@ -878,11 +816,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
+            SubmitAcknowledgementAndProceedToNextPage();
 
             var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidString);
@@ -928,11 +862,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
+            SubmitAcknowledgementAndProceedToNextPage();
 
             var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidString);
@@ -979,11 +909,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
+            SubmitAcknowledgementAndProceedToNextPage();
 
             var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidString);
@@ -1030,11 +956,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
+            SubmitAcknowledgementAndProceedToNextPage();
 
             var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidString);
@@ -1079,11 +1001,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
+            SubmitAcknowledgementAndProceedToNextPage();
 
             var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidString);
@@ -1130,11 +1048,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
+            SubmitAcknowledgementAndProceedToNextPage();
 
             var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidString);
@@ -1181,11 +1095,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
+            SubmitAcknowledgementAndProceedToNextPage();
 
             var invalidString = Driver.WaitUntilElementFound(SnackBarByControl, 15).FindElement(By.TagName("span"));
             Assert.IsNotNull(invalidString);
@@ -1213,7 +1123,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
             ClickYes();
 
             string criteriaError = Driver.FindElement(By.CssSelector("label[for='criteriaError']")).Text;
-            Assert.That(criteriaError, Is.EqualTo(YES_LABEL), "Flagged for inconsistency on purpose");
+            Assert.That(criteriaError, Is.EqualTo(Constants.YES_LABEL), "Flagged for inconsistency on purpose");
         }
     }
 }
