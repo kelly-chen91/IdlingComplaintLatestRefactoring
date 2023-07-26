@@ -243,7 +243,7 @@ namespace IdlingComplaints.Tests.Home
             Assert.IsNotNull(profile);
             ClickHomeButton();
             Driver.WaitUntilElementFound(HomeByControl, 15);
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"),30);
+            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60);
 
         }
 
@@ -258,7 +258,7 @@ namespace IdlingComplaints.Tests.Home
             Assert.IsNotNull(newComplaint);
             ClickHomeButton();
             Driver.WaitUntilElementFound(HomeByControl, 15);
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 30);
+            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-spinner"), 60);
         }
 
         [Test]

@@ -32,6 +32,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P10_Associated
             ClickNo();
             
             Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 15);
+            ScrollToZipCode();
         }
 
         [OneTimeTearDown]
@@ -118,6 +119,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P10_Associated
         [Test, Category("Required Field Missing - Error Label Displayed")]
         public void MissingDescribeContent()
         {
+            Driver.ScrollTo(Describe_ContentControl);
             Describe_ContentControl.SendTextDeleteTabWithDelay("XX", SLEEP_TIMER);
             string requireContent = Driver.ExtractTextFromXPath("//mat-card[4]/mat-card-content/mat-form-field/div/div[3]/div/mat-error/text()");
             Assert.That(requireContent, Is.EqualTo(Constants.DESCRIBE_COMPLAINT_REQUIRE), "Flagged for inconsistency on purpose.");
@@ -127,6 +129,8 @@ namespace IdlingComplaints.Tests.ComplaintForm.P10_Associated
         [Test, Category("Required Field Missing - Error Label Displayed")]
         public void MissingAcknowledgement()
         {
+            Driver.ScrollTo(Describe_ContentControl);
+
             ClickWitnessCheckbox();
             ClickWitnessCheckbox();
 
@@ -137,6 +141,8 @@ namespace IdlingComplaints.Tests.ComplaintForm.P10_Associated
         [Test, Category("Required Field Missing - Error Label Displayed")]
         public void MissingCorrectionAcknowledgement()
         {
+            Driver.ScrollTo(Describe_ContentControl);
+
             ClickSubmitNoCorrectionCheckbox();
             ClickSubmitNoCorrectionCheckbox();
 
@@ -149,6 +155,8 @@ namespace IdlingComplaints.Tests.ComplaintForm.P10_Associated
         [Test, Category("Required Field Fulfilled - Error Label Hidden")]
         public void ProvidedAcknowledgement()
         {
+            Driver.ScrollTo(Describe_ContentControl);
+
             ClickWitnessCheckbox();
 
             string requireContent = Driver.ExtractTextFromXPath("//mat-card[5]/mat-card-content/div/mat-error/text()");
@@ -158,6 +166,8 @@ namespace IdlingComplaints.Tests.ComplaintForm.P10_Associated
         [Test, Category("Required Field Fulfilled - Error Label Hidden")]
         public void ProvidedNoCorrectionCheckbox()
         {
+            Driver.ScrollTo(Describe_ContentControl);
+
             ClickSubmitNoCorrectionCheckbox();
 
             string requireContent = Driver.ExtractTextFromXPath("//mat-card[6]/mat-card-content/div/mat-error");

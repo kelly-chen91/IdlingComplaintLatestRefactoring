@@ -148,20 +148,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         [Test, Category("Scenario #2: Upload multiple evidence files at once")]
         public void EvidenceUpload_MultipleFileUpload()
         {
-          
-            foreach (var file in filePaths)
-            {
-                EvidenceUpload_UploadControl.SendKeysWithDelay(file, SLEEP_TIMER);
-            }
-            Driver.WaitUntilElementIsNoLongerFound(EvidenceUpload_UploadCommentByControl, 30);
-
-            EvidenceUpload_ClickFilesUploadConfirm();
-
-            var successfulEvidenceUpload = Driver.WaitUntilElementFound(SnackBarByControl, 60);
-            
-            if (successfulEvidenceUpload!=null && successfulEvidenceUpload.Text.Contains("uploaded")) 
-                Assert.That(successfulEvidenceUpload.Text.Trim(), Contains.Substring("Succesfully uploaded file named: "));
-
+            Upload_Multiple_Files();
         }
 
 
@@ -207,7 +194,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         [Test, Category("Scenario #5: Verify delete buttons by continuously delete files")]
         public void EvidenceUpload_VerifyMultipleDeleteButton()
         {
-            EvidenceUpload_MultipleFileUpload();
+            Upload_Multiple_Files();
 
             Thread.Sleep(SLEEP_TIMER);
             var fileList = EvidenceUpload_TableControl.GetDataFromMatTable();
@@ -222,10 +209,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
                 deleteFileList = fileList.GetSpecificColumnElements(By.CssSelector("mat-icon[aria-label='Delete']")); //Gets the Delete button for each row
                 deleteFileList[0].Click();
                
-                Driver.WaitUntilElementFound(By.TagName("mat-dialog-container"), 61);
+                Driver.WaitUntilElementFound(By.TagName("mat-dialog-container"), 60);
                 EvidenceUpload_ConfirmDelete();
-                
-                Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-dialog-container"), 62);
+                Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-dialog-container"), 60);
+                Driver.WaitUntilElementIsNoLongerFound(SnackBarByControl, 20);
                 Thread.Sleep(SLEEP_TIMER);
             }
         
@@ -274,7 +261,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         [Test, Category("Scenario #8: Verify the download button")]
         public void EvidenceUpload_DownloadFileButton()
         {
-            EvidenceUpload_MultipleFileUpload();
+            Upload_Multiple_Files();
             Thread.Sleep(1000);
 
             var fileList = EvidenceUpload_TableControl.GetDataFromMatTable();
@@ -304,7 +291,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         [Test, Category("Scenario #10: Verify the Next button")]
         public void EvidenceUpload_NextButton()
         {
-            EvidenceUpload_MultipleFileUpload();
+            Upload_Multiple_Files();
             //Driver.WaitUntilElementFound(By.CssSelector("button[type='submit']"), 61);'
             Driver.WaitUntilElementIsNoLongerFound(SnackBarByControl, 60); //wait for the narrow bar to dispare, then click the next page
             EvidenceUpload_ClickNext();
@@ -332,6 +319,23 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 
             var appearOath = Driver.WaitUntilElementFound(AppearOATH_YesByControl, 60);
             Assert.IsNull(appearOath, "Flagged inconsistency on purpose.");
+        }
+
+        public void Upload_Multiple_Files()
+        {
+            foreach (var file in filePaths)
+            {
+                EvidenceUpload_UploadControl.SendKeysWithDelay(file, SLEEP_TIMER);
+            }
+
+            EvidenceUpload_ClickFilesUploadConfirm();
+            Driver.WaitUntilElementIsNoLongerFound(EvidenceUpload_UploadCommentByControl, 30);
+
+
+            var successfulEvidenceUpload = Driver.WaitUntilElementFound(SnackBarByControl, 60);
+
+            if (successfulEvidenceUpload != null && successfulEvidenceUpload.Text.Contains("uploaded"))
+                Assert.That(successfulEvidenceUpload.Text.Trim(), Contains.Substring("Succesfully uploaded file named: "));
         }
     }
 }

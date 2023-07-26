@@ -1,5 +1,6 @@
 ﻿using IdlingComplaints.Models.Home;
 using OpenQA.Selenium;
+using SeleniumUtilities.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -114,6 +115,8 @@ namespace IdlingComplaints.Models.ComplaintForm
         {
             EvidenceUpload_RefreshControl.Click();
         }
+
+        
       
     }
 }
