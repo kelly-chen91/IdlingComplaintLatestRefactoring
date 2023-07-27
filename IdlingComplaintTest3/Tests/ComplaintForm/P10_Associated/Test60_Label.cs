@@ -29,9 +29,9 @@ namespace IdlingComplaints.Tests.ComplaintForm.P10_Associated
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            extent.SetUp(false, GetType().Namespace + "." + GetType().Name);;
+            extent.SetUp(false, GetType().Namespace + "." + GetType().Name);
 
-            base.ComplaintFormModelSetUp(true);
+            base.ComplaintFormModelSetUp(true, false);
             NewComplaintSetUp();
             ClickNo();
             

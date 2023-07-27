@@ -24,9 +24,9 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            extent.SetUp(false, GetType().Namespace + "." + GetType().Name);;
+            extent.SetUp(false, GetType().Namespace + "." + GetType().Name);
 
-            base.ComplaintFormModelSetUp(true);
+            base.ComplaintFormModelSetUp(true, false);
             NewComplaintSetUp();
             ClickNo();
             Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 15);

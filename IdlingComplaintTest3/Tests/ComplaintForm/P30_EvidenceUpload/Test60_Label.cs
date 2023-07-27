@@ -26,8 +26,8 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            extent.SetUp(false, GetType().Namespace + "." + GetType().Name);;
-            base.ComplaintFormModelSetUp(true);
+            extent.SetUp(false, GetType().Namespace + "." + GetType().Name);
+            base.ComplaintFormModelSetUp(true, false);
             NewComplaintSetUp();
             Filled_ComplaintInfo();
 

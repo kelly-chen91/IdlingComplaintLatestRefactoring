@@ -40,6 +40,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
         public void Fill_OccurrenceAddress(int location, int borough, bool invalidAddress, int timer)
         {
+            Driver.WaitUntilElementFound(By.CssSelector("mat-select[aria-disabled = 'true']"), 20);
             Assert.That(location, Is.GreaterThan(0));
             Assert.That(location, Is.LessThan(4));
             Assert.That(borough, Is.GreaterThan(0));
@@ -96,6 +97,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
             /*QUALIFYING CRITERIA*/
             ClickNo();
             Driver.WaitUntilElementFound(By.CssSelector("input[formcontrolname='idc_associatedlastname']"), 20);
+            
         }
 
         public void Occurrence_ValidDate()

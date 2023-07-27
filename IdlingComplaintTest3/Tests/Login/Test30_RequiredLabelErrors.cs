@@ -24,7 +24,7 @@ namespace IdlingComplaints.Tests.Login
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            extent.SetUp(false, GetType().Namespace + "." + GetType().Name);;
+            extent.SetUp(false, GetType().Namespace + "." + GetType().Name);
         }
 
         [OneTimeTearDown]

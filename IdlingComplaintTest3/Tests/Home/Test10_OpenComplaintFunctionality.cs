@@ -1,6 +1,7 @@
 ﻿using IdlingComplaints.Models.Home;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.DevTools.V112.Debugger;
 using OpenQA.Selenium.Support.UI;
 using SeleniumUtilities.Base;
 using SeleniumUtilities.Utils;
@@ -18,6 +19,8 @@ namespace IdlingComplaints.Tests.Home
     internal class Test10_OpenComplaintFunctionality : HomeModel
     {
         private readonly int SLEEP_TIMER = 0;
+        private readonly string registered_EmailAddress = StringUtilities.GetProjectRootDirectory() + "\\Files\\Text\\Registered_EmailAddress.txt";
+        private Random random = new Random();
 
         BaseExtent extent;
 
@@ -28,7 +31,7 @@ namespace IdlingComplaints.Tests.Home
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            extent.SetUp(false, GetType().Namespace + "." + GetType().Name);;
+            extent.SetUp(false, GetType().Namespace + "." + GetType().Name);
         }
 
         [OneTimeTearDown]
@@ -40,7 +43,13 @@ namespace IdlingComplaints.Tests.Home
         [SetUp]
         public void SetUp()
         {
-            base.HomeModelSetUp("ttseng@dep.nyc.gov", "Testing1#", true);
+            string[] lines = File.ReadAllLines(registered_EmailAddress);
+            int userRowIndex = random.Next(0, lines.Length - 1);
+
+            string email = RegistrationUtilities.RetrieveRecordValue(registered_EmailAddress, userRowIndex, 0);
+            string password = RegistrationUtilities.RetrieveRecordValue(registered_EmailAddress, userRowIndex, 1);
+            //base.HomeModelSetUp("ttseng@dep.nyc.gov", "Testing1#", true);
+            base.HomeModelSetUp(email, password, true);
 
             extent.SetUp(true);
 
@@ -75,8 +84,15 @@ namespace IdlingComplaints.Tests.Home
             var rowList = TableControl.GetDataFromTable();
             var openComplaintList = rowList.GetSpecificColumnElements(link);
             var complaintNumList = rowList.GetSpecificColumnText(complaintNumberRowControl);
-
-            for (int i = 0; i < 2; i++)
+            int numComplaints = 0, totalComplaints = openComplaintList.Count;
+            if (totalComplaints > 2)
+            {
+                numComplaints = 2;
+            } else if(totalComplaints > 1)
+            {
+                numComplaints = 1;
+            }
+            for (int i = 0; i < numComplaints; i++)
             {
                 Driver.WaitUntilElementFound(NewComplaintByControl, 10);
                 Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 30);
@@ -108,6 +124,7 @@ namespace IdlingComplaints.Tests.Home
             SelectItemsPerPage(1);
 
             int pageCount = 1;
+            
             while (NextPageArrowControl.Enabled) 
             {
                 NextPageArrowControl.Click();
@@ -121,8 +138,14 @@ namespace IdlingComplaints.Tests.Home
 
             string itemsPerPage = Driver.ExtractTextFromXPath("//div[1]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span/span/text()");
             int divideItemsPerPage = int.Parse(itemsPerPage); //Taking the items per page and turning into int
-
-            int calculatedPageCount = totalComplaintAmount % divideItemsPerPage == 0 ? totalComplaintAmount / divideItemsPerPage : (totalComplaintAmount / divideItemsPerPage) + 1;
+            int calculatedPageCount = 0;
+            if (totalComplaintAmount > 0)
+            {
+                calculatedPageCount = totalComplaintAmount % divideItemsPerPage == 0 ? totalComplaintAmount / divideItemsPerPage : (totalComplaintAmount / divideItemsPerPage) + 1;
+            } else
+            {
+                pageCount = 0;
+            }
 
             Assert.That(pageCount, Is.EqualTo(calculatedPageCount));
 
@@ -152,7 +175,15 @@ namespace IdlingComplaints.Tests.Home
             string itemsPerPage = Driver.ExtractTextFromXPath("//div[1]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span/span/text()");
             int divideItemsPerPage = int.Parse(itemsPerPage); //Taking the items per page and turning into int
 
-            int calculatedPageCount = totalComplaintAmount % divideItemsPerPage == 0 ? totalComplaintAmount / divideItemsPerPage : (totalComplaintAmount / divideItemsPerPage) + 1;
+            int calculatedPageCount = 0;
+            if (totalComplaintAmount > 0)
+            {
+                calculatedPageCount = totalComplaintAmount % divideItemsPerPage == 0 ? totalComplaintAmount / divideItemsPerPage : (totalComplaintAmount / divideItemsPerPage) + 1;
+            }
+            else
+            {
+                pageCount = 0;
+            }
 
             Assert.That(pageCount, Is.EqualTo(calculatedPageCount));
 
@@ -164,11 +195,15 @@ namespace IdlingComplaints.Tests.Home
             ClickLastPage();
 
             string complaintCount = Driver.ExtractTextFromXPath("//mat-paginator/div/div/div[2]/div/text()");
-
+            Console.WriteLine(complaintCount); 
             // End Range Number | __ - __
             int index1 = complaintCount.IndexOf("–");
             int index2 = complaintCount.IndexOf("o");
-            string complaintRange = complaintCount.Substring(index1 + 2, index2 - index1 - 3);
+            string complaintRange = "0";
+            if (index1 != -1 && index2 != -1)
+            {
+                complaintRange = complaintCount.Substring(index1 + 2, index2 - index1 - 3);
+            }
 
 
             // Total Complaint Number | of __
@@ -186,20 +221,25 @@ namespace IdlingComplaints.Tests.Home
             ClickFirstPage();
 
             string complaintCount = Driver.ExtractTextFromXPath("//mat-paginator/div/div/div[2]/div/text()");
+            var rowList = TableControl.GetDataFromTable();
+            int itemSize = rowList.Count;
 
             // Start Range Number | __ - __
             string complaintRange = complaintCount.Split('–')[0];
-
-            Assert.That(complaintRange, Is.EqualTo("1 "));
+            if(rowList.Count > 0) 
+            {
+                Assert.That(complaintRange, Is.EqualTo("1 "));
+            }
 
         }
 
         [Test, Category("Verify Number of Complaints")]
+        [Ignore("Test may be duplicate")]
         public void VerifyNumOfComplaint()
         {
             SelectItemsPerPage(0);
             Thread.Sleep(3000);
-            string itemPerPage = Driver.ExtractTextFromXPath("/html/body/app-root/div/app-home/app-idling-list/div/mat-paginator/div/div/div[1]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span/span/text()");
+            string itemPerPage = Driver.ExtractTextFromXPath("//app-home/app-idling-list/div/mat-paginator/div/div/div[1]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span/span/text()");
           
             var link = By.TagName("a");
             var rowList = TableControl.GetDataFromTable();

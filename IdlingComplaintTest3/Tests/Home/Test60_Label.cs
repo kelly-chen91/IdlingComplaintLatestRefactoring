@@ -16,7 +16,8 @@ namespace IdlingComplaints.Tests.Home
     { 
     
         BaseExtent extent;
-
+        private readonly string registered_EmailAddress = StringUtilities.GetProjectRootDirectory() + "\\Files\\Text\\Registered_EmailAddress.txt";
+        private Random random = new Random();
         public Test60_Label()
         {
             extent = new BaseExtent();
@@ -24,8 +25,13 @@ namespace IdlingComplaints.Tests.Home
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            extent.SetUp(false, GetType().Namespace + "." + GetType().Name);;
-            base.HomeModelSetUp("ttseng@dep.nyc.gov", "Testing1#", true);
+            extent.SetUp(false, GetType().Namespace + "." + GetType().Name);
+            string[] lines = File.ReadAllLines(registered_EmailAddress);
+            int userRowIndex = random.Next(0, lines.Length - 1);
+
+            string email = RegistrationUtilities.RetrieveRecordValue(registered_EmailAddress, userRowIndex, 0);
+            string password = RegistrationUtilities.RetrieveRecordValue(registered_EmailAddress, userRowIndex, 1);
+            base.HomeModelSetUp(email, password, true);
         }
 
         [OneTimeTearDown]

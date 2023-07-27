@@ -25,7 +25,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            extent.SetUp(false, GetType().Namespace + "." + GetType().Name);;
+            extent.SetUp(false, GetType().Namespace + "." + GetType().Name);
 
         }
 
@@ -38,7 +38,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         [SetUp]
         public void SetUp()
         {
-            base.ComplaintFormModelSetUp(true);
+            base.ComplaintFormModelSetUp(true, false);
             NewComplaintSetUp();
             extent.SetUp(true);
         }
