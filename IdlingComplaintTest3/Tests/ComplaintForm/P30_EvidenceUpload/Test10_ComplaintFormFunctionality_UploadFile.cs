@@ -49,7 +49,17 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             base.ComplaintFormModelSetUp(true, false) ;
             NewComplaintSetUp();
             Filled_ComplaintInfo();
-            Driver.WaitUntilElementIsNoLongerFound(SnackBarByControl, 21);
+            var successfulSave = Driver.WaitUntilElementFound(SnackBarByControl, 20).FindElement(By.TagName("span"));
+            Assert.IsNotNull(successfulSave);
+            if (!successfulSave.Text.Contains("saved success")) Assert.That(successfulSave.Text.Trim(), Is.EqualTo("This form has been saved successfully."), "Flagged inconsistency on purpose.");
+            Driver.WaitUntilElementIsNoLongerFound(SnackBarByControl, 20); //message says form is saved
+
+            var compliantNumberControl = Driver.WaitUntilElementFound(ComplaintForm_ComplaintNumberByControl, 30);
+            Console.WriteLine(compliantNumberControl.Text);
+            string openComplaintNumber = compliantNumberControl.Text.Substring("Complaint Number: ".Length);
+            string[] inputs = { GetEmail(), GetPassword(), openComplaintNumber, C10_OverallFunctionality.Constants.DRAFT_STATUS };
+            submission_tracker.WriteIntoFile(inputs);
+
             extent.SetUp(true);
 
         }

@@ -29,8 +29,8 @@ namespace IdlingComplaints.Tests.Home
             string[] lines = File.ReadAllLines(registered_EmailAddress);
             int userRowIndex = random.Next(0, lines.Length - 1);
 
-            string email = RegistrationUtilities.RetrieveRecordValue(registered_EmailAddress, userRowIndex, 0);
-            string password = RegistrationUtilities.RetrieveRecordValue(registered_EmailAddress, userRowIndex, 1);
+            string email = FileUtilities.RetrieveRecordValue(registered_EmailAddress, userRowIndex, 0);
+            string password = FileUtilities.RetrieveRecordValue(registered_EmailAddress, userRowIndex, 1);
             base.HomeModelSetUp(email, password, true) ;
 
         }

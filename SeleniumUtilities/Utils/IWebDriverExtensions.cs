@@ -40,33 +40,6 @@ namespace SeleniumUtilities.Utils
             //return wait.Until<IWebElement>((d) => { return d.FindElement(locator); });
         }
 
-        //public static void WaitUntilElementIsNoLongerFound(this IWebDriver webDriver, IWebElement element, double timeout)
-        //{
-        //    var wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(timeout));
-        //    wait.IgnoreExceptionTypes(typeof(StaleElementReferenceException), typeof(NoSuchElementException));
-        //    wait.Until(driver => webDriver.FindElements(element).Count == 0);
-        //}
-
-        //public static IWebElement WaitUntilElementFound(this IWebDriver webDriver, IWebElement element, double timeout)
-        //{
-        //    var wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(timeout));
-        //    return wait.Until<IWebElement>(ExpectedConditions.GetVisibleElement(element));
-        //}
-        //
-        //public static bool WaitUntilElementIsFound(this IWebDriver webDriver, IWebElement element, double timeout)
-        //{
-        //    var wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(timeout));
-        //    wait.IgnoreExceptionTypes(typeof(StaleElementReferenceException), typeof(NoSuchElementException));
-        //    return wait.Until(ExpectedConditions.ElementIsVisible(element));
-        //}
-        //
-        //public static bool WaitUntilElementIsNotFound(this IWebDriver webDriver, IWebElement element, double timeout)
-        //{
-        //    var wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(timeout));
-        //    wait.IgnoreExceptionTypes(typeof(StaleElementReferenceException), typeof(NoSuchElementException));
-        //    return wait.Until(ExpectedConditions.ElementIsNotVisible(element));
-        //}
-
         public static MediaEntityModelProvider CaptureScreenshot(this IWebDriver driver, string name)
         {
             var screenshot = ((ITakesScreenshot)driver).GetScreenshot().AsBase64EncodedString;

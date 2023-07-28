@@ -29,7 +29,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
             }
             else Associated_POBoxControl.SendKeysWithDelay(" ", timer);
             string street = "Mott Street";
-            if (invalidAddress) street = "WhoCares Street";
+            if (invalidAddress) street = StringUtilities.GenerateRandomString(10);
             Associated_StreetNameControl.SendKeysWithDelay(street, timer);
 
             Associated_CityControl.SendKeysWithDelay("New York", timer);
@@ -54,11 +54,7 @@ namespace IdlingComplaints.Tests.ComplaintForm
             {
                 streetName = StringUtilities.GenerateRandomString(10);
                 onStreet = StringUtilities.GenerateRandomString(10);
-
-                //streetName = "KLAJDFKLAJDF Street";
-                //onStreet = "WhyDoYouCare Blvd";
                 crossStreet1 = onStreet;
-                //crossStreet2 = "DoesNotMakeSense Expy";
                 crossStreet2 = StringUtilities.GenerateRandomString(10);
 
                 intersectCrossStreet1 = crossStreet1;
@@ -153,14 +149,14 @@ namespace IdlingComplaints.Tests.ComplaintForm
 
         }
 
-        public void Filled_EvidenceUpload()
+        public string Filled_EvidenceUpload()
         {
             /*EVIDENCE UPLOAD*/
 
-            var successfulSave = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span"));
+            var successfulSave = Driver.WaitUntilElementFound(SnackBarByControl, 20).FindElement(By.TagName("span"));
             Assert.IsNotNull(successfulSave);
             if (!successfulSave.Text.Contains("saved success")) Assert.That(successfulSave.Text.Trim(), Is.EqualTo("This form has been saved successfully."), "Flagged inconsistency on purpose.");
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 20); //message says form is saved
+            Driver.WaitUntilElementIsNoLongerFound(SnackBarByControl, 20); //message says form is saved
 
             EvidenceUpload_UploadInput = FILE_IMAGE_PATH;
             string fileName = Path.GetFileName(FILE_IMAGE_PATH);
@@ -168,15 +164,19 @@ namespace IdlingComplaints.Tests.ComplaintForm
             //Thread.Sleep(SLEEP_TIMER);
             Driver.WaitUntilElementIsNoLongerFound(EvidenceUpload_UploadCommentByControl, 30);
 
-            var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.TagName("simple-snack-bar"), 20).FindElement(By.TagName("span")); // message says evidence have successfully uploaded
+            var successfulEvidenceUpload = Driver.WaitUntilElementFound(SnackBarByControl, 20).FindElement(By.TagName("span")); // message says evidence have successfully uploaded
             Assert.IsNotNull(successfulEvidenceUpload);
             if (!successfulEvidenceUpload.Text.Contains("upload")) Assert.That(successfulEvidenceUpload.Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
 
             //Thread.Sleep(SLEEP_TIMER);
-            Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 20);
+            Driver.WaitUntilElementIsNoLongerFound(SnackBarByControl, 20);
             EvidenceUpload_ClickNext();
             Driver.WaitUntilElementFound(By.CssSelector("mat-radio-button[value='753720001']"), 60); //waits until the oath affidavit appears
 
+            var compliantNumberControl = Driver.WaitUntilElementFound(ComplaintForm_ComplaintNumberByControl, 30);
+            Console.WriteLine(compliantNumberControl.Text);
+
+            return compliantNumberControl.Text.Substring("Complaint Number: ".Length);
         }
 
         public void Filled_AppearOATH()

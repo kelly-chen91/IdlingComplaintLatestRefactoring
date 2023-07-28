@@ -51,7 +51,7 @@ namespace IdlingComplaints.Tests.PasswordReset
             base.PasswordResetModelSetUp(true);
             extent.SetUp(true);
 
-            string emailAddress = RegistrationUtilities.RetrieveRecordValue(registered_EmailAddress, userIndex, 0);
+            string emailAddress = FileUtilities.RetrieveRecordValue(registered_EmailAddress, userIndex, 0);
             EmailControl.SendKeysWithDelay(emailAddress, SLEEP_TIMER);
             
             ClickResetButton();
@@ -88,11 +88,11 @@ namespace IdlingComplaints.Tests.PasswordReset
         [Test, Category("Scenario #1: successful password reset")]
         public void UpdatePasswordinFile()
         {
-            string securityAnswer = RegistrationUtilities.RetrieveRecordValue(registered_EmailAddress, userIndex, 2);
-            Console.WriteLine("The old password is " + RegistrationUtilities.RetrieveRecordValue(registered_EmailAddress, userIndex, 1));
+            string securityAnswer = FileUtilities.RetrieveRecordValue(registered_EmailAddress, userIndex, 2);
+            Console.WriteLine("The old password is " + FileUtilities.RetrieveRecordValue(registered_EmailAddress, userIndex, 1));
             SecurityAnswerControl.SendKeysWithDelay(securityAnswer, SLEEP_TIMER);
 
-            string password = RegistrationUtilities.GenerateQualifiedPassword();
+            string password = StringUtilities.GenerateQualifiedPassword();
             PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
             Console.WriteLine("The new password is " + password);
             ConfirmPasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
@@ -101,7 +101,7 @@ namespace IdlingComplaints.Tests.PasswordReset
 
             var resetControl = Driver.WaitUntilElementFound(SnackBarByControl, 60).FindElement(By.TagName("span"));
             Assert.IsNotNull(resetControl);
-            RegistrationUtilities.ReplaceRecordValue(registered_EmailAddress, userIndex, 1, password);
+            registered_EmailAddress.ReplaceRecordValue(userIndex, 1, password);
 
             Assert.That(resetControl.Text.Trim(), Is.EqualTo(Constants.SUCCESSFUL_PASSWORD_MESSAGE));
         }
@@ -112,7 +112,7 @@ namespace IdlingComplaints.Tests.PasswordReset
         {
             SecurityAnswerControl.SendKeysWithDelay("This is not an actual security key", SLEEP_TIMER);
 
-            string password = RegistrationUtilities.GenerateQualifiedPassword();
+            string password = StringUtilities.GenerateQualifiedPassword();
             PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
             ConfirmPasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
 

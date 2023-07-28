@@ -63,46 +63,46 @@ namespace IdlingComplaints.Tests.Register
 
 
         [Test, Category("Scenario test#1: New user with all random text input")]
-        public void RandomtextRegistrtration()
+        public void RandomtextRegistration()
         {
-            FirstNameControl.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
-            LastNameControl.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
+            FirstNameControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(), SLEEP_TIMER);
+            LastNameControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(), SLEEP_TIMER);
 
-            string generatedEmail = RegistrationUtilities.GenerateEmail(FirstNameInput, LastNameInput, "dep.nyc.gov");
+            string generatedEmail = StringUtilities.GenerateCustomEmail(FirstNameInput, LastNameInput, "dep.nyc.gov");
             EmailControl.SendKeysWithDelay(generatedEmail, SLEEP_TIMER);
             
-            string password = RegistrationUtilities.GenerateQualifiedPassword();
+            string password = StringUtilities.GenerateQualifiedPassword();
             PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
             ConfirmPasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
             
-            int securityRandomNumber = RegistrationUtilities.GenerateRandomNumberWithRange(1, 5);
+            int securityRandomNumber = StringUtilities.GenerateRandomNumberWithRange(1, 5);
             SelectSecurityQuestion(securityRandomNumber);
             
-            string securityAnswer = RegistrationUtilities.GenerateRandomString();
+            string securityAnswer = StringUtilities.GenerateRandomString();
             SecurityAnswerControl.SendKeysWithDelay(securityAnswer, SLEEP_TIMER);
             ScrollToButton();
 
-            Address1Control.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
-            Address2Control.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
-            CityControl.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
+            Address1Control.SendKeysWithDelay(StringUtilities.GenerateRandomString(), SLEEP_TIMER);
+            Address2Control.SendKeysWithDelay(StringUtilities.GenerateRandomString(), SLEEP_TIMER);
+            CityControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(), SLEEP_TIMER);
             
-            int stateRandomNumber = RegistrationUtilities.GenerateRandomNumberWithRange(1, 49);
+            int stateRandomNumber = StringUtilities.GenerateRandomNumberWithRange(1, 49);
             Console.WriteLine("The state number is " + stateRandomNumber + " . And the State selected is " + StateControl);
             SelectState(stateRandomNumber);
             
            
-            string zipCodeNumbers = RegistrationUtilities.GenerateRandomString();
+            string zipCodeNumbers = StringUtilities.GenerateRandomString();
             ZipCodeControl.SendKeysWithDelay(zipCodeNumbers, SLEEP_TIMER);
         
-          string TelephoneNumbers = RegistrationUtilities.GenerateRandomString();
-          TelephoneControl.SendKeysWithDelay(TelephoneNumbers, SLEEP_TIMER);
-         
-          ClickSubmitButton();
+            string TelephoneNumbers = StringUtilities.GenerateRandomString();
+            TelephoneControl.SendKeysWithDelay(TelephoneNumbers, SLEEP_TIMER);
+            
+            ClickSubmitButton();
             
             var snackBarError =Driver.WaitUntilElementFound(SnackBarByControl, 61).FindElement(By.TagName("span")); ;
-
-           RegistrationUtilities.WriteIntoFile(Registered_EmailAddress, generatedEmail, password, securityAnswer);
-          Console.WriteLine("The new user is "+ generatedEmail);
+            string[] inputs = { generatedEmail, password, securityAnswer };
+            Registered_EmailAddress.WriteIntoFile(inputs);
+            Console.WriteLine("The new user is "+ generatedEmail);
             Assert.That(snackBarError.Text.Trim(), Contains.Substring("Registration has been completed successfully"), "Flagged for inconsistency on purpose."); //Added period for consistency with other error messaging
         }
 

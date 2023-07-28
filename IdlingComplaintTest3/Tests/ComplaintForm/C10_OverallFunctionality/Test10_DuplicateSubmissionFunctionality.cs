@@ -88,15 +88,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            SubmitAcknowledgementAndProceedToNextPage();
 
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
+            string openComplaintNumber = Filled_EvidenceUpload();
 
-            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60); // loads to next page 
-
-            Filled_EvidenceUpload();
             /*OATH AFFIDAVIT*/
 
             AppearOATH_ClickYes();
@@ -112,6 +107,11 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 
 
             string expected = Constants.DUPLICATE_FORM_SUBMISSION;
+            if(duplicateMessage.Text.Trim().Contains("submitted before"))
+            {
+                string[] inputs = { GetEmail(), GetPassword(), openComplaintNumber, Constants.DRAFT_STATUS };
+                submission_tracker.WriteIntoFile(inputs);
+            }
             if (!duplicateMessage.Text.Trim().Contains(expected))
             {
                 Assert.That(duplicateMessage.Text.Trim().Substring(0, expected.Length),

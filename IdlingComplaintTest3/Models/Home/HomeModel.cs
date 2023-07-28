@@ -42,6 +42,7 @@ namespace IdlingComplaints.Models.Home
         public By Profile_FirstNameByControl => By.CssSelector("input[formcontrolname='firstname']");
         public By HomeByControl => By.CssSelector("button[routerlink = '/']");
         public By DateSubmittedByControl => By.ClassName("mat-column-idc_datesubmitted");
+        public By ComplaintForm_ComplaintNumberByControl => By.CssSelector("h4[align='center']");
         public IWebElement NewComplaintControl => Driver.FindElement(NewComplaintByControl);
         
         public IWebElement CreatedYearControl => Driver.FindElement(By.CssSelector("mat-select[name = 'createdYear']"));

@@ -62,11 +62,19 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
         public void SuccessfulSubmissionMessage()
         {
             base.Filled_ComplaintInfo();
-            base.Filled_EvidenceUpload();
+            string openComplaintNumber = base.Filled_EvidenceUpload();
             base.Filled_AppearOATH();
 
             string successMessage = Driver.WaitUntilElementFound(SnackBarByControl,60).FindElement(By.TagName("span")).Text;
-
+            string status = Constants.SUCCESS_STATUS;
+            if (!successMessage.Contains(Constants.PARTIAL_SUCCESSFUL_FORM_SUBMISSION))
+            {
+                status = Constants.DRAFT_STATUS;
+            }
+            string[] inputs = { GetEmail(), GetPassword(), openComplaintNumber, status };
+            submission_tracker.WriteIntoFile(inputs);
+            
+            
             Assert.That(successMessage, Is.EqualTo(Constants.SUCCESSFUL_FORM_SUBMISSION), "Flagged inconsistency on purpose.");
         }
 

@@ -72,8 +72,8 @@ internal class Test10_LoginFunctionality : LoginModel
         string[] lines = File.ReadAllLines(registered_EmailAddress);
         int userRowIndex = random.Next(0, lines.Length - 1);
 
-        string email = RegistrationUtilities.RetrieveRecordValue(registered_EmailAddress, userRowIndex, 0);
-        string password = RegistrationUtilities.RetrieveRecordValue(registered_EmailAddress, userRowIndex, 1);
+        string email = registered_EmailAddress.RetrieveRecordValue(userRowIndex, 0);
+        string password = registered_EmailAddress.RetrieveRecordValue(userRowIndex, 1);
 
         EmailControl.SendKeysWithDelay(email, SLEEP_TIMER);
         PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
@@ -94,7 +94,7 @@ internal class Test10_LoginFunctionality : LoginModel
     {
         //locate login field
         EmailControl.SendKeysWithDelay("ttseng@dep.nyc.gov", SLEEP_TIMER);
-        PasswordControl.SendKeysWithDelay(RegistrationUtilities.GenerateRandomString(), SLEEP_TIMER);
+        PasswordControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(), SLEEP_TIMER);
         ClickLoginButton();
 
         Driver.WaitUntilElementFound(SnackBarByControl, 20);
@@ -107,7 +107,7 @@ internal class Test10_LoginFunctionality : LoginModel
     [Test, Category("Failed Login - Error Label Displayed")]
     public void LoginInvalidEmailAndPassword()
     {
-        EmailControl.SendKeysWithDelay(RegistrationUtilities.GenerateEmail("unregistered", "emailAddress", "dep.nyc.gov"), SLEEP_TIMER);
+        EmailControl.SendKeysWithDelay(StringUtilities.GenerateCustomEmail("unregistered", "emailAddress", "dep.nyc.gov"), SLEEP_TIMER);
         PasswordControl.SendKeysWithDelay("Testing1", SLEEP_TIMER);
         ClickLoginButton();
         var resultControl = Driver.WaitUntilElementFound(SnackBarByControl, 10).FindElement(By.TagName("span"));
@@ -119,8 +119,8 @@ internal class Test10_LoginFunctionality : LoginModel
     public void LoginInvalidEmailAndValidPassword()
     {
         //locate login field
-        EmailControl.SendKeysWithDelay(RegistrationUtilities.GenerateEmail("unregistered", "emailAddress", "dep.nyc.gov"), SLEEP_TIMER);
-        string password = RegistrationUtilities.GenerateQualifiedPassword();
+        EmailControl.SendKeysWithDelay(StringUtilities.GenerateCustomEmail("unregistered", "emailAddress", "dep.nyc.gov"), SLEEP_TIMER);
+        string password = StringUtilities.GenerateQualifiedPassword();
         Console.WriteLine("password: " + password);
         PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
         ClickLoginButton();

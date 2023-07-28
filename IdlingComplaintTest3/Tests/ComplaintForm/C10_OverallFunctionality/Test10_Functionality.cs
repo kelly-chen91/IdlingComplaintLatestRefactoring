@@ -83,20 +83,14 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
-
-            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60); // loads to next page 
+            SubmitAcknowledgementAndProceedToNextPage();
 
             /*EVIDENCE UPLOAD*/
 
-            Filled_EvidenceUpload();
+            string openComplaintNumber = Filled_EvidenceUpload();
 
             /*OATH AFFIDAVIT*/
-            
+
             AppearOATH_ClickYes();
             
             Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 30);
@@ -106,7 +100,11 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             var successfulSubmit = Driver.WaitUntilElementFound(SnackBarByControl, 60).FindElement(By.TagName("span"));
             Assert.IsNotNull(successfulSubmit);
             if (!successfulSubmit.Text.Contains(Constants.PARTIAL_SUCCESSFUL_FORM_SUBMISSION)) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo(Constants.SUCCESSFUL_FORM_SUBMISSION), "Flagged inconsistency on purpose.");
-
+            else
+            {
+                string[] inputs = { GetEmail(), GetPassword(), openComplaintNumber, Constants.SUCCESS_STATUS };
+                submission_tracker.WriteIntoFile(inputs);
+            }
             Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60);
         }
 
@@ -133,17 +131,12 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
-
-            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60); // loads to next page 
+            SubmitAcknowledgementAndProceedToNextPage();
 
             /*EVIDENCE UPLOAD*/
 
-            Filled_EvidenceUpload();
+            string openComplaintNumber = Filled_EvidenceUpload();
+
             /*OATH AFFIDAVIT*/
 
             Filled_AppearOATH();
@@ -151,7 +144,11 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             var successfulSubmit = Driver.WaitUntilElementFound(SnackBarByControl, 60).FindElement(By.TagName("span"));
             Assert.IsNotNull(successfulSubmit);
             if (!successfulSubmit.Text.Contains(Constants.PARTIAL_SUCCESSFUL_FORM_SUBMISSION)) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo(Constants.SUCCESSFUL_FORM_SUBMISSION), "Flagged inconsistency on purpose.");
-
+            else
+            {
+                string[] inputs = { GetEmail(), GetPassword(), openComplaintNumber, Constants.SUCCESS_STATUS };
+                submission_tracker.WriteIntoFile(inputs);
+            }
             Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60);
         }
         
@@ -177,17 +174,11 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
-
-            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60); // loads to next page 
+            SubmitAcknowledgementAndProceedToNextPage();
 
             /*EVIDENCE UPLOAD*/
 
-            Filled_EvidenceUpload();
+            string openComplaintNumber = Filled_EvidenceUpload();
 
             /*OATH AFFIDAVIT*/
 
@@ -204,7 +195,11 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             string fileName = Path.GetFileName(FILE_IMAGE_PATH);
 
             if (!successfulAffidavitUpload.Text.Contains("upload")) Assert.That(successfulAffidavitUpload.Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
-
+            else
+            {
+                string[] inputs = { GetEmail(), GetPassword(), openComplaintNumber, Constants.SUCCESS_STATUS };
+                submission_tracker.WriteIntoFile(inputs);
+            }
             Driver.WaitUntilElementIsNoLongerFound(SnackBarByControl, 15);
 
 
@@ -239,17 +234,11 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 
             Fill_InFrontOfSchool(true, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
-
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
-
-            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60); // loads to next page 
+            SubmitAcknowledgementAndProceedToNextPage();
 
             /*EVIDENCE UPLOAD*/
 
-            Filled_EvidenceUpload();
+            string openComplaintNumber = Filled_EvidenceUpload();
             /*OATH AFFIDAVIT*/
 
             Filled_AppearOATH();
@@ -257,7 +246,11 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             var successfulSubmit = Driver.WaitUntilElementFound(SnackBarByControl, 60).FindElement(By.TagName("span"));
             Assert.IsNotNull(successfulSubmit);
             if (!successfulSubmit.Text.Contains(Constants.PARTIAL_SUCCESSFUL_FORM_SUBMISSION)) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo(Constants.SUCCESSFUL_FORM_SUBMISSION), "Flagged inconsistency on purpose.");
-
+            else
+            {
+                string[] inputs = { GetEmail(), GetPassword(), openComplaintNumber, Constants.SUCCESS_STATUS };
+                submission_tracker.WriteIntoFile(inputs);
+            }
             Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60);
         }
 
@@ -285,15 +278,11 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 
             Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
 
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
-
-            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60); // loads to next page 
+            SubmitAcknowledgementAndProceedToNextPage();
 
             /*EVIDENCE UPLOAD*/
 
-            Filled_EvidenceUpload();
+            string openComplaintNumber = Filled_EvidenceUpload();
             /*OATH AFFIDAVIT*/
 
             Filled_AppearOATH();
@@ -301,7 +290,11 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             var successfulSubmit = Driver.WaitUntilElementFound(SnackBarByControl, 60).FindElement(By.TagName("span"));
             Assert.IsNotNull(successfulSubmit);
             if (!successfulSubmit.Text.Contains(Constants.PARTIAL_SUCCESSFUL_FORM_SUBMISSION)) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo(Constants.SUCCESSFUL_FORM_SUBMISSION), "Flagged inconsistency on purpose.");
-
+            else
+            {
+                string[] inputs = { GetEmail(), GetPassword(), openComplaintNumber, Constants.SUCCESS_STATUS };
+                submission_tracker.WriteIntoFile(inputs);
+            }
             Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60);
         }
 
@@ -326,15 +319,9 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 
             Fill_InFrontOfSchool(true, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            SubmitAcknowledgementAndProceedToNextPage();
 
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
-
-            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60); // loads to next page 
-
-            Filled_EvidenceUpload();
+            string openComplaintNumber = Filled_EvidenceUpload();
 
             /*OATH AFFIDAVIT*/
 
@@ -343,7 +330,11 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             var successfulSubmit = Driver.WaitUntilElementFound(SnackBarByControl, 60).FindElement(By.TagName("span"));
             Assert.IsNotNull(successfulSubmit);
             if (!successfulSubmit.Text.Contains(Constants.PARTIAL_SUCCESSFUL_FORM_SUBMISSION)) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo(Constants.SUCCESSFUL_FORM_SUBMISSION), "Flagged inconsistency on purpose.");
-
+            else
+            {
+                string[] inputs = { GetEmail(), GetPassword(), openComplaintNumber, Constants.SUCCESS_STATUS };
+                submission_tracker.WriteIntoFile(inputs);
+            }
             Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60);
 
            
@@ -375,15 +366,9 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 
             Fill_InFrontOfSchool(false, SLEEP_TIMER);
 
-            Describe_ContentControl.SendKeysWithDelay("Test", SLEEP_TIMER);
+            SubmitAcknowledgementAndProceedToNextPage();
 
-            ClickWitnessCheckbox();
-            ClickSubmitNoCorrectionCheckbox();
-            ComplaintInfo_ClickNext();
-
-            Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60); // loads to next page 
-            
-            Filled_EvidenceUpload();
+            string openComplaintNumber = Filled_EvidenceUpload();
             /*OATH AFFIDAVIT*/
 
             AppearOATH_ClickYes();
@@ -395,7 +380,11 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             var successfulSubmit = Driver.WaitUntilElementFound(SnackBarByControl, 60).FindElement(By.TagName("span"));
             Assert.IsNotNull(successfulSubmit);
             if (!successfulSubmit.Text.Contains(Constants.PARTIAL_SUCCESSFUL_FORM_SUBMISSION)) Assert.That(successfulSubmit.Text.Trim(), Is.EqualTo(Constants.SUCCESSFUL_FORM_SUBMISSION), "Flagged inconsistency on purpose.");
-
+            else
+            {
+                string[] inputs = { GetEmail(), GetPassword(), openComplaintNumber, Constants.SUCCESS_STATUS };
+                submission_tracker.WriteIntoFile(inputs);
+            }
             Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60);
 
         }

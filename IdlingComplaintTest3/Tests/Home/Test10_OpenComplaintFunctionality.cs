@@ -46,8 +46,8 @@ namespace IdlingComplaints.Tests.Home
             string[] lines = File.ReadAllLines(registered_EmailAddress);
             int userRowIndex = random.Next(0, lines.Length - 1);
 
-            string email = RegistrationUtilities.RetrieveRecordValue(registered_EmailAddress, userRowIndex, 0);
-            string password = RegistrationUtilities.RetrieveRecordValue(registered_EmailAddress, userRowIndex, 1);
+            string email = FileUtilities.RetrieveRecordValue(registered_EmailAddress, userRowIndex, 0);
+            string password = FileUtilities.RetrieveRecordValue(registered_EmailAddress, userRowIndex, 1);
             //base.HomeModelSetUp("ttseng@dep.nyc.gov", "Testing1#", true);
             base.HomeModelSetUp(email, password, true);
 
@@ -103,7 +103,7 @@ namespace IdlingComplaints.Tests.Home
 
                 openComplaintList[i].Click();
 
-                var complientNumberControl = Driver.WaitUntilElementFound(By.CssSelector("h4[align='center']"), 30);
+                var complientNumberControl = Driver.WaitUntilElementFound(ComplaintForm_ComplaintNumberByControl, 30);
 
                 string openComplaintNumber = complientNumberControl.Text;
 

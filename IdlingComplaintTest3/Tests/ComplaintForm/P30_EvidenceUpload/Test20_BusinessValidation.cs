@@ -42,10 +42,17 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             ClickNo();
             Driver.WaitUntilElementFound(Associated_CompanyNameByControl, 15);
             Filled_ComplaintInfo();
-            var successfulSave = Driver.WaitUntilElementFound(SnackBarByControl, 20);
+            var successfulSave = Driver.WaitUntilElementFound(SnackBarByControl, 20).FindElement(By.TagName("span"));
             Assert.IsNotNull(successfulSave);
             if (!successfulSave.Text.Contains("saved success")) Assert.That(successfulSave.Text.Trim(), Is.EqualTo("This form has been saved successfully."), "Flagged inconsistency on purpose.");
-            Driver.WaitUntilElementIsNoLongerFound(SnackBarByControl, 20);
+            Driver.WaitUntilElementIsNoLongerFound(SnackBarByControl, 20); //message says form is saved
+
+            var compliantNumberControl = Driver.WaitUntilElementFound(ComplaintForm_ComplaintNumberByControl, 30);
+            Console.WriteLine(compliantNumberControl.Text);
+
+            string openComplaintNumber = compliantNumberControl.Text.Substring("Complaint Number: ".Length);
+            string[] inputs = { GetEmail(), GetPassword(), openComplaintNumber, C10_OverallFunctionality.Constants.DRAFT_STATUS };
+            submission_tracker.WriteIntoFile(inputs);
 
             extent.SetUp(true);
         }
@@ -73,7 +80,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         public void EvidenceUpload_Verify_PDF_FileType()
         {
 
-            // RegistrationUtilities.UploadFiles(EvidenceUpload_UploadControl, EvidenceUpload_UploadConfirmControl, filePaths);
+            // FileUtilities.UploadFiles(EvidenceUpload_UploadControl, EvidenceUpload_UploadConfirmControl, filePaths);
 
             string[] filePaths = { Constants.PDF_FILE };
             EvidenceUpload_UploadControl.SendKeysWithDelay(filePaths[0], SLEEP_TIMER);
@@ -92,7 +99,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         public void EvidenceUpload_Verify_MP4_FileType()
         {
 
-            // RegistrationUtilities.UploadFiles(EvidenceUpload_UploadControl, EvidenceUpload_UploadConfirmControl, filePaths);
+            // FileUtilities.UploadFiles(EvidenceUpload_UploadControl, EvidenceUpload_UploadConfirmControl, filePaths);
 
             string[] filePaths = { Constants.MP4_FILE };
             EvidenceUpload_UploadControl.SendKeysWithDelay(filePaths[0], SLEEP_TIMER);

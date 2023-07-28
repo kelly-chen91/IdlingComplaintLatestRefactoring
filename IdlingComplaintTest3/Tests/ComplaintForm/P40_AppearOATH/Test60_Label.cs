@@ -57,7 +57,10 @@ namespace IdlingComplaints.Tests.ComplaintForm.P40_AppearOATH
         {
             NewComplaintSetUp();
             base.Filled_ComplaintInfo();
-            base.Filled_EvidenceUpload();
+
+            string openComplaintNumber = base.Filled_EvidenceUpload();
+            string[] inputs = { GetEmail(), GetPassword(), openComplaintNumber, C10_OverallFunctionality.Constants.DRAFT_STATUS };
+            submission_tracker.WriteIntoFile(inputs);
         }
 
         [Test]

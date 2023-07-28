@@ -9,10 +9,12 @@ namespace SeleniumUtilities.Utils
 {
     public static class StringUtilities
     {
+        public static readonly Random random = new Random();
+
         public static string GenerateRandomString(int length)
         {
             const string acceptedChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            var random = new Random(Guid.NewGuid().GetHashCode());
+            //var random = new Random(Guid.NewGuid().GetHashCode());
             string str = string.Empty;
             for (int i = 0; i < length; i++)
             {
@@ -20,13 +22,34 @@ namespace SeleniumUtilities.Utils
             }
             return str;
         }
-        
+
+        //This method will generate random string without giving specific length
+        public static string GenerateRandomString()
+        {
+            const string acceptedChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            //var random = new Random(Guid.NewGuid().GetHashCode());
+            string str = string.Empty;
+            int length = random.Next(1, 20);
+            for (int i = 0; i < length; i++)
+            {
+                str += acceptedChars[random.Next(0, acceptedChars.Length)];
+            }
+            return str;
+        }
+
         /*Generates a random email with a varied length*/
         public static string GenerateRandomEmail()
         {
             var random = new Random();
             int length = random.Next(1, 20);
             return GenerateRandomString(length) + "@dep.nyc.gov";
+        }
+
+        //This method will generate random Email address
+        public static string GenerateCustomEmail(string firstName, string lastName, string domain)
+        {
+            string email = $"{firstName.ToLower()}.{lastName.ToLower()}@{domain}";
+            return email;
         }
 
         /*Generates a random email with a specified length*/
@@ -36,6 +59,55 @@ namespace SeleniumUtilities.Utils
                 length = 12; //GenerateRandomEmail(1) => a@dep.nyc.gov
 
             return GenerateRandomString(length - 12) + "@dep.nyc.gov";
+        }
+
+        //This method will generate legitimate password
+        public static string GenerateQualifiedPassword()
+        {
+            const string uppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const string lowercaseLetters = "abcdefghijklmnopqrstuvwxyz";
+            const string numbers = "0123456789";
+            const string specialCharacters = "!@#$%^&*()";
+
+            string allCharacters = uppercaseLetters + lowercaseLetters + numbers + specialCharacters;
+            var random = new Random();
+            int Passwordlength = random.Next(8, 20);
+            char[] password = new char[Passwordlength];
+            password[0] = uppercaseLetters[random.Next(uppercaseLetters.Length)];
+            password[1] = lowercaseLetters[random.Next(lowercaseLetters.Length)];
+            password[2] = numbers[random.Next(numbers.Length)];
+            password[3] = specialCharacters[random.Next(specialCharacters.Length)];
+
+            for (int i = 4; i < password.Length; i++)
+            {
+                password[i] = allCharacters[random.Next(allCharacters.Length)];
+            }
+
+            password = password.OrderBy(x => random.Next()).ToArray();
+            return new string(password);
+        }
+
+        //This method will generate a random number within the specified range
+        public static int GenerateRandomNumberWithRange(this int minValue, int maxValue)
+        {
+            Random random = new Random();
+            return random.Next(minValue, maxValue + 1);
+        }
+
+        //This method will generate a series of random numbers
+        public static string GenerateSeriesNumbers()
+        {
+            int length = random.Next(1, 20);
+
+            string seriesRandomNumbers = "";
+
+            for (int i = 0; i < length; i++)
+            {
+                int pickedNumber = random.Next(0, 9);
+                seriesRandomNumbers += pickedNumber.ToString();
+            }
+
+            return seriesRandomNumbers;
         }
 
         /* The following methods checking for validation of the fields: Email, Phone #, ZipCode, password */
@@ -68,7 +140,6 @@ namespace SeleniumUtilities.Utils
 
         public static string SelectDate(DateTime date)
         {
-            //DateTime date = new DateTime(year, month, day, hour, minutes, seconds);
             return date.ToShortDateString() + ", " + date.ToLongTimeString();
 
         }
@@ -115,5 +186,7 @@ namespace SeleniumUtilities.Utils
             string currentDirectory = Directory.GetCurrentDirectory();
             return currentDirectory.Split("bin")[0];
         }
+
+        
     }
 }
