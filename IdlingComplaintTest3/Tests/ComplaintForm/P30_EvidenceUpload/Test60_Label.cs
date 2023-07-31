@@ -13,7 +13,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 
     internal class Test60_Label : FillComplaintForm_Base
     {
-        private readonly int SLEEPTIMER = 0;
+        private new readonly int SLEEP_TIMER = 0;
         private new static string FILE_IMAGE_PATH = P30_EvidenceUpload.Constants.IDLING_TRUCK;
 
 
@@ -37,6 +37,15 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             Driver.WaitUntilElementIsNoLongerFound(SnackBarByControl, 20); //message says form is saved
 
             var compliantNumberControl = Driver.WaitUntilElementFound(ComplaintForm_ComplaintNumberByControl, 30);
+            Console.WriteLine(compliantNumberControl.Text);
+
+            while (compliantNumberControl.Text.Length <= "Complaint Number: ".Length)
+            {
+                compliantNumberControl = Driver.WaitUntilElementFound(ComplaintForm_ComplaintNumberByControl, 30);
+                Console.WriteLine(compliantNumberControl.Text);
+
+            }
+
             string openComplaintNumber = compliantNumberControl.Text.Substring("Complaint Number: ".Length);
             string[] inputs = { GetEmail(), GetPassword(), openComplaintNumber, C10_OverallFunctionality.Constants.DRAFT_STATUS };
             submission_tracker.WriteIntoFile(inputs);
@@ -76,7 +85,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             EvidenceUpload_UploadInput = FILE_IMAGE_PATH;
             string fileName = Path.GetFileName(FILE_IMAGE_PATH);
             EvidenceUpload_ClickFilesUploadConfirm();
-            Thread.Sleep(SLEEPTIMER);
+            if(SLEEP_TIMER > 0) Thread.Sleep(SLEEP_TIMER);
 
             // var successfulEvidenceUpload = Driver.WaitUntilElementFound(SnackBarByControl, 20); // message says evidence have successfully uploaded
             var successfulEvidenceUpload = Driver.WaitUntilElementFound(By.XPath("/html/body/div[2]/div/div/snack-bar-container/simple-snack-bar/span"), 20);

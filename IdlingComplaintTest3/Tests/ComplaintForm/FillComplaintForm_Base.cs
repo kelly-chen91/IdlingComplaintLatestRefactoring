@@ -168,13 +168,18 @@ namespace IdlingComplaints.Tests.ComplaintForm
             Assert.IsNotNull(successfulEvidenceUpload);
             if (!successfulEvidenceUpload.Text.Contains("upload")) Assert.That(successfulEvidenceUpload.Text.Trim(), Is.EqualTo("Successfully uploaded file named: " + fileName + "."), "Flagged inconsistency on purpose.");
 
-            //Thread.Sleep(SLEEP_TIMER);
             Driver.WaitUntilElementIsNoLongerFound(SnackBarByControl, 20);
             EvidenceUpload_ClickNext();
             Driver.WaitUntilElementFound(By.CssSelector("mat-radio-button[value='753720001']"), 60); //waits until the oath affidavit appears
 
             var compliantNumberControl = Driver.WaitUntilElementFound(ComplaintForm_ComplaintNumberByControl, 30);
             Console.WriteLine(compliantNumberControl.Text);
+            while (compliantNumberControl.Text.Length <= "Complaint Number: ".Length)
+            {
+                compliantNumberControl = Driver.WaitUntilElementFound(ComplaintForm_ComplaintNumberByControl, 30);
+                Console.WriteLine(compliantNumberControl.Text);
+
+            }
 
             return compliantNumberControl.Text.Substring("Complaint Number: ".Length);
         }

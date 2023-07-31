@@ -38,9 +38,16 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             if (!successfulSave.Text.Contains("saved success")) Assert.That(successfulSave.Text.Trim(), Is.EqualTo("This form has been saved successfully."), "Flagged inconsistency on purpose.");
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 20); //message says form is saved
 
-            var complientNumberControl = Driver.WaitUntilElementFound(ComplaintForm_ComplaintNumberByControl, 30);
+            var compliantNumberControl = Driver.WaitUntilElementFound(ComplaintForm_ComplaintNumberByControl, 30);
 
-            string openComplaintNumber = complientNumberControl.Text.Substring("Complaint Number: ".Length);
+            while (compliantNumberControl.Text.Length <= "Complaint Number: ".Length)
+            {
+                compliantNumberControl = Driver.WaitUntilElementFound(ComplaintForm_ComplaintNumberByControl, 30);
+                Console.WriteLine(compliantNumberControl.Text);
+
+            }
+
+            string openComplaintNumber = compliantNumberControl.Text.Substring("Complaint Number: ".Length);
             EvidenceUpload_UploadInput = FILE_IMAGE_PATH;
             EvidenceUpload_ClickFilesUploadConfirm();
             string[] inputs = { GetEmail(), GetPassword(), openComplaintNumber, Constants.DRAFT_STATUS };
@@ -79,6 +86,14 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 20); //message says form is saved
 
             var compliantNumberControl = Driver.WaitUntilElementFound(ComplaintForm_ComplaintNumberByControl, 30);
+
+            while (compliantNumberControl.Text.Length <= "Complaint Number: ".Length)
+            {
+                compliantNumberControl = Driver.WaitUntilElementFound(ComplaintForm_ComplaintNumberByControl, 30);
+                Console.WriteLine(compliantNumberControl.Text);
+
+            }
+
             string openComplaintNumber = compliantNumberControl.Text.Substring("Complaint Number: ".Length);
             string[] inputs = { GetEmail(), GetPassword(), openComplaintNumber, Constants.DRAFT_STATUS };
             submission_tracker.WriteIntoFile(inputs);
@@ -118,6 +133,14 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("simple-snack-bar"), 20); //message says form is saved
 
             var compliantNumberControl = Driver.WaitUntilElementFound(ComplaintForm_ComplaintNumberByControl, 30);
+
+            while (compliantNumberControl.Text.Length <= "Complaint Number: ".Length)
+            {
+                compliantNumberControl = Driver.WaitUntilElementFound(ComplaintForm_ComplaintNumberByControl, 30);
+                Console.WriteLine(compliantNumberControl.Text);
+
+            }
+
             string openComplaintNumber = compliantNumberControl.Text.Substring("Complaint Number: ".Length);
             string[] inputs = { GetEmail(), GetPassword(), openComplaintNumber, Constants.DRAFT_STATUS };
             submission_tracker.WriteIntoFile(inputs);

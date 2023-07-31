@@ -52,7 +52,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
         {
             try
             {
-                Driver.ScrollTo(Occurrence_FromControl);
+                //Driver.ScrollTo(Occurrence_FromControl);
                 extent.TearDown(true, Driver);
             }
             catch (Exception ex)
