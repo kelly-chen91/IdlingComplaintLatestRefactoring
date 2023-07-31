@@ -298,6 +298,8 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 
 
         [Test, Category("Scenario #9: Verify the Previous button")]
+        [Ignore("Duplicate Test already in Test10_Functionality_Partial_Navigation.cs")]
+
         public void EvidenceUpload_PreviousButton()
         {
             EvidenceUpload_ClickPrevious();
@@ -323,6 +325,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 
 
         [Test, Category("Scenario #11: Verify the Next button")]
+        [Ignore("Duplicate Test already in Test10_Functionality_Partial_Navigation.cs")]
         public void EvidenceUpload_CancelEvidenceFileUploadButton()
         {
             EvidenceUpload_ClickCancel();

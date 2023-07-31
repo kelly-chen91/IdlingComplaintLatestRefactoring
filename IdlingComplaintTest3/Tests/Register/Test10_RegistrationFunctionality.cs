@@ -107,7 +107,7 @@ namespace IdlingComplaints.Tests.Register
         }
 
         [Test, Category("Scenario test#2: Registration with a exiting account")]
-        public void FailedRegistrationDrtupEmail()
+        public void FailedRegistrationDuplicateEmail()
         {
             FirstNameControl.SendKeysWithDelay("Registered", SLEEP_TIMER);
             LastNameControl.SendKeysWithDelay("User", SLEEP_TIMER);
