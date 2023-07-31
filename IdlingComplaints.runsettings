@@ -40,6 +40,6 @@
 	<NUnit>
 		<PreFilter>true</PreFilter>
 
-		<NumberOfTestWorkers>1</NumberOfTestWorkers>
+		<NumberOfTestWorkers>3</NumberOfTestWorkers>
 	</NUnit>
 </RunSettings>
