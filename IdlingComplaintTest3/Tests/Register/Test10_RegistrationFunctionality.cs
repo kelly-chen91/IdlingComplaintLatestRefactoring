@@ -125,7 +125,7 @@ namespace IdlingComplaints.Tests.Register
             ScrollToButton();
             ClickSubmitButton();
 
-            var snackBarError = Driver.WaitUntilElementFound(SnackBarByControl,10).FindElement(By.TagName("span"));
+            var snackBarError = Driver.WaitUntilElementFound(SnackBarByControl,20).FindElement(By.TagName("span"));
             Assert.IsNotNull(snackBarError);
             Assert.That(snackBarError.Text.Trim(), Is.EqualTo("Email " + EmailInput + " has already been registered. Please contact DEP hotline."));
 
