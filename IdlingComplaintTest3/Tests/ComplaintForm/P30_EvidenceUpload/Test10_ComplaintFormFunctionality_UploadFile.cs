@@ -90,7 +90,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         }
 
         [Test, Category("Scenario #0: Verify multiple functionalities at once for demo")]
-        //[Ignore("Test for demo")]
+        [Ignore("Test for demo")]
         public void EvidenceUpload_VerifyNotSupportedFile_Upload_Delete_Download_Process()
         {
             /* Upload supported and unsupported files */
