@@ -12,6 +12,9 @@ using OpenQA.Selenium.DevTools.V112.Network;
 using System.Collections.ObjectModel;
 using System.Xml.Linq;
 using System.Linq.Expressions;
+using System;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace SeleniumUtilities.Utils
 {
@@ -24,19 +27,19 @@ namespace SeleniumUtilities.Utils
         {
             try {
                 string[] lines = File.ReadAllLines(filePath);
-
+       
                 if (targetRowIndex >= 0 && targetRowIndex < lines.Length)
                 {
                     string row = lines[targetRowIndex];
-
+       
                     string[] columns = row.Split(' ');
-
+       
                     if (targetColumnIndex >= 0 && targetColumnIndex <= columns.Length - 1)
                     {
                         string targetValue = columns[targetColumnIndex];
-
+       
                         return targetValue;
-
+       
                     }
                     else
                     {
@@ -56,9 +59,10 @@ namespace SeleniumUtilities.Utils
             {
                 Console.WriteLine("An error occurred " + ex.Message);
             }
-
+       
             return "";
         }
+      
 
 
 
