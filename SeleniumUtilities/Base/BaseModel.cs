@@ -1,4 +1,5 @@
 ﻿using AventStack.ExtentReports;
+using Microsoft.Extensions.Options;
 using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -6,6 +7,7 @@ using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using SeleniumUtilities.Utils;
+using SeleniumUtilities.Utils.ExtentUtils;
 
 namespace SeleniumUtilities.Base
 {
@@ -44,14 +46,9 @@ namespace SeleniumUtilities.Base
                     chromeOptions.AddArguments(headless);
                     return new ChromeDriver(chromeOptions);
                 case "firefox":
-                   
-                    FirefoxDriverService service = FirefoxDriverService.CreateDefaultService();
-                    service.Host = "::1";
-                    return new FirefoxDriver(service);
-
-                // var firefoxOptions = new FirefoxOptions();
-                // firefoxOptions.AddArguments(headless);
-                //  return new FirefoxDriver(firefoxOptions);
+                 var firefoxOptions = new FirefoxOptions();
+                 firefoxOptions.AddArguments(headless);
+                  return new FirefoxDriver(firefoxOptions);
                 case "edge":
                     var edgeOptions = new EdgeOptions();
                     edgeOptions.AddArguments(headless);

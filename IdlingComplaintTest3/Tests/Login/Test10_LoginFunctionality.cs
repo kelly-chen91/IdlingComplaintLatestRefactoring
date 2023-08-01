@@ -39,7 +39,7 @@ internal class Test10_LoginFunctionality : LoginModel
     [SetUp]
     public void SetUp()
     {
-        base.LoginModelSetUp(true);
+        base.LoginModelSetUp(false);
         extent.SetUp(true);
 
     }
