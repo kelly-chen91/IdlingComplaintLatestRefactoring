@@ -64,7 +64,7 @@ internal class Test10_LoginFunctionality : LoginModel
     }
 
     private readonly int SLEEP_TIMER = 0;
-    private readonly string registered_EmailAddress = StringUtilities.GetProjectRootDirectory() + "\\Files\\Text\\Registered_EmailAddress.txt";
+    private readonly string registered_EmailAddress = StringUtilities.GetProjectRootDirectory() + "\\Files\\Text\\ComplaintForm_AccountTracker.txt";
 
     
     [Test, Category("Successful Login - Error Label Hidden")]

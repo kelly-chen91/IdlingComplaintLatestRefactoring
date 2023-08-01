@@ -20,7 +20,7 @@ namespace IdlingComplaints.Tests.PasswordReset
         public int lines;
         public int userIndex;
         private readonly int SLEEP_TIMER = 0;
-        private readonly string registered_EmailAddress = StringUtilities.GetProjectRootDirectory() + "\\Files\\Text\\Registered_EmailAddress.txt";
+        private readonly string registered_EmailAddress = StringUtilities.GetProjectRootDirectory() + "\\Files\\Text\\Registered_EmailAddress_PasswordReset.txt";
         Random random = new Random();
 
         BaseExtent extent;
@@ -28,7 +28,7 @@ namespace IdlingComplaints.Tests.PasswordReset
         public Test10_PasswordResetFunctionality()
         {
             this.lines = File.ReadAllLines(registered_EmailAddress).Length;
-            this.userIndex = random.Next(0, lines - 1);
+            this.userIndex = StringUtilities.GenerateRandomNumberWithRange(0, lines-1);
             extent = new BaseExtent();
 
         }
