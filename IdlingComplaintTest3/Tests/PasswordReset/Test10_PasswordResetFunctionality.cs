@@ -28,7 +28,7 @@ namespace IdlingComplaints.Tests.PasswordReset
         public Test10_PasswordResetFunctionality()
         {
             this.lines = File.ReadAllLines(registered_EmailAddress).Length;
-            this.userIndex = lines-1;
+            this.userIndex = StringUtilities.GenerateRandomNumberWithRange(0, lines-1);
             extent = new BaseExtent();
 
         }
