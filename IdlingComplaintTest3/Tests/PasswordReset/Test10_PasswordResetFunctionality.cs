@@ -103,7 +103,8 @@ namespace IdlingComplaints.Tests.PasswordReset
             Assert.IsNotNull(resetControl);
             registered_EmailAddress.ReplaceRecordValue(userIndex, 1, password);
 
-            Assert.That(resetControl.Text.Trim(), Is.EqualTo(Constants.SUCCESSFUL_PASSWORD_MESSAGE));
+            //  Assert.That(resetControl.Text.Trim(), Is.EqualTo(Constants.SUCCESSFUL_PASSWORD_MESSAGE));
+            Assert.That(resetControl.Text.Trim(), Is.EqualTo("Password has been reset successfully"));
         }
 
 

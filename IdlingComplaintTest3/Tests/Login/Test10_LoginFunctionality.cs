@@ -23,6 +23,7 @@ internal class Test10_LoginFunctionality : LoginModel
     {
         extent = new BaseExtent();
     }
+
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {

@@ -44,9 +44,14 @@ namespace SeleniumUtilities.Base
                     chromeOptions.AddArguments(headless);
                     return new ChromeDriver(chromeOptions);
                 case "firefox":
-                    var firefoxOptions = new FirefoxOptions();
-                    firefoxOptions.AddArguments(headless);
-                    return new FirefoxDriver(firefoxOptions);
+                   
+                    FirefoxDriverService service = FirefoxDriverService.CreateDefaultService();
+                    service.Host = "::1";
+                    return new FirefoxDriver(service);
+
+                // var firefoxOptions = new FirefoxOptions();
+                // firefoxOptions.AddArguments(headless);
+                //  return new FirefoxDriver(firefoxOptions);
                 case "edge":
                     var edgeOptions = new EdgeOptions();
                     edgeOptions.AddArguments(headless);
@@ -55,6 +60,8 @@ namespace SeleniumUtilities.Base
                     throw new Exception("Provided browser is not supported.");
             }
         }
+
+
 
     }
 }

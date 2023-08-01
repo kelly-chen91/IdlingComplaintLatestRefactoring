@@ -35,7 +35,6 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             base.ComplaintFormModelSetUp(true, true);
             NewComplaintSetUp();
             extent.SetUp(true);
-
         }
 
         [TearDown]
