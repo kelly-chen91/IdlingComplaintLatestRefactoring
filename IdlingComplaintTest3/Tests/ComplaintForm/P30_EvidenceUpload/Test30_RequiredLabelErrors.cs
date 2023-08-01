@@ -80,7 +80,15 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
             var compliantNumberControl = Driver.WaitUntilElementFound(ComplaintForm_ComplaintNumberByControl, 30);
             Console.WriteLine(compliantNumberControl.Text);
 
+            while (compliantNumberControl.Text.Length <= "Complaint Number: ".Length)
+            {
+                compliantNumberControl = Driver.WaitUntilElementFound(ComplaintForm_ComplaintNumberByControl, 30);
+                Console.WriteLine(compliantNumberControl.Text);
+
+            }
+
             string openComplaintNumber = compliantNumberControl.Text.Substring("Complaint Number: ".Length);
+
             string[] inputs = { GetEmail(), GetPassword(), openComplaintNumber, C10_OverallFunctionality.Constants.DRAFT_STATUS };
             submission_tracker.WriteIntoFile(inputs);
 
@@ -107,6 +115,14 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 
             var compliantNumberControl = Driver.WaitUntilElementFound(ComplaintForm_ComplaintNumberByControl, 30);
             Console.WriteLine(compliantNumberControl.Text);
+
+            while (compliantNumberControl.Text.Length <= "Complaint Number: ".Length)
+            {
+                compliantNumberControl = Driver.WaitUntilElementFound(ComplaintForm_ComplaintNumberByControl, 30);
+                Console.WriteLine(compliantNumberControl.Text);
+
+            }
+
             string openComplaintNumber = compliantNumberControl.Text.Substring("Complaint Number: ".Length);
             string[] inputs = { GetEmail(), GetPassword(), openComplaintNumber, C10_OverallFunctionality.Constants.DRAFT_STATUS };
             submission_tracker.WriteIntoFile(inputs);

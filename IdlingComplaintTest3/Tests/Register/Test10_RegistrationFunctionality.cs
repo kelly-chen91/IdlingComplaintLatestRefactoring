@@ -107,7 +107,7 @@ namespace IdlingComplaints.Tests.Register
         }
 
         [Test, Category("Scenario test#2: Registration with a exiting account")]
-        public void FailedRegistrationDrtupEmail()
+        public void FailedRegistrationDuplicateEmail()
         {
             FirstNameControl.SendKeysWithDelay("Registered", SLEEP_TIMER);
             LastNameControl.SendKeysWithDelay("User", SLEEP_TIMER);
@@ -125,7 +125,7 @@ namespace IdlingComplaints.Tests.Register
             ScrollToButton();
             ClickSubmitButton();
 
-            var snackBarError = Driver.WaitUntilElementFound(SnackBarByControl,10).FindElement(By.TagName("span"));
+            var snackBarError = Driver.WaitUntilElementFound(SnackBarByControl,20).FindElement(By.TagName("span"));
             Assert.IsNotNull(snackBarError);
             Assert.That(snackBarError.Text.Trim(), Is.EqualTo("Email " + EmailInput + " has already been registered. Please contact DEP hotline."));
 

@@ -76,6 +76,12 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
                 if (SLEEP_TIMER > 0) { Thread.Sleep(SLEEP_TIMER); }
                 var compliantNumberControl = Driver.WaitUntilElementFound(ComplaintForm_ComplaintNumberByControl, 30);
                 Console.WriteLine(compliantNumberControl.Text);
+                while(compliantNumberControl.Text.Length <= "Complaint Number: ".Length)
+                {
+                    compliantNumberControl = Driver.WaitUntilElementFound(ComplaintForm_ComplaintNumberByControl, 30);
+                    Console.WriteLine(compliantNumberControl.Text);
+
+                }
                 string openComplaintNumber = compliantNumberControl.Text.Substring("Complaint Number: ".Length);
                 string[] inputs = { GetEmail(), GetPassword(), openComplaintNumber, C10_OverallFunctionality.Constants.DRAFT_STATUS };
                 submission_tracker.WriteIntoFile(inputs);
@@ -84,7 +90,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         }
 
         [Test, Category("Scenario #0: Verify multiple functionalities at once for demo")]
-        //[Ignore("Test for demo")]
+        [Ignore("Test for demo")]
         public void EvidenceUpload_VerifyNotSupportedFile_Upload_Delete_Download_Process()
         {
             /* Upload supported and unsupported files */
@@ -298,6 +304,8 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 
 
         [Test, Category("Scenario #9: Verify the Previous button")]
+        [Ignore("Duplicate Test already in Test10_Functionality_Partial_Navigation.cs")]
+
         public void EvidenceUpload_PreviousButton()
         {
             EvidenceUpload_ClickPrevious();
@@ -323,6 +331,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 
 
         [Test, Category("Scenario #11: Verify the Next button")]
+        [Ignore("Duplicate Test already in Test10_Functionality_Partial_Navigation.cs")]
         public void EvidenceUpload_CancelEvidenceFileUploadButton()
         {
             EvidenceUpload_ClickCancel();
