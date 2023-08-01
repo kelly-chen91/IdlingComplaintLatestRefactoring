@@ -5,6 +5,8 @@ using System.Drawing;
 using OpenQA.Selenium.Support.UI;
 using IdlingComplaints.Models.Register;
 using SeleniumUtilities.Base;
+using RazorEngine.Compilation.ImpromptuInterface.Dynamic;
+using IdlingComplaints.Tests.Register;
 
 namespace IdlingComplaints.Tests.Register
 {
@@ -12,8 +14,9 @@ namespace IdlingComplaints.Tests.Register
     internal class Test10_RegistrationFunctionality : RegisterModel
     {
         private readonly int SLEEP_TIMER = 0;
-        private string Registered_EmailAddress = StringUtilities.GetProjectRootDirectory() + "\\Files\\Text\\Registered_EmailAddress.txt";
-
+        private string Registered_EmailAddress_PasswordReset = StringUtilities.GetProjectRootDirectory() + "\\Files\\Text\\Registered_EmailAddress_PasswordReset.txt";
+        private string Registered_AccountTracker = StringUtilities.GetProjectRootDirectory() + "\\Files\\Text\\ComplaintForm_AccountTracker.txt";
+        
         BaseExtent extent;
 
         public Test10_RegistrationFunctionality()
@@ -62,48 +65,16 @@ namespace IdlingComplaints.Tests.Register
         }
 
 
-        [Test, Category("Scenario test#1: New user with all random text input")]
-        public void RandomtextRegistration()
+        [Test, Category("Successful User Registration for Complaint Form Submissions")]
+        public void RegistrationForAccountTracker()
         {
-            FirstNameControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(), SLEEP_TIMER);
-            LastNameControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(), SLEEP_TIMER);
+            RandomTextRegistration(Registered_AccountTracker);
+        }
 
-            string generatedEmail = StringUtilities.GenerateCustomEmail(FirstNameInput, LastNameInput, "dep.nyc.gov");
-            EmailControl.SendKeysWithDelay(generatedEmail, SLEEP_TIMER);
-            
-            string password = StringUtilities.GenerateQualifiedPassword();
-            PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
-            ConfirmPasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
-            
-            int securityRandomNumber = StringUtilities.GenerateRandomNumberWithRange(1, 5);
-            SelectSecurityQuestion(securityRandomNumber);
-            
-            string securityAnswer = StringUtilities.GenerateRandomString();
-            SecurityAnswerControl.SendKeysWithDelay(securityAnswer, SLEEP_TIMER);
-            ScrollToButton();
-
-            Address1Control.SendKeysWithDelay(StringUtilities.GenerateRandomString(), SLEEP_TIMER);
-            Address2Control.SendKeysWithDelay(StringUtilities.GenerateRandomString(), SLEEP_TIMER);
-            CityControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(), SLEEP_TIMER);
-            
-            int stateRandomNumber = StringUtilities.GenerateRandomNumberWithRange(1, 49);
-            Console.WriteLine("The state number is " + stateRandomNumber + " . And the State selected is " + StateControl);
-            SelectState(stateRandomNumber);
-            
-           
-            string zipCodeNumbers = StringUtilities.GenerateRandomString();
-            ZipCodeControl.SendKeysWithDelay(zipCodeNumbers, SLEEP_TIMER);
-        
-            string TelephoneNumbers = StringUtilities.GenerateRandomString();
-            TelephoneControl.SendKeysWithDelay(TelephoneNumbers, SLEEP_TIMER);
-            
-            ClickSubmitButton();
-            
-            var snackBarError =Driver.WaitUntilElementFound(SnackBarByControl, 61).FindElement(By.TagName("span")); ;
-            string[] inputs = { generatedEmail, password, securityAnswer };
-            Registered_EmailAddress.WriteIntoFile(inputs);
-            Console.WriteLine("The new user is "+ generatedEmail);
-            Assert.That(snackBarError.Text.Trim(), Contains.Substring("Registration has been completed successfully"), "Flagged for inconsistency on purpose."); //Added period for consistency with other error messaging
+        [Test, Category("Successful User Registration for Password Reset")]
+        public void RegistrationForPasswordReset()
+        {
+            RandomTextRegistration(Registered_EmailAddress_PasswordReset);
         }
 
         [Test, Category("Scenario test#2: Registration with a exiting account")]
@@ -164,6 +135,47 @@ namespace IdlingComplaints.Tests.Register
 
         }
 
+        public void RandomTextRegistration(string fileName)
+        {
+            FirstNameControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(), SLEEP_TIMER);
+            LastNameControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(), SLEEP_TIMER);
 
+            string generatedEmail = StringUtilities.GenerateCustomEmail(FirstNameInput, LastNameInput, "dep.nyc.gov");
+            EmailControl.SendKeysWithDelay(generatedEmail, SLEEP_TIMER);
+
+            string password = StringUtilities.GenerateQualifiedPassword();
+            PasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
+            ConfirmPasswordControl.SendKeysWithDelay(password, SLEEP_TIMER);
+
+            int securityRandomNumber = StringUtilities.GenerateRandomNumberWithRange(1, 5);
+            SelectSecurityQuestion(securityRandomNumber);
+
+            string securityAnswer = StringUtilities.GenerateRandomString();
+            SecurityAnswerControl.SendKeysWithDelay(securityAnswer, SLEEP_TIMER);
+            ScrollToButton();
+
+            Address1Control.SendKeysWithDelay(StringUtilities.GenerateRandomString(), SLEEP_TIMER);
+            Address2Control.SendKeysWithDelay(StringUtilities.GenerateRandomString(), SLEEP_TIMER);
+            CityControl.SendKeysWithDelay(StringUtilities.GenerateRandomString(), SLEEP_TIMER);
+
+            int stateRandomNumber = StringUtilities.GenerateRandomNumberWithRange(1, 49);
+            Console.WriteLine("The state number is " + stateRandomNumber + " . And the State selected is " + StateControl);
+            SelectState(stateRandomNumber);
+
+
+            string zipCodeNumbers = StringUtilities.GenerateRandomString();
+            ZipCodeControl.SendKeysWithDelay(zipCodeNumbers, SLEEP_TIMER);
+
+            string TelephoneNumbers = StringUtilities.GenerateRandomString();
+            TelephoneControl.SendKeysWithDelay(TelephoneNumbers, SLEEP_TIMER);
+
+            ClickSubmitButton();
+
+            var snackBarError = Driver.WaitUntilElementFound(SnackBarByControl, 61).FindElement(By.TagName("span")); ;
+            string[] inputs = { generatedEmail, password, securityAnswer };
+            fileName.WriteIntoFile(inputs);
+            Console.WriteLine("The new user is " + generatedEmail);
+            Assert.That(snackBarError.Text.Trim(), Contains.Substring("Registration has been completed successfully"), "Flagged for inconsistency on purpose."); //Added period for consistency with other error messaging
+        }
     }
 }

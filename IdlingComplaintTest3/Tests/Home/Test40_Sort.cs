@@ -17,7 +17,7 @@ namespace IdlingComplaints.Tests.Home
     internal class Test40_Sort : HomeModel
     {
         private readonly int SLEEP_TIMER = 0;
-        private readonly string registered_EmailAddress = StringUtilities.GetProjectRootDirectory() + "\\Files\\Text\\Registered_EmailAddress.txt";
+        private readonly string registered_EmailAddress = StringUtilities.GetProjectRootDirectory() + "\\Files\\Text\\ComplaintForm_AccountTracker.txt";
         private Random random = new Random();
         BaseExtent extent;
 

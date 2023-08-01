@@ -48,7 +48,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Files\Text\Registered_EmailAddress.txt">
+    <None Update="Files\Text\Registered_EmailAddress_PasswordReset.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

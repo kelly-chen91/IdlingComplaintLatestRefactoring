@@ -16,7 +16,7 @@ namespace IdlingComplaints.Tests.Home
     { 
     
         BaseExtent extent;
-        private readonly string registered_EmailAddress = StringUtilities.GetProjectRootDirectory() + "\\Files\\Text\\Registered_EmailAddress.txt";
+        private readonly string registered_EmailAddress = StringUtilities.GetProjectRootDirectory() + "\\Files\\Text\\ComplaintForm_AccountTracker.txt";
         private Random random = new Random();
         public Test60_Label()
         {

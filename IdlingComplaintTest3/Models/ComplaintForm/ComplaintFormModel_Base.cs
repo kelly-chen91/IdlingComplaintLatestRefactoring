@@ -13,7 +13,7 @@ namespace IdlingComplaints.Models.ComplaintForm
 {
     internal partial class ComplaintFormModel : HomeModel
     {
-        private readonly string registered_EmailAddress = StringUtilities.GetProjectRootDirectory() + "\\Files\\Text\\Registered_EmailAddress.txt";
+        private readonly string registered_EmailAddress = StringUtilities.GetProjectRootDirectory() + "\\Files\\Text\\ComplaintForm_AccountTracker.txt";
         public readonly string submission_tracker = StringUtilities.GetProjectRootDirectory() + "\\Files\\Text\\ComplaintForm_SubmissionTracker.txt";
         private Random random = new Random();
         private string email = "ttseng@dep.nyc.gov";
