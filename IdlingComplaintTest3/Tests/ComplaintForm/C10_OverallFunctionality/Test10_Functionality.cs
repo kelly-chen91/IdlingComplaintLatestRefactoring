@@ -185,6 +185,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
             AppearOATH_ClickNo();
 
             Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60);
+            Driver.WaitUntilElementFound(AppearOATH_UploadByControl, 60);
 
             AppearOATH_UploadFormInput = FILE_IMAGE_PATH;
             AppearOATH_ClickConfirmUpload();

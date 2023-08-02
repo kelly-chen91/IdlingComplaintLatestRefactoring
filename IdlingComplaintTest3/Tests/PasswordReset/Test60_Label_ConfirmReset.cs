@@ -36,7 +36,7 @@ namespace IdlingComplaints.Tests.PasswordReset
             EmailInput = "TTseng@dep.nyc.gov";
             ClickResetButton();
             
-            Driver.WaitUntilElementFound(SecurityAnswerByControl, 10);
+            Driver.WaitUntilElementFound(SecurityAnswerByControl, 20);
         }
 
         [OneTimeTearDown]

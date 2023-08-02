@@ -11,6 +11,7 @@ namespace IdlingComplaints.Models.ComplaintForm
     internal partial class ComplaintFormModel : HomeModel
     {
         public By AppearOATH_YesByControl = By.CssSelector("mat-radio-button[value='753720001']");
+        public By AppearOATH_UploadByControl = By.CssSelector("input[type='file']");
         public IWebElement AppearOATH_YesControl => Driver.FindElement(By.CssSelector("mat-radio-button[value='753720001']"));
         public IWebElement AppearOATH_NoControl => Driver.FindElement(By.CssSelector("mat-radio-button[value='753720000']"));
 
