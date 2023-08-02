@@ -46,7 +46,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         [SetUp]
         public void SetUp()
         {
-            base.ComplaintFormModelSetUp(true, false) ;
+            base.ComplaintFormModelSetUp(false, false) ;
             NewComplaintSetUp();
             Filled_ComplaintInfo();
             var successfulSave = Driver.WaitUntilElementFound(SnackBarByControl, 20).FindElement(By.TagName("span"));
@@ -188,9 +188,9 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 
             var rowList = MatTableControl.GetDataFromMatTable(); //Needed to make new version of this because it's a different type of table
             Assert.That(rowList.Count, Is.EqualTo(filePaths.Length-1)); // one file is not supported
-          
-
         }
+
+
 
 
         [Test, Category("Scenario #4: Verify a delete button")]
@@ -202,13 +202,32 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 
             EvidenceUpload_ClickDeleteEvidence();
 
-            Driver.WaitUntilElementFound(By.TagName("mat-dialog-container"), 60);
+            Driver.WaitUntilElementFound(EvidenceUpload_DeleteConfirmPopUpWindowControl, 60);
             EvidenceUpload_ConfirmDelete();
             Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-dialog-container"), 60);
             Driver.WaitUntilElementIsNoLongerFound(SnackBarByControl, 20);
             Driver.WaitUntilElementFound(By.TagName("mat-error"), 61);
             Assert.IsNotNull(EvidenceUpload_UploadErrorControl);
         }
+
+        [Test, Category("Scenario #4.1: Verify a Pop up window when select delete")]
+        public void EvidenceUpload_VerifyDeleteConfirmationPopUpButton()
+        {
+            EvidenceUpload_UploadOneFile();
+
+            var deleteControl = By.CssSelector("mat-icon[aria-label='Delete']"); //get delete locator
+
+            EvidenceUpload_ClickDeleteEvidence();
+
+            Driver.WaitUntilElementFound(EvidenceUpload_DeleteConfirmPopUpWindowControl, 60);
+            EvidenceUpload_ConfirmDelete();
+
+            Driver.WaitUntilElementIsNoLongerFound(By.TagName("mat-dialog-container"), 60);
+            Driver.WaitUntilElementIsNoLongerFound(SnackBarByControl, 20);
+            Driver.WaitUntilElementFound(By.TagName("mat-error"), 61);
+            Assert.IsNotNull(EvidenceUpload_UploadErrorControl);
+        }
+
 
 
         [Test, Category("Scenario #5: Verify delete buttons by continuously delete files")]
@@ -366,6 +385,23 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
                 Assert.That(successfulEvidenceUpload.Text.Trim(), Contains.Substring("Succesfully uploaded file named: "));
 
             Driver.WaitUntilElementIsNoLongerFound(SnackBarByControl, 20);
+        }
+
+        [Test, Category("Scenario #4: After files uploaded and file deleted, The number of table rows displayed should correspond to the total number of files that have been uploaded.")]
+        public void EvidenceUpload_TableItemCount()
+        {
+            //Add files, total number of file is filePaths.Count()-1
+            Upload_Multiple_Files();
+
+            //Delete the first file from the table.
+            EvidenceUpload_ClickOntheDeleteButton(0);
+
+            Driver.WaitUntilElementFound(EvidenceUpload_DeleteConfirmPopUpWindowControl, 30);
+            EvidenceUpload_ConfirmDelete();
+
+            Driver.WaitUntilElementIsNoLongerFound(EvidenceUpload_DeleteConfirmPopUpWindowControl, 31);
+     
+            Assert.That(EvidenceUpload_EvidenceUpload_GetEvidenceItemsCount(), Is.EqualTo(filePaths.Count()-2)); //filePaths.Count()-2 due to one uploaded file not support and one deleted file
         }
     }
 }

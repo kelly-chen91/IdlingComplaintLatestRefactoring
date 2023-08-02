@@ -13,6 +13,8 @@ namespace IdlingComplaints.Models.ComplaintForm
     internal partial class ComplaintFormModel : HomeModel
     {
         public By EvidenceUpload_UploadCommentByControl => By.TagName("textarea");
+        public By EvidenceUpload_DeleteConfirmPopUpWindowControl => By.TagName("mat-dialog-container");
+        
         public IWebElement EvidenceUpload_UploadControl => Driver.FindElement(By.CssSelector("input[type='file']"));
 
         public IWebElement EvidenceUpload_PreviousControl => Driver.FindElement(By.XPath("//app-blob-files-upload/form/div/button[1]"));
@@ -37,6 +39,18 @@ namespace IdlingComplaints.Models.ComplaintForm
         public IWebElement EvidenceUpload_RefreshControl => EvidenceUpload_TableControl.FindElement(By.CssSelector("button[mattooltip='Click to download']"));
         public IWebElement EvidenceUpload_SnapBar => Driver.FindElement(By.TagName("simple-snack-bar"));
         public IWebElement EvidenceUpload_SummonsAffidavit => Driver.FindElement(By.XPath("//form/div/mat-card/mat-card-header/div/mat-card-title/h4"));
+       
+        public List<IWebElement> EvidenceUpload_EvidenceTableItems => Driver.FindElements(By.TagName("mat-row")).ToList();
+
+        public void EvidenceUpload_ClickOntheDeleteButton(int index)
+        {
+            EvidenceUpload_EvidenceTableItems[index].FindElement(By.CssSelector("mat-icon[aria-label='Delete']")).Click();
+        }
+        public int EvidenceUpload_EvidenceUpload_GetEvidenceItemsCount()
+        {
+            return EvidenceUpload_EvidenceTableItems.Count; 
+        }
+
 
         public string EvidenceUpload_UploadInput
         {
