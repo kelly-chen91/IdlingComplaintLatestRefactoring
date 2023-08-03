@@ -1,5 +1,4 @@
-﻿using SeleniumUtilities.Base;
-using SeleniumUtilities.Utils;
+﻿using SeleniumUtilities.BaseSetUp;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
@@ -8,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Text.RegularExpressions;
 using IdlingComplaints.Tests;
+using SeleniumUtilities.Utils.TestUtils;
 
 namespace IdlingComplaints.Models.Register
 {

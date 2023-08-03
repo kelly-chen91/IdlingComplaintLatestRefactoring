@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SeleniumUtilities.Utils.ExtentUtils
+namespace SeleniumUtilities.Utils.ReportUtils
 {
     public class ExtentTestManager
     {

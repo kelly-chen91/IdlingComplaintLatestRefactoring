@@ -1,6 +1,5 @@
 ﻿using IdlingComplaints.Models.Home;
 using OpenQA.Selenium;
-using SeleniumUtilities.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using IdlingComplaints.Tests.ComplaintForm.P10_Associated;
 using NUnit.Framework;
+using SeleniumUtilities.Utils.TestUtils;
 
 namespace IdlingComplaints.Models.ComplaintForm
 {

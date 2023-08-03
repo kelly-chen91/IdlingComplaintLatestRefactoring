@@ -1,8 +1,8 @@
-﻿using SeleniumUtilities.Base;
-using SeleniumUtilities.Utils;
+﻿using SeleniumUtilities.BaseSetUp;
 using OpenQA.Selenium;
 using System.Drawing;
 using IdlingComplaints.Tests;
+using SeleniumUtilities.Utils.TestUtils;
 
 namespace IdlingComplaints.Models.Login
 {

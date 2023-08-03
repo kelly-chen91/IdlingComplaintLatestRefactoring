@@ -1,5 +1,5 @@
 ﻿using IdlingComplaints.Models.PasswordReset;
-using SeleniumUtilities.Base;
+using SeleniumUtilities.BaseSetUp;
 using SeleniumUtilities.Utils;
 using System;
 using System.Collections.Generic;

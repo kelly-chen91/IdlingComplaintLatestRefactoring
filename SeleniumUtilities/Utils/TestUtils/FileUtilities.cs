@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
-using SeleniumUtilities.Base;
+using SeleniumUtilities.BaseSetUp;
 using OpenQA.Selenium.Internal;
 using OpenQA.Selenium.DevTools.V112.Network;
 using System.Collections.ObjectModel;
@@ -16,7 +16,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace SeleniumUtilities.Utils
+namespace SeleniumUtilities.Utils.TestUtils
 {
     public static class FileUtilities
     {
@@ -25,21 +25,22 @@ namespace SeleniumUtilities.Utils
             The targetRowIndex and targetColumnIndex are starting from 0;*/
         public static string RetrieveRecordValue(this string filePath, int targetRowIndex, int targetColumnIndex)
         {
-            try {
+            try
+            {
                 string[] lines = File.ReadAllLines(filePath);
-       
+
                 if (targetRowIndex >= 0 && targetRowIndex < lines.Length)
                 {
                     string row = lines[targetRowIndex];
-       
+
                     string[] columns = row.Split(' ');
-       
+
                     if (targetColumnIndex >= 0 && targetColumnIndex <= columns.Length - 1)
                     {
                         string targetValue = columns[targetColumnIndex];
-       
+
                         return targetValue;
-       
+
                     }
                     else
                     {
@@ -59,10 +60,10 @@ namespace SeleniumUtilities.Utils
             {
                 Console.WriteLine("An error occurred " + ex.Message);
             }
-       
+
             return "";
         }
-      
+
 
 
 

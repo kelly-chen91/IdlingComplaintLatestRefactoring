@@ -2,8 +2,8 @@
 using AventStack.ExtentReports.Reporter;
 using IdlingComplaints.Models.Login;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using SeleniumUtilities.Base;
-using SeleniumUtilities.Utils;
+using SeleniumUtilities.BaseSetUp;
+using SeleniumUtilities.Utils.TestUtils;
 
 /*
  *This is the label test class for testing the labels in the login page

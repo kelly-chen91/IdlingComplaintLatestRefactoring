@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 using AventStack.ExtentReports;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
-using SeleniumUtilities.Utils;
-using SeleniumUtilities.Utils.ExtentUtils;
+using SeleniumUtilities.Utils.ReportUtils;
+using SeleniumUtilities.Utils.TestUtils;
 
-namespace SeleniumUtilities.Base
+namespace SeleniumUtilities.BaseSetUp
 {
     public class BaseExtent
     {

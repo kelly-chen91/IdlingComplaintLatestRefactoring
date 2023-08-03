@@ -1,13 +1,14 @@
 ﻿using AventStack.ExtentReports;
 using AventStack.ExtentReports.Reporter;
 using AventStack.ExtentReports.Reporter.Configuration;
+using SeleniumUtilities.Utils.TestUtils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SeleniumUtilities.Utils.ExtentUtils
+namespace SeleniumUtilities.Utils.ReportUtils
 {
     public class ExtentService
     {

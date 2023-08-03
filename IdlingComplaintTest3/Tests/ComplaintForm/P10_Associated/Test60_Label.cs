@@ -3,7 +3,6 @@ using OpenQA.Selenium.Support.UI;
 
 using OpenQA.Selenium;
 using OpenQA.Selenium.DevTools.V112.Audits;
-using SeleniumUtilities.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using IdlingComplaints.Tests.ComplaintForm.P10_Associated;
 using static System.Net.Mime.MediaTypeNames;
-using SeleniumUtilities.Base;
+using SeleniumUtilities.BaseSetUp;
+using SeleniumUtilities.Utils.TestUtils;
 
 namespace IdlingComplaints.Tests.ComplaintForm.P10_Associated
 {

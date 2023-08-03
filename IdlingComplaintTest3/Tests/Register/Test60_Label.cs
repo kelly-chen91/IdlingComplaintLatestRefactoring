@@ -1,5 +1,4 @@
 ﻿using IdlingComplaints.Tests.Login;
-using SeleniumUtilities.Utils;
 using OpenQA.Selenium;
 using System;
 using System.Collections;
@@ -8,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IdlingComplaints.Models.Register;
-using SeleniumUtilities.Base;
+using SeleniumUtilities.BaseSetUp;
+using SeleniumUtilities.Utils.TestUtils;
 
 namespace IdlingComplaints.Tests.Register
 {

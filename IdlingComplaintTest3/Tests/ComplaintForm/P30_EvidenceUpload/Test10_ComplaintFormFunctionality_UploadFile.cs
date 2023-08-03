@@ -10,8 +10,8 @@ using IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality;
 using OpenQA.Selenium;
 using OpenQA.Selenium.DevTools.V112.Network;
 using OpenQA.Selenium.Support.UI;
-using SeleniumUtilities.Base;
-using SeleniumUtilities.Utils;
+using SeleniumUtilities.BaseSetUp;
+using SeleniumUtilities.Utils.TestUtils;
 
 namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 {
@@ -46,7 +46,7 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
         [SetUp]
         public void SetUp()
         {
-            base.ComplaintFormModelSetUp(false, false) ;
+            base.ComplaintFormModelSetUp(true, false) ;
             NewComplaintSetUp();
             Filled_ComplaintInfo();
             var successfulSave = Driver.WaitUntilElementFound(SnackBarByControl, 20).FindElement(By.TagName("span"));

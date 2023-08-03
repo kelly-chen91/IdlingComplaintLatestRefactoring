@@ -7,9 +7,9 @@ using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using SeleniumUtilities.Utils;
-using SeleniumUtilities.Utils.ExtentUtils;
+using SeleniumUtilities.Utils.ReportUtils;
 
-namespace SeleniumUtilities.Base
+namespace SeleniumUtilities.BaseSetUp
 {
     public class BaseModel
     {

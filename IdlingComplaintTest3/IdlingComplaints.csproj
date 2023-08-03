@@ -16,14 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Files\Text\BlankTextFile_ForEvidenceUpload.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="Files\Text\BlankTextFile_ForEvidenceUpload.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="ExtentReports" Version="4.1.0" />
     <PackageReference Include="ExtentReports.Core" Version="1.0.3" />
     <PackageReference Include="log4net" Version="2.0.15" />

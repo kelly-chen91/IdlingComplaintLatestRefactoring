@@ -1,4 +1,4 @@
-﻿using SeleniumUtilities.Utils;
+﻿using SeleniumUtilities.Utils.TestUtils;
 using System;
 using System.Collections.Generic;
 using System.Linq;

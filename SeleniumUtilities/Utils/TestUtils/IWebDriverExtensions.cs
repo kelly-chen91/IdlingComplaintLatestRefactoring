@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SeleniumUtilities.Utils
+namespace SeleniumUtilities.Utils.TestUtils
 {
     public static class IWebDriverExternsions
     {
@@ -36,7 +36,7 @@ namespace SeleniumUtilities.Utils
         public static IWebElement WaitUntilElementFound(this IWebDriver webDriver, By locator, double timeout)
         {
             var wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(timeout));
-            return wait.Until<IWebElement>(d => d.FindElement(locator));
+            return wait.Until(d => d.FindElement(locator));
             //return wait.Until<IWebElement>((d) => { return d.FindElement(locator); });
         }
 

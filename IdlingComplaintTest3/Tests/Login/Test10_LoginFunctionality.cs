@@ -1,11 +1,11 @@
 ﻿using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium;
 using System.Drawing;
-using SeleniumUtilities.Utils;
 using IdlingComplaints.Models.Login;
-using SeleniumUtilities.Utils.ExtentUtils;
+using SeleniumUtilities.Utils.ReportUtils;
 using NUnit.Framework.Interfaces;
-using SeleniumUtilities.Base;
+using SeleniumUtilities.BaseSetUp;
+using SeleniumUtilities.Utils.TestUtils;
 
 namespace IdlingComplaints.Tests.Login;
 
@@ -39,7 +39,7 @@ internal class Test10_LoginFunctionality : LoginModel
     [SetUp]
     public void SetUp()
     {
-        base.LoginModelSetUp(false);
+        base.LoginModelSetUp(true);
         extent.SetUp(true);
 
     }

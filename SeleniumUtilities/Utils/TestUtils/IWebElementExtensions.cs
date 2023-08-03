@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SeleniumUtilities.Utils
+namespace SeleniumUtilities.Utils.TestUtils
 {
     public static class IWebElementExtensions
     {
@@ -33,7 +33,7 @@ namespace SeleniumUtilities.Utils
 
         public static void DeleteText(this IWebElement element, string text)
         {
-            for(var i = 0; i < text.Length; i++)
+            for (var i = 0; i < text.Length; i++)
             {
                 element.SendKeys(Keys.Backspace);
             }
@@ -41,7 +41,7 @@ namespace SeleniumUtilities.Utils
 
         public static void SendTextDeleteTabWithDelay(this IWebElement element, string text, int milliseconds)
         {
-            if(milliseconds > 0) Thread.Sleep(milliseconds);
+            if (milliseconds > 0) Thread.Sleep(milliseconds);
             element.SendKeys(text);
             element.DeleteText(text);
             element.SendKeys(Keys.Tab);
@@ -96,7 +96,7 @@ namespace SeleniumUtilities.Utils
             return table.FindElements(By.TagName("mat-row"));
         }
 
-        public static Boolean EqualsTableAfterSorting(this List<string> sorted, List<string> unsorted)
+        public static bool EqualsTableAfterSorting(this List<string> sorted, List<string> unsorted)
         {
             for (int i = 0; i < sorted.Count; i++)
             {

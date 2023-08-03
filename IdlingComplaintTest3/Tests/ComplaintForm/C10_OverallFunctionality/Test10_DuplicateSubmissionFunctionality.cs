@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
-using SeleniumUtilities.Base;
-using SeleniumUtilities.Utils;
+using SeleniumUtilities.BaseSetUp;
+using SeleniumUtilities.Utils.TestUtils;
 using System;
 using System.Collections.Generic;
 using System.Linq;

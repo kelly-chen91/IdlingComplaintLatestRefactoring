@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace SeleniumUtilities.Utils
+namespace SeleniumUtilities.Utils.TestUtils
 {
     public static class StringUtilities
     {
@@ -111,24 +111,24 @@ namespace SeleniumUtilities.Utils
         }
 
         /* The following methods checking for validation of the fields: Email, Phone #, ZipCode, password */
-        public static Boolean IsValidEmail(this string email)
+        public static bool IsValidEmail(this string email)
         {
             var regexPattern = @"^[a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$";
             var regex = new Regex(regexPattern);
             return regex.IsMatch(email);
         }
 
-        public static String FormatPhoneNumber(this string phone)
+        public static string FormatPhoneNumber(this string phone)
         {
             Regex regex = new Regex(@"[^\d]");
             phone = regex.Replace(phone.Trim(), "");
             phone = Regex.Replace(phone, @"(\d{3})(\d{3})(\d{4})", "$1-$2-$3");
             return phone;
         }
-        public static Boolean IsValidPhoneNumber(this string phoneNumber)
+        public static bool IsValidPhoneNumber(this string phoneNumber)
         {
             Console.WriteLine("original: " + phoneNumber);
-            phoneNumber = FormatPhoneNumber(phoneNumber);
+            phoneNumber = phoneNumber.FormatPhoneNumber();
             Console.WriteLine("new: " + phoneNumber);
             if (string.IsNullOrEmpty(phoneNumber))
             {
@@ -144,20 +144,20 @@ namespace SeleniumUtilities.Utils
 
         }
 
-        public static void ValidateErrorDetail(this 
+        public static void ValidateErrorDetail(this
             string error, string errorBase, string[] containErrorList, Dictionary<string, string> dictionary)
         {
             //string errorDetail = error.Substring(errorBase.Length);
             string errorDetail = error.Split(":", StringSplitOptions.None)[1];
             string[] errorDetailList = errorDetail.Split(". ", StringSplitOptions.None);
             int isExpectedErrorCount = 0;
-            Console.WriteLine("error detail list length: " +  errorDetailList.Length);
+            Console.WriteLine("error detail list length: " + errorDetailList.Length);
             for (int i = 0; i < errorDetailList.Length; i++)
             {
                 Console.WriteLine(errorDetailList[i]);
                 for (int j = 0; j < containErrorList.Length; j++)
                 {
-                    Console.WriteLine("expected error: "+errorDetailList[i].Contains(containErrorList[j]));
+                    Console.WriteLine("expected error: " + errorDetailList[i].Contains(containErrorList[j]));
 
                     if (errorDetailList[i].Contains(containErrorList[j]))
                     {
@@ -187,6 +187,6 @@ namespace SeleniumUtilities.Utils
             return currentDirectory.Split("bin")[0];
         }
 
-        
+
     }
 }

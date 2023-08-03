@@ -1,6 +1,6 @@
 ﻿using AventStack.ExtentReports;
 using OpenQA.Selenium;
-using SeleniumUtilities.Utils;
+using SeleniumUtilities.Utils.TestUtils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace IdlingComplaints.Tests.ComplaintForm.C10_OverallFunctionality
 {
-    
+
     internal partial class Test10_Functionality
     {
         

@@ -7,8 +7,8 @@ using IdlingComplaints.Models.ComplaintForm;
 using IdlingComplaints.Tests.ComplaintForm.P20_Occurrence;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using SeleniumUtilities.Base;
-using SeleniumUtilities.Utils;
+using SeleniumUtilities.BaseSetUp;
+using SeleniumUtilities.Utils.TestUtils;
 
 namespace IdlingComplaints.Tests.ComplaintForm.P20_Occurrence
 {

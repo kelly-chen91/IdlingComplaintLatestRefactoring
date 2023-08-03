@@ -1,5 +1,4 @@
-﻿using SeleniumUtilities.Base;
-using SeleniumUtilities.Utils;
+﻿using SeleniumUtilities.BaseSetUp;
 using IdlingComplaints.Models;
 using System;
 using System.Collections.Generic;
@@ -11,6 +10,7 @@ using System.Drawing;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium;
 using System.Reflection.Metadata.Ecma335;
+using SeleniumUtilities.Utils.TestUtils;
 
 namespace IdlingComplaints.Models.Home
 {

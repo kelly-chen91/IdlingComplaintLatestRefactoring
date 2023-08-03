@@ -2,8 +2,8 @@
 using IdlingComplaints.Tests.ComplaintForm.P10_Associated;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using SeleniumUtilities.Base;
-using SeleniumUtilities.Utils;
+using SeleniumUtilities.BaseSetUp;
+using SeleniumUtilities.Utils.TestUtils;
 using System;
 using System.Collections.Generic;
 using System.Linq;

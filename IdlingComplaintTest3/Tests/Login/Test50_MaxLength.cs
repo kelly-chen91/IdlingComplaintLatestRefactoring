@@ -1,6 +1,6 @@
 ﻿using IdlingComplaints.Models.Login;
-using SeleniumUtilities.Base;
-using SeleniumUtilities.Utils;
+using SeleniumUtilities.BaseSetUp;
+using SeleniumUtilities.Utils.TestUtils;
 
 namespace IdlingComplaints.Tests.Login
 {

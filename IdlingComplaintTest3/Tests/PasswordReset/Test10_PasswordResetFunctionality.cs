@@ -2,8 +2,8 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Internal;
 using OpenQA.Selenium.Support.UI;
-using SeleniumUtilities.Base;
-using SeleniumUtilities.Utils;
+using SeleniumUtilities.BaseSetUp;
+using SeleniumUtilities.Utils.TestUtils;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -103,8 +103,7 @@ namespace IdlingComplaints.Tests.PasswordReset
             Assert.IsNotNull(resetControl);
             registered_EmailAddress.ReplaceRecordValue(userIndex, 1, password);
 
-            //  Assert.That(resetControl.Text.Trim(), Is.EqualTo(Constants.SUCCESSFUL_PASSWORD_MESSAGE));
-            Assert.That(resetControl.Text.Trim(), Is.EqualTo("Password has been reset successfully"));
+            Assert.That(resetControl.Text.Trim(), Is.EqualTo(Constants.SUCCESSFUL_PASSWORD_MESSAGE));
         }
 
 

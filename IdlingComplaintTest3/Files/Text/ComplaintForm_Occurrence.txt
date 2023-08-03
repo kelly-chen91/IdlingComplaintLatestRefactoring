@@ -1,4 +1,0 @@
-DateFrom_0	DateTo_1 HouseNumber_2 StreetName_3 CrossStreet1_4 CrossStreet2_5	LicensePlate_6	PastOffence_7	SecondPasstOffence_8
-DateFrom_0	DateTo_1	Location_2 HouseNumber_3	StreetName_4	CrossStreet1_5	CrossStreet2_6	Borough_7	LicensePlate_8	PastOffence_9	SecondPasstOffence_10
-
-"6/9/2023, 10:49:04 AM" "6/9/2023, 11:49:04 AM" "In front of" "33-24" "Northern Blvd" "Queens" "ABC123" "POffence" "SPOffence"

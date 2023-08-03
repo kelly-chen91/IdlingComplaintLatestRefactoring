@@ -1,6 +1,6 @@
 ﻿using IdlingComplaints.Models.Home;
 using OpenQA.Selenium;
-using SeleniumUtilities.Utils;
+using SeleniumUtilities.Utils.TestUtils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
