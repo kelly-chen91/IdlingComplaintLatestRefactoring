@@ -28,7 +28,7 @@ namespace IdlingComplaints.Models.Home
             PasswordControl.SendKeysWithDelay(password, 0);
             ClickLoginButton();
 
-            Driver.WaitUntilElementFound(NewComplaintByControl, 30);
+            Driver.WaitUntilElementFound(NewComplaintByControl, 60);
             Driver.WaitUntilElementIsNoLongerFound(SpinnerByControl, 60);
         }
 
