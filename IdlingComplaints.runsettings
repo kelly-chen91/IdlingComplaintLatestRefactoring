@@ -28,6 +28,7 @@
 		<!-- true or false -->
 		<!-- Value that specifies the exit code when no tests are discovered -->
 		<TreatNoTestsAsError>true</TreatNoTestsAsError>
+		<!--<DisableParallelization>true</DisableParallelization>-->
 	</RunConfiguration>
 
 	<!-- Parameters used by tests at run time -->
