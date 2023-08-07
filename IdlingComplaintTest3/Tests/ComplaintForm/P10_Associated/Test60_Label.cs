@@ -66,6 +66,33 @@ namespace IdlingComplaints.Tests.ComplaintForm.P10_Associated
             }
         }
 
+        [Test, Category("Correct Label Displayed")]
+        public void DisplayedCriteria_PassengerCapacity()
+        {
+            string text = Driver.ExtractTextFromXPath("//form/mat-card/mat-card-content/div/div[2]/label/text()");
+            Assert.That(text.Trim(), Is.EqualTo(Constants.BUS_OR_VAN_PASSENGER_CAPACITY));
+        }
+
+        [Test, Category("Correct Label Displayed")]
+        public void DisplayedCriteria_Loading()
+        {
+            string text = Driver.ExtractTextFromXPath("//form/mat-card/mat-card-content/div/div[3]/label/text()");
+            Assert.That(text.Trim(), Is.EqualTo(Constants.BUS_OR_VAN_LOADING_PASSENGER));
+        }
+
+        [Test, Category("Correct Label Displayed")]
+        public void DisplayedCriteria_ActivityInvolvement()
+        {
+            string text = Driver.ExtractTextFromXPath("//form/mat-card/mat-card-content/div/div[4]/label/text()");
+            Assert.That(text.Trim(), Is.EqualTo(Constants.TRUCK_OR_VAN_ACTIVITY_INVOLVEMENT));
+        }
+
+        [Test, Category("Correct Label Displayed")]
+        public void DisplayedCriteria_PrivateVehicle()
+        {
+            string text = Driver.ExtractTextFromXPath("//form/mat-card/mat-card-content/div/div[5]/label/text()");
+            Assert.That(text.Trim(), Is.EqualTo(Constants.PRIVATE_VEHICLE_TYPE));
+        }
 
         [Test, Category("Correct Label Displayed")]
         public void DisplayedHeading()

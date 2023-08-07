@@ -37,5 +37,12 @@ namespace IdlingComplaints.Tests.ComplaintForm.P10_Associated
         //label: Describe the Acknowledgement section
         public static readonly string REQUIRED_ACKNOWLEDGEMENT = "Acknowledgement is required";
 
+        //label: Qualifying Criteria section
+        public static readonly string BUS_OR_VAN_PASSENGER_CAPACITY = "Is the BUS / VAN capacity 15 passengers or less, including the driver?";
+        public static readonly string BUS_OR_VAN_LOADING_PASSENGER = "Was the BUS / VAN loading and unloading passengers during the idling event when not at a terminal point?";
+        public static readonly string TRUCK_OR_VAN_ACTIVITY_INVOLVEMENT = "Was the TRUCK / VAN involved in an activity classified as process [i.e. refrigeration trucks, ice cream" +
+            " trucks, cement trucks, trucks using lift gates, armored trucks, garbage trucks collecting waste, etc.] during the idling event?";
+        public static readonly string PRIVATE_VEHICLE_TYPE = "Is it a PRIVATE VEHICLE?";
+
     }
 }
