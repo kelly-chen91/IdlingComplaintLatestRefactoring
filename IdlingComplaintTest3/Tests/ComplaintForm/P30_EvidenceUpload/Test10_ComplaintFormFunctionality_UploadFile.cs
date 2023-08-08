@@ -380,8 +380,8 @@ namespace IdlingComplaints.Tests.ComplaintForm.P30_EvidenceUpload
 
 
             var successfulEvidenceUpload = Driver.WaitUntilElementFound(SnackBarByControl, 60);
-
-            if (successfulEvidenceUpload != null && successfulEvidenceUpload.Text.Contains("uploaded"))
+            Assert.IsNotNull(successfulEvidenceUpload);
+            if (successfulEvidenceUpload.Text.Contains("uploaded"))
                 Assert.That(successfulEvidenceUpload.Text.Trim(), Contains.Substring("Succesfully uploaded file named: "));
 
             Driver.WaitUntilElementIsNoLongerFound(SnackBarByControl, 20);
